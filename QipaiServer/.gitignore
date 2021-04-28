@@ -1,0 +1,16 @@
+
+*.obj
+*.log
+*.tlog
+*.idb
+*.pdb
+*.exe
+*.opensdf
+*.sdf
+*.ilk
+*.lib
+.svn/entries
+.svn/format
+.svn/wc.db-journal
+.svn/wc.db
+*.svn-base

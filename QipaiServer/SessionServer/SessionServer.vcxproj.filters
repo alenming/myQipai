@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Classes">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Recources">
+      <UniqueIdentifier>{da3e3fd2-af2e-4bff-847d-a0d6c407a2c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern">
+      <UniqueIdentifier>{3362a857-294b-46c6-86b4-ab602e57e187}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame">
+      <UniqueIdentifier>{d2a336d3-417f-47f8-b0a4-135b79ffb6cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\commnication">
+      <UniqueIdentifier>{4499cd3f-b4c2-4430-a70c-950efcd031be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\core">
+      <UniqueIdentifier>{2a132ae4-5a39-4c37-b51c-a44c3576b4a8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\helper">
+      <UniqueIdentifier>{20d7d427-fb1a-4e28-875c-63ba75addd9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\log">
+      <UniqueIdentifier>{9c3ddc9e-ffa7-47a3-b477-77dd3ec98cc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\server">
+      <UniqueIdentifier>{8af984d6-77b5-49c1-b158-eb7f0ce1583c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\protocol">
+      <UniqueIdentifier>{7d531589-721a-4d62-8f8f-7736f4d95730}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Classes\ConnectModule.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\NetworkManager.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionClient.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionConnect.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionListener.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionServer.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ClientModule.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ConnectEvent.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\GameInterface.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionEvent.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxBufferList.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxCommInterfaces.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxEpoller.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSelectPoller.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSock.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPConnector.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPListener.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPUnit.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxUDPUnit.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\core\KxCore.h">
+      <Filter>Classes\Extern\ServerFrame\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\core\KxMemPool.h">
+      <Filter>Classes\Extern\ServerFrame\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\core\KxObject.h">
+      <Filter>Classes\Extern\ServerFrame\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\core\KxPlatform.h">
+      <Filter>Classes\Extern\ServerFrame\core</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\BaseModule.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\BufferTool.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\CsvLoader.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\IDBModel.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerCallback.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerManager.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimeVal.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\server\Head.h">
+      <Filter>Classes\Extern\ServerFrame\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h">
+      <Filter>Classes\Extern\ServerFrame\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\server\Protocol.h">
+      <Filter>Classes\Extern\ServerFrame\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h">
+      <Filter>Classes\Extern\ServerFrame\server</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\log\ILogHandler.h">
+      <Filter>Classes\Extern\ServerFrame\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\log\LogConsoleHandler.h">
+      <Filter>Classes\Extern\ServerFrame\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\log\LogFileHandler.h">
+      <Filter>Classes\Extern\ServerFrame\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\log\LogManager.h">
+      <Filter>Classes\Extern\ServerFrame\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\KXServer.h">
+      <Filter>Classes\Extern\ServerFrame</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\BagProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\MainProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Classes\ConnectModule.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Main.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\NetworkManager.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionClient.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionConnect.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionListener.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionServer.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\ClientModule.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\ConnectEvent.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionEvent.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxEpoller.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSelectPoller.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSock.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPConnector.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPListener.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPUnit.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxUDPUnit.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\core\KxMemPool.cpp">
+      <Filter>Classes\Extern\ServerFrame\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\core\KxObject.cpp">
+      <Filter>Classes\Extern\ServerFrame\core</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\helper\CsvLoader.cpp">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\helper\IDBModel.cpp">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\helper\KxTimerManager.cpp">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\server\KxBaseServer.cpp">
+      <Filter>Classes\Extern\ServerFrame\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\server\ServerConfig.cpp">
+      <Filter>Classes\Extern\ServerFrame\server</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\log\LogConsoleHandler.cpp">
+      <Filter>Classes\Extern\ServerFrame\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\log\LogFileHandler.cpp">
+      <Filter>Classes\Extern\ServerFrame\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\log\LogManager.cpp">
+      <Filter>Classes\Extern\ServerFrame\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

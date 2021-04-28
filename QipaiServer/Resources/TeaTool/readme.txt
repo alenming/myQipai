@@ -1,0 +1,2 @@
+1.运行	Encrypt.bat 脚本将DataCsv中的表格使用tea加密成.d文件输出在Data中
+2.代码中读取其二进制文件用tea解密,在DataManager中统一管理

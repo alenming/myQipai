@@ -53,10 +53,6 @@ void DataManager::initData()
 
 		bindTable(m_DataTable[DataManager_AllData[i]], DataManager_AllData[i]);
 	}
-
-	//bindTable(mXXTable, DATA_XXTABLE);
-	//bindTable(mXXTableCsv, DATA_XXTABLE_CSV);
-
 }
 
 void DataManager::bindTable(DataTable& dataTable, const char* filename)

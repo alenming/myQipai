@@ -86,6 +86,9 @@
     <Filter Include="Classes\Extern\Tool\UTFGBK">
       <UniqueIdentifier>{489daa84-50d0-4407-b57b-16bfdf798692}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Extern\Tool\Lua\luajit">
+      <UniqueIdentifier>{2017bc9b-0fee-442d-904f-dc727055e29f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\ConnectModule.h">
@@ -480,6 +483,18 @@
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\UTFGBK\UtfGbk.h">
       <Filter>Classes\Extern\Tool\UTFGBK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lauxlib.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lua.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\luaconf.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lualib.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

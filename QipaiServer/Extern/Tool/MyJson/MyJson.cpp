@@ -39,38 +39,38 @@ bool MyJson::init()
 	return isParse;
 }
 
-int MyJson::asInt(std::string key)
+int MyJson::getInt(std::string key)
 {
 	return mValue[key].asInt();
 }
 
-float MyJson::asFloat(std::string key)
+float MyJson::getFloat(std::string key)
 {
 	return (float)mValue[key].asDouble();
 }
 
-double MyJson::asDouble(std::string key)
+double MyJson::getDouble(std::string key)
 {
 	return mValue[key].asDouble();
 }
 
-bool MyJson::asBool(std::string key)
+bool MyJson::getBool(std::string key)
 {
 	return mValue[key].asBool();
 }
 
-std::string MyJson::asString(std::string key)
+std::string MyJson::getString(std::string key)
 {
 	return mValue[key].asString();
 }
 
-MyJson MyJson::asValue(std::string key)
+MyJson MyJson::getValue(std::string key)
 {
 	return  MyJson(mValue.asValue(key.c_str()));
 }
 
 //取数组下标
-MyJson MyJson::asValue(int key)
+MyJson MyJson::getValue(int key)
 {
 	return MyJson(mValue.asValue(key));
 }

@@ -3,7 +3,8 @@
 #include <string>
 #include "json/json.h"
 
-#define RunningInServer
+#include "core/KxCore.h"
+
 #ifndef RunningInServer
 #include "cocos2d.h"
 #endif
@@ -12,24 +13,21 @@
 
 */
 
-
 class MyJson
 {
-
 public:
 	MyJson();
 	MyJson(Json::Value&);
 	MyJson(const char * data);
 	virtual ~MyJson();
-
 public:
-	int    asInt(std::string key);
-	float  asFloat(std::string key);
-	double asDouble(std::string key);
-	bool   asBool(std::string key);
-	std::string asString(std::string key);
-	MyJson asValue(std::string key);
-	MyJson asValue(int key);
+	int    getInt(std::string key);
+	float  getFloat(std::string key);
+	double getDouble(std::string key);
+	bool   getBool(std::string key);
+	std::string getString(std::string key);
+	MyJson getValue(std::string key);
+	MyJson getValue(int key);
 
 	void writeInt(std::string key, int value);
 	void writeDouble(std::string key, double value);

@@ -89,6 +89,9 @@
     <Filter Include="Classes\Extern\ServerFrame\protocol">
       <UniqueIdentifier>{dc431d77-ae27-41fc-996a-e2a303639f0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Extern\Tool\Lua\luajit">
+      <UniqueIdentifier>{e8235a89-44da-45a4-b297-bd810f22387d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\GateManager.h">
@@ -477,6 +480,18 @@
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\data\UserModel.h">
       <Filter>Classes\Extern\ServerFrame\data</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lauxlib.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lua.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\luaconf.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lualib.h">
+      <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

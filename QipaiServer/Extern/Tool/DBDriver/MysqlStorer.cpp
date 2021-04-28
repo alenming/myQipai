@@ -1,7 +1,6 @@
 #include "MysqlStorer.h"
 
 
-
 MysqlStorer::MysqlStorer(std::string dbname, std::string user, std::string pwd, std::string addr, int port) :
 m_DbName(dbname),
 m_DbUser(user),
@@ -30,7 +29,6 @@ m_CntState(ESTORER_NONE)
 		Connect();
 	}
 }
-
 
 MysqlStorer::MysqlStorer():
 m_DbName(""),
@@ -130,9 +128,7 @@ bool MysqlStorer::ReConnect(std::string dbname, std::string user, std::string pw
 
     m_ConnectPtr = mysql_init(NULL);
 
-
 	printf("CDbStorer::ReConnect() Called !!\n");
-
 
     //3.ÖØÁ¬
     return Connect();
@@ -277,7 +273,6 @@ bool MysqlStorer::StoreResult()
 		//printf("DBError: CDbStorer::StoreResult() get store result error %d: %s\n", mysql_errno(m_ConnectPtr), mysql_error(m_ConnectPtr));
 		return false;
 	}
-
 	else
 	{
 		return true;

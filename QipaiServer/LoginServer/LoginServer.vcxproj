@@ -189,6 +189,10 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\Tool\DBDriver\RedisStorer.h" />
     <ClInclude Include="..\Extern\Tool\LocalDefault\base64_.h" />
     <ClInclude Include="..\Extern\Tool\LocalDefault\LocalDefault.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lauxlib.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lua.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\luaconf.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lualib.h" />
     <ClInclude Include="..\Extern\Tool\Lua\LuaRegiest.h" />
     <ClInclude Include="..\Extern\Tool\Lua\LuaStack_.h" />
     <ClInclude Include="..\Extern\Tool\Lua\LuaTools.h" />

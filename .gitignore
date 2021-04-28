@@ -1,0 +1,14 @@
+
+*.exe
+*.obj
+*.log
+*.tlog
+*.idb
+*.pdb
+*.lib
+*.dll
+*.exp
+*.ilk
+*.opensdf
+*.sdf
+QipaiServer/

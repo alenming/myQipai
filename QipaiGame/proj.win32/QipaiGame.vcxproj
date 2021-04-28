@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{76A39BB2-9B84-4C65-98A5-654D86B86F2A}</ProjectGuid>
+    <RootNamespace>test_win32</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0'">v120</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '12.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v120_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0'">v140</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '14.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v140_xp</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0'">v141</PlatformToolset>
+    <PlatformToolset Condition="'$(VisualStudioVersion)' == '15.0' and exists('$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A')">v141_xp</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\cocos2d\cocos\2d\cocos2dx.props" />
+    <Import Project="..\cocos2d\cocos\2d\cocos2d_headers.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\cocos2d\cocos\2d\cocos2dx.props" />
+    <Import Project="..\cocos2d\cocos\2d\cocos2d_headers.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>12.0.21005.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(Configuration).win32\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)$(Configuration).win32\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration).win32\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <CodeAnalysisRuleSet Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRules Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <CodeAnalysisRuleAssemblies Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(MSBuildProgramFiles32)\Microsoft SDKs\Windows\v7.1A\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)external;$(EngineRoot)cocos\audio\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END);$(SolutionDir)..\Extern\;$(SolutionDir)..\Extern\Tool\;$(SolutionDir)..\Extern\ServerFrame\;$(SolutionDir)..\LuaSupport\</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;COCOS2D_DEBUG=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END);lua51.lib;libiconv.lib;libmysql.lib;libmysqld.lib;pthreadVCE2.lib</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END);$(SolutionDir)..\Lib\;$(SolutionDir)..\bin\</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutDir)$(ProjectName).exe $(ProjectDir)..\bin\</Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup>
+    <CustomBuildStep>
+      <Command>if not exist "$(OutDir)" mkdir "$(OutDir)"
+xcopy "$(ProjectDir)..\Resources" "$(OutDir)" /D /E /I /F /Y
+      </Command>
+      <Outputs>$(TargetName).cab</Outputs>
+      <Inputs>$(TargetFileName)</Inputs>
+    </CustomBuildStep>
+    <PostBuildEvent>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">copy new target to bin directory</Message>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <AdditionalIncludeDirectories>$(EngineRoot);$(EngineRoot)external;$(EngineRoot)cocos\audio\include;$(EngineRoot)external\chipmunk\include\chipmunk;$(EngineRoot)extensions;..\Classes;..;%(AdditionalIncludeDirectories);$(_COCOS_HEADER_WIN32_BEGIN);$(_COCOS_HEADER_WIN32_END)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USE_MATH_DEFINES;GL_GLEXT_PROTOTYPES;CC_ENABLE_CHIPMUNK_INTEGRATION=1;_CRT_SECURE_NO_WARNINGS;_SCL_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DisableSpecificWarnings>4267;4251;4244;%(DisableSpecificWarnings)</DisableSpecificWarnings>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies);$(_COCOS_LIB_WIN32_BEGIN);$(_COCOS_LIB_WIN32_END)</AdditionalDependencies>
+      <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
+      <AdditionalLibraryDirectories>$(OutDir);%(AdditionalLibraryDirectories);$(_COCOS_LIB_PATH_WIN32_BEGIN);$(_COCOS_LIB_PATH_WIN32_END)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+    <PreLinkEvent>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Classes\AppDelegate.cpp" />
+    <ClCompile Include="..\Classes\GameModule.cpp" />
+    <ClCompile Include="..\Classes\GameNetworkNode.cpp" />
+    <ClCompile Include="..\Classes\HelloWorldScene.cpp" />
+    <ClCompile Include="..\Classes\GameLayer.cpp" />
+    <ClCompile Include="..\Classes\GameService.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxEpoller.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSelectPoller.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSock.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPConnector.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPListener.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPUnit.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\KxUDPUnit.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\core\KxMemPool.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\core\KxObject.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\data\GameUser.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\data\GameUserManager.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\data\UserModel.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\helper\CsvLoader.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\helper\IDBModel.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\helper\KxTimerManager.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\log\LogConsoleHandler.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\log\LogFileHandler.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\log\LogManager.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\server\KxBaseServer.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\server\ServerConfig.cpp" />
+    <ClCompile Include="..\Extern\Tool\Common\Data_.cpp" />
+    <ClCompile Include="..\Extern\Tool\Common\Observer.cpp" />
+    <ClCompile Include="..\Extern\Tool\Common\Value_.cpp" />
+    <ClCompile Include="..\Extern\Tool\DataManager\DataManager.cpp" />
+    <ClCompile Include="..\Extern\Tool\DataManager\DataTable.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\DBManager.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\async.c" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\dict.c" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\hiredis.c" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\net.c" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\sds.c" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\IStorer.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\MysqlStorer.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\RedisStorer.cpp" />
+    <ClCompile Include="..\Extern\Tool\LocalDefault\base64_.cpp" />
+    <ClCompile Include="..\Extern\Tool\LocalDefault\LocalDefault.cpp" />
+    <ClCompile Include="..\Extern\Tool\Lua\LuaRegiest.cpp" />
+    <ClCompile Include="..\Extern\Tool\Lua\LuaStack_.cpp" />
+    <ClCompile Include="..\Extern\Tool\Lua\LuaTools.cpp" />
+    <ClCompile Include="..\Extern\Tool\MD5\MD5.cpp" />
+    <ClCompile Include="..\Extern\Tool\MyJson\json\json_reader.cpp" />
+    <ClCompile Include="..\Extern\Tool\MyJson\json\json_value.cpp" />
+    <ClCompile Include="..\Extern\Tool\MyJson\json\json_writer.cpp" />
+    <ClCompile Include="..\Extern\Tool\MyJson\MyJson.cpp" />
+    <ClCompile Include="..\Extern\Tool\StringFormat\StringFormat.cpp" />
+    <ClCompile Include="..\Extern\Tool\Tea\TEACrypt.cpp" />
+    <ClCompile Include="..\Extern\Tool\TimeManager\LocalTimer.cpp" />
+    <ClCompile Include="..\Extern\Tool\TimeManager\TimeManager.cpp" />
+    <ClCompile Include="..\Extern\Tool\UTFGBK\UtfGbk.cpp" />
+    <ClCompile Include="..\Extern\Tool\Utils\UrlEncode.cpp" />
+    <ClCompile Include="..\Extern\Tool\Utils\ValueCrypt.cpp" />
+    <ClCompile Include="..\Extern\Tool\XML\XML.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Classes\AppDelegate.h" />
+    <ClInclude Include="..\Classes\GameModule.h" />
+    <ClInclude Include="..\Classes\GameNetworkNode.h" />
+    <ClInclude Include="..\Classes\HelloWorldScene.h" />
+    <ClInclude Include="..\Classes\GameLayer.h" />
+    <ClInclude Include="..\Classes\GameService.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxBufferList.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxCommInterfaces.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxEpoller.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSelectPoller.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSock.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPConnector.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPListener.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPUnit.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\KxUDPUnit.h" />
+    <ClInclude Include="..\Extern\ServerFrame\core\KxCore.h" />
+    <ClInclude Include="..\Extern\ServerFrame\core\KxMemPool.h" />
+    <ClInclude Include="..\Extern\ServerFrame\core\KxObject.h" />
+    <ClInclude Include="..\Extern\ServerFrame\core\KxPlatform.h" />
+    <ClInclude Include="..\Extern\ServerFrame\data\GameUser.h" />
+    <ClInclude Include="..\Extern\ServerFrame\data\GameUserManager.h" />
+    <ClInclude Include="..\Extern\ServerFrame\data\UserModel.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\BaseModule.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\CsvLoader.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\IDBModel.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerCallback.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerManager.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimeVal.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h" />
+    <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
+    <ClInclude Include="..\Extern\ServerFrame\log\ILogHandler.h" />
+    <ClInclude Include="..\Extern\ServerFrame\log\LogConsoleHandler.h" />
+    <ClInclude Include="..\Extern\ServerFrame\log\LogFileHandler.h" />
+    <ClInclude Include="..\Extern\ServerFrame\log\LogManager.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\BagProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\MainProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\server\Head.h" />
+    <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h" />
+    <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h" />
+    <ClInclude Include="..\Extern\Tool\CommonHead.h" />
+    <ClInclude Include="..\Extern\Tool\Common\Data_.h" />
+    <ClInclude Include="..\Extern\Tool\Common\Observer.h" />
+    <ClInclude Include="..\Extern\Tool\Common\Value_.h" />
+    <ClInclude Include="..\Extern\Tool\DataManager\CSVParser.h" />
+    <ClInclude Include="..\Extern\Tool\DataManager\DataManager.h" />
+    <ClInclude Include="..\Extern\Tool\DataManager\DataTable.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\DBManager.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\adapters\ae.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\adapters\libev.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\adapters\libevent.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\async.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\config.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\dict.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\fmacros.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\hiredis.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\net.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\sds.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\IStorer.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\big_endian.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\byte_order_generic.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\byte_order_generic_x86.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\byte_order_generic_x86_64.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\decimal.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\errmsg.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\IDBProxy.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\keycache.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\little_endian.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysqld_ername.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysqld_error.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\client_authentication.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\client_plugin.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\get_password.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\innodb_priv.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_audit.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_auth.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_auth_common.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_ftparser.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_validate_password.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\mysql_file.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\mysql_idle.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\mysql_socket.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\mysql_stage.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\mysql_statement.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\mysql_table.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\mysql_thread.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\psi\psi.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\services.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\service_mysql_string.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\service_my_plugin_log.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\service_my_snprintf.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\service_thd_alloc.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\service_thd_wait.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\service_thread_scheduler.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql\thread_pool_priv.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_com.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_com_server.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_embed.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_time.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_version.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_alloc.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_attribute.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_byteorder.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_compiler.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_config.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_dbug.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_dir.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_getopt.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_global.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_list.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_net.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_pthread.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_sys.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_xml.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\m_ctype.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\m_string.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin_audit.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin_ftparser.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin_validate_password.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sql_common.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sql_state.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sslopt-case.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sslopt-longopts.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sslopt-vars.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\typelib.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\MysqlStorer.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\RedisStorer.h" />
+    <ClInclude Include="..\Extern\Tool\LocalDefault\base64_.h" />
+    <ClInclude Include="..\Extern\Tool\LocalDefault\LocalDefault.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lauxlib.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lua.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\luaconf.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\luajit\lualib.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\LuaRegiest.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\LuaStack_.h" />
+    <ClInclude Include="..\Extern\Tool\Lua\LuaTools.h" />
+    <ClInclude Include="..\Extern\Tool\MD5\MD5.h" />
+    <ClInclude Include="..\Extern\Tool\MD5\MD5Def.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\autolink.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\config.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\features.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\forwards.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\json.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\json_batchallocator.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\reader.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\value.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\json\writer.h" />
+    <ClInclude Include="..\Extern\Tool\MyJson\MyJson.h" />
+    <ClInclude Include="..\Extern\Tool\Pthread\pthread.h" />
+    <ClInclude Include="..\Extern\Tool\Pthread\sched.h" />
+    <ClInclude Include="..\Extern\Tool\StringFormat\StringFormat.h" />
+    <ClInclude Include="..\Extern\Tool\Tea\TEACrypt.h" />
+    <ClInclude Include="..\Extern\Tool\TimeManager\LocalTimer.h" />
+    <ClInclude Include="..\Extern\Tool\TimeManager\TimeManager.h" />
+    <ClInclude Include="..\Extern\Tool\UTFGBK\iconv.h" />
+    <ClInclude Include="..\Extern\Tool\UTFGBK\UtfGbk.h" />
+    <ClInclude Include="..\Extern\Tool\Utils\UrlEncode.h" />
+    <ClInclude Include="..\Extern\Tool\Utils\ValueCrypt.h" />
+    <ClInclude Include="..\Extern\Tool\XML\XML.h" />
+    <ClInclude Include="main.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\cocos2d\cocos\2d\libcocos2d.vcxproj">
+      <Project>{98a51ba8-fc3a-415b-ac8f-8c7bd464e93e}</Project>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\cocos2d\cocos\editor-support\spine\proj.win32\libSpine.vcxproj">
+      <Project>{b7c2a162-dec9-4418-972e-240ab3cbfcae}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\cocos2d\external\Box2D\proj.win32\libbox2d.vcxproj">
+      <Project>{929480e7-23c0-4df6-8456-096d71547116}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Extern\Tool\DBDriver\mysqld\mysql\client_plugin.h.pp" />
+    <None Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_audit.h.pp" />
+    <None Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_auth.h.pp" />
+    <None Include="..\Extern\Tool\DBDriver\mysqld\mysql\plugin_ftparser.h.pp" />
+    <None Include="..\Extern\Tool\MyJson\json\json_internalarray.inl" />
+    <None Include="..\Extern\Tool\MyJson\json\json_internalmap.inl" />
+    <None Include="..\Extern\Tool\MyJson\json\json_valueiterator.inl" />
+    <None Include="..\Extern\Tool\MyJson\json\sconscript" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,51 @@
+[Debug][16:34:57]	ClientTest Connect to IP=127.0.0.1 Port=8888 successful
+[Error][16:34:59]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:34:59]	发送心跳包
+[Error][16:35:01]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:01]	发送心跳包
+[Error][16:35:03]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:03]	发送心跳包
+[Error][16:35:05]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:05]	发送心跳包
+[Error][16:35:06]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:06]	发送心跳包
+[Error][16:35:08]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:08]	发送心跳包
+[Error][16:35:10]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:10]	发送心跳包
+[Error][16:35:11]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:11]	发送心跳包
+[Error][16:35:13]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:13]	发送心跳包
+[Error][16:35:15]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:15]	发送心跳包
+[Error][16:35:16]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:16]	发送心跳包
+[Error][16:35:18]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:18]	发送心跳包
+[Error][16:35:20]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:20]	发送心跳包
+[Error][16:35:21]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:21]	发送心跳包
+[Error][16:35:23]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:23]	发送心跳包
+[Error][16:35:25]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:25]	发送心跳包
+[Error][16:35:26]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:26]	发送心跳包
+[Error][16:35:28]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:28]	发送心跳包
+[Error][16:35:30]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:30]	发送心跳包
+[Error][16:35:31]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:31]	发送心跳包
+[Error][16:35:33]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:33]	发送心跳包
+[Error][16:35:35]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:35]	发送心跳包
+[Error][16:35:36]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:36]	发送心跳包
+[Error][16:35:38]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:38]	发送心跳包
+[Error][16:35:40]	error: KxTCPUnit::sendData 1184 send datalen 32 faile, errno 10057
+[Debug][16:35:40]	发送心跳包

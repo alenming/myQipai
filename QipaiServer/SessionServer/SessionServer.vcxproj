@@ -105,10 +105,6 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimeVal.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h" />
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
-    <ClInclude Include="..\Extern\ServerFrame\log\ILogHandler.h" />
-    <ClInclude Include="..\Extern\ServerFrame\log\LogConsoleHandler.h" />
-    <ClInclude Include="..\Extern\ServerFrame\log\LogFileHandler.h" />
-    <ClInclude Include="..\Extern\ServerFrame\log\LogManager.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\BagProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\MainProtocol.h" />
@@ -177,6 +173,10 @@
     <ClInclude Include="..\Extern\Tool\DBDriver\RedisStorer.h" />
     <ClInclude Include="..\Extern\Tool\LocalDefault\base64_.h" />
     <ClInclude Include="..\Extern\Tool\LocalDefault\LocalDefault.h" />
+    <ClInclude Include="..\Extern\Tool\log\ILogHandler.h" />
+    <ClInclude Include="..\Extern\Tool\log\LogConsoleHandler.h" />
+    <ClInclude Include="..\Extern\Tool\log\LogFileHandler.h" />
+    <ClInclude Include="..\Extern\Tool\log\LogManager.h" />
     <ClInclude Include="..\Extern\Tool\Lua\luajit\lauxlib.h" />
     <ClInclude Include="..\Extern\Tool\Lua\luajit\lua.h" />
     <ClInclude Include="..\Extern\Tool\Lua\luajit\luaconf.h" />
@@ -234,9 +234,6 @@
     <ClCompile Include="..\Extern\ServerFrame\helper\CsvLoader.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\IDBModel.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\KxTimerManager.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\log\LogConsoleHandler.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\log\LogFileHandler.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\log\LogManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\server\KxBaseServer.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\server\ServerConfig.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Data_.cpp" />
@@ -254,6 +251,9 @@
     <ClCompile Include="..\Extern\Tool\DBDriver\RedisStorer.cpp" />
     <ClCompile Include="..\Extern\Tool\LocalDefault\base64_.cpp" />
     <ClCompile Include="..\Extern\Tool\LocalDefault\LocalDefault.cpp" />
+    <ClCompile Include="..\Extern\Tool\log\LogConsoleHandler.cpp" />
+    <ClCompile Include="..\Extern\Tool\log\LogFileHandler.cpp" />
+    <ClCompile Include="..\Extern\Tool\log\LogManager.cpp" />
     <ClCompile Include="..\Extern\Tool\Lua\LuaRegiest.cpp" />
     <ClCompile Include="..\Extern\Tool\Lua\LuaStack_.cpp" />
     <ClCompile Include="..\Extern\Tool\Lua\LuaTools.cpp" />

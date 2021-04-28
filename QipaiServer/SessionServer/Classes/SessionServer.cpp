@@ -6,16 +6,15 @@
 #include "SessionConnect.h"
 #include "NetworkManager.h"
 
-#include "KxPlatform.h"
+#include "core/KxPlatform.h"
+#include "log/LogManager.h"
 
 #include "SessionEvent.h"
 #include "ConnectEvent.h"
 
-#include "NetworkManager.h"
 
-#include "LogManager.h"
-#include "LogFileHandler.h"
-#include "LogConsoleHandler.h"
+
+
 
 using namespace std;
 

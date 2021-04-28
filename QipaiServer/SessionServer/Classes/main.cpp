@@ -9,9 +9,8 @@
  */
 #include "KXServer.h"
 #include "SessionServer.h"
-#include "LogManager.h"
-#include "LogFileHandler.h"
-#include "LogConsoleHandler.h"
+
+
 
 int main(int argc, char ** argv) 
 {

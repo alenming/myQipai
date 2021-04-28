@@ -23,9 +23,6 @@
     <Filter Include="Classes\Extern\ServerFrame\helper">
       <UniqueIdentifier>{20d7d427-fb1a-4e28-875c-63ba75addd9b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\log">
-      <UniqueIdentifier>{9c3ddc9e-ffa7-47a3-b477-77dd3ec98cc5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Extern\ServerFrame\server">
       <UniqueIdentifier>{8af984d6-77b5-49c1-b158-eb7f0ce1583c}</UniqueIdentifier>
     </Filter>
@@ -88,6 +85,9 @@
     </Filter>
     <Filter Include="Classes\Extern\Tool\Lua\luajit">
       <UniqueIdentifier>{2017bc9b-0fee-442d-904f-dc727055e29f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\log">
+      <UniqueIdentifier>{028aa7d1-6646-48bf-8e0a-cabf9f5e5d10}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,18 +192,6 @@
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h">
       <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\log\ILogHandler.h">
-      <Filter>Classes\Extern\ServerFrame\log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\log\LogConsoleHandler.h">
-      <Filter>Classes\Extern\ServerFrame\log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\log\LogFileHandler.h">
-      <Filter>Classes\Extern\ServerFrame\log</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\log\LogManager.h">
-      <Filter>Classes\Extern\ServerFrame\log</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h">
       <Filter>Classes\Extern\ServerFrame</Filter>
@@ -496,6 +484,18 @@
     <ClInclude Include="..\Extern\Tool\Lua\luajit\lualib.h">
       <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
     </ClInclude>
+    <ClInclude Include="..\Extern\Tool\log\ILogHandler.h">
+      <Filter>Classes\Extern\Tool\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\log\LogConsoleHandler.h">
+      <Filter>Classes\Extern\Tool\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\log\LogFileHandler.h">
+      <Filter>Classes\Extern\Tool\log</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\log\LogManager.h">
+      <Filter>Classes\Extern\Tool\log</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\ConnectModule.cpp">
@@ -575,15 +575,6 @@
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\server\ServerConfig.cpp">
       <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\log\LogConsoleHandler.cpp">
-      <Filter>Classes\Extern\ServerFrame\log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\log\LogFileHandler.cpp">
-      <Filter>Classes\Extern\ServerFrame\log</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\log\LogManager.cpp">
-      <Filter>Classes\Extern\ServerFrame\log</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
@@ -680,6 +671,15 @@
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\UTFGBK\UtfGbk.cpp">
       <Filter>Classes\Extern\Tool\UTFGBK</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\log\LogConsoleHandler.cpp">
+      <Filter>Classes\Extern\Tool\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\log\LogFileHandler.cpp">
+      <Filter>Classes\Extern\Tool\log</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\log\LogManager.cpp">
+      <Filter>Classes\Extern\Tool\log</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

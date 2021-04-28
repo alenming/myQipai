@@ -2,7 +2,7 @@
 #include "SessionClient.h"
 #include "SessionServer.h"
 #include "NetworkManager.h"
-#include "LogManager.h"
+#include "log/LogManager.h"
 
 
 SessionListener::SessionListener()

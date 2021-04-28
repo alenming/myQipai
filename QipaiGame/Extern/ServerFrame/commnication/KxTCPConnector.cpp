@@ -103,7 +103,7 @@ void KxTCPConnector::onConnected(bool success)
         // m_PollType |= KXPOLLTYPE_IN;
         // m_PollType &= ~KXPOLLTYPE_OUT;
         changePollType(KXPOLLTYPE_IN);
-		KX_LOGDEBUG("warn: socket %d KxTCPConnector::onConnected m_PollType %d", getCommId(), m_PollType);
+		//KX_LOGDEBUG("warn: socket %d KxTCPConnector::onConnected m_PollType %d", getCommId(), m_PollType);
     }
 }
 

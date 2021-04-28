@@ -35,6 +35,7 @@ void ConnectModule::processLogic(char* buffer, unsigned int len, IKxComm *target
 	{
 		return;
 	}
+	KX_LOGDEBUG("接收到服务器消息,转发给前端!ConnectModule::processLogic");
 	pClient->sendData(buffer, head->length);
 }
 

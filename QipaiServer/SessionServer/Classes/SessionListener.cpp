@@ -28,7 +28,7 @@ KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
             tcpClient->release();
             return NULL;
         }
-		KX_LOGDEBUG("client connect to SessionServer successful!");
+		KX_LOGDEBUG("客户端连接成功!->SessionListener::onAccept");
         SessionServer::getInstance()->getMainPoller()->addCommObject(tcpClient, tcpClient->getPollType());
         return tcpClient;
     }

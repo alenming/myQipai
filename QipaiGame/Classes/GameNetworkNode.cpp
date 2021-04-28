@@ -11,8 +11,9 @@ using namespace std;
 USING_NS_CC;
 
 GameNetworkNode::GameNetworkNode(void)
-: m_bUserClose(false)
-, m_bEnabledHb(false)
+	: m_bUserClose(false)
+	, m_bEnabledHb(false)
+	, m_isReconnect(false)
 , m_fMaxHbTime(5.0f)
 , m_fTickNet(0.0f)
 , m_pPoller(NULL)

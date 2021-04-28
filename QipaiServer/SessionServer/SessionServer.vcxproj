@@ -98,8 +98,6 @@
     <ClInclude Include="..\Extern\ServerFrame\core\KxPlatform.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BaseModule.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h" />
-    <ClInclude Include="..\Extern\ServerFrame\helper\CsvLoader.h" />
-    <ClInclude Include="..\Extern\ServerFrame\helper\IDBModel.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerCallback.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerManager.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimeVal.h" />
@@ -114,6 +112,7 @@
     <ClInclude Include="..\Extern\Tool\CommonHead.h" />
     <ClInclude Include="..\Extern\Tool\Common\Data_.h" />
     <ClInclude Include="..\Extern\Tool\Common\Value_.h" />
+    <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h" />
     <ClInclude Include="..\Extern\Tool\DataManager\CSVParser.h" />
     <ClInclude Include="..\Extern\Tool\DataManager\DataManager.h" />
     <ClInclude Include="..\Extern\Tool\DataManager\DataTable.h" />
@@ -212,7 +211,7 @@
     <ClInclude Include="Classes\GameInterface.h" />
     <ClInclude Include="Classes\NetworkManager.h" />
     <ClInclude Include="Classes\SessionClient.h" />
-    <ClInclude Include="Classes\SessionConnect.h" />
+    <ClInclude Include="Classes\SessionConnector.h" />
     <ClInclude Include="Classes\SessionEvent.h" />
     <ClInclude Include="Classes\SessionListener.h" />
     <ClInclude Include="Classes\ClientModule.h" />
@@ -231,13 +230,12 @@
     <ClCompile Include="..\Extern\ServerFrame\core\KxMemPool.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\core\KxObject.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\helper\CsvLoader.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\helper\IDBModel.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\KxTimerManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\server\KxBaseServer.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\server\ServerConfig.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Data_.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Value_.cpp" />
+    <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp" />
     <ClCompile Include="..\Extern\Tool\DataManager\DataManager.cpp" />
     <ClCompile Include="..\Extern\Tool\DataManager\DataTable.cpp" />
     <ClCompile Include="..\Extern\Tool\DBDriver\DBManager.cpp" />
@@ -275,7 +273,7 @@
     <ClCompile Include="Classes\Main.cpp" />
     <ClCompile Include="Classes\NetworkManager.cpp" />
     <ClCompile Include="Classes\SessionClient.cpp" />
-    <ClCompile Include="Classes\SessionConnect.cpp" />
+    <ClCompile Include="Classes\SessionConnector.cpp" />
     <ClCompile Include="Classes\SessionEvent.cpp" />
     <ClCompile Include="Classes\SessionListener.cpp" />
     <ClCompile Include="Classes\ClientModule.cpp" />

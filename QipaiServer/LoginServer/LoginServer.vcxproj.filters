@@ -29,9 +29,6 @@
     <Filter Include="Classes\Extern\ServerFrame\server">
       <UniqueIdentifier>{899e24bc-fc99-4263-8911-333fe1860ff3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\data">
-      <UniqueIdentifier>{d4a6334a-c3c2-41bd-8f03-815d4525fb33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Extern\Tool\DBDriver">
       <UniqueIdentifier>{1eb07ad3-c534-4b60-8ba4-ef184e747b9d}</UniqueIdentifier>
     </Filter>
@@ -91,6 +88,12 @@
     </Filter>
     <Filter Include="Classes\Extern\Tool\log">
       <UniqueIdentifier>{9d417967-ffc0-4454-87e1-9c8a18599ed8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\UserData">
+      <UniqueIdentifier>{eb44d28d-d1ad-4164-8018-dc069d859278}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\CsvLoader">
+      <UniqueIdentifier>{9a773e0d-06ca-40b2-b1c4-fe84b1f00033}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -157,12 +160,6 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\helper\CsvLoader.h">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\helper\IDBModel.h">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerCallback.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
@@ -183,12 +180,6 @@
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h">
       <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\data\GameUser.h">
-      <Filter>Classes\Extern\ServerFrame\data</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\data\GameUserManager.h">
-      <Filter>Classes\Extern\ServerFrame\data</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\DBDriver\DBManager.h">
       <Filter>Classes\Extern\Tool\DBDriver</Filter>
@@ -466,9 +457,6 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\data\UserModel.h">
-      <Filter>Classes\Extern\ServerFrame\data</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\Tool\Lua\luajit\lauxlib.h">
       <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
     </ClInclude>
@@ -492,6 +480,21 @@
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\log\LogManager.h">
       <Filter>Classes\Extern\Tool\log</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\UserData\GameUser.h">
+      <Filter>Classes\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\UserData\GameUserManager.h">
+      <Filter>Classes\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\UserData\UserModel.h">
+      <Filter>Classes\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\UserData\IDBModel.h">
+      <Filter>Classes\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h">
+      <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -546,12 +549,6 @@
     <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\helper\CsvLoader.cpp">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\helper\IDBModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\helper\KxTimerManager.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
@@ -560,12 +557,6 @@
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\server\ServerConfig.cpp">
       <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\data\GameUser.cpp">
-      <Filter>Classes\Extern\ServerFrame\data</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\data\GameUserManager.cpp">
-      <Filter>Classes\Extern\ServerFrame\data</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\DBDriver\DBManager.cpp">
       <Filter>Classes\Extern\Tool\DBDriver</Filter>
@@ -663,9 +654,6 @@
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\data\UserModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\data</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\Tool\log\LogConsoleHandler.cpp">
       <Filter>Classes\Extern\Tool\log</Filter>
     </ClCompile>
@@ -674,6 +662,21 @@
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\log\LogManager.cpp">
       <Filter>Classes\Extern\Tool\log</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\UserData\GameUser.cpp">
+      <Filter>Classes\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\UserData\GameUserManager.cpp">
+      <Filter>Classes\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\UserData\UserModel.cpp">
+      <Filter>Classes\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\UserData\IDBModel.cpp">
+      <Filter>Classes\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp">
+      <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

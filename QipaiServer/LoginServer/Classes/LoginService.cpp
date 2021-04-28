@@ -1,5 +1,5 @@
 #include "LoginService.h"
-#include "GameUserManager.h"
+#include "UserData/GameUserManager.h"
 #include "GateManager.h"
 
 #include "helper/BufferData.h"

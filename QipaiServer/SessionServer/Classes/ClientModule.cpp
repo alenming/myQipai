@@ -17,14 +17,13 @@ void ClientModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 {
     SessionClient* pClient = dynamic_cast<SessionClient*>(target);
 	ServerConfig * pServerConfig = SessionServer::getInstance()->getServerCoinfig();
-
+	
 	// 直接转发给游戏服务器
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
 	head->uid = pClient->getGuestId();//服务器之间通讯用玩家ID
 
-	KX_LOGDEBUG("ClientModule onRecy Message!");
 	if (nMainCmd ==  MAIN_CMD::CMD_HEARTBEART && nSubCmd == MAIN_CMD::CMD_HEARTBEART)
 	{
 		KX_LOGDEBUG("======================= heartbeart!====================");
@@ -32,7 +31,6 @@ void ClientModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 		head.MakeCommand(MAIN_CMD::CMD_HEARTBEART, MAIN_CMD::CMD_HEARTBEART);
 		head.length = sizeof(head);
 		head.uid = -1;
-
 		pClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		return;
 	}
@@ -66,7 +64,7 @@ void ClientModule::userDisconnect(IKxComm *target)
     // 发送下线消息给后端指定的服务器
     pClient->sendDataToAllServer(reinterpret_cast<char*>(&head), sizeof(head));
     // 关闭socket、从NetWorkManager中和clean移除
-	KX_LOGDEBUG("client is loginout:%d", pClient->getGuestId());
+	KX_LOGDEBUG("玩家掉线了!:%d", pClient->getGuestId());
 	pClient->clean();
 	
 }

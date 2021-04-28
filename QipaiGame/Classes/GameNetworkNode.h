@@ -97,6 +97,7 @@ private:
 	bool                                m_bUserClose;
 	bool                                m_bEnabledHb;            // 是否启动心跳
 	static GameNetworkNode*				m_pInstance;                    // 
+	bool								m_isReconnect;					//是否重新连接
 };
 
 #endif 

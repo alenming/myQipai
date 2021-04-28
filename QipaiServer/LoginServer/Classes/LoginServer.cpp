@@ -4,7 +4,7 @@
 #include "KxPlatform.h"
 #include "LoginSessionModule.h"
 
-#include "GameUserManager.h"
+#include "UserData/GameUserManager.h"
 #include "DBDriver/DBManager.h"
 
 using namespace std;

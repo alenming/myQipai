@@ -3,7 +3,7 @@
 #include "SessionClient.h"
 #include "ConnectModule.h"
 #include "ClientModule.h"
-#include "SessionConnect.h"
+#include "SessionConnector.h"
 #include "NetworkManager.h"
 
 #include "core/KxPlatform.h"

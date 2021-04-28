@@ -41,6 +41,7 @@ bool SessionClient::sendDataToServer(int mainCmd, int subCmd, char *pszContext, 
     {
         return false;
     }
+	KX_LOGDEBUG("收到客户端消息,转发给指定服务器!mainCmd=%d,subCmd=%d,SessionClient::sendDataToServer!", mainCmd, subCmd);
     return pTcpConnector->sendData(pszContext, nLen) >= 0;
 }
 
@@ -51,7 +52,7 @@ bool SessionClient::sendDataToGroupServer(int nGroupID, char *pszContext, int nL
 	{
 		return false;
 	}
-
+	KX_LOGDEBUG("收到客户端消息,转发给指定服务器组!nGroupID=%d,SessionClient::sendDataToGroupServer!", nGroupID);
     for (vector<IKxComm*>::iterator ator = pVectConnector->begin();
         ator != pVectConnector->end(); ++ator)
     {
@@ -68,6 +69,7 @@ bool SessionClient::sendDataToAllServer(char *pszContext, int nLen)
         // ps. 如果send失败触发onError，在onError中从NetWorkManager中移除，会导致崩溃
 		ator->second->sendData(pszContext, nLen);
     }
+	KX_LOGDEBUG("收到客户端消息,转发给所有服务器组!SessionClient::sendDataToAllServer!");
     return true;
 }
 

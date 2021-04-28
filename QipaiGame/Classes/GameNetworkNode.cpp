@@ -74,6 +74,7 @@ bool GameNetworkNode::init()
 {
 	m_pPoller = new KxSelectPoller();
 	m_pGameModule = new GameModule();
+	m_ServerCon = new ConnectServerConf();
 	return onServerInit();
 }
 
@@ -121,7 +122,6 @@ bool GameNetworkNode::onServerInit()
 	pFileHandle->setFastModel(false);
 	LogManager::getInstance()->addHandler(2, pFileHandle);
 
-	m_ServerCon = new ConnectServerConf();
 	m_ServerCon->serverGroup = 1;
 	m_ServerCon->host = "127.0.0.1";
 	m_ServerCon->port = 8888;

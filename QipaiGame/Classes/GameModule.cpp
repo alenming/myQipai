@@ -14,7 +14,7 @@ GameModule::~GameModule(void)
 
 void GameModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 {
-    // 收到数据, 交由proxy处理
+    // 收到数据, 交由gameservice处理
     Head *head = reinterpret_cast<Head*>(buffer);
     int maincmd = head->MainCommand();
 	int subcmd = head->SubCommand();

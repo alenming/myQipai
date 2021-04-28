@@ -91,8 +91,7 @@ void KxTCPConnector::onConnected(bool success)
 {
     if (NULL != m_ProcessModule)
     {
-        m_ProcessModule->processEvent(
-            success ? KXEVENT_CONNECT_SUCCESS : KXEVENT_CONNECT_FAILE, this);
+        m_ProcessModule->processEvent(success ? KXEVENT_CONNECT_SUCCESS : KXEVENT_CONNECT_FAILE, this);
     }
 
 	m_IsConnecting = false;
@@ -103,7 +102,7 @@ void KxTCPConnector::onConnected(bool success)
         // m_PollType |= KXPOLLTYPE_IN;
         // m_PollType &= ~KXPOLLTYPE_OUT;
         changePollType(KXPOLLTYPE_IN);
-		KX_LOGDEBUG("warn: socket %d KxTCPConnector::onConnected m_PollType %d", getCommId(), m_PollType);
+		//KX_LOGDEBUG("warn: socket %d KxTCPConnector::onConnected m_PollType %d", getCommId(), m_PollType);
     }
 }
 

@@ -22,7 +22,7 @@ public:
 	virtual ~KxTCPConnector();
 
     // 连接指定的IP和端口
-    virtual bool connect(const char* addr, int port, bool nonblock = true);
+	virtual bool connect(const char* addr, int port, bool nonblock = true);
 
     // 接收到数据时触发的回调，由IKxCommPoller调用
     virtual int onSend();

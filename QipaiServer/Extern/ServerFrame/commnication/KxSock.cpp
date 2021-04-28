@@ -271,14 +271,14 @@ bool KxSock::isSockBlockError()
     {
         return true;
     }
-    KX_LOGERROR("error: sock %d isSockBlockError %d ", m_Sock, errorCode);
+    //KX_LOGERROR("error: sock %d isSockBlockError %d ", m_Sock, errorCode);
 #else
     if (errno == EWOULDBLOCK || errno == EAGAIN 
         || errno == EINPROGRESS || errno == EINTR)
     {
         return true;
     }
-    KX_LOGERROR("error: sock %d isSockBlockError %d %s", m_Sock, errno, strerror(errno));
+    //KX_LOGERROR("error: sock %d isSockBlockError %d %s", m_Sock, errno, strerror(errno));
 #endif
     return false;
 }
@@ -296,9 +296,9 @@ void KxSock::echoSockError(const char* msg)
 {
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
     int errorCode = WSAGetLastError();
-    KX_LOGERROR("error: KxSock::echoSockError sock %d msg %s SockError %d ", m_Sock, msg, errorCode);
+    //KX_LOGERROR("error: KxSock::echoSockError sock %d msg %s SockError %d ", m_Sock, msg, errorCode);
 #else
-    KX_LOGERROR("error: KxSock::echoSockError sock %d msg %s SockError %d %s", m_Sock, msg, errno, strerror(errno));
+    //KX_LOGERROR("error: KxSock::echoSockError sock %d msg %s SockError %d %s", m_Sock, msg, errno, strerror(errno));
 #endif
 }
 

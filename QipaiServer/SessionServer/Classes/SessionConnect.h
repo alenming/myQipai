@@ -14,7 +14,7 @@ public:
 	virtual ~SessionConnector();
 
 	// 连接指定的IP和端口
-	virtual bool connect(const char* addr, int port,int serverId = 0,bool nonblock = true);
+	virtual bool connect(const char* addr, int port, int serverId = 0, bool nonblock = true);
 	// 连接成功失败回调
 	virtual void onConnected(bool success);
 	// 发生错误时回调，由IKxCommPoller调用

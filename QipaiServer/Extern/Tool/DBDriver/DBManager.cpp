@@ -1,5 +1,5 @@
 #include "DBManager.h"
-//#include <string>
+#include "log/LogManager.h"
 
 #include "MysqlStorer.h"
 #include "RedisStorer.h"
@@ -79,17 +79,17 @@ bool DBManager::InitWithXML(std::string xmlFile)
 					RedisStorer* redisStorer = new RedisStorer();
 					if (SUCCESS == redisStorer->Connect(rule.ip, rule.port, rule.password))
 					{
-						printf("connect to redis ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
+						KX_LOGDEBUG("connect to redis ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
 					}
 					else
 					{
-						printf("connect to redis ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
+						KX_LOGDEBUG("connect to redis ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
 						delete redisStorer;
 						continue;
 					}
 					rule.storer = redisStorer;
 					InsertStorer(rule);
-					printf("insert redis storer storageId=%d", rule.db_id);
+					KX_LOGDEBUG("insert redis storer storageId=%d", rule.db_id);
 				}
 			}
 			else if (dbtype == "mysql")
@@ -117,17 +117,17 @@ bool DBManager::InitWithXML(std::string xmlFile)
 					dbStorer->SetDbPort(rule.port);
 					if (dbStorer->Connect())
 					{
-						printf("connect to mysql ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
+						KX_LOGDEBUG("connect to mysql ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
 					}
 					else
 					{
-						printf("connect to mysql ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
+						KX_LOGDEBUG("connect to mysql ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
 						delete dbStorer;
 						continue;
 					}
 					rule.storer = dbStorer;
 					InsertStorer(rule);
-					printf("insert mysql storer storageId=%d", rule.db_id);
+					KX_LOGDEBUG("insert mysql storer storageId=%d", rule.db_id);
 				}
 			}
 			else if (dbtype == "tmem")

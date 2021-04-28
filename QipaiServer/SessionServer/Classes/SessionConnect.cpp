@@ -32,7 +32,7 @@ bool SessionConnector::connect(const char* addr, int port, int serverId, bool no
     memcpy(m_strIP, addr, sizeof(m_strIP));
     m_Port = port;
 	m_ServerId = serverId;
-    return KxTCPConnector::connect(m_strIP, m_Port, nonblock);
+	return KxTCPConnector::connect(m_strIP, m_Port, nonblock);
 }
 
 void SessionConnector::onConnected(bool success)
@@ -40,11 +40,11 @@ void SessionConnector::onConnected(bool success)
     KxTCPConnector::onConnected(success);
     if (success)
     {
-		KX_LOGDEBUG("CSessionConnect::onConnected() success IP:%s,port:%d", m_strIP, m_Port);
+		KX_LOGDEBUG("SessionConnect::onConnected() success IP:%s,port:%d", m_strIP, m_Port);
     }
     else
     {
-		KX_LOGDEBUG("CSessionConnect::onConnected() faile IP:%s,port:%d", m_strIP, m_Port);
+		KX_LOGDEBUG("SessionConnect::onConnected() faile IP:%s,port:%d", m_strIP, m_Port);
     }
 }
 
@@ -52,7 +52,7 @@ void SessionConnector::onConnected(bool success)
 int SessionConnector::onError()
 {
     int nError = KxTCPConnector::onError();
-	KX_LOGDEBUG("CSessionConnect::onError() IP:%s,port:%d", m_strIP, m_Port);
+	KX_LOGDEBUG("SessionConnect::onError() IP:%s,port:%d", m_strIP, m_Port);
     setTimer(RECONNECT_TIME_INTERVAL);
     return nError;
 }

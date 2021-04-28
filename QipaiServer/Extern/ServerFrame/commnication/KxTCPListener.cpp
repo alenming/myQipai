@@ -66,7 +66,7 @@ int KxTCPListener::onRecv()
             int errorNo = m_Socket->getSockError();
 			if (!m_Socket->isSockBlockError())
             {
-                KX_LOGERROR("error: KxTCPListener::onRecv accept error fd %d, errno %d", fd, errorNo);
+                //KX_LOGERROR("error: KxTCPListener::onRecv accept error fd %d, errno %d", fd, errorNo);
             }
             break;
         }

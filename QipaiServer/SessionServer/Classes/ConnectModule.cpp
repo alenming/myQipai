@@ -52,7 +52,7 @@ void ConnectModule::processEvent(int eventId, IKxComm* target)
     }
     else if (eventId == KXEVENT_CONNECT_SUCCESS)
     {
-		KX_LOGDEBUG("Connect Server Success");
+		//KX_LOGDEBUG("Connect Server Success");
     }
 }
 

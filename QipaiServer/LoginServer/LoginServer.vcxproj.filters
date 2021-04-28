@@ -154,9 +154,6 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\helper\BufferTool.h">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\helper\CsvLoader.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
@@ -191,9 +188,6 @@
       <Filter>Classes\Extern\ServerFrame\server</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h">
-      <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\server\Protocol.h">
       <Filter>Classes\Extern\ServerFrame\server</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h">

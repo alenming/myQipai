@@ -32,6 +32,60 @@
     <Filter Include="Classes\Extern\ServerFrame\protocol">
       <UniqueIdentifier>{7d531589-721a-4d62-8f8f-7736f4d95730}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Extern\Tool">
+      <UniqueIdentifier>{9e528df3-d237-4251-8f56-eb78e0aff7dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\DBDriver">
+      <UniqueIdentifier>{1ed8d17f-e96d-464b-b000-ce1695b44818}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\DBDriver\hiredis">
+      <UniqueIdentifier>{0359766d-276d-4476-b471-fa69b84344dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\DBDriver\mysqld">
+      <UniqueIdentifier>{76b54f63-68c9-49ab-be2a-f96e853fdd18}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\XML">
+      <UniqueIdentifier>{e5c6abb5-c2c8-4edf-9300-c20c68697e71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\Common">
+      <UniqueIdentifier>{a8f7de1c-875b-490d-93e9-f3d683f9bb2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\DataManager">
+      <UniqueIdentifier>{6da9a3c2-06d4-4965-a1c8-6f0dcdb28503}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\LocalDefault">
+      <UniqueIdentifier>{73d14272-ca98-4b86-8e36-42d1596bda7f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\Lua">
+      <UniqueIdentifier>{62f74383-2094-4e00-80b4-fabf8444816e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\MD5">
+      <UniqueIdentifier>{64b5a914-9373-4789-94f5-f57ede2434be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\MyJson">
+      <UniqueIdentifier>{41105238-38e3-4fb9-9581-e1758f879b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\MyJson\json">
+      <UniqueIdentifier>{22844f50-b8eb-4aee-8ebe-4a643e06a309}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\Pthread">
+      <UniqueIdentifier>{799d39d1-94eb-46ec-9655-f801fe895888}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\StringFormat">
+      <UniqueIdentifier>{e137e02b-0a30-4a10-aa56-3d35f910741f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\Tea">
+      <UniqueIdentifier>{1d741e32-bdee-497b-b145-ed48e891f993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\TimeManager">
+      <UniqueIdentifier>{747166cb-682b-4fae-96d0-7f045680daa5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\Utils">
+      <UniqueIdentifier>{84489720-137e-432d-be20-efdeb8805539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\Tool\UTFGBK">
+      <UniqueIdentifier>{489daa84-50d0-4407-b57b-16bfdf798692}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\ConnectModule.h">
@@ -109,9 +163,6 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\helper\BufferTool.h">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\helper\CsvLoader.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
@@ -134,9 +185,6 @@
       <Filter>Classes\Extern\ServerFrame\server</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h">
-      <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\server\Protocol.h">
       <Filter>Classes\Extern\ServerFrame\server</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h">
@@ -168,6 +216,270 @@
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\CommonHead.h">
+      <Filter>Classes\Extern\Tool</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\DBManager.h">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\IStorer.h">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\MysqlStorer.h">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\RedisStorer.h">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\async.h">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\config.h">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\dict.h">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\fmacros.h">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\hiredis.h">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\net.h">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\hiredis\sds.h">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\big_endian.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\byte_order_generic.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\byte_order_generic_x86.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\byte_order_generic_x86_64.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\decimal.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\errmsg.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\IDBProxy.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\keycache.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\little_endian.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysqld_ername.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysqld_error.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_com.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_com_server.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_embed.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_time.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\mysql_version.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_alloc.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_attribute.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_byteorder.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_compiler.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_config.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_dbug.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_dir.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_getopt.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_global.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_list.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_net.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_pthread.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_sys.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\my_xml.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\m_ctype.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\m_string.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin_audit.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin_ftparser.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\plugin_validate_password.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sql_common.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sql_state.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sslopt-case.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sslopt-longopts.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\sslopt-vars.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\typelib.h">
+      <Filter>Classes\Extern\Tool\DBDriver\mysqld</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\XML\XML.h">
+      <Filter>Classes\Extern\Tool\XML</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Common\Data_.h">
+      <Filter>Classes\Extern\Tool\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Common\Value_.h">
+      <Filter>Classes\Extern\Tool\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DataManager\CSVParser.h">
+      <Filter>Classes\Extern\Tool\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DataManager\DataManager.h">
+      <Filter>Classes\Extern\Tool\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DataManager\DataTable.h">
+      <Filter>Classes\Extern\Tool\DataManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\LocalDefault\base64_.h">
+      <Filter>Classes\Extern\Tool\LocalDefault</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\LocalDefault\LocalDefault.h">
+      <Filter>Classes\Extern\Tool\LocalDefault</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\LuaRegiest.h">
+      <Filter>Classes\Extern\Tool\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\LuaStack_.h">
+      <Filter>Classes\Extern\Tool\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Lua\LuaTools.h">
+      <Filter>Classes\Extern\Tool\Lua</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MD5\MD5.h">
+      <Filter>Classes\Extern\Tool\MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MD5\MD5Def.h">
+      <Filter>Classes\Extern\Tool\MD5</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\MyJson.h">
+      <Filter>Classes\Extern\Tool\MyJson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\autolink.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\config.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\features.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\forwards.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\json.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\json_batchallocator.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\reader.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\value.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\MyJson\json\writer.h">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Pthread\pthread.h">
+      <Filter>Classes\Extern\Tool\Pthread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Pthread\sched.h">
+      <Filter>Classes\Extern\Tool\Pthread</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\StringFormat\StringFormat.h">
+      <Filter>Classes\Extern\Tool\StringFormat</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Tea\TEACrypt.h">
+      <Filter>Classes\Extern\Tool\Tea</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\TimeManager\LocalTimer.h">
+      <Filter>Classes\Extern\Tool\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\TimeManager\TimeManager.h">
+      <Filter>Classes\Extern\Tool\TimeManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Utils\UrlEncode.h">
+      <Filter>Classes\Extern\Tool\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\Utils\ValueCrypt.h">
+      <Filter>Classes\Extern\Tool\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\UTFGBK\iconv.h">
+      <Filter>Classes\Extern\Tool\UTFGBK</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\UTFGBK\UtfGbk.h">
+      <Filter>Classes\Extern\Tool\UTFGBK</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -261,5 +573,112 @@
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\DBManager.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\IStorer.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\MysqlStorer.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\RedisStorer.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\async.c">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\dict.c">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\hiredis.c">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\net.c">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\hiredis\sds.c">
+      <Filter>Classes\Extern\Tool\DBDriver\hiredis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\XML\XML.cpp">
+      <Filter>Classes\Extern\Tool\XML</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Common\Data_.cpp">
+      <Filter>Classes\Extern\Tool\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Common\Value_.cpp">
+      <Filter>Classes\Extern\Tool\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DataManager\DataManager.cpp">
+      <Filter>Classes\Extern\Tool\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DataManager\DataTable.cpp">
+      <Filter>Classes\Extern\Tool\DataManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\LocalDefault\base64_.cpp">
+      <Filter>Classes\Extern\Tool\LocalDefault</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\LocalDefault\LocalDefault.cpp">
+      <Filter>Classes\Extern\Tool\LocalDefault</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Lua\LuaRegiest.cpp">
+      <Filter>Classes\Extern\Tool\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Lua\LuaStack_.cpp">
+      <Filter>Classes\Extern\Tool\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Lua\LuaTools.cpp">
+      <Filter>Classes\Extern\Tool\Lua</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\MD5\MD5.cpp">
+      <Filter>Classes\Extern\Tool\MD5</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\MyJson\MyJson.cpp">
+      <Filter>Classes\Extern\Tool\MyJson</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\MyJson\json\json_reader.cpp">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\MyJson\json\json_value.cpp">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\MyJson\json\json_writer.cpp">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\StringFormat\StringFormat.cpp">
+      <Filter>Classes\Extern\Tool\StringFormat</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Tea\TEACrypt.cpp">
+      <Filter>Classes\Extern\Tool\Tea</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\TimeManager\LocalTimer.cpp">
+      <Filter>Classes\Extern\Tool\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\TimeManager\TimeManager.cpp">
+      <Filter>Classes\Extern\Tool\TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Utils\UrlEncode.cpp">
+      <Filter>Classes\Extern\Tool\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\Utils\ValueCrypt.cpp">
+      <Filter>Classes\Extern\Tool\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\UTFGBK\UtfGbk.cpp">
+      <Filter>Classes\Extern\Tool\UTFGBK</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\Extern\Tool\MyJson\json\json_internalarray.inl">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </None>
+    <None Include="..\Extern\Tool\MyJson\json\json_internalmap.inl">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </None>
+    <None Include="..\Extern\Tool\MyJson\json\json_valueiterator.inl">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </None>
+    <None Include="..\Extern\Tool\MyJson\json\sconscript">
+      <Filter>Classes\Extern\Tool\MyJson\json</Filter>
+    </None>
   </ItemGroup>
 </Project>

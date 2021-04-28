@@ -110,7 +110,6 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\ServerFrame\data\UserModel.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BaseModule.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h" />
-    <ClInclude Include="..\Extern\ServerFrame\helper\BufferTool.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\CsvLoader.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\IDBModel.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerCallback.h" />
@@ -127,7 +126,6 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\ServerFrame\protocol\MainProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\Head.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h" />
-    <ClInclude Include="..\Extern\ServerFrame\server\Protocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h" />
     <ClInclude Include="..\Extern\Tool\CommonHead.h" />
     <ClInclude Include="..\Extern\Tool\Common\Data_.h" />

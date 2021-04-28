@@ -14,7 +14,6 @@
 #include <list>
 #include <map>
 
-#include "core/KxCore.h"
 #include "KxTimeVal.h"
 
 

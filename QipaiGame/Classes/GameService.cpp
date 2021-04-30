@@ -45,7 +45,7 @@ void GameService::CMD_C2S_LOGIN()
 	BufferData* buffer = newBufferData(MAIN_CMD::CMD_LOGIN_SERVER, LOGIN_CMD::CMD_C2S_LOGIN);
 
 	LOGIN_DATA da = LOGIN_DATA();
-	da.accountId = 123456;
+	da.accountId = 123;
 	buffer->writeData(da);
 
 	//重新写入数据长度

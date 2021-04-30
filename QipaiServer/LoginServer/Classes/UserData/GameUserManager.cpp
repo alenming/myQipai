@@ -145,13 +145,13 @@ GameUser *CGameUserManager::newGameUser(int uid, int accountId)
 
 	// 用户基本信息
 	std::map<int, int> attrs;
-	for (int i = USR_FD_ACCOUNTID; i < USR_FD_END; i++)
+	for (int i = USR_FD_USERID; i < USR_FD_END; i++)
 	{
 		// 所有属性默认为0
 		attrs[i] = 0;
 	}
 
-	attrs[USR_FD_ACCOUNTID] = uid;
+	attrs[USR_FD_USERID] = uid;
 	attrs[USR_FD_USERLV] = 1;
 	attrs[USR_FD_EXP] = 0;
 	attrs[USR_FD_GOLD] = 1;

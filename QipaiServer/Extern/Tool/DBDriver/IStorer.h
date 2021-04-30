@@ -9,10 +9,8 @@
 enum STORE_TYPE
 {
 	STORE_NONE,
-	STORE_TMEM,
-	STORE_MYSQL,
-	STORE_CACHE,
 	STORE_REDIS,
+	STORE_MYSQL,
 	STORE_OTHER
 };
 
@@ -34,7 +32,7 @@ struct DBRule
 	int range_minvalue;          // id最小值
 	int range_maxvalue;          // id最大值
 	STORE_TYPE store_type;		 //
-	DBID db_id;			 // modeltype
+	DBID db_id;					 // modeltype
 	IStorer * storer;		     // 数据库实体
 };
 

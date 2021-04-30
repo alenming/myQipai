@@ -1,7 +1,6 @@
 #include "GameUser.h"
 #include "GameUserManager.h"
 
-
 GameUser::GameUser()
 : m_nUid(0)
 , m_nAccountId(0)

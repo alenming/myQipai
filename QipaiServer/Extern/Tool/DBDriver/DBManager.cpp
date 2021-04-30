@@ -130,11 +130,7 @@ bool DBManager::InitWithXML(std::string xmlFile)
 					KX_LOGDEBUG("insert mysql storer storageId=%d", rule.db_id);
 				}
 			}
-			else if (dbtype == "tmem")
-			{
-				// ‘›Œ¥”√
-			}
-			else if (dbtype == "cache")
+			else if (dbtype == "other")
 			{
 				// ‘›Œ¥”√
 			}

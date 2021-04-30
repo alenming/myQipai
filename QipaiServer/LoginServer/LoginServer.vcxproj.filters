@@ -80,9 +80,6 @@
     <Filter Include="Classes\Extern\Tool\MyJson\json">
       <UniqueIdentifier>{1a9fea44-0cdd-401e-a814-a3fd7c555299}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\protocol">
-      <UniqueIdentifier>{dc431d77-ae27-41fc-996a-e2a303639f0c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Extern\Tool\Lua\luajit">
       <UniqueIdentifier>{e8235a89-44da-45a4-b297-bd810f22387d}</UniqueIdentifier>
     </Filter>
@@ -94,6 +91,9 @@
     </Filter>
     <Filter Include="Classes\Extern\Tool\CsvLoader">
       <UniqueIdentifier>{9a773e0d-06ca-40b2-b1c4-fe84b1f00033}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\protocol">
+      <UniqueIdentifier>{e78c2da5-0c00-4bec-86fb-3e2f29adfacb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -445,15 +445,6 @@
     <ClInclude Include="..\Extern\Tool\MyJson\json\writer.h">
       <Filter>Classes\Extern\Tool\MyJson\json</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\protocol\BagProtocol.h">
-      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
-      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\protocol\MainProtocol.h">
-      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
@@ -495,6 +486,12 @@
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\protocol\LoginProtocol.h">
+      <Filter>Classes\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\server\ServerProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\server</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,8 @@
 #include "LoginService.h"
 #include "helper/BufferData.h"
 #include "server/Head.h"
-#include "protocol/MainProtocol.h"
+
+#include "server/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
 
 LoginSessionModule::LoginSessionModule(void)
@@ -24,7 +25,7 @@ void LoginSessionModule::processLogic(char* buffer, unsigned int len, IKxComm *t
 
 	switch (nMainCmd)
 	{
-		case MAIN_CMD::CMD_LOGIN_SERVER:
+	case CMD_MAIN::CMD_LOGIN_SERVER:
 		{
 			LoginService::processServiceC2S(nSubCmd, uid, buffer, length, target);
 			break;

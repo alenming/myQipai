@@ -10,7 +10,7 @@
 #include<vector>
 
 #include "KXServer.h"
-#include "SessionClient.h"
+#include "C2S/SessionClienter.h"
 #include "KXServer.h"
 
 class NetWorkManager : public KxTimerObject
@@ -45,7 +45,7 @@ public:
     bool removeGuest(unsigned int guestId);
 
 	//将连接转为连接OK的客户端
-    bool changeGuestToUser(SessionClient* guest, unsigned int userId);
+    bool changeGuestToUser(SessionClienter* guest, unsigned int userId);
 	//获取已经验证过的客户端
     IKxComm* getUser(unsigned int userId);
     bool removeUser(unsigned int userId);
@@ -53,7 +53,7 @@ public:
     //数据广播给所有玩家
     bool broadCastData(char *pszContext, int nLen);
 
-	bool sendDataToClient(SessionClient* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen);
+	bool sendDataToClient(SessionClienter* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen);
 
     //获取当前连接玩家数
     unsigned int getCurClientNum();

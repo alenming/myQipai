@@ -3,7 +3,6 @@
 
 #include "KXServer.h"
 #include "ServerConfig.h"
-#include "GameInterface.h"
 
 
 class SessionServer : public KxBaseServer
@@ -28,12 +27,11 @@ public:
 	//得到平滑关闭标志位
 	bool getClosingFlag(){ return m_IsClosing; }			
 	ServerConfig * getServerCoinfig() { return &m_ServerConfig; }
-	IGameEvent*	getGameEvent(){ return m_GameEvent; }
+
 
 private:
 	ServerData				m_ServerData;
 	bool					m_IsClosing;	//开启平滑关闭时的标志
-	IGameEvent*				m_GameEvent;	//SessionServe本地事件处理回调接口
 	ServerConfig			m_ServerConfig;	//服务器数读取配置表
 	static SessionServer*	m_Instance;		//单例
 };

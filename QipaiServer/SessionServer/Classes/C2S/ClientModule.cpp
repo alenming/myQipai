@@ -1,7 +1,6 @@
 #include "ClientModule.h"
-#include "SessionClient.h"
+#include "SessionClienter.h"
 #include "SessionServer.h"
-#include "NetworkManager.h"
 #include "server/ServerProtocol.h"
 
 
@@ -15,7 +14,7 @@ ClientModule::~ClientModule(void)
 
 void ClientModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 {
-    SessionClient* pClient = dynamic_cast<SessionClient*>(target);
+    SessionClienter* pClient = dynamic_cast<SessionClienter*>(target);
 	ServerConfig * pServerConfig = SessionServer::getInstance()->getServerCoinfig();
 	
 	// 直接转发给游戏服务器
@@ -48,7 +47,7 @@ void ClientModule::processError(IKxComm *target)
 // 2. 从ClientManager中移除该玩家
 void ClientModule::userDisconnect(IKxComm *target)
 {
-    SessionClient *pClient = dynamic_cast<SessionClient*>(target);
+    SessionClienter *pClient = dynamic_cast<SessionClienter*>(target);
     if (pClient == NULL)
     {
         return;

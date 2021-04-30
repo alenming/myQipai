@@ -9,15 +9,15 @@
 */
 #ifndef __SESSION_CLIENTER_H__
 #define __SESSION_CLIENTER_H__
-
-#include "KXServer.h"
 #include<map>
+#include "commnication/KxTCPClienter.h"
+#include "helper/KxTimerCallback.h"
 
-class SessionClient : public KxTCPClienter
+class SessionClienter : public KxTCPClienter
 {
 public:
-	SessionClient();
-	virtual ~SessionClient(void);
+	SessionClienter();
+	virtual ~SessionClienter(void);
 
     virtual void retain() 
     {
@@ -51,7 +51,7 @@ private:
     unsigned int m_GuestId;	                // 未验证的访客ID
     unsigned int m_UserId;                  // 已验证的用户ID
     std::map<int, int> m_MapConKeyValue;    // 获取对应的key相应的值
-	KxTimerCallback<SessionClient>* m_TimerCallBack;                    
+	KxTimerCallback<SessionClienter>* m_TimerCallBack;                    
 };
 
 #endif //__SESSION_CLIENTER_H__

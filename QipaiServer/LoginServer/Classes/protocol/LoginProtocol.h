@@ -7,8 +7,9 @@
 
 #define PASSWD_SIZE 32
 
+
 //µÇÂ¼Ä£¿é
-enum LOGIN_CMD
+enum LOGIN_SUB_CMD
 {
 	CMD_C2S_BEIGN = 0,
 	CMD_C2S_REGISTER,

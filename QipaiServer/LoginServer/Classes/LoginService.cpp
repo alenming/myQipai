@@ -4,8 +4,10 @@
 
 #include "helper/BufferData.h"
 #include "server/Head.h"
-#include "protocol/MainProtocol.h"
+
+#include "server/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
+
 
 using namespace std;
 
@@ -14,11 +16,11 @@ void LoginService::processServiceC2S(int subcmd, int uid, char *buffer, int len,
 {
 	switch (subcmd)
 	{
-	case LOGIN_CMD::CMD_C2S_REGISTER:
+	case LOGIN_SUB_CMD::CMD_C2S_REGISTER:
 	{
 		CMD_C2S_REGISTER(uid, buffer, len, commun);
 	}
-	case LOGIN_CMD::CMD_C2S_LOGIN:
+	case LOGIN_SUB_CMD::CMD_C2S_LOGIN:
 		CMD_C2S_LOGIN(uid, buffer, len, commun);
 		break;
 	default:
@@ -85,7 +87,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 	// 开始下发数据
 	LOGIN_DATA loginSC;
 
-	BufferData* buffer = newBufferData(MAIN_CMD::CMD_LOGIN_SERVER, LOGIN_CMD::CMD_S2C_LOGIN);
+	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
 
 	GameUser* pGameUser = CGameUserManager::getInstance()->getGameUser(uid);
 	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));

@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\server\;$(SolutionDir)Extern\ServerFrame\log\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\server\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;$(ProjectDir)Classes\C2S\;$(ProjectDir)Classes\S2C\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -103,12 +103,10 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimeVal.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h" />
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
-    <ClInclude Include="..\Extern\ServerFrame\protocol\BagProtocol.h" />
-    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
-    <ClInclude Include="..\Extern\ServerFrame\protocol\MainProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\Head.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h" />
+    <ClInclude Include="..\Extern\ServerFrame\server\ServerProtocol.h" />
     <ClInclude Include="..\Extern\Tool\CommonHead.h" />
     <ClInclude Include="..\Extern\Tool\Common\Data_.h" />
     <ClInclude Include="..\Extern\Tool\Common\Value_.h" />
@@ -206,15 +204,16 @@
     <ClInclude Include="..\Extern\Tool\Utils\UrlEncode.h" />
     <ClInclude Include="..\Extern\Tool\Utils\ValueCrypt.h" />
     <ClInclude Include="..\Extern\Tool\XML\XML.h" />
-    <ClInclude Include="Classes\ConnectEvent.h" />
-    <ClInclude Include="Classes\ConnectModule.h" />
-    <ClInclude Include="Classes\GameInterface.h" />
+    <ClInclude Include="Classes\C2S\ClienterEvent.h" />
+    <ClInclude Include="Classes\C2S\ClientModule.h" />
+    <ClInclude Include="Classes\C2S\SessionClienter.h" />
+    <ClInclude Include="Classes\C2S\SessionListener.h" />
+    <ClInclude Include="Classes\EventInterface.h" />
     <ClInclude Include="Classes\NetworkManager.h" />
-    <ClInclude Include="Classes\SessionClient.h" />
-    <ClInclude Include="Classes\SessionConnector.h" />
-    <ClInclude Include="Classes\SessionEvent.h" />
-    <ClInclude Include="Classes\SessionListener.h" />
-    <ClInclude Include="Classes\ClientModule.h" />
+    <ClInclude Include="Classes\protocol\SessionProtocol.h" />
+    <ClInclude Include="Classes\S2C\ConnectEvent.h" />
+    <ClInclude Include="Classes\S2C\ConnectModule.h" />
+    <ClInclude Include="Classes\S2C\SessionConnector.h" />
     <ClInclude Include="Classes\SessionServer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -268,15 +267,15 @@
     <ClCompile Include="..\Extern\Tool\Utils\UrlEncode.cpp" />
     <ClCompile Include="..\Extern\Tool\Utils\ValueCrypt.cpp" />
     <ClCompile Include="..\Extern\Tool\XML\XML.cpp" />
-    <ClCompile Include="Classes\ConnectEvent.cpp" />
-    <ClCompile Include="Classes\ConnectModule.cpp" />
+    <ClCompile Include="Classes\C2S\ClienterEvent.cpp" />
+    <ClCompile Include="Classes\C2S\ClientModule.cpp" />
+    <ClCompile Include="Classes\C2S\SessionClienter.cpp" />
+    <ClCompile Include="Classes\C2S\SessionListener.cpp" />
     <ClCompile Include="Classes\Main.cpp" />
     <ClCompile Include="Classes\NetworkManager.cpp" />
-    <ClCompile Include="Classes\SessionClient.cpp" />
-    <ClCompile Include="Classes\SessionConnector.cpp" />
-    <ClCompile Include="Classes\SessionEvent.cpp" />
-    <ClCompile Include="Classes\SessionListener.cpp" />
-    <ClCompile Include="Classes\ClientModule.cpp" />
+    <ClCompile Include="Classes\S2C\ConnectEvent.cpp" />
+    <ClCompile Include="Classes\S2C\ConnectModule.cpp" />
+    <ClCompile Include="Classes\S2C\SessionConnector.cpp" />
     <ClCompile Include="Classes\SessionServer.cpp" />
   </ItemGroup>
   <ItemGroup>

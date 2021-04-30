@@ -1,10 +1,7 @@
 #include "ConnectEvent.h"
 #include "NetworkManager.h"
-#include "KXServer.h"
-#include "SessionClient.h"
-#include "SessionServer.h"
 #include "Head.h"
-#include "KXServer.h"
+
 
 
 ConnectEvent::ConnectEvent()
@@ -24,7 +21,7 @@ bool ConnectEvent::onUserProc(unsigned int id)
 
 bool ConnectEvent::onUserEvent(int nType, IKxComm* target)
 {
-    SessionClient *pClient = static_cast<SessionClient *>(target);
+    SessionClienter *pClient = static_cast<SessionClienter *>(target);
     if (pClient != NULL)
     {
 
@@ -32,7 +29,7 @@ bool ConnectEvent::onUserEvent(int nType, IKxComm* target)
     return true;
 }
 
-bool ConnectEvent::sendDataToActor(SessionClient* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen)
+bool ConnectEvent::sendDataToActor(SessionClienter* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen)
 {
     unsigned int buffSize = sizeof(Head);
     bool ret = false;

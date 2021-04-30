@@ -8,8 +8,6 @@
 
 #include "BaseModule.h"
 
-class SessionServer;
-class CServerModel;
 
 class ClientModule : public BaseModule
 {

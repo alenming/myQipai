@@ -1,7 +1,7 @@
 #include "SessionConnector.h"
 #include "SessionServer.h"
-#include "KXServer.h"
-#include<string.h>
+
+
 
 
 SessionConnector::SessionConnector()

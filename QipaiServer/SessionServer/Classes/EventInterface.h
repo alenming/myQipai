@@ -1,7 +1,7 @@
 #ifndef _GAME_INTERFACE_H__
 #define _GAME_INTERFACE_H__
 
-#include "KXServer.h"
+#include "commnication/KxCommInterfaces.h"
 
 enum EEventId
 {

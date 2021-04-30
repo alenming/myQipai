@@ -2,7 +2,7 @@
 #define __GAME_MODULE_H__
 
 #include "BaseModule.h"
-#include "GameInterface.h"
+#include "EventInterface.h"
 
 class ConnectModule : public BaseModule
 {

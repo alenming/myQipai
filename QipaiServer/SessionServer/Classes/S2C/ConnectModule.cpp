@@ -1,8 +1,7 @@
 #include "ConnectModule.h"
 #include "NetworkManager.h"
-#include "SessionClient.h"
-#include "SessionServer.h"
-#include "GameInterface.h"
+#include "SessionClienter.h"
+
 
 
 ConnectModule::ConnectModule(void)
@@ -29,7 +28,7 @@ void ConnectModule::processLogic(char* buffer, unsigned int len, IKxComm *target
 	int nSubCmd = head->SubCommand();
 	int uid = head->uid;
 
-	SessionClient* pClient = reinterpret_cast<SessionClient*>(NetWorkManager::getInstance()->getGuest(uid));
+	SessionClienter* pClient = reinterpret_cast<SessionClienter*>(NetWorkManager::getInstance()->getGuest(uid));
 
 	if (!pClient)
 	{

@@ -1,5 +1,5 @@
 #include "SessionListener.h"
-#include "SessionClient.h"
+#include "SessionClienter.h"
 #include "SessionServer.h"
 #include "NetworkManager.h"
 #include "log/LogManager.h"
@@ -16,7 +16,7 @@ SessionListener::~SessionListener(void)
 KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
 {
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
-    SessionClient* tcpClient = new SessionClient();
+    SessionClienter* tcpClient = new SessionClienter();
     if (tcpClient->init(client))
     {
         // 连接时置为游客，并为其生成游客ID

@@ -1,16 +1,19 @@
 #include "SessionServer.h"
-#include "SessionListener.h"
-#include "SessionClient.h"
-#include "ConnectModule.h"
-#include "ClientModule.h"
-#include "SessionConnector.h"
+
+#include "C2S/SessionListener.h"
+#include "C2S/ClientModule.h"
+//#include "SessionClienter.h"
+
+#include "S2C/ConnectModule.h"
+#include "S2C/SessionConnector.h"
+
 #include "NetworkManager.h"
 
 #include "core/KxPlatform.h"
 #include "log/LogManager.h"
 
-#include "SessionEvent.h"
-#include "ConnectEvent.h"
+#include "C2S/ClienterEvent.h"
+#include "S2C/ConnectEvent.h"
 
 
 
@@ -22,14 +25,13 @@ SessionServer* SessionServer::m_Instance = NULL;
 SessionServer::SessionServer(void)
 :m_IsClosing(false)
 {
-	m_GameEvent = new SessionEvent;
+
 }
 
 SessionServer::~SessionServer(void)
 {
 	KXSAFE_RELEASE(m_Poller);
 	m_ServerConfig.clean();
-	delete m_GameEvent;
 }
 
 SessionServer* SessionServer::getInstance()

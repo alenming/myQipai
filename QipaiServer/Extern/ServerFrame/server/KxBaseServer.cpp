@@ -137,7 +137,10 @@ bool KxBaseServer::onServerInit()
 	LogManager::getInstance()->setShowTime(false);
 	LogManager::getInstance()->setShowDate(false);
 	LogManager::getInstance()->setShowFunc(false);
-	LogManager::getInstance()->addHandler(1, new LogConsoleHandler());
+
+	LogConsoleHandler* pConsoleHandle = new LogConsoleHandler();
+	LogManager::getInstance()->addHandler(1, pConsoleHandle);
+
 	LogFileHandler* pFileHandle = new LogFileHandler();
 	pFileHandle->setFilePath("../bin/");
 	pFileHandle->setFileName(m_ServerName);

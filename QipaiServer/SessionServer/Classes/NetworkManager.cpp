@@ -245,7 +245,7 @@ bool NetWorkManager::broadCastData(char *pszContext, int nLen)
     }
     return true;
 }
-
+//给某个玩家发数据
 bool NetWorkManager::sendDataToClient(SessionClienter* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen)
 {
 	unsigned int buffSize = sizeof(Head) + nLen;

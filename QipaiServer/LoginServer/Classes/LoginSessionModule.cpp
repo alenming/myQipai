@@ -30,7 +30,7 @@ void LoginSessionModule::processLogic(char* buffer, unsigned int len, IKxComm *t
 			LoginService::processServiceC2S(nSubCmd, uid, buffer, length, target);
 			break;
 		}
-		case SERVER_MAIN_CMD::SERVER_MAIN:
+	case SERVER_MAIN_CMD::SERVER_MAIN:
 		{
 			LoginService::processServiceS2S(nSubCmd, uid, buffer, length, target);
 			break;

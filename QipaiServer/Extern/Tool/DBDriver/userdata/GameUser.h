@@ -18,7 +18,7 @@ public:
 
 public:
 
-	bool initModels(int uid);
+	bool initModels(int uid, int accoundId);
 	
 	void refreshModels();
 

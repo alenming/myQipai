@@ -11,7 +11,7 @@ GameUser::~GameUser()
 {
 }
 
-bool GameUser::initModels(int userId)
+bool GameUser::initModels(int uid, int accoundID)
 {
 	std::vector<ModelType> VectModelType = GameUserManager::getInstance()->getModelType();
 	for (std::vector<ModelType>::iterator iter = VectModelType.begin(); iter != VectModelType.end(); ++iter)
@@ -27,9 +27,9 @@ bool GameUser::initModels(int userId)
 			break;
 		}
 
-		if (!model->init(userId))
+		if (!model->init(accoundID))
         {
-            KX_LOGERROR("uid=%d init model fail ! modelType=%d", userId, type);
+			KX_LOGERROR("accoundID=%d init model fail ! modelType=%d", accoundID, type);
             if (MODELTYPE_USER == type)
             {
                 delete model;
@@ -43,8 +43,8 @@ bool GameUser::initModels(int userId)
 		}
 		m_mapModels[type] = model;
 	}
-
-	m_nUid = userId;
+	m_nAccountId = accoundID;
+	m_nUid = uid;
 	return true;
 }
 

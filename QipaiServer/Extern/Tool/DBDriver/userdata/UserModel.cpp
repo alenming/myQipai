@@ -10,7 +10,7 @@
 
 
 UserModel::UserModel()
-	: m_nUid(0)
+	: m_accoundId(0)
 	, m_pStorageDB(NULL)
 {
 }
@@ -19,14 +19,14 @@ UserModel::~UserModel()
 {
 }
 
-bool UserModel::init(int uid)
+bool UserModel::init(int accoundId)
 {
-	m_nUid = uid;
+	m_accoundId = accoundId;
 	m_pStorageDB = DBManager::getInstance()->GetStorer(DB_USER_MODEL);
-	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);// (m_pStorageDB->GetStorer(m_nUid));
+	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 	if (NULL != pStorer)
 	{
-		m_strUsrKey = ModelKey::UsrKey(m_nUid);
+		m_strUsrKey = ModelKey::UsrKey(m_accoundId);
 		if (SUCCESS != pStorer->ExistKey(m_strUsrKey))
 		{
 			return false;
@@ -42,9 +42,9 @@ bool UserModel::Refresh()
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 	if (NULL != pStorer)
 	{
-		for (int i = USR_FD_USERID; i < USR_FD_END; i++)
+		for (int i = USR_ACCOUNDID; i < USR_FD_END; i++)
 		{
-			//m_mapUserInfo[i] = 0;
+			m_mapUserInfo[i] = 0;
 		}
 
 		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, m_mapUserInfo))
@@ -67,16 +67,16 @@ bool UserModel::Refresh()
 	return false;
 }
 
-bool UserModel::NewUser(int uid, std::string name, std::map<int, int> &info)
+bool UserModel::NewUser(int accoundId, std::string name, std::map<int, int> &info)
 {
-	m_nUid = uid;
+	m_accoundId = accoundId;
 	m_mapUserInfo = info;
 
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 
 	if (NULL != pStorer)
 	{
-		m_strUsrKey = ModelKey::UsrKey(m_nUid);
+		m_strUsrKey = ModelKey::UsrKey(m_accoundId);
 
 		if (SUCCESS != pStorer->SetHash(m_strUsrKey, m_mapUserInfo))
 		{
@@ -86,6 +86,7 @@ bool UserModel::NewUser(int uid, std::string name, std::map<int, int> &info)
 		m_strUserName = name;
 		return SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_USERNAME, name);
 	}
+	return false;
 }
 
 std::string& UserModel::GetName()
@@ -176,11 +177,6 @@ bool UserModel::AddUserFieldVal(int field, int value)
 
 int UserModel::IncreaseFieldVal(int field, int increase)
 {
-	if (field != USR_FD_DIAMOND)
-	{
-		return 0;
-	}
-
 	int value = 0;
 	GetUserFieldVal(field, value);
 	value += increase;

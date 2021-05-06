@@ -10,12 +10,10 @@ enum USERFIELD
 {
 	USR_FD_NONE,			    //
 	USR_FD_USERNAME,		    // 名称
-	USR_FD_USERID = 10,         // id
+	USR_ACCOUNDID = 10,         // id
 	USR_FD_USERLV,			    // 等级
 	USR_FD_EXP,				    // 经验
 	USR_FD_GOLD,			    // 金币
-	USR_FD_DIAMOND,			    // 钻石
-	USR_FD_HEADICON,            // 头像
 	USR_FD_CREATETIME,			//创建时间
 	USR_FD_END
 };
@@ -28,11 +26,11 @@ public:
 
 public:
 
-	bool init(int uid);
+	bool init(int accoundId);
 	// 刷新用户数据
 	bool Refresh();
 	// 新用户
-	bool NewUser(int uid, std::string name, std::map<int, int> &info);
+	bool NewUser(int accoundId, std::string name, std::map<int, int> &info);
 	// 获得用户名字
 	std::string& GetName();
 	// 获得用户基本信息
@@ -59,7 +57,7 @@ public:
 	bool DeleteUser();
 	// 设置用户基本信息
 	bool SetUserInfo(std::map<int, int> &userInfo);
-	int GetUserID(){ return m_nUid; }
+	int GetUserID(){ return m_accoundId; }
 
 protected:
 
@@ -67,7 +65,7 @@ protected:
 
 private:
 
-	int						m_nUid;
+	int						m_accoundId;
 	DBRule *				m_pStorageDB;
 	std::string				m_strUsrKey;
 	std::string				m_strUserName;

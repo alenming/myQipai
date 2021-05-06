@@ -36,10 +36,11 @@ public:
 
 	void onTimer(const kxTimeVal& now);
 	// 获得已有用户，当createWhenNull为true时，获取不到会自动从数据库中初始化它
-	GameUser* getGameUser(int uid, bool createWhenNull = true);
+	GameUser* getGameUser(int uid, int accountId, bool createWhenNull = true);
+	GameUser* getGameUser(int uid);
 	// 初始化用户
-	GameUser* initGameUser(int uid);
-	GameUser *newGameUser(int uid, int accountId);
+	GameUser* initGameUser(int uid, int accountId);
+	GameUser* newGameUser (int uid, int accountId);
 	//更新用户需要重置的数据
 	void reSetGameUserData(int uid, bool bLogin = false);
     // 刷新用户数据
@@ -60,8 +61,6 @@ public:
 	bool initUserData(GameUser* gameUsr);
 
 	const std::map<int, GameUser *>& getGameUsers() { return m_GameUsers; }
-
-private:
 
 	//真正删除用户
 	void RealremoveGameUser(int uid);

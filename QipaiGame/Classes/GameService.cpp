@@ -52,7 +52,7 @@ void GameService::CMD_C2S_LOGIN()
 	char* bu = buffer->getBuffer();
 	Head* head = reinterpret_cast<Head*>(bu);
 	head->length = buffer->getDataLength();
-	head->uid = 0;//服务器用ID
+	head->uid = 1;//服务器用ID
 	bool isSuccessful = false;
 	if (GameNetworkNode::getInstance()->sendData(buffer->getBuffer(), buffer->getDataLength()) > 0)
 	{

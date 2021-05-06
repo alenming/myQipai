@@ -19,12 +19,11 @@ KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
     SessionClienter* tcpClient = new SessionClienter();
     if (tcpClient->init(client))
     {
-        // 连接时置为游客，并为其生成游客ID
-        unsigned int guestId = pNetWorkManager->genGuestId();
-        tcpClient->setGuestId(guestId);
-        if (!pNetWorkManager->addGuest(guestId, tcpClient))
+		KXCOMMID guesID =tcpClient->getSock()->getSockFd();
+		tcpClient->setUserId(guesID);
+		if (!pNetWorkManager->addUser(guesID, tcpClient))
         {
-            KX_LOGERROR("add guest error id %d", guestId);
+			KX_LOGERROR("add guest error id %d", guesID);
             tcpClient->release();
             return NULL;
         }

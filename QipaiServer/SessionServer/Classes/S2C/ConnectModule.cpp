@@ -26,9 +26,9 @@ void ConnectModule::processLogic(char* buffer, unsigned int len, IKxComm *target
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
-	int uid = head->uid;
+	int guesID = head->uid;
 
-	SessionClienter* pClient = reinterpret_cast<SessionClienter*>(NetWorkManager::getInstance()->getGuest(uid));
+	SessionClienter* pClient = reinterpret_cast<SessionClienter*>(NetWorkManager::getInstance()->getUser(guesID));
 
 	if (!pClient)
 	{

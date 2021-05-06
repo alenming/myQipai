@@ -8,9 +8,7 @@ using namespace std;
 #define HEARTBEATTIME                   (24*60*60)       //心跳时间 s
 
 SessionClienter::SessionClienter()
-: m_Permission(0)
-, m_GuestId(0)
-, m_UserId(0)
+: m_UserId(0)
 {
     // 设置客户端心跳超时
     m_TimerCallBack = new KxTimerCallback<SessionClienter>();
@@ -106,14 +104,7 @@ void SessionClienter::onTimer()
 
 void SessionClienter::clean()
 {
-	if (m_Permission == 0)
-	{
-		NetWorkManager::getInstance()->removeGuest(m_GuestId);
-	}
-	else
-	{
-		NetWorkManager::getInstance()->removeUser(m_UserId);
-	}
+	NetWorkManager::getInstance()->removeUser(m_UserId);
 
     m_TimerCallBack->stop();
     m_TimerCallBack->clean();

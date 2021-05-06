@@ -1,10 +1,8 @@
 #include "LoginService.h"
 #include "userdata/GameUserManager.h"
 #include "GateManager.h"
-
 #include "helper/BufferData.h"
 #include "server/Head.h"
-
 #include "server/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
 
@@ -61,7 +59,7 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
 
 	// 获得CGameUser
-	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
+	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid, loginCS->accountId);
 	if (NULL == pGameUser)
 	{
 		//新用户
@@ -90,7 +88,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
 
 	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
-	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
+	//UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 
 	loginSC.accountId = pGameUser->getAccountId();
 	buffer->writeData(loginSC);
@@ -123,23 +121,8 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *c
 {
 	//玩家断线处理 由Session触发
 	KX_LOGDEBUG("SERVER_SUB_OFFLINE uid=%d", uid);
+	GameUserManager::getInstance()->RealremoveGameUser(uid);
 
-}
-
-void LoginService::processUserReconect(int uid, char *buffer, int len, IKxComm *commun)
-{
-	// 获得CGameUser
-	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
-	if (NULL == pGameUser)
-	{
-		return;
-	}
-
-	//重置数据
-	GameUserManager::getInstance()->reSetGameUserData(uid);
-	// 如果不是新用户，断线后会在一段时间内自动移除
-	// 改方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
-	GameUserManager::getInstance()->donotDeleteUser(uid);
 }
 
 

@@ -38,17 +38,10 @@ public:
     //获取所有服务器
 	std::map<int, IKxComm*>& getAllServer() { return m_ServerList; }
 
-	//将连接添加到待验证连接列表中
-	bool addGuest(unsigned int guestId, IKxComm* obj);
-	//获取待验证连接客户端
-    IKxComm* getGuest(unsigned int guestId);
-    bool removeGuest(unsigned int guestId);
 
-	//将连接转为连接OK的客户端
-    bool changeGuestToUser(SessionClienter* guest, unsigned int userId);
-	//获取已经验证过的客户端
-    IKxComm* getUser(unsigned int userId);
-    bool removeUser(unsigned int userId);
+	bool addUser(int guestId, IKxComm* obj);
+	IKxComm* getUser(int guestId);
+	bool removeUser(int guestId);
 
     //数据广播给所有玩家
     bool broadCastData(char *pszContext, int nLen);
@@ -69,18 +62,11 @@ public:
 
 private:
     static NetWorkManager* m_Instance;
-
-    unsigned int m_GuestId;													// 未验证客户端唯一ID
-
+	bool		m_bChanging;										//是否在切换中
     std::map<int, std::vector<IKxComm*> >	m_ServerMapByGroup;		// 服务端连接管理
 	std::map<int, std::vector<IKxComm*> >	m_BakServerMapByGroup;	// 备份连接管理
-
-    std::map<unsigned int, IKxComm*> m_GuestMap;		        // 未验证的客户端连接管理
-    std::map<unsigned int, IKxComm*> m_UserMap;       		// 已经验证过的客户端连接管理
-	bool		m_bChanging;											//是否在切换中
-
-	std::map<int, IKxComm* >	m_ServerList;		// 服务端连接管理
-
+    std::map<unsigned int, IKxComm*> m_UserMap;       				// 已经验证过的客户端连接管理
+	std::map<int, IKxComm* >	m_ServerList;						// 服务端连接管理
 };
 
 #endif

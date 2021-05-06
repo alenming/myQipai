@@ -21,7 +21,7 @@ void ClientModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
-	head->uid = pClient->getGuestId();//服务器之间通讯用玩家ID
+	head->uid = pClient->getUserId();//服务器之间通讯用玩家ID
 
 	if (nMainCmd == CMD_MAIN::CMD_HEARTBEAT && nSubCmd == CMD_MAIN::CMD_HEARTBEAT)
 	{
@@ -65,13 +65,13 @@ void ClientModule::userDisconnect(IKxComm *target)
     Head head;
 	head.MakeCommand(SERVER_MAIN_CMD::SERVER_MAIN, SERVER_SUB_CMD::SERVER_SUB_OFFLINE);
     head.length = sizeof(head);
-    head.uid = pClient->getGuestId();
+    head.uid = pClient->getUserId();
 
     // 发送数据到后端告知角色下线
     // 发送下线消息给后端指定的服务器
     pClient->sendDataToAllServer(reinterpret_cast<char*>(&head), sizeof(head));
     // 关闭socket、从NetWorkManager中和clean移除
-	KX_LOGDEBUG("玩家掉线了!:%d", pClient->getGuestId());
+	KX_LOGDEBUG("玩家掉线了!:%d", pClient->getUserId());
 	pClient->clean();
 	
 }

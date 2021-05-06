@@ -7,7 +7,6 @@
 using namespace std;
 
 NetWorkManager::NetWorkManager(void)
-: m_GuestId(1)
 {
 	m_bChanging = false;
 }
@@ -15,11 +14,6 @@ NetWorkManager::NetWorkManager(void)
 NetWorkManager::~NetWorkManager(void)
 {
 	m_bChanging = false;
-    map<unsigned int, IKxComm*>::iterator iterGuest = m_GuestMap.begin();
-    for (; iterGuest != m_GuestMap.end(); ++iterGuest)
-    {
-        iterGuest->second->release();
-    }
     map<unsigned int, IKxComm*>::iterator iterUser = m_UserMap.begin();
     for (; iterUser != m_UserMap.end(); ++iterUser)
     {
@@ -156,64 +150,23 @@ bool NetWorkManager::clearBakServer(int nGroupID)
 	return true;
 }
 
-bool NetWorkManager::addGuest(unsigned int guestId, IKxComm* obj)
+bool NetWorkManager::addUser(int guestId, IKxComm* obj)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guestId);
-	if (iter != m_GuestMap.end())
+	map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(guestId);
+	if (iter != m_UserMap.end())
 	{
 		//客户端ID重复
 		return false;
 	}
 
-	m_GuestMap[guestId] = obj;
+	m_UserMap[guestId] = obj;
 	KXSAFE_RETAIN(obj);
 	return true;
 }
 
-// 获取待验证连接客户端
-IKxComm* NetWorkManager::getGuest(unsigned int guestId)
+IKxComm* NetWorkManager::getUser(int guestId)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guestId);
-	if (iter == m_GuestMap.end())
-	{
-		//客户端ID找不到
-		return NULL;
-	}
-	return iter->second;
-}
-
-bool NetWorkManager::removeGuest(unsigned int guestId)
-{
-	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guestId);
-    if (iter == m_GuestMap.end())
-    {
-        return false;
-    }
-
-    KXSAFE_RELEASE(iter->second);
-    m_GuestMap.erase(iter);
-    return true;
-}
-
-// 将连接转为连接OK的客户端
-bool NetWorkManager::changeGuestToUser(SessionClienter* guest, unsigned int userId)
-{
-    map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guest->getGuestId());
-	if (iter == m_GuestMap.end())
-	{
-		// 客户端ID找不到
-		return false;
-	}
-    // 此处本该有一次release和retain，相互抵消
-    m_UserMap[userId] = guest;
-    m_GuestMap.erase(iter);
-	return true;
-}
-
-// 获取已经验证过的客户端
-IKxComm* NetWorkManager::getUser(unsigned int userId)
-{
-	map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(userId);
+	map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(guestId);
 	if (iter == m_UserMap.end())
 	{
 		//客户端ID找不到
@@ -222,16 +175,16 @@ IKxComm* NetWorkManager::getUser(unsigned int userId)
 	return iter->second;
 }
 
-bool NetWorkManager::removeUser(unsigned int userId)
+bool NetWorkManager::removeUser(int guestId)
 {
-    map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(userId);
-    if (iter == m_UserMap.end())
+	map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(guestId);
+	if (iter == m_UserMap.end())
     {
         return false;
     }
 
     KXSAFE_RELEASE(iter->second);
-    m_UserMap.erase(iter);
+	m_UserMap.erase(iter);
     return true;
 }
 
@@ -266,16 +219,7 @@ bool NetWorkManager::sendDataToClient(SessionClienter* pClient, int nMainCmd, in
 //获取当前连接玩家数
 unsigned int NetWorkManager::getCurClientNum()
 {
-    return m_GuestMap.size() + m_UserMap.size();
-}
-
-unsigned int NetWorkManager::genGuestId()
-{
-	if (m_GuestId >= 0xFFFFFFFF)
-	{
-		m_GuestId = 1;
-	}
-	return m_GuestId++;
+	return m_UserMap.size() + m_UserMap.size();
 }
 
 void NetWorkManager::closeAllServer()

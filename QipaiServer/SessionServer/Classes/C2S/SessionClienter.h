@@ -32,24 +32,18 @@ public:
 	bool sendDataToServer(int mainCmd, int subCmd, char *pszContext, int nLen);
     bool sendDataToGroupServer(int nGroupID, char *pszContext, int nLen);
     bool sendDataToAllServer(char *pszContext, int nLen);
-	int getRouteValue(int nKey);
+	int  getRouteValue(int nKey);
 
-    virtual int onRecv();
+    virtual int  onRecv();
     virtual void setTimer();
     virtual void onTimer();
     virtual void clean();
 
-    inline void setPermission(unsigned int permission) { m_Permission = permission; }
-	inline unsigned int getPermission() { return m_Permission; }
-    inline void setUserId(unsigned int userId) { m_UserId = userId; }
+	inline void setUserId(int userId) { m_UserId = userId; }
     inline unsigned int getUserId() { return m_UserId; }
-    inline void setGuestId(unsigned int guestId) { m_GuestId = guestId; }
-    inline unsigned int getGuestId() { return m_GuestId; }
 
 private:
-	unsigned int m_Permission;	                    // 权限
-    unsigned int m_GuestId;	                // 未验证的访客ID
-    unsigned int m_UserId;                  // 已验证的用户ID
+	int m_UserId;						
     std::map<int, int> m_MapConKeyValue;    // 获取对应的key相应的值
 	KxTimerCallback<SessionClienter>* m_TimerCallBack;                    
 };

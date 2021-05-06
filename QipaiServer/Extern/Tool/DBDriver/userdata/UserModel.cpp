@@ -44,7 +44,7 @@ bool UserModel::Refresh()
 	{
 		for (int i = USR_FD_USERID; i < USR_FD_END; i++)
 		{
-			m_mapUserInfo[i] = 0;
+			//m_mapUserInfo[i] = 0;
 		}
 
 		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, m_mapUserInfo))
@@ -74,14 +74,18 @@ bool UserModel::NewUser(int uid, std::string name, std::map<int, int> &info)
 
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 
-	if (SUCCESS != pStorer->SetHash(m_strUsrKey, m_mapUserInfo))
+	if (NULL != pStorer)
 	{
-		return false;
+		m_strUsrKey = ModelKey::UsrKey(m_nUid);
+
+		if (SUCCESS != pStorer->SetHash(m_strUsrKey, m_mapUserInfo))
+		{
+			return false;
+		}
+
+		m_strUserName = name;
+		return SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_USERNAME, name);
 	}
-
-	m_strUserName = name;
-	return SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_USERNAME, name);
-
 }
 
 std::string& UserModel::GetName()
@@ -172,10 +176,7 @@ bool UserModel::AddUserFieldVal(int field, int value)
 
 int UserModel::IncreaseFieldVal(int field, int increase)
 {
-	if (field != USR_FD_HEROREF
-		&& field != USR_FD_EQUIPREF
-		&& field != USR_FD_MAILREF
-		&& field != USR_FD_DIAMOND)
+	if (field != USR_FD_DIAMOND)
 	{
 		return 0;
 	}

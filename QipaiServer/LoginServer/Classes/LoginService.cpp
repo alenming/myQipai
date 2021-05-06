@@ -38,7 +38,7 @@ void LoginService::CMD_C2S_REGISTER(int uid, char *buffer, int len, IKxComm *com
 	}
 
 	REGISTER_DATA *loginCS = reinterpret_cast<REGISTER_DATA*>(head->data());
-	GameUser* pGameUser = CGameUserManager::getInstance()->newGameUser(uid, loginCS->accountId);
+	GameUser* pGameUser = GameUserManager::getInstance()->newGameUser(uid, loginCS->accountId);
 
 	CMD_S2C_REGISTER(uid);
 }
@@ -61,22 +61,22 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
 
 	// 获得CGameUser
-	GameUser* pGameUser = CGameUserManager::getInstance()->getGameUser(uid);
+	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
 	if (NULL == pGameUser)
 	{
 		//新用户
-		pGameUser = CGameUserManager::getInstance()->newGameUser(uid, loginCS->accountId);
+		pGameUser = GameUserManager::getInstance()->newGameUser(uid, loginCS->accountId);
 	}
 	else
 	{
 		// 如果不是新用户，断线后会在一段时间内自动移除
-		// 改方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
-		CGameUserManager::getInstance()->donotDeleteUser(uid);
+		// 该方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
+		GameUserManager::getInstance()->donotDeleteUser(uid);
 		pGameUser->refreshModel(MODELTYPE_USER);
 	}
 
 	int nCurTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
-	UserModel *pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
+	//UserModel *pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 
 
 	CMD_S2C_LOGIN(uid);
@@ -89,7 +89,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 
 	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
 
-	GameUser* pGameUser = CGameUserManager::getInstance()->getGameUser(uid);
+	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
 	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 
 	loginSC.accountId = pGameUser->getAccountId();
@@ -129,17 +129,17 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *c
 void LoginService::processUserReconect(int uid, char *buffer, int len, IKxComm *commun)
 {
 	// 获得CGameUser
-	GameUser* pGameUser = CGameUserManager::getInstance()->getGameUser(uid);
+	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
 	if (NULL == pGameUser)
 	{
 		return;
 	}
 
 	//重置数据
-	CGameUserManager::getInstance()->reSetGameUserData(uid);
+	GameUserManager::getInstance()->reSetGameUserData(uid);
 	// 如果不是新用户，断线后会在一段时间内自动移除
 	// 改方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
-	CGameUserManager::getInstance()->donotDeleteUser(uid);
+	GameUserManager::getInstance()->donotDeleteUser(uid);
 }
 
 

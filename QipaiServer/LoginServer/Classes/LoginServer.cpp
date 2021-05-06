@@ -100,9 +100,9 @@ bool LoginServer::onServerInit()
 void LoginServer::AddModelType()
 {
 	//初始化
-	CGameUserManager::getInstance()->init(getTimerManager());
+	GameUserManager::getInstance()->init(getTimerManager());
 	//加载该服务器创建所需模型
-	CGameUserManager::getInstance()->addModelType(MODELTYPE_USER);
+	GameUserManager::getInstance()->addModelType(MODELTYPE_USER);
 }
 
 void LoginServer::setSessionServerClose()

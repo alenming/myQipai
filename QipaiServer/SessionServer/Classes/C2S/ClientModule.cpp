@@ -34,7 +34,15 @@ void ClientModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 		return;
 	}
 
-	pClient->sendDataToServer(nMainCmd, nSubCmd, buffer, len);
+	if (pClient->sendDataToServer(nMainCmd, nSubCmd, buffer, len))
+	{
+		KX_LOGDEBUG("转发成功!");
+	}
+	else
+	{
+		KX_LOGDEBUG("转发失败!");
+	}
+	
 }
 
 void ClientModule::processError(IKxComm *target)

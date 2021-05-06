@@ -92,8 +92,8 @@
     <Filter Include="Classes\protocol">
       <UniqueIdentifier>{e78c2da5-0c00-4bec-86fb-3e2f29adfacb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\userdata">
-      <UniqueIdentifier>{0c869e6c-b814-406d-a0c7-938f1a112b0b}</UniqueIdentifier>
+    <Filter Include="Classes\Extern\Tool\DBDriver\userdata">
+      <UniqueIdentifier>{c3204a21-e817-4e8d-bb0b-e8c55398689f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -481,17 +481,17 @@
     <ClInclude Include="Classes\SessionModule.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\userdata\GameUser.h">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUser.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\userdata\GameUserManager.h">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUserManager.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\userdata\IDBModel.h">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\IDBModel.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\userdata\UserModel.h">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserModel.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -663,17 +663,17 @@
     <ClCompile Include="Classes\SessionModule.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\userdata\GameUser.cpp">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUser.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\userdata\GameUserManager.cpp">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUserManager.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\userdata\IDBModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\IDBModel.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\userdata\UserModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserModel.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

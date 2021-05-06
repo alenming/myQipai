@@ -13,9 +13,8 @@ GameUser::~GameUser()
 
 bool GameUser::initModels(int userId)
 {
-	std::vector<ModelType> VectModelType = CGameUserManager::getInstance()->getModelType();
-	for (std::vector<ModelType>::iterator iter = VectModelType.begin();
-		iter != VectModelType.end(); ++iter)
+	std::vector<ModelType> VectModelType = GameUserManager::getInstance()->getModelType();
+	for (std::vector<ModelType>::iterator iter = VectModelType.begin(); iter != VectModelType.end(); ++iter)
 	{
 		int type = *iter;
 		IDBModel *model = NULL;

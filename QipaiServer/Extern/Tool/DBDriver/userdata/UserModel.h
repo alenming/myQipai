@@ -15,56 +15,8 @@ enum USERFIELD
 	USR_FD_EXP,				    // 经验
 	USR_FD_GOLD,			    // 金币
 	USR_FD_DIAMOND,			    // 钻石
-	USR_FD_ENERGY,			    // 体力(1.5版本去除)
-	USR_FD_TOWERCOIN,		    // 塔币
-	USR_FD_PVPCOIN,			    // PVP币
-	USR_FD_UNIONCONTRIB,	    // 公会贡献
-	USR_FD_FLASHCARD,		    // 卡券
-	USR_FD_FLASHCARD10,			// 十连抽卡卷
-
 	USR_FD_HEADICON,            // 头像
-	USR_FD_HEROREF,			    // 英雄id次数
-	USR_FD_EQUIPREF,		    // 装备id计数
-	USR_FD_MAILREF,             // 邮件id计数
-	USR_FD_BAGCAPACITY,		    // 背包格子个数
-	USR_FD_HEROCAPCITY,		    // 英雄卡包个数
-	USR_FD_FREEHEROTIMES,	    // 免费英雄抽取次数
-
-	USR_FD_EXTRAHEROTIMES,	    // 抽取英雄次数
-	USR_FD_EXTRAHERTOTALTIMES,  // 抽取英雄总次数
-	USR_FD_BUYGOLDTIMES,        // 购买金币次数
-	USR_FD_BUYENERGYTIMES,      // 购买体力次数
-	USR_FD_ACCUMULATEGOLD,      // 累计获得金币
-
-	USR_FD_RESETTIMESTAMP,      // 恢复时间戳(包括金币购买次数, 体力购买次数, 体力恢复)
-	USR_FD_FREERENAME,          // 改名字(0为免费,1需要费用)
-
-	USR_FD_LOGINTIME,		    // 角色登陆时间
-	USR_FD_LOGINOUTTIME,	    // 角色登出时间
-	USR_FD_CREATETIME,		    // 角色创建时间
-	USR_FD_LOGIN_DAY,			// 累计登陆天数
-	USR_FC_CONLOGIN_DAY,		// 连续登陆天数
-
-	USR_FD_PAYMENT,				//充值数额
-	USR_FD_MONTHCARDSTAMP,      // 月卡过期时间
-
-	USR_FD_BANTIME,			    //角色封停截止时间戳
-	USR_FD_SIGNDAY,				//累计签到天数
-	USR_FD_MONTHDAY,			//当月累计签到天数
-	USR_FD_DAYFLAG,				//当天签到标识
-	USR_FD_INCSIGNFLAG,			//累计签到次数标识
-	USR_FD_PAYTIMES,			//充值次数
-
-	//累计充值领取标识
-	USR_FD_FIRSTPAYFLAG,		//首冲领取标识
-	//基金
-	USR_FD_FUND_STARTTIME,		//基金开始标记
-	USR_FD_FUND_GETTIME,		//基金领取标记
-
-	USR_FD_BILLNO,              // 当前正在支付的流水号 - 默认为0或空
-	USR_FD_QQVIPLV,				//蓝钻等级
-	USR_FD_QQVIPTIMESTAMP,		//蓝钻结束时间点
-	USR_FD_QQVIPTYPE,			//蓝钻类型 1,3,5,7
+	USR_FD_CREATETIME,			//创建时间
 	USR_FD_END
 };
 

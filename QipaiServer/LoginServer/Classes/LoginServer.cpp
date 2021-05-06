@@ -2,7 +2,7 @@
 #include "LoginListener.h"
 #include <string>
 #include "KxPlatform.h"
-#include "LoginSessionModule.h"
+#include "SessionModule.h"
 
 #include "UserData/GameUserManager.h"
 #include "DBDriver/DBManager.h"
@@ -78,7 +78,7 @@ bool LoginServer::onServerInit()
 		KX_LOGDEBUG("LoginServer listen IP=%s Port=%d Successful!", m_ServerData.ip.c_str(), m_ServerData.port);
 	}
 
-	LoginSessionModule *pClientModel = new LoginSessionModule();
+	SessionModule *pClientModel = new SessionModule();
 	listener->setClientModule(pClientModel);
     m_Poller->addCommObject(listener, listener->getPollType());
 	

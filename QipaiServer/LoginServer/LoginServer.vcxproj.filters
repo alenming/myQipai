@@ -86,14 +86,14 @@
     <Filter Include="Classes\Extern\Tool\log">
       <UniqueIdentifier>{9d417967-ffc0-4454-87e1-9c8a18599ed8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\UserData">
-      <UniqueIdentifier>{eb44d28d-d1ad-4164-8018-dc069d859278}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Extern\Tool\CsvLoader">
       <UniqueIdentifier>{9a773e0d-06ca-40b2-b1c4-fe84b1f00033}</UniqueIdentifier>
     </Filter>
     <Filter Include="Classes\protocol">
       <UniqueIdentifier>{e78c2da5-0c00-4bec-86fb-3e2f29adfacb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\userdata">
+      <UniqueIdentifier>{0c869e6c-b814-406d-a0c7-938f1a112b0b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -107,9 +107,6 @@
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="Classes\LoginService.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\LoginSessionModule.h">
       <Filter>Classes</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h">
@@ -472,18 +469,6 @@
     <ClInclude Include="..\Extern\Tool\log\LogManager.h">
       <Filter>Classes\Extern\Tool\log</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\UserData\GameUser.h">
-      <Filter>Classes\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\UserData\GameUserManager.h">
-      <Filter>Classes\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\UserData\UserModel.h">
-      <Filter>Classes\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\UserData\IDBModel.h">
-      <Filter>Classes\UserData</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClInclude>
@@ -492,6 +477,21 @@
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\server\ServerProtocol.h">
       <Filter>Classes\Extern\ServerFrame\server</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionModule.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\userdata\GameUser.h">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\userdata\GameUserManager.h">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\userdata\IDBModel.h">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\userdata\UserModel.h">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -508,9 +508,6 @@
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="Classes\LoginService.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\LoginSessionModule.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp">
@@ -660,20 +657,23 @@
     <ClCompile Include="..\Extern\Tool\log\LogManager.cpp">
       <Filter>Classes\Extern\Tool\log</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\UserData\GameUser.cpp">
-      <Filter>Classes\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\UserData\GameUserManager.cpp">
-      <Filter>Classes\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\UserData\UserModel.cpp">
-      <Filter>Classes\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\UserData\IDBModel.cpp">
-      <Filter>Classes\UserData</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionModule.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\userdata\GameUser.cpp">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\userdata\GameUserManager.cpp">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\userdata\IDBModel.cpp">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\userdata\UserModel.cpp">
+      <Filter>Classes\Extern\ServerFrame\userdata</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

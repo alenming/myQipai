@@ -6,11 +6,8 @@
 #include "DBDriver/RedisStorer.h"
 #include "UserModel.h"
 #include "RedisStorer.h"
+#include "log/LogManager.h"
 
-//#include "Storage.h"
-//#include "StorageManager.h"
-//#include "ModelDef.h"
-//#include "ConfAnalytic.h"
 
 UserModel::UserModel()
 	: m_nUid(0)
@@ -53,17 +50,16 @@ bool UserModel::Refresh()
 		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, m_mapUserInfo))
 		{
 			// 没有用户信息
+			KX_LOGDEBUG("没有用户信息!");
 			return false;
 		}
 
 		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, USR_FD_USERNAME, m_strUserName))
 		{
+			KX_LOGDEBUG("用户不存在!");
 			// 用户不存在
 			return false;
 		}
-
-
-		m_mapUserInfo[USR_FD_QQVIPTIMESTAMP] = 1;
 
 		return true;
 	}

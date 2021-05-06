@@ -6,11 +6,11 @@
 
 #include "BaseModule.h"
 
-class LoginSessionModule : public BaseModule
+class SessionModule : public BaseModule
 {
 public:
-    LoginSessionModule(void);
-    virtual ~LoginSessionModule(void);
+    SessionModule(void);
+    virtual ~SessionModule(void);
 
     //处理客户端发来消息
     virtual void processLogic(char* buffer, unsigned int len, IKxComm *target);

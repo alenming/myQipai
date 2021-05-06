@@ -1,4 +1,4 @@
-#include "LoginSessionModule.h"
+#include "SessionModule.h"
 #include "GateManager.h"
 #include "LoginService.h"
 #include "helper/BufferData.h"
@@ -7,15 +7,15 @@
 #include "server/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
 
-LoginSessionModule::LoginSessionModule(void)
+SessionModule::SessionModule(void)
 {
 }
 
-LoginSessionModule::~LoginSessionModule(void)
+SessionModule::~SessionModule(void)
 {
 }
 
-void LoginSessionModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
+void SessionModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 {
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nMainCmd = head->MainCommand();
@@ -41,7 +41,7 @@ void LoginSessionModule::processLogic(char* buffer, unsigned int len, IKxComm *t
 
 }
 
-int LoginSessionModule::processLength(char* buffer, unsigned int len)
+int SessionModule::processLength(char* buffer, unsigned int len)
 {
 	if (len < sizeof(Head))
 	{
@@ -52,7 +52,7 @@ int LoginSessionModule::processLength(char* buffer, unsigned int len)
 	return reinterpret_cast<Head*>(buffer)->length;
 }
 
-void LoginSessionModule::processError(IKxComm *target)
+void SessionModule::processError(IKxComm *target)
 {
 
 }

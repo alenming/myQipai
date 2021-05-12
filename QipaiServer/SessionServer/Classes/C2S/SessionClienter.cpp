@@ -8,7 +8,9 @@ using namespace std;
 #define HEARTBEATTIME                   (24*60*60)       //心跳时间 s
 
 SessionClienter::SessionClienter()
-: m_UserId(0)
+	: m_Permission(0),
+	  m_UserId(0),
+	  m_GuestId(0)
 {
     // 设置客户端心跳超时
     m_TimerCallBack = new KxTimerCallback<SessionClienter>();

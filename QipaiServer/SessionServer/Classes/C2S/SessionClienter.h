@@ -41,9 +41,11 @@ public:
 
 	inline void setUserId(int userId) { m_UserId = userId; }
     inline unsigned int getUserId() { return m_UserId; }
-
+	inline void setGuestId(unsigned int guestId) { m_GuestId = guestId; }
+	inline unsigned int getGuestId() { return m_GuestId; }
 private:
-	int m_UserId;						
+	int m_UserId;							//已验证的用户ID
+	unsigned int m_GuestId;	                // 未验证的访客ID
     std::map<int, int> m_MapConKeyValue;    // 获取对应的key相应的值
 	KxTimerCallback<SessionClienter>* m_TimerCallBack;                    
 };

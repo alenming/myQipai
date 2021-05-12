@@ -21,7 +21,6 @@ void ClientModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
-	head->uid = pClient->getUserId();//服务器之间通讯用玩家ID
 
 	if (nMainCmd == CMD_MAIN::CMD_HEARTBEAT && nSubCmd == CMD_MAIN::CMD_HEARTBEAT)
 	{
@@ -33,22 +32,21 @@ void ClientModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
 		pClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		return;
 	}
+	//第一次消息来,帐号没验证.用的是guesId,登录成功后会转为userId
+	if (pClient->getPermission() == 0)
+		head->uid = pClient->getGuestId();
+	else
+		head->uid = pClient->getUserId();
 
 	if (pClient->sendDataToServer(nMainCmd, nSubCmd, buffer, len))
-	{
 		KX_LOGDEBUG("转发成功!");
-	}
 	else
-	{
 		KX_LOGDEBUG("转发失败!");
-	}
-	
 }
 
 void ClientModule::processError(IKxComm *target)
 {
-    // 玩家断线
-    this->userDisconnect(target);
+	this->userDisconnect(target);    // 玩家断线
 }
 
 // 1. 告诉所有服务器，玩家XXX掉线了
@@ -57,9 +55,7 @@ void ClientModule::userDisconnect(IKxComm *target)
 {
     SessionClienter *pClient = dynamic_cast<SessionClienter*>(target);
     if (pClient == NULL)
-    {
         return;
-    }
 
     // 设置下线消息
     Head head;

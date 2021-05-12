@@ -18,12 +18,12 @@ KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
     SessionClienter* tcpClient = new SessionClienter();
     if (tcpClient->init(client))
-    {
-		KXCOMMID guesID =tcpClient->getSock()->getSockFd();
-		tcpClient->setUserId(guesID);
-		if (!pNetWorkManager->addUser(guesID, tcpClient))
+    {//刚建立连接,C端还没有发登录消息来验证帐号数据等
+		unsigned int guesId = pNetWorkManager->genGuestId();
+		tcpClient->setGuestId(guesId);
+		if (!pNetWorkManager->addGuest(guesId, tcpClient))
         {
-			KX_LOGERROR("add guest error id %d", guesID);
+			KX_LOGERROR("add guesId error id %d", guesId);
             tcpClient->release();
             return NULL;
         }

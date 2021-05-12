@@ -1,5 +1,5 @@
 #include "GameUser.h"
-#include "GameUserManager.h"
+#include "UserManager.h"
 
 GameUser::GameUser()
 : m_nUid(0)
@@ -13,7 +13,7 @@ GameUser::~GameUser()
 
 bool GameUser::initModels(int uid, int accoundID)
 {
-	std::vector<ModelType> VectModelType = GameUserManager::getInstance()->getModelType();
+	std::vector<ModelType> VectModelType = UserManager::getInstance()->getModelType();
 	for (std::vector<ModelType>::iterator iter = VectModelType.begin(); iter != VectModelType.end(); ++iter)
 	{
 		int type = *iter;

@@ -14,7 +14,7 @@ enum USERFIELD
 	USR_FD_USERLV,			    // 等级
 	USR_FD_EXP,				    // 经验
 	USR_FD_GOLD,			    // 金币
-	USR_FD_DIAMOID,				//钻石
+	USR_FD_DIAMOID,				// 钻石
 
 	USR_FD_LOGINTIME,		    // 角色登陆时间
 	USR_FD_LOGINOUTTIME,	    // 角色登出时间

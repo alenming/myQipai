@@ -1,5 +1,5 @@
 #include "LoginService.h"
-#include "userdata/GameUserManager.h"
+#include "userdata/UserManager.h"
 #include "GateManager.h"
 #include "helper/BufferData.h"
 #include "server/Head.h"
@@ -36,7 +36,7 @@ void LoginService::CMD_C2S_REGISTER(int uid, char *buffer, int len, IKxComm *com
 	}
 
 	REGISTER_DATA *loginCS = reinterpret_cast<REGISTER_DATA*>(head->data());
-	GameUser* pGameUser = GameUserManager::getInstance()->newGameUser(uid, loginCS->accountId);
+	GameUser* pGameUser = UserManager::getInstance()->newGameUser(uid, loginCS->accountId);
 
 	CMD_S2C_REGISTER(uid);
 }
@@ -59,17 +59,17 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
 
 	// 获得CGameUser
-	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid, loginCS->accountId);
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid, loginCS->accountId);
 	if (NULL == pGameUser)
 	{
 		//新用户
-		pGameUser = GameUserManager::getInstance()->newGameUser(uid, loginCS->accountId);
+		pGameUser = UserManager::getInstance()->newGameUser(uid, loginCS->accountId);
 	}
 	else
 	{
 		// 如果不是新用户，断线后会在一段时间内自动移除
 		// 该方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
-		GameUserManager::getInstance()->donotDeleteUser(uid);
+		UserManager::getInstance()->donotDeleteUser(uid);
 		pGameUser->refreshModel(MODELTYPE_USER);
 	}
 
@@ -87,7 +87,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 
 	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
 
-	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
 	//UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 
 	loginSC.accountId = pGameUser->getAccountId();
@@ -101,7 +101,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("登录成功! uid = %d", head->uid);
+	KX_LOGDEBUG("登录成功! uid = %d, accounld+%d", head->uid, loginSC.accountId);
 }
 
 // 处理客户端的消息
@@ -120,9 +120,8 @@ void LoginService::processServiceS2S(int subcmd, int uid, char *buffer, int len,
 void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *commun)
 {
 	//玩家断线处理 由Session触发
-	KX_LOGDEBUG("玩家离线! uid=%d", uid);
-
-	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
+	KX_LOGDEBUG("玩家离线! uid=%d, accounld+%d", uid, pGameUser->getAccountId());
 	if (!pGameUser)
 	{
 		return;

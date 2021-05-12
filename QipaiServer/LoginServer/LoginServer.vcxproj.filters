@@ -484,13 +484,13 @@
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUser.h">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUserManager.h">
-      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\IDBModel.h">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserModel.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserManager.h">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
   </ItemGroup>
@@ -666,13 +666,13 @@
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUser.cpp">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUserManager.cpp">
-      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\IDBModel.cpp">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserModel.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserManager.cpp">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
   </ItemGroup>

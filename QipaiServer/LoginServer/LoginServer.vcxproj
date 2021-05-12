@@ -178,7 +178,7 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\Tool\DBDriver\MysqlStorer.h" />
     <ClInclude Include="..\Extern\Tool\DBDriver\RedisStorer.h" />
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUser.h" />
-    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUserManager.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserManager.h" />
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\IDBModel.h" />
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserModel.h" />
     <ClInclude Include="..\Extern\Tool\LocalDefault\base64_.h" />
@@ -255,7 +255,7 @@ start TestClient.exe</Command>
     <ClCompile Include="..\Extern\Tool\DBDriver\MysqlStorer.cpp" />
     <ClCompile Include="..\Extern\Tool\DBDriver\RedisStorer.cpp" />
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUser.cpp" />
-    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUserManager.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserManager.cpp" />
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\IDBModel.cpp" />
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserModel.cpp" />
     <ClCompile Include="..\Extern\Tool\LocalDefault\base64_.cpp" />

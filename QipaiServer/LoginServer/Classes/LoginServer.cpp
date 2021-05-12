@@ -4,7 +4,7 @@
 #include "KxPlatform.h"
 #include "SessionModule.h"
 
-#include "UserData/GameUserManager.h"
+#include "UserData/UserManager.h"
 #include "DBDriver/DBManager.h"
 
 using namespace std;
@@ -99,9 +99,9 @@ bool LoginServer::onServerInit()
 void LoginServer::AddModelType()
 {
 	//初始化
-	GameUserManager::getInstance()->init(getTimerManager());
+	UserManager::getInstance()->init(getTimerManager());
 	//加载该服务器创建所需模型
-	GameUserManager::getInstance()->addModelType(MODELTYPE_USER);
+	UserManager::getInstance()->addModelType(MODELTYPE_USER);
 }
 
 void LoginServer::setSessionServerClose()

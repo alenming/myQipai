@@ -1,17 +1,17 @@
-#include "GameUserManager.h"
+#include "UserManager.h"
 #include "DBDriver/DBManager.h"
 #include "DBDriver/RedisStorer.h"
 
-GameUserManager * GameUserManager::m_pInstance = NULL;
+UserManager * UserManager::m_pInstance = NULL;
 
-GameUserManager::GameUserManager()
+UserManager::UserManager()
 {
 	m_VectServerModel.clear();
 	m_DelUserList.clear();
 	m_MapDelUserList.clear();
 }
 
-GameUserManager::~GameUserManager()
+UserManager::~UserManager()
 {
 	for (std::map<int, GameUser *>::iterator iter = m_GameUsers.begin();
 		iter != m_GameUsers.end(); ++iter)
@@ -26,16 +26,16 @@ GameUserManager::~GameUserManager()
 
 
 
-GameUserManager *GameUserManager::getInstance()
+UserManager *UserManager::getInstance()
 {
 	if (NULL == m_pInstance)
 	{
-		m_pInstance = new GameUserManager;
+		m_pInstance = new UserManager;
 	}
 	return m_pInstance;
 }
 
-void GameUserManager::destroy()
+void UserManager::destroy()
 {
 	if (NULL != m_pInstance)
 	{
@@ -43,7 +43,7 @@ void GameUserManager::destroy()
 	}
 }
 
-bool GameUserManager::init(KxTimerManager *pTimerManager)
+bool UserManager::init(KxTimerManager *pTimerManager)
 {
 	m_TimeManager = pTimerManager;
 
@@ -60,12 +60,12 @@ bool GameUserManager::init(KxTimerManager *pTimerManager)
 	return true;
 }
 
-void GameUserManager::addModelType(ModelType Type)
+void UserManager::addModelType(ModelType Type)
 {
 	m_VectServerModel.push_back(Type);
 }
 
-void GameUserManager::onTimer(const kxTimeVal& now)
+void UserManager::onTimer(const kxTimeVal& now)
 {
 	int nCurTime = (int)time(NULL);
 
@@ -84,7 +84,7 @@ void GameUserManager::onTimer(const kxTimeVal& now)
 	}
 }
 
-GameUser* GameUserManager::getGameUser(int uid, int accountId, bool noNull)
+GameUser* UserManager::getGameUser(int uid, int accountId, bool noNull)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if(iter != m_GameUsers.end())
@@ -99,7 +99,7 @@ GameUser* GameUserManager::getGameUser(int uid, int accountId, bool noNull)
 	return NULL;
 }
 
-GameUser* GameUserManager::getGameUser(int uid)
+GameUser* UserManager::getGameUser(int uid)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter != m_GameUsers.end())
@@ -108,7 +108,7 @@ GameUser* GameUserManager::getGameUser(int uid)
 	}
 	return NULL;
 }
-GameUser* GameUserManager::initGameUser(int uid, int accountId)
+GameUser* UserManager::initGameUser(int uid, int accountId)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter == m_GameUsers.end())
@@ -127,7 +127,7 @@ GameUser* GameUserManager::initGameUser(int uid, int accountId)
 	return NULL;
 }
 
-GameUser *GameUserManager::newGameUser(int uid, int accountId)
+GameUser *UserManager::newGameUser(int uid, int accountId)
 {
 	// 新用户
 	GameUser *pGameUser = new GameUser;
@@ -171,7 +171,7 @@ GameUser *GameUserManager::newGameUser(int uid, int accountId)
 }
 
 //更新用户需要重置的数据
-void GameUserManager::reSetGameUserData(int uid, bool bLogin)
+void UserManager::reSetGameUserData(int uid, bool bLogin)
 {
 	GameUser *pGameUser = getGameUser(uid);
 	if (pGameUser == NULL)
@@ -181,7 +181,7 @@ void GameUserManager::reSetGameUserData(int uid, bool bLogin)
     updateGameUserData(pGameUser, bLogin);
 }
 
-void GameUserManager::updateGameUserData(GameUser* gameUsr, bool bLogin)
+void UserManager::updateGameUserData(GameUser* gameUsr, bool bLogin)
 {
     if (gameUsr == NULL)
     {
@@ -191,7 +191,7 @@ void GameUserManager::updateGameUserData(GameUser* gameUsr, bool bLogin)
 
 }
 
-void GameUserManager::addGameUser(int uid, GameUser* gameUsr)
+void UserManager::addGameUser(int uid, GameUser* gameUsr)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter == m_GameUsers.end())
@@ -201,7 +201,7 @@ void GameUserManager::addGameUser(int uid, GameUser* gameUsr)
 }
 
 //检测用户在该服务器是否存在
-bool GameUserManager::checkUserIsExist(int uid)
+bool UserManager::checkUserIsExist(int uid)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter == m_GameUsers.end())
@@ -211,7 +211,7 @@ bool GameUserManager::checkUserIsExist(int uid)
 	return true;
 }
 
-void GameUserManager::removeGameUser(int uid)
+void UserManager::removeGameUser(int uid)
 {
 	if (m_TimeManager == NULL)
 	{
@@ -228,7 +228,7 @@ void GameUserManager::removeGameUser(int uid)
 }
 
 //删除移除用户数据
-void GameUserManager::donotDeleteUser(int uid)
+void UserManager::donotDeleteUser(int uid)
 {
 	std::map<int, std::list<SDelayDelData>::iterator>::iterator ator = m_MapDelUserList.find(uid);
 	if (ator != m_MapDelUserList.end())
@@ -240,7 +240,7 @@ void GameUserManager::donotDeleteUser(int uid)
 }
 
 //真正删除用户
-void GameUserManager::RealremoveGameUser(int uid)
+void UserManager::RealremoveGameUser(int uid)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter != m_GameUsers.end())

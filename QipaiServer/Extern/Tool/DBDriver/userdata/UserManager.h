@@ -1,5 +1,5 @@
-#ifndef __GAMEUSER_MANAGER_H__
-#define __GAMEUSER_MANAGER_H__
+#ifndef __USER_MANAGER_H__
+#define __USER_MANAGER_H__
 /*
 	玩家模型管理器
 */
@@ -17,15 +17,15 @@ struct SDelayDelData
 
 
 
-class GameUserManager : public KxTimerObject
+class UserManager : public KxTimerObject
 {
 private:
-	GameUserManager();
-	~GameUserManager();
+	UserManager();
+	~UserManager();
 
 public:
 
-	static GameUserManager *getInstance();
+	static UserManager *getInstance();
 	static void destroy();
 
 public:
@@ -64,7 +64,7 @@ public:
 
 private:
 
-	static GameUserManager *							m_pInstance;
+	static UserManager *							m_pInstance;
 	std::map<int, GameUser *>							m_GameUsers;
 	std::vector<ModelType>								m_VectServerModel;					//服务器所需求服务器模型
 	std::map<int, std::list<SDelayDelData>::iterator>	m_MapDelUserList;					//玩家对应的向量迭代器
@@ -72,4 +72,4 @@ private:
 	KxTimerManager *							m_TimeManager;
 };
 
-#endif //__GAMEUSER_MANAGER_H__
+#endif //__USER_MANAGER_H__

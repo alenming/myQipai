@@ -69,8 +69,7 @@ void GameUserManager::onTimer(const kxTimeVal& now)
 {
 	int nCurTime = (int)time(NULL);
 
-	for (std::list<SDelayDelData>::iterator ator = m_DelUserList.begin();
-        ator != m_DelUserList.end();)
+	for (std::list<SDelayDelData>::iterator ator = m_DelUserList.begin(); ator != m_DelUserList.end();)
 	{
 		if (nCurTime > ator->nDelayTime)
 		{
@@ -122,7 +121,6 @@ GameUser* GameUserManager::initGameUser(int uid, int accountId)
 		}
 
 		m_GameUsers[uid] = pGameUser;
-		initUserData(pGameUser);
 		return pGameUser;
 	}
 
@@ -154,15 +152,14 @@ GameUser *GameUserManager::newGameUser(int uid, int accountId)
 	// 用户基本信息
 	std::map<int, int> attrs;
 	for (int i = USR_ACCOUNDID; i < USR_FD_END; i++)
-	{
-		// 所有属性默认为0
-		attrs[i] = 0;
-	}
+		attrs[i] = 0;		// 所有属性默认为0
+
 
 	attrs[USR_ACCOUNDID] = accountId;
 	attrs[USR_FD_USERLV] = 1;
 	attrs[USR_FD_EXP] = 0;
-	attrs[USR_FD_GOLD] = 1;
+	attrs[USR_FD_GOLD] = 0;
+	attrs[USR_FD_DIAMOID] = 0;
 	attrs[USR_FD_CREATETIME] = nCreateTime;
 
 	if (!pUserModel->NewUser(accountId, name, attrs))
@@ -170,8 +167,6 @@ GameUser *GameUserManager::newGameUser(int uid, int accountId)
 		// 用户数据初始化失败
 		return NULL;
 	}
-
-	initUserData(pGameUser);
 	return pGameUser;
 }
 
@@ -183,7 +178,6 @@ void GameUserManager::reSetGameUserData(int uid, bool bLogin)
 	{
 		return;
 	}
-    initUserData(pGameUser);
     updateGameUserData(pGameUser, bLogin);
 }
 
@@ -243,16 +237,6 @@ void GameUserManager::donotDeleteUser(int uid)
 		m_DelUserList.erase(iter);
 		m_MapDelUserList.erase(ator);
 	}
-}
-
-bool GameUserManager::initUserData(GameUser* gameUsr)
-{
-	if (gameUsr == NULL)
-	{
-		return false;
-	}
-
-	return true;
 }
 
 //真正删除用户

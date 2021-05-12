@@ -74,7 +74,7 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 	}
 
 	int nCurTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
-	//UserModel *pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
+	UserModel *pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 
 
 	CMD_S2C_LOGIN(uid);
@@ -101,7 +101,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("LoginFinish uid = %d", head->uid);
+	KX_LOGDEBUG("登录成功! uid = %d", head->uid);
 }
 
 // 处理客户端的消息
@@ -120,9 +120,17 @@ void LoginService::processServiceS2S(int subcmd, int uid, char *buffer, int len,
 void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *commun)
 {
 	//玩家断线处理 由Session触发
-	KX_LOGDEBUG("SERVER_SUB_OFFLINE uid=%d", uid);
-	GameUserManager::getInstance()->RealremoveGameUser(uid);
+	KX_LOGDEBUG("玩家离线! uid=%d", uid);
 
+	GameUser* pGameUser = GameUserManager::getInstance()->getGameUser(uid);
+	if (!pGameUser)
+	{
+		return;
+	}
+	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
+	int curTime  = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
+	pUserModel->SetUserFieldVal(USR_FD_LOGINOUTTIME, curTime);
+	//GameUserManager::getInstance()->RealremoveGameUser(uid);
 }
 
 

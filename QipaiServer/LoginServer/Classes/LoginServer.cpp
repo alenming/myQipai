@@ -62,7 +62,6 @@ bool LoginServer::onServerInit()
         return false;
     }
 	m_ServerData = m_ServerConfig.getServerDataByName(this->getServerName());
-
 	char *ip = NULL;
 	if (m_ServerData.ip != "0" && m_ServerData.ip != "")
 	{

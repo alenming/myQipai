@@ -54,11 +54,8 @@ public:
 	// 删除移除用户数据
 	void donotDeleteUser(int uid);
 
-
 	// 获得所有模型类型
 	std::vector<ModelType>& getModelType() { return m_VectServerModel; }
-
-	bool initUserData(GameUser* gameUsr);
 
 	const std::map<int, GameUser *>& getGameUsers() { return m_GameUsers; }
 

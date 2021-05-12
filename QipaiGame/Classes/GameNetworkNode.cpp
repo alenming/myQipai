@@ -124,7 +124,7 @@ bool GameNetworkNode::onServerInit()
 	LogManager::getInstance()->addHandler(2, pFileHandle);
 
 	m_ServerCon->serverGroup = 1;
-	m_ServerCon->host = "127.0.0.1";
+	m_ServerCon->host = "127.0.0.1";// "121.5.104.175";
 	m_ServerCon->port = 8888;
 
 #if KX_PLATFORM_WIN32 != KX_TARGET_PLATFORM
@@ -151,7 +151,6 @@ bool GameNetworkNode::onServerInit()
 		printf("IP addr %d: %s\n", i + 1, inet_ntoa(*(struct in_addr*)host->h_addr_list[i]));
 	}
 #endif
-
 	if (connectToServer((char *)m_ServerCon->host.c_str(), m_ServerCon->port))
 	{
 		KX_LOGDEBUG("ClientTest Connect to IP=%s Port=%d successful", m_ServerCon->host.c_str(), m_ServerCon->port);
@@ -159,11 +158,14 @@ bool GameNetworkNode::onServerInit()
 	else
 		KX_LOGDEBUG("ClientTest Connect to IP=%s Port=%d failed", m_ServerCon->host.c_str(), m_ServerCon->port);
 
+
 	return true;
 }
 
 bool GameNetworkNode::connectToServer(const char *ip, int port, EServerConnType connType, KXSOCK_VERSION version /*= KXV_IPV4*/, std::function<void(bool)> callBack /*= nullptr*/)
 {
+
+
 	map<int, ServerConn>::iterator iter = m_mapServerConns.find(connType);
 	if (iter != m_mapServerConns.end())
 	{

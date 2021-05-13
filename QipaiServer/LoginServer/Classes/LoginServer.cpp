@@ -1,5 +1,4 @@
 #include "LoginServer.h"
-#include "LoginListener.h"
 #include <string>
 #include "KxPlatform.h"
 #include "SessionModule.h"
@@ -56,7 +55,7 @@ bool LoginServer::onServerInit()
 	m_Poller = new KxSelectPoller();
 #endif
 
-    LoginListener* listener = new LoginListener();
+	KxTCPListener* listener = new KxTCPListener();
 	if (!listener->init())
     {
         return false;

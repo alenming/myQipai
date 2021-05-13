@@ -1,42 +1,33 @@
-#ifndef __SESSIONSERVER_H__
+ï»¿#ifndef __SESSIONSERVER_H__
 #define __SESSIONSERVER_H__
-
 #include "KXServer.h"
 #include "ServerConfig.h"
-
-
 class LoginServer : public KxBaseServer
 {
 private:
-    LoginServer(void);
-    virtual ~LoginServer(void);
-
+	LoginServer(void);
+	virtual ~LoginServer(void);
 public:
-    static LoginServer* getInstance();
-    static void destroy();
+	static LoginServer* getInstance();
+	static void destroy();
 
-	//¶¯Ì¬¸üĞÂ·şÎñÆ÷
-	bool dynamicUpdate();											
-	//·şÎñÆ÷ĞÅÏ¢³õÊ¼»¯
+	bool dynamicUpdate();
+
 	virtual bool initServerInfo();
-	//·şÎñÆ÷Ä£¿é³õÊ¼»¯
-    virtual bool onServerInit();
-	//ÉèÖÃ·şÎñÆ÷Á¢¿Ì¹Ø±Õ 
-	void setSessionServerClose();							
-	//ÉèÖÃ·şÎñÆ÷Æ½»¬¿ªÊ¼±êÖ¾
-	void setSessionServerClosing();							
-	//µÃµ½Æ½»¬¹Ø±Õ±êÖ¾Î»
-	bool getClosingFlag(){ return m_IsClosing; }
 
+	virtual bool onServerInit();
+
+	void setSessionServerClose();
+
+	void setSessionServerClosing();
+
+	bool getClosingFlag(){ return m_IsClosing; }
 private:
 	void AddModelType();
-
 private:
-	bool					m_IsClosing;	//¿ªÆôÆ½»¬¹Ø±ÕÊ±µÄ±êÖ¾
-	static LoginServer*		m_Instance;		//µ¥Àı
-
+	bool					m_IsClosing;	
+	static LoginServer*		m_Instance;		
 	ServerData				m_ServerData;
-	ServerConfig			m_ServerConfig;	//·şÎñÆ÷Êı¶ÁÈ¡ÅäÖÃ±í
+	ServerConfig			m_ServerConfig;	
 };
-
 #endif //__SESSIONSERVER_H__

@@ -84,7 +84,7 @@ void UserManager::onTimer(const kxTimeVal& now)
 	}
 }
 
-GameUser* UserManager::getGameUser(int uid, int accountId, bool noNull)
+GameUser* UserManager::getGameUser(int uid, bool noNull)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if(iter != m_GameUsers.end())
@@ -94,27 +94,18 @@ GameUser* UserManager::getGameUser(int uid, int accountId, bool noNull)
 
 	if (noNull)
 	{
-		return initGameUser(uid, accountId);
+		return initGameUser(uid);
 	}
 	return NULL;
 }
 
-GameUser* UserManager::getGameUser(int uid)
-{
-	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
-	if (iter != m_GameUsers.end())
-	{
-		return iter->second;
-	}
-	return NULL;
-}
-GameUser* UserManager::initGameUser(int uid, int accountId)
+GameUser* UserManager::initGameUser(int uid)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter == m_GameUsers.end())
 	{
 		GameUser *pGameUser = new GameUser;
-		if (!pGameUser->initModels(uid, accountId))
+		if (!pGameUser->initModels(uid))
 		{
 			delete pGameUser;
 			return NULL;
@@ -127,25 +118,25 @@ GameUser* UserManager::initGameUser(int uid, int accountId)
 	return NULL;
 }
 
-GameUser *UserManager::newGameUser(int uid, int accountId)
+GameUser *UserManager::newGameUser(int uid)
 {
 	// 新用户
 	GameUser *pGameUser = new GameUser;
 	int nCreateTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
 	// 创建每个模型
 	UserModel *pUserModel = new UserModel;
-	pUserModel->init(accountId);
+	pUserModel->init(uid);
 
 	pGameUser->setModel(MODELTYPE_USER, pUserModel);
 	pGameUser->setUid(uid);
-	pGameUser->setAccountId(accountId);
+
 
 	// 添加到玩家管理器
 	addGameUser(uid, pGameUser);
 
 	// 用户信息模型初始化
 	char name[32] = {};
-	std::string randName = "Name-" + std::to_string(accountId);
+	std::string randName = "Name-" + std::to_string(uid);
 	sprintf_s(name, "%s", randName);
 	pGameUser->setUserName(name);
 
@@ -155,14 +146,14 @@ GameUser *UserManager::newGameUser(int uid, int accountId)
 		attrs[i] = 0;		// 所有属性默认为0
 
 
-	attrs[USR_ACCOUNDID] = accountId;
+	attrs[USR_ACCOUNDID] = uid;
 	attrs[USR_FD_USERLV] = 1;
 	attrs[USR_FD_EXP] = 0;
 	attrs[USR_FD_GOLD] = 0;
 	attrs[USR_FD_DIAMOID] = 0;
 	attrs[USR_FD_CREATETIME] = nCreateTime;
 
-	if (!pUserModel->NewUser(accountId, name, attrs))
+	if (!pUserModel->NewUser(uid, name, attrs))
 	{
 		// 用户数据初始化失败
 		return NULL;

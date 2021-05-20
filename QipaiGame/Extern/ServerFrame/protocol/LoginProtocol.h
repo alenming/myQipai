@@ -29,6 +29,7 @@ struct REGISTER_DATA
 struct LOGIN_DATA
 {
 	int accountId;
+	char passWord[16];
 };
 
 #endif

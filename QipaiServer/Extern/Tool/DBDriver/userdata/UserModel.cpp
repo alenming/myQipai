@@ -7,6 +7,7 @@
 #include "UserModel.h"
 #include "RedisStorer.h"
 #include "log/LogManager.h"
+#include "server/KxBaseServer.h"
 
 
 UserModel::UserModel()
@@ -60,6 +61,8 @@ bool UserModel::Refresh()
 			// 用户不存在
 			return false;
 		}
+		int nCurTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
+		m_mapUserInfo[USR_FD_LOGINTIME] = nCurTime;
 
 		return true;
 	}
@@ -67,7 +70,7 @@ bool UserModel::Refresh()
 	return false;
 }
 
-bool UserModel::NewUser(int accoundId, std::string name, std::map<int, int> &info)
+bool UserModel::NewUser(int accoundId, std::string name, std::string passWord, std::map<int, int> &info)
 {
 	m_uId = accoundId;
 	m_mapUserInfo = info;
@@ -84,7 +87,11 @@ bool UserModel::NewUser(int accoundId, std::string name, std::map<int, int> &inf
 		}
 
 		m_strUserName = name;
-		return SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_USERNAME, name);
+		m_strUserPassWord = passWord;
+		bool temp1 = SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_USERNAME, name);
+		bool temp2 = SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_PASSWROD, passWord);
+		return temp1&&temp2;
+
 	}
 	return false;
 }
@@ -220,6 +227,19 @@ bool UserModel::ModUserName(std::string name)
 	return false;
 }
 
+bool UserModel::ModUserPassWord(std::string passWord)
+{
+	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
+	if (NULL != pStorer)
+	{
+		if (SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_PASSWROD, passWord))
+		{
+			m_strUserPassWord = passWord;
+			return true;
+		}
+	}
+	return false;
+}
 bool UserModel::AlterUserFieldVal(int field, int value)
 {
 	std::map<int, int>::iterator iter = m_mapUserInfo.find(field);
@@ -270,3 +290,5 @@ bool UserModel::GetRealDataFromDB(int field, int &value)
 
 	return true;
 }
+
+

@@ -16,13 +16,9 @@ KxTCPClienter* LoginListener::onAccept(KXCOMMID client)
 	KxTCPClienter* tcpClient = new KxTCPClienter();
 	if (tcpClient->init(client))
 	{
-
-		LoginServer::getInstance()->getMainPoller(
-			)->addCommObject(tcpClient, tcpClient->getPollType());
-
+		LoginServer::getInstance()->getMainPoller()->addCommObject(tcpClient, tcpClient->getPollType());
 		//目前连接只能有一个
 		GateManager::getInstance()->SetGate(tcpClient);
-
 		return tcpClient;
 	}
 	else

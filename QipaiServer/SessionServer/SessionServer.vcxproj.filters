@@ -89,23 +89,14 @@
     <Filter Include="Classes\Extern\Tool\CsvLoader">
       <UniqueIdentifier>{0a043126-a486-4f89-a4ac-77afcf464380}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\C2S">
-      <UniqueIdentifier>{48e3c5c4-db25-4027-a4fa-458bbdf4af45}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\S2C">
-      <UniqueIdentifier>{2f6e285b-4b1d-4b11-bd43-a16206bcc998}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Extern\ServerFrame\protocol">
       <UniqueIdentifier>{0c3093c7-0845-4eeb-8d57-1fe183edf94c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Extern\Tool\DBDriver\userdata">
+      <UniqueIdentifier>{2cc8b6b8-5ab3-4026-bdb0-a3c00df27d81}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Classes\NetworkManager.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\SessionServer.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxBufferList.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
@@ -469,50 +460,59 @@
     <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\C2S\ClientModule.h">
-      <Filter>Classes\C2S</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\C2S\SessionListener.h">
-      <Filter>Classes\C2S</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\S2C\ConnectEvent.h">
-      <Filter>Classes\S2C</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\S2C\ConnectModule.h">
-      <Filter>Classes\S2C</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\S2C\SessionConnector.h">
-      <Filter>Classes\S2C</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\C2S\SessionClienter.h">
-      <Filter>Classes\C2S</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\EventInterface.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\C2S\ClienterEvent.h">
-      <Filter>Classes\C2S</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h">
-      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h">
       <Filter>Classes\Extern\ServerFrame\protocol</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
       <Filter>Classes\Extern\ServerFrame\protocol</Filter>
     </ClInclude>
+    <ClInclude Include="Classes\ClientModule.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ConnectEvent.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ConnectModule.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\EventInterface.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\NetworkManager.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionConnector.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionListener.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionServer.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ClienterEvent.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionHelper.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionClienter.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUser.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserManager.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\IDBModel.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserModel.h">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Classes\Main.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\NetworkManager.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\SessionServer.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
@@ -663,26 +663,50 @@
     <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\C2S\ClientModule.cpp">
-      <Filter>Classes\C2S</Filter>
+    <ClCompile Include="Classes\ClientModule.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\C2S\SessionListener.cpp">
-      <Filter>Classes\C2S</Filter>
+    <ClCompile Include="Classes\ConnectEvent.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\S2C\ConnectEvent.cpp">
-      <Filter>Classes\S2C</Filter>
+    <ClCompile Include="Classes\ConnectModule.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\S2C\ConnectModule.cpp">
-      <Filter>Classes\S2C</Filter>
+    <ClCompile Include="Classes\Main.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\S2C\SessionConnector.cpp">
-      <Filter>Classes\S2C</Filter>
+    <ClCompile Include="Classes\NetworkManager.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\C2S\SessionClienter.cpp">
-      <Filter>Classes\C2S</Filter>
+    <ClCompile Include="Classes\SessionConnector.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\C2S\ClienterEvent.cpp">
-      <Filter>Classes\C2S</Filter>
+    <ClCompile Include="Classes\SessionListener.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionServer.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\ClienterEvent.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionHelper.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionClienter.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUser.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserManager.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\IDBModel.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserModel.cpp">
+      <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

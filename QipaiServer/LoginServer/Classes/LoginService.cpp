@@ -27,20 +27,18 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 {
 	Head* head = reinterpret_cast<Head*>(buffer);
 
-	if (head->uid != uid || head->uid < 0)
-	{
-		return;
-	}
+	if (head->id != uid || head->id < 0) return;
 
 	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
 
 	// 获得CGameUser
-	GameUser* pGameUser = UserManager::getInstance()->getGameUser(loginCS->accountId);
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(loginCS->userId);
 	if (NULL == pGameUser)
 	{
 		//新用户
 		KX_LOGDEBUG("新用户!");
-		pGameUser = UserManager::getInstance()->newGameUser(loginCS->accountId);
+		pGameUser = UserManager::getInstance()->newGameUser(loginCS->userId, loginCS->passWord);
+		CMD_S2C_NEW_USER_LOGIN(uid, loginCS->userId);
 	}
 	else
 	{
@@ -49,13 +47,8 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 		KX_LOGDEBUG("老用户!");
 		UserManager::getInstance()->donotDeleteUser(uid);
 		pGameUser->refreshModel(MODELTYPE_USER);
+		CMD_S2C_LOGIN(uid, loginCS->userId);
 	}
-
-	int nCurTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
-	UserModel *pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
-
-
-	CMD_S2C_LOGIN(uid, loginCS->accountId);
 }
 
 void LoginService::CMD_S2C_LOGIN(int uid, int accountId)
@@ -66,20 +59,42 @@ void LoginService::CMD_S2C_LOGIN(int uid, int accountId)
 	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
 
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
-	//UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 
-	loginSC.accountId = accountId;
+	loginSC.userId = accountId;
 	buffer->writeData(loginSC);
 
 	//重新写入数据长度
 	char* bu = buffer->getBuffer();
 	Head* head = reinterpret_cast<Head*>(bu);
-	head->uid = uid;
+	head->id = uid;
 	head->length = buffer->getDataLength();
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("登录成功! uid = %d, accounld+%d", head->uid, loginSC.accountId);
+	KX_LOGDEBUG("登录成功! uid = %d, accounld=%d", head->id, loginSC.userId);
+}
+
+void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid, int accountId)
+{
+	// 开始下发数据
+	LOGIN_DATA loginSC;
+
+	BufferData* buffer = newBufferData(SERVER_MAIN_CMD::SERVER_MAIN, SERVER_SUB_CMD::SERVER_SUB_NEW_USER);
+
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
+
+	loginSC.userId = accountId;
+	buffer->writeData(loginSC);
+
+	//重新写入数据长度
+	char* bu = buffer->getBuffer();
+	Head* head = reinterpret_cast<Head*>(bu);
+	head->id = uid;
+	head->length = buffer->getDataLength();
+
+	//发送用户数据
+	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
+	KX_LOGDEBUG("新用户验证成功 uid = %d, accounld=%d", head->id, loginSC.userId);
 }
 
 // 处理客户端的消息
@@ -103,7 +118,7 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *c
 	{
 		return;
 	}
-	KX_LOGDEBUG("玩家离线! uid=%d, accounld+%d", uid, pGameUser->getUid());
+	KX_LOGDEBUG("玩家离线! uid=%d, accounld=%d", uid, pGameUser->getUid());
 	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 	int curTime  = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
 	pUserModel->SetUserFieldVal(USR_FD_LOGINOUTTIME, curTime);

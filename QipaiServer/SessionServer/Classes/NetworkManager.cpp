@@ -1,7 +1,7 @@
 #include "NetworkManager.h"
-#include "C2S/SessionClienter.h"
+#include "SessionClienter.h"
 #include "SessionServer.h"
-#include "S2C/SessionConnector.h"
+#include "SessionConnector.h"
 #include "Head.h"
 
 using namespace std;
@@ -215,7 +215,7 @@ bool NetWorkManager::sendDataToClient(SessionClienter* pClient, int nMainCmd, in
 	Head* head = reinterpret_cast<Head*>(buff);
 	head->MakeCommand(nMainCmd, nSubCmd);
 	head->length = buffSize + nLen;
-	head->uid = pClient->getUserId();
+	head->id = pClient->getUserId();
 	memcpy(buff + sizeof(Head), pszContext, nLen);
 	pClient->sendData(buff, buffSize);
 	kxMemMgrRecycle(buff, buffSize);

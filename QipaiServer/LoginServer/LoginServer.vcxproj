@@ -114,7 +114,6 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h" />
-    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\Head.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h" />

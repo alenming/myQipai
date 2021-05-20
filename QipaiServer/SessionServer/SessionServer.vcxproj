@@ -105,7 +105,6 @@
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h" />
-    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\Head.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h" />
@@ -170,6 +169,10 @@
     <ClInclude Include="..\Extern\Tool\DBDriver\mysqld\typelib.h" />
     <ClInclude Include="..\Extern\Tool\DBDriver\MysqlStorer.h" />
     <ClInclude Include="..\Extern\Tool\DBDriver\RedisStorer.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUser.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\IDBModel.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserManager.h" />
+    <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserModel.h" />
     <ClInclude Include="..\Extern\Tool\LocalDefault\base64_.h" />
     <ClInclude Include="..\Extern\Tool\LocalDefault\LocalDefault.h" />
     <ClInclude Include="..\Extern\Tool\log\ILogHandler.h" />
@@ -206,15 +209,16 @@
     <ClInclude Include="..\Extern\Tool\Utils\UrlEncode.h" />
     <ClInclude Include="..\Extern\Tool\Utils\ValueCrypt.h" />
     <ClInclude Include="..\Extern\Tool\XML\XML.h" />
-    <ClInclude Include="Classes\C2S\ClienterEvent.h" />
-    <ClInclude Include="Classes\C2S\ClientModule.h" />
-    <ClInclude Include="Classes\C2S\SessionClienter.h" />
-    <ClInclude Include="Classes\C2S\SessionListener.h" />
+    <ClInclude Include="Classes\ClienterEvent.h" />
+    <ClInclude Include="Classes\ClientModule.h" />
+    <ClInclude Include="Classes\ConnectEvent.h" />
+    <ClInclude Include="Classes\ConnectModule.h" />
     <ClInclude Include="Classes\EventInterface.h" />
     <ClInclude Include="Classes\NetworkManager.h" />
-    <ClInclude Include="Classes\S2C\ConnectEvent.h" />
-    <ClInclude Include="Classes\S2C\ConnectModule.h" />
-    <ClInclude Include="Classes\S2C\SessionConnector.h" />
+    <ClInclude Include="Classes\SessionClienter.h" />
+    <ClInclude Include="Classes\SessionConnector.h" />
+    <ClInclude Include="Classes\SessionHelper.h" />
+    <ClInclude Include="Classes\SessionListener.h" />
     <ClInclude Include="Classes\SessionServer.h" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +251,10 @@
     <ClCompile Include="..\Extern\Tool\DBDriver\IStorer.cpp" />
     <ClCompile Include="..\Extern\Tool\DBDriver\MysqlStorer.cpp" />
     <ClCompile Include="..\Extern\Tool\DBDriver\RedisStorer.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUser.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\IDBModel.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserManager.cpp" />
+    <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserModel.cpp" />
     <ClCompile Include="..\Extern\Tool\LocalDefault\base64_.cpp" />
     <ClCompile Include="..\Extern\Tool\LocalDefault\LocalDefault.cpp" />
     <ClCompile Include="..\Extern\Tool\log\LogConsoleHandler.cpp" />
@@ -268,15 +276,16 @@
     <ClCompile Include="..\Extern\Tool\Utils\UrlEncode.cpp" />
     <ClCompile Include="..\Extern\Tool\Utils\ValueCrypt.cpp" />
     <ClCompile Include="..\Extern\Tool\XML\XML.cpp" />
-    <ClCompile Include="Classes\C2S\ClienterEvent.cpp" />
-    <ClCompile Include="Classes\C2S\ClientModule.cpp" />
-    <ClCompile Include="Classes\C2S\SessionClienter.cpp" />
-    <ClCompile Include="Classes\C2S\SessionListener.cpp" />
+    <ClCompile Include="Classes\ClienterEvent.cpp" />
+    <ClCompile Include="Classes\ClientModule.cpp" />
+    <ClCompile Include="Classes\ConnectEvent.cpp" />
+    <ClCompile Include="Classes\ConnectModule.cpp" />
     <ClCompile Include="Classes\Main.cpp" />
     <ClCompile Include="Classes\NetworkManager.cpp" />
-    <ClCompile Include="Classes\S2C\ConnectEvent.cpp" />
-    <ClCompile Include="Classes\S2C\ConnectModule.cpp" />
-    <ClCompile Include="Classes\S2C\SessionConnector.cpp" />
+    <ClCompile Include="Classes\SessionClienter.cpp" />
+    <ClCompile Include="Classes\SessionConnector.cpp" />
+    <ClCompile Include="Classes\SessionHelper.cpp" />
+    <ClCompile Include="Classes\SessionListener.cpp" />
     <ClCompile Include="Classes\SessionServer.cpp" />
   </ItemGroup>
   <ItemGroup>

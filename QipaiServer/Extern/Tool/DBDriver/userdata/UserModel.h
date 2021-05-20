@@ -10,6 +10,7 @@ enum USERFIELD
 {
 	USR_FD_NONE,			    //
 	USR_FD_USERNAME,		    // 名称
+	USR_FD_PASSWROD,				// 密码
 	USR_ACCOUNDID = 10,         // id
 	USR_FD_USERLV,			    // 等级
 	USR_FD_EXP,				    // 经验
@@ -19,8 +20,6 @@ enum USERFIELD
 	USR_FD_LOGINTIME,		    // 角色登陆时间
 	USR_FD_LOGINOUTTIME,	    // 角色登出时间
 	USR_FD_CREATETIME,		    // 角色创建时间
-	USR_FD_LOGIN_DAY,			// 累计登陆天数
-	USR_FC_CONLOGIN_DAY,		// 连续登陆天数
 
 	USR_FD_END
 };
@@ -37,7 +36,7 @@ public:
 	// 刷新用户数据
 	bool Refresh();
 	// 新用户
-	bool NewUser(int accoundId, std::string name, std::map<int, int> &info);
+	bool NewUser(int accoundId, std::string name,std::string passWord, std::map<int, int> &info);
 	// 获得用户名字
 	std::string& GetName();
 	// 获得用户基本信息
@@ -56,8 +55,12 @@ public:
 	bool SetUserFieldVal(std::map<int, int> &kvs);
 	// 修改用户名
 	bool ModUserName(std::string name);
+	// 修改用户密码
+	bool ModUserPassWord(std::string passWrod);
 	// 修改用户名(不存数据库)
 	void AlterUserName(std::string name) { m_strUserName = name; }
+
+
 	// 修改用户信息(不存数据库)
 	bool AlterUserFieldVal(int field, int value);
 	// 删除玩家数据
@@ -76,6 +79,7 @@ private:
 	DBRule *				m_pStorageDB;
 	std::string				m_strUsrKey;
 	std::string				m_strUserName;
+	std::string				m_strUserPassWord;
 	std::map<int, int>		m_mapUserInfo;
 };
 

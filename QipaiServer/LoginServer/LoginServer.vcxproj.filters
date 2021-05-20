@@ -490,9 +490,6 @@
     <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h">
       <Filter>Classes\Extern\ServerFrame\protocol</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h">
-      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
       <Filter>Classes\Extern\ServerFrame\protocol</Filter>
     </ClInclude>

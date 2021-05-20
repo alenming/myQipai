@@ -1,22 +1,14 @@
 #include "SessionServer.h"
 
-#include "C2S/SessionListener.h"
-#include "C2S/ClientModule.h"
-//#include "SessionClienter.h"
-
-#include "S2C/ConnectModule.h"
-#include "S2C/SessionConnector.h"
-
+#include "SessionListener.h"
+#include "ClientModule.h"
+#include "ConnectModule.h"
+#include "SessionConnector.h"
 #include "NetworkManager.h"
-
 #include "core/KxPlatform.h"
 #include "log/LogManager.h"
-
-#include "C2S/ClienterEvent.h"
-#include "S2C/ConnectEvent.h"
-
-
-
+#include "ClienterEvent.h"
+#include "ConnectEvent.h"
 
 
 using namespace std;

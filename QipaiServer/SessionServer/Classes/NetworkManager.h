@@ -10,7 +10,7 @@
 #include<vector>
 
 #include "KXServer.h"
-#include "C2S/SessionClienter.h"
+#include "SessionClienter.h"
 #include "KXServer.h"
 
 class NetWorkManager : public KxTimerObject
@@ -75,7 +75,7 @@ private:
     std::map<int, std::vector<IKxComm*> >	m_ServerMapByGroup;		// 服务端连接管理
 	std::map<int, std::vector<IKxComm*> >	m_BakServerMapByGroup;	// 备份连接管理
     std::map<unsigned int, IKxComm*> m_UserMap;       				// 已经验证过的客户端连接管理
-	std::map<unsigned int, IKxComm*> m_GuestMap;		        // 未验证的客户端连接管理
+	std::map<unsigned int, IKxComm*> m_GuestMap;					// 未验证的客户端连接管理
 	std::map<int, IKxComm* >	m_ServerList;						// 服务端连接管理
 };
 

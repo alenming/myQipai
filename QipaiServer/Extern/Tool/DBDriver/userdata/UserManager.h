@@ -39,7 +39,7 @@ public:
 	GameUser* getGameUser(int uid, bool createWhenNull = true);
 	// 初始化用户
 	GameUser* initGameUser(int uid);
-	GameUser* newGameUser (int uid);
+	GameUser* newGameUser(int uid, char passWord[]);
 	//更新用户需要重置的数据
 	void reSetGameUserData(int uid, bool bLogin = false);
     // 刷新用户数据

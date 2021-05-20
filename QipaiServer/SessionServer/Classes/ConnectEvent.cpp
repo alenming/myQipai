@@ -39,7 +39,7 @@ bool ConnectEvent::sendDataToActor(SessionClienter* pClient, int nMainCmd, int n
 	Head* head = reinterpret_cast<Head*>(buff);
 	head->MakeCommand(nMainCmd,nSubCmd);
 	head->length = buffSize + nLen;
-    head->uid = pClient->getUserId();
+    head->id = pClient->getUserId();
     ret = pClient->sendData(buff, buffSize) >= 0;
     if (ret && NULL != pszContext && nLen > 0)
 	{

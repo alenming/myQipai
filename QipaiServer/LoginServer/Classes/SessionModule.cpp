@@ -20,7 +20,7 @@ void SessionModule::processLogic(char* buffer, unsigned int len, IKxComm *target
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
-	int uid = head->uid;
+	int uid = head->id;
 	int length = head->length;
 
 	switch (nMainCmd)

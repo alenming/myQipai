@@ -118,7 +118,7 @@ GameUser* UserManager::initGameUser(int uid)
 	return NULL;
 }
 
-GameUser *UserManager::newGameUser(int uid)
+GameUser *UserManager::newGameUser(int uid, char passWord[])
 {
 	// 新用户
 	GameUser *pGameUser = new GameUser;
@@ -140,6 +140,10 @@ GameUser *UserManager::newGameUser(int uid)
 	sprintf_s(name, "%s", randName);
 	pGameUser->setUserName(name);
 
+	char password[16] = {};
+	memcpy(password, passWord, sizeof(password));
+	pGameUser->setPassWord(password);
+
 	// 用户基本信息
 	std::map<int, int> attrs;
 	for (int i = USR_ACCOUNDID; i < USR_FD_END; i++)
@@ -148,12 +152,12 @@ GameUser *UserManager::newGameUser(int uid)
 
 	attrs[USR_ACCOUNDID] = uid;
 	attrs[USR_FD_USERLV] = 1;
-	attrs[USR_FD_EXP] = 0;
-	attrs[USR_FD_GOLD] = 0;
-	attrs[USR_FD_DIAMOID] = 0;
+	attrs[USR_FD_EXP] = 1;
+	attrs[USR_FD_GOLD] = 100;
+	attrs[USR_FD_DIAMOID] = 1000;
 	attrs[USR_FD_CREATETIME] = nCreateTime;
 
-	if (!pUserModel->NewUser(uid, name, attrs))
+	if (!pUserModel->NewUser(uid, name, password,attrs))
 	{
 		// 用户数据初始化失败
 		return NULL;

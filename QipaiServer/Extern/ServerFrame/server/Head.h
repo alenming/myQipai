@@ -10,7 +10,7 @@ struct Head
 {
     int length;
     int cmd;
-	int uid;
+	int id;
 
     inline void MakeCommand(int main, int sub)
     {

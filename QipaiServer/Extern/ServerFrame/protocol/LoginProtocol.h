@@ -13,11 +13,13 @@ enum LOGIN_SUB_CMD
 {
 	CMD_C2S_BEIGN = 0,
 	CMD_C2S_LOGIN,
+	CMD_C2S_RESIGIT,
 	CMD_C2S_LOGINOUT,
 	CMD_C2S_END,
 
 	CMD_S2C_BGINE = 100,
 	CMD_S2C_LOGIN,
+	CMD_S2C_RESIGIT,
 	CMD_S2S_LOGINOUT,
 	CMD_S2C_END,
 };
@@ -31,7 +33,8 @@ struct REGISTER_DATA
 
 struct LOGIN_DATA
 {
-	int accountId;
+	int userId;
+	char passWord[16];
 };
 
 #endif

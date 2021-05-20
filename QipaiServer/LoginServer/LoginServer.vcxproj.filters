@@ -89,11 +89,11 @@
     <Filter Include="Classes\Extern\Tool\CsvLoader">
       <UniqueIdentifier>{9a773e0d-06ca-40b2-b1c4-fe84b1f00033}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\protocol">
-      <UniqueIdentifier>{e78c2da5-0c00-4bec-86fb-3e2f29adfacb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Extern\Tool\DBDriver\userdata">
       <UniqueIdentifier>{c3204a21-e817-4e8d-bb0b-e8c55398689f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\protocol">
+      <UniqueIdentifier>{4a54af0e-0c3e-4093-a9af-b2d29d75e475}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -466,12 +466,6 @@
     <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\protocol\LoginProtocol.h">
-      <Filter>Classes\protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\server\ServerProtocol.h">
-      <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\SessionModule.h">
       <Filter>Classes</Filter>
     </ClInclude>
@@ -492,6 +486,15 @@
     </ClInclude>
     <ClInclude Include="Classes\LoginListener.h">
       <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 #include "GateManager.h"
 #include "helper/BufferData.h"
 #include "server/Head.h"
-#include "server/ServerProtocol.h"
+#include "protocol/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
 
 
@@ -99,11 +99,11 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *c
 {
 	//玩家断线处理 由Session触发
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
-	KX_LOGDEBUG("玩家离线! uid=%d, accounld+%d", uid, pGameUser->getUid());
 	if (!pGameUser)
 	{
 		return;
 	}
+	KX_LOGDEBUG("玩家离线! uid=%d, accounld+%d", uid, pGameUser->getUid());
 	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 	int curTime  = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
 	pUserModel->SetUserFieldVal(USR_FD_LOGINOUTTIME, curTime);

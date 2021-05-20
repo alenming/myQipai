@@ -4,7 +4,7 @@
 #include "helper/BufferData.h"
 #include "server/Head.h"
 
-#include "server/ServerProtocol.h"
+#include "protocol/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
 
 SessionModule::SessionModule(void)

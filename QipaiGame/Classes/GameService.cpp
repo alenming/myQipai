@@ -16,8 +16,6 @@ void GameService::sendMessgToServer(int mainCmd, int subCmd)
 	case LOGIN_CMD::CMD_C2S_LOGIN:
 		CMD_C2S_LOGIN();
 		break;
-	case LOGIN_CMD::CMD_C2S_REGISTER:
-		CMD_C2S_REGISTER();
 		break;
 	default:
 		break;
@@ -31,8 +29,6 @@ void GameService::processMessgFromServer(int mainCmd, int subCmd, char* buffer)
 	case LOGIN_CMD::CMD_S2C_LOGIN:
 		CMD_S2C_LOGIN(subCmd, buffer);
 		break;
-	case LOGIN_CMD::CMD_S2C_REGISTER:
-		CMD_S2C_REGISTER(subCmd, buffer);
 		break;
 	default:
 		break;

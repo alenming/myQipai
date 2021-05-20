@@ -1,7 +1,7 @@
 #include "ClientModule.h"
 #include "SessionClienter.h"
 #include "SessionServer.h"
-#include "server/ServerProtocol.h"
+#include "protocol/ServerProtocol.h"
 
 
 ClientModule::ClientModule(void)

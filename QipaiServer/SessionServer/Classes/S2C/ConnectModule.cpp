@@ -1,7 +1,7 @@
 #include "ConnectModule.h"
 #include "NetworkManager.h"
 #include "SessionClienter.h"
-
+#include "protocol/ServerProtocol.h"
 
 
 ConnectModule::ConnectModule(void)
@@ -24,6 +24,11 @@ void ConnectModule::processLogic(char* buffer, unsigned int len, IKxComm *target
 {
     // 发给指定的前端
 	Head* head = reinterpret_cast<Head*>(buffer);
+	if (head->MainCommand() != CMD_MAIN::CMD_LOGIN_SERVER || len < sizeof(Head))
+	{
+		return;
+	}
+
 	int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
 	int guesID = head->uid;

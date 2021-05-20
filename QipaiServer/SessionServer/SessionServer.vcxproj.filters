@@ -89,14 +89,14 @@
     <Filter Include="Classes\Extern\Tool\CsvLoader">
       <UniqueIdentifier>{0a043126-a486-4f89-a4ac-77afcf464380}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\protocol">
-      <UniqueIdentifier>{6c6616d6-db98-4600-b0dd-9375a801ce69}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\C2S">
       <UniqueIdentifier>{48e3c5c4-db25-4027-a4fa-458bbdf4af45}</UniqueIdentifier>
     </Filter>
     <Filter Include="Classes\S2C">
       <UniqueIdentifier>{2f6e285b-4b1d-4b11-bd43-a16206bcc998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\protocol">
+      <UniqueIdentifier>{0c3093c7-0845-4eeb-8d57-1fe183edf94c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -469,12 +469,6 @@
     <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\server\ServerProtocol.h">
-      <Filter>Classes\Extern\ServerFrame\server</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\protocol\SessionProtocol.h">
-      <Filter>Classes\protocol</Filter>
-    </ClInclude>
     <ClInclude Include="Classes\C2S\ClientModule.h">
       <Filter>Classes\C2S</Filter>
     </ClInclude>
@@ -498,6 +492,15 @@
     </ClInclude>
     <ClInclude Include="Classes\C2S\ClienterEvent.h">
       <Filter>Classes\C2S</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
+      <Filter>Classes\Extern\ServerFrame\protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

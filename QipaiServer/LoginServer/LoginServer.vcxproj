@@ -112,10 +112,12 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimeVal.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h" />
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\Head.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h" />
-    <ClInclude Include="..\Extern\ServerFrame\server\ServerProtocol.h" />
     <ClInclude Include="..\Extern\Tool\CommonHead.h" />
     <ClInclude Include="..\Extern\Tool\Common\Data_.h" />
     <ClInclude Include="..\Extern\Tool\Common\Value_.h" />
@@ -222,7 +224,6 @@ start TestClient.exe</Command>
     <ClInclude Include="Classes\SessionModule.h" />
     <ClInclude Include="Classes\GateManager.h" />
     <ClInclude Include="Classes\LoginService.h" />
-    <ClInclude Include="Classes\protocol\LoginProtocol.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp" />

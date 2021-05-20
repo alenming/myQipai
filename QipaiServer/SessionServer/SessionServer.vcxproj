@@ -103,10 +103,12 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\KxTimeVal.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h" />
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\protocol\SessionProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\Head.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\KxBaseServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\server\ServerConfig.h" />
-    <ClInclude Include="..\Extern\ServerFrame\server\ServerProtocol.h" />
     <ClInclude Include="..\Extern\Tool\CommonHead.h" />
     <ClInclude Include="..\Extern\Tool\Common\Data_.h" />
     <ClInclude Include="..\Extern\Tool\Common\Value_.h" />
@@ -210,7 +212,6 @@
     <ClInclude Include="Classes\C2S\SessionListener.h" />
     <ClInclude Include="Classes\EventInterface.h" />
     <ClInclude Include="Classes\NetworkManager.h" />
-    <ClInclude Include="Classes\protocol\SessionProtocol.h" />
     <ClInclude Include="Classes\S2C\ConnectEvent.h" />
     <ClInclude Include="Classes\S2C\ConnectModule.h" />
     <ClInclude Include="Classes\S2C\SessionConnector.h" />

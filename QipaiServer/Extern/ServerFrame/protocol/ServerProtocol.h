@@ -8,11 +8,11 @@
 //服务器之间通讯
 enum SERVER_MAIN_CMD
 {
-	SERVER_MAIN,
+	SERVER_MAIN = 100,
 };
 enum SERVER_SUB_CMD
 {
-	SERVER_SUB_OFFLINE,
+	SERVER_SUB_OFFLINE = 1,
 };
 //客户端发给服务端.值代表哪个服务器(.exe)与配置表上的对应
 enum CMD_MAIN

@@ -10,7 +10,7 @@
 
 
 UserModel::UserModel()
-	: m_accoundId(0)
+	: m_uId(0)
 	, m_pStorageDB(NULL)
 {
 }
@@ -19,14 +19,14 @@ UserModel::~UserModel()
 {
 }
 
-bool UserModel::init(int accoundId)
+bool UserModel::init(int uId)
 {
-	m_accoundId = accoundId;
+	m_uId = uId;
 	m_pStorageDB = DBManager::getInstance()->GetStorer(DB_USER_MODEL);
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 	if (NULL != pStorer)
 	{
-		m_strUsrKey = ModelKey::UsrKey(m_accoundId);
+		m_strUsrKey = ModelKey::UsrKey(uId);
 		if (SUCCESS != pStorer->ExistKey(m_strUsrKey))
 		{
 			return false;
@@ -69,14 +69,14 @@ bool UserModel::Refresh()
 
 bool UserModel::NewUser(int accoundId, std::string name, std::map<int, int> &info)
 {
-	m_accoundId = accoundId;
+	m_uId = accoundId;
 	m_mapUserInfo = info;
 
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 
 	if (NULL != pStorer)
 	{
-		m_strUsrKey = ModelKey::UsrKey(m_accoundId);
+		m_strUsrKey = ModelKey::UsrKey(m_uId);
 
 		if (SUCCESS != pStorer->SetHash(m_strUsrKey, m_mapUserInfo))
 		{

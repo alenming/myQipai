@@ -2,7 +2,7 @@
 #include <string>
 #include "KxPlatform.h"
 #include "SessionModule.h"
-
+#include "LoginListener.h"
 #include "UserData/UserManager.h"
 #include "DBDriver/DBManager.h"
 
@@ -55,7 +55,7 @@ bool LoginServer::onServerInit()
 	m_Poller = new KxSelectPoller();
 #endif
 
-	KxTCPListener* listener = new KxTCPListener();
+	LoginListener* listener = new LoginListener();
 	if (!listener->init())
     {
         return false;

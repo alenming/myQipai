@@ -64,7 +64,7 @@ public:
 	bool DeleteUser();
 	// 设置用户基本信息
 	bool SetUserInfo(std::map<int, int> &userInfo);
-	int GetUserID(){ return m_accoundId; }
+	int GetUserID(){ return m_uId; }
 
 protected:
 
@@ -72,7 +72,7 @@ protected:
 
 private:
 
-	int						m_accoundId;
+	int						m_uId;
 	DBRule *				m_pStorageDB;
 	std::string				m_strUsrKey;
 	std::string				m_strUserName;

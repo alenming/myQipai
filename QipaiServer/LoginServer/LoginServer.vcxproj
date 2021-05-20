@@ -217,6 +217,7 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\Tool\Utils\UrlEncode.h" />
     <ClInclude Include="..\Extern\Tool\Utils\ValueCrypt.h" />
     <ClInclude Include="..\Extern\Tool\XML\XML.h" />
+    <ClInclude Include="Classes\LoginListener.h" />
     <ClInclude Include="Classes\LoginServer.h" />
     <ClInclude Include="Classes\SessionModule.h" />
     <ClInclude Include="Classes\GateManager.h" />
@@ -278,6 +279,7 @@ start TestClient.exe</Command>
     <ClCompile Include="..\Extern\Tool\Utils\UrlEncode.cpp" />
     <ClCompile Include="..\Extern\Tool\Utils\ValueCrypt.cpp" />
     <ClCompile Include="..\Extern\Tool\XML\XML.cpp" />
+    <ClCompile Include="Classes\LoginListener.cpp" />
     <ClCompile Include="Classes\SessionModule.cpp" />
     <ClCompile Include="Classes\GateManager.cpp" />
     <ClCompile Include="Classes\LoginServer.cpp" />

@@ -490,6 +490,9 @@
     <ClInclude Include="Classes\LoginServer.h">
       <Filter>Classes</Filter>
     </ClInclude>
+    <ClInclude Include="Classes\LoginListener.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\GateManager.cpp">
@@ -668,6 +671,9 @@
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserManager.cpp">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\LoginListener.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

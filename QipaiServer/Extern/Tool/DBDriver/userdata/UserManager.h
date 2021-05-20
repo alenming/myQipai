@@ -4,6 +4,7 @@
 	玩家模型管理器
 */
 #include <map>
+#include <string>
 #include "GameUser.h"
 #include "KXServer.h"
 
@@ -56,7 +57,7 @@ public:
 	// 获得所有模型类型
 	std::vector<ModelType>& getModelType() { return m_VectServerModel; }
 
-	const std::map<int, GameUser *>& getGameUsers() { return m_GameUsers; }
+	const std::map<std::string, GameUser *>& getGameUsers() { return m_GameUsers; }
 
 	//真正删除用户
 	void RealremoveGameUser(int uid);
@@ -64,7 +65,7 @@ public:
 private:
 
 	static UserManager *							m_pInstance;
-	std::map<int, GameUser *>							m_GameUsers;
+	std::map<std::string, GameUser *>							m_GameUsers;
 	std::vector<ModelType>								m_VectServerModel;					//服务器所需求服务器模型
 	std::map<int, std::list<SDelayDelData>::iterator>	m_MapDelUserList;					//玩家对应的向量迭代器
 	std::list<SDelayDelData>							m_DelUserList;						//延迟玩家下线列表

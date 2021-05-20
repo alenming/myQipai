@@ -6,12 +6,14 @@
 #include "IDBModel.h"
 #include "DBDriver/IStorer.h"
 
+
 enum USERFIELD
 {
 	USR_FD_NONE,			    //
 	USR_FD_USERNAME,		    // 名称
-	USR_FD_PASSWROD,				// 密码
-	USR_ACCOUNDID = 10,         // id
+	USR_FD_PASSWROD,			// 密码
+	USR_FD_USERID = 10,         // id
+	USR_FD_PERMISSION,			//权限
 	USR_FD_USERLV,			    // 等级
 	USR_FD_EXP,				    // 经验
 	USR_FD_GOLD,			    // 金币

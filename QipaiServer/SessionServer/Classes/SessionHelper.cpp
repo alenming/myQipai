@@ -3,6 +3,7 @@
 #include "SessionClienter.h"
 #include "protocol/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
+#include "log/LogManager.h"
 
 SessionHelper::SessionHelper()
 {
@@ -42,8 +43,8 @@ void SessionHelper::ServerSubInit(int guesId, int userId)
 	{
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->setUserId(userId);
-		pSessionClient->setPermission(1);
-
+		pSessionClient->setPermission(USER_PERMISSION::PERMISSION_USER);
+		KX_LOGDEBUG("验证成功!,切换游客为正式玩家");
 		// 验证成功，guest转user
 		pNetWorkManager->changeGuestToUser(pSessionClient, userId);
 

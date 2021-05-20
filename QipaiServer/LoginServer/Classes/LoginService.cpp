@@ -61,6 +61,8 @@ void LoginService::CMD_S2C_LOGIN(int uid, int accountId)
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
 
 	loginSC.userId = accountId;
+	string passWord = pGameUser->getPassWord();
+	memcpy(loginSC.passWord, passWord.c_str(),passWord.size());
 	buffer->writeData(loginSC);
 
 	//重新写入数据长度
@@ -68,6 +70,7 @@ void LoginService::CMD_S2C_LOGIN(int uid, int accountId)
 	Head* head = reinterpret_cast<Head*>(bu);
 	head->id = uid;
 	head->length = buffer->getDataLength();
+
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
@@ -123,6 +126,26 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *c
 	int curTime  = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
 	pUserModel->SetUserFieldVal(USR_FD_LOGINOUTTIME, curTime);
 	//GameUserManager::getInstance()->RealremoveGameUser(uid);
+
 }
 
 
+
+void sendUserModel(int uid, UserModel *model)
+{
+	int len = sizeof(LoginUserModelInfo);
+	LoginUserModelInfo *userInfo = reinterpret_cast<LoginUserModelInfo*>(kxMemMgrAlocate(len));
+	int nValue = 0;
+	memset(userInfo->name, 0, sizeof(userInfo->name));
+	strcpy(userInfo->name, model->GetName().c_str());
+	model->GetUserFieldVal(USR_FD_USERID, userInfo->userId);
+	model->GetUserFieldVal(USR_FD_USERLV, nValue);
+	userInfo->cuserLv = nValue;
+	model->GetUserFieldVal(USR_FD_EXP, userInfo->userExp);
+	model->GetUserFieldVal(USR_FD_GOLD, userInfo->gold);
+	model->GetUserFieldVal(USR_FD_DIAMOID, userInfo->diamond);
+
+	//GateManager::getInstance()->sendData(uid, CMD_LOGIN, CMD_LOGIN_USERMODEL_SC,reinterpret_cast<char *>(userInfo), len);
+
+	kxMemMgrRecycle(userInfo, len);
+}

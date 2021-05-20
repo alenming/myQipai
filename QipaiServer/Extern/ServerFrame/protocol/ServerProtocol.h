@@ -4,6 +4,12 @@
 
 #ifndef __SERVERPROTOCOL_H__
 #define __SERVERPROTOCOL_H__
+//用户权限
+enum USER_PERMISSION
+{
+	PERMISSION_GUES,
+	PERMISSION_USER,
+};
 
 //服务器之间通讯
 enum SERVER_MAIN_CMD
@@ -20,8 +26,6 @@ enum CMD_MAIN
 {
 	CMD_HEARTBEAT,
 	CMD_LOGIN_SERVER,
-
-
 
 };
 

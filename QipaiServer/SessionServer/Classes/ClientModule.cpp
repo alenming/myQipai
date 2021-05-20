@@ -61,7 +61,11 @@ void ClientModule::userDisconnect(IKxComm *target)
     Head head;
 	head.MakeCommand(SERVER_MAIN_CMD::SERVER_MAIN, SERVER_SUB_CMD::SERVER_SUB_OFFLINE);
     head.length = sizeof(head);
-    head.id = pClient->getUserId();
+
+	if (pClient->getPermission() == 0)
+		head.id = pClient->getGuestId();
+	else if (pClient->getPermission() == 1)
+		head.id = pClient->getUserId();
 
     // 发送数据到后端告知角色下线
     // 发送下线消息给后端指定的服务器

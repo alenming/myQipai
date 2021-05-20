@@ -5,7 +5,6 @@
 #include "DBDriver/DBManager.h"
 #include "DBDriver/RedisStorer.h"
 #include "UserModel.h"
-#include "RedisStorer.h"
 #include "log/LogManager.h"
 #include "server/KxBaseServer.h"
 
@@ -43,7 +42,7 @@ bool UserModel::Refresh()
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 	if (NULL != pStorer)
 	{
-		for (int i = USR_ACCOUNDID; i < USR_FD_END; i++)
+		for (int i = USR_FD_USERID; i < USR_FD_END; i++)
 		{
 			m_mapUserInfo[i] = 0;
 		}
@@ -61,9 +60,14 @@ bool UserModel::Refresh()
 			// 用户不存在
 			return false;
 		}
+		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, USR_FD_PASSWROD, m_strUserPassWord))
+		{
+			KX_LOGDEBUG("用户不存在!");
+			// 用户不存在
+			return false;
+		}
 		int nCurTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
-		m_mapUserInfo[USR_FD_LOGINTIME] = nCurTime;
-
+		SetUserFieldVal(USR_FD_LOGINTIME, nCurTime);
 		return true;
 	}
 

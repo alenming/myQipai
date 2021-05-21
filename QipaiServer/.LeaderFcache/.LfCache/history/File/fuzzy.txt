@@ -1,3 +1,0 @@
-servercon
-main
-vimrc

@@ -11,15 +11,15 @@ public:
 	typedef void(T::*pTimerCallback)();
 	KxTimerCallback()
 	{
-		m_Object = NULL;
-		m_Callback = NULL;
+		m_Object = nullptr;
+		m_Callback = nullptr;
 	}
 
 	KxTimerCallback(float delay, int repeat = 0)
 	{
 		KxTimerObject::KxTimerObject(delay, repeat);
-		m_Object = NULL;
-		m_Callback = NULL;
+		m_Object = nullptr;
+		m_Callback = nullptr;
 	}
 
 	virtual ~KxTimerCallback()
@@ -49,7 +49,7 @@ public:
 
     virtual void onTimer(const kxTimeVal& now)
     {
-        if (NULL != m_Object)
+        if (nullptr != m_Object)
         {
             (m_Object->*m_Callback)();
         }

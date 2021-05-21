@@ -22,7 +22,7 @@ bool EventConnect::onUserProc(unsigned int id)
 bool EventConnect::onUserEvent(int nType, IKxComm* target)
 {
     SessionClient *pClient = static_cast<SessionClient *>(target);
-    if (pClient != NULL)
+    if (pClient != nullptr)
     {
 
     }
@@ -41,7 +41,7 @@ bool EventConnect::sendDataToActor(SessionClient* pClient, int nMainCmd, int nSu
 	head->length = buffSize + nLen;
     head->id = pClient->getUserId();
     ret = pClient->sendData(buff, buffSize) >= 0;
-    if (ret && NULL != pszContext && nLen > 0)
+    if (ret && nullptr != pszContext && nLen > 0)
 	{
         ret = pClient->sendData(pszContext, nLen) >= 0;
     }

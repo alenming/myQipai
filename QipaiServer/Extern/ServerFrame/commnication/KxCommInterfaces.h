@@ -74,8 +74,8 @@ class IKxComm : virtual public KxObject
 public:
     IKxComm()
         : m_PollType(KXPOLLTYPE_UNKNOWN)
-		, m_Poller(NULL)
-		, m_ProcessModule(NULL)
+		, m_Poller(nullptr)
+		, m_ProcessModule(nullptr)
     {
     }
 
@@ -142,7 +142,7 @@ public:
     {
         //if (m_PollType != type)
         {
-            if (m_Poller != NULL && m_Poller->getCurrentPollObject() != this)
+            if (m_Poller != nullptr && m_Poller->getCurrentPollObject() != this)
             {
                 m_Poller->modifyCommObject(this, type);
             }
@@ -176,7 +176,7 @@ public:
     // 发生错误时回调，由IKxCommPoller调用
     virtual int onError()
     {
-        if (NULL != m_ProcessModule)
+        if (nullptr != m_ProcessModule)
         {
             m_ProcessModule->processError(this);
         }

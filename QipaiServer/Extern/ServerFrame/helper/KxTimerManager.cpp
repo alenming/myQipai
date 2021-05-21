@@ -5,7 +5,7 @@
 
 int gettimeofday(struct timeval * val, struct timezone * zone)
 {
-    if (NULL != val)
+    if (nullptr != val)
     {
         LARGE_INTEGER liTime, liFreq;
         QueryPerformanceFrequency(&liFreq);
@@ -21,9 +21,9 @@ int gettimeofday(struct timeval * val, struct timezone * zone)
 using namespace std;
 
 KxTimerObject::KxTimerObject()
-:m_TimerList(NULL),
-m_Prev(NULL),
-m_Next(NULL),
+:m_TimerList(nullptr),
+m_Prev(nullptr),
+m_Next(nullptr),
 m_Delay(0.0f),
 m_Repeat(0),
 m_TimeVal()
@@ -31,9 +31,9 @@ m_TimeVal()
 }
 
 KxTimerObject::KxTimerObject(float delay, int repeat)
-:m_TimerList(NULL),
-m_Prev(NULL),
-m_Next(NULL),
+:m_TimerList(nullptr),
+m_Prev(nullptr),
+m_Next(nullptr),
 m_Delay(delay),
 m_Repeat(repeat),
 m_TimeVal()
@@ -50,7 +50,7 @@ void KxTimerObject::onTimer(const kxTimeVal& now)
 
 void KxTimerObject::stop()
 {
-    if (NULL != m_TimerList)
+    if (nullptr != m_TimerList)
     {
         m_Repeat = 0;
         m_TimerList->remove(this);
@@ -69,9 +69,9 @@ void KxTimerObject::startWithTime(const kxTimeVal& now)
 
 KxTimerList::KxTimerList()
     :m_Length(0),
-    m_Head(NULL),
-    m_Tail(NULL),
-    m_Timer(NULL)
+    m_Head(nullptr),
+    m_Tail(nullptr),
+    m_Timer(nullptr)
 {
 
 }
@@ -83,23 +83,23 @@ KxTimerList::~KxTimerList()
 
 bool KxTimerList::pushBack(KxTimerObject* obj)
 {
-    if (NULL == obj
-        || NULL != obj->m_TimerList)
+    if (nullptr == obj
+        || nullptr != obj->m_TimerList)
     {
         return false;
     }
 
-    if (NULL == m_Tail)
+    if (nullptr == m_Tail)
     {
         m_Head = obj;
-        obj->m_Prev = obj->m_Next = NULL;
+        obj->m_Prev = obj->m_Next = nullptr;
 
     }
     else
     {
         m_Tail->m_Next = obj;
         obj->m_Prev = m_Tail;
-        obj->m_Next = NULL;
+        obj->m_Next = nullptr;
     }
     
     m_Tail = obj;
@@ -111,22 +111,22 @@ bool KxTimerList::pushBack(KxTimerObject* obj)
 
 bool KxTimerList::pushFront(KxTimerObject* obj)
 {
-    if (NULL == obj
-        || NULL != obj->m_TimerList)
+    if (nullptr == obj
+        || nullptr != obj->m_TimerList)
     {
         return false;
     }
 
-    if (NULL == m_Head)
+    if (nullptr == m_Head)
     {
         m_Tail = obj;
-        obj->m_Prev = obj->m_Next = NULL;
+        obj->m_Prev = obj->m_Next = nullptr;
     }
     else
     {
         m_Head->m_Prev = obj;
         obj->m_Next = m_Head;
-        obj->m_Prev = NULL;
+        obj->m_Prev = nullptr;
     }
 
     m_Head = obj;
@@ -138,7 +138,7 @@ bool KxTimerList::pushFront(KxTimerObject* obj)
 
 bool KxTimerList::remove(KxTimerObject* obj)
 {
-    if (NULL == obj
+    if (nullptr == obj
         || obj->m_TimerList != this)
     {
         return false;
@@ -147,19 +147,19 @@ bool KxTimerList::remove(KxTimerObject* obj)
     if (m_Head == obj)
     {
         m_Head = obj->m_Next;
-        if (NULL != m_Head)
+        if (nullptr != m_Head)
         {
-            m_Head->m_Prev = NULL;
+            m_Head->m_Prev = nullptr;
         }
         else
         {
-            m_Tail = NULL;
+            m_Tail = nullptr;
         }
     }
     else if (m_Tail == obj)
     {
         m_Tail = obj->m_Prev;
-        m_Tail->m_Next = NULL;
+        m_Tail->m_Next = nullptr;
     }
     else
     {
@@ -167,8 +167,8 @@ bool KxTimerList::remove(KxTimerObject* obj)
         obj->m_Next->m_Prev = obj->m_Prev;
     }
 
-    obj->m_Next = obj->m_Prev = NULL;
-    obj->m_TimerList = NULL;
+    obj->m_Next = obj->m_Prev = nullptr;
+    obj->m_TimerList = nullptr;
     KXSAFE_RELEASE(obj);
     --m_Length;
     return true;
@@ -176,8 +176,8 @@ bool KxTimerList::remove(KxTimerObject* obj)
 
 bool KxTimerList::insert(KxTimerObject* obj)
 {
-    if (NULL == obj
-        || NULL != obj->m_TimerList)
+    if (nullptr == obj
+        || nullptr != obj->m_TimerList)
     {
         return false;
     }
@@ -185,13 +185,13 @@ bool KxTimerList::insert(KxTimerObject* obj)
     // 从头部开始搜索
     KxTimerObject* pNode = m_Head;
     const kxTimeVal& timeOut = obj->getTimeVal();
-    if (NULL == pNode || !pNode->checkTime(timeOut))
+    if (nullptr == pNode || !pNode->checkTime(timeOut))
     {
         pushFront(obj);
     }
     else
     {
-        while(NULL != pNode)
+        while(nullptr != pNode)
         {
             // 如果该节点的超时时间大于要插入节点的超时时间
             if (!pNode->checkTime(timeOut))
@@ -219,7 +219,7 @@ bool KxTimerList::insert(KxTimerObject* obj)
 
 void KxTimerList::update(const kxTimeVal& now)
 {
-    while(NULL != m_Head)
+    while(nullptr != m_Head)
     {
         if (m_Head->checkTime(now))
         {
@@ -251,9 +251,9 @@ void KxTimerList::update(const kxTimeVal& now)
 
 KxTimerManager::KxTimerManager()
 {
-    gettimeofday((struct timeval*)&(m_Now), NULL);
+    gettimeofday((struct timeval*)&(m_Now), nullptr);
 #if KX_TARGET_PLATFORM == KX_PLATFORM_WIN32
-    m_Timestamp = static_cast<int>(time(NULL));
+    m_Timestamp = static_cast<int>(time(nullptr));
 #endif
     m_AglieTimerList = new KxTimerList();
 }
@@ -272,7 +272,7 @@ void KxTimerManager::updateTimers()
 {
 	gettimeofday((struct timeval*)&(m_Now), 0);
 #if KX_TARGET_PLATFORM == KX_PLATFORM_WIN32
-    m_Timestamp = static_cast<int>(time(NULL));
+    m_Timestamp = static_cast<int>(time(nullptr));
 #endif
 
 	for (map<long, KxTimerList*>::iterator iter = m_FixTimerMap.begin(); iter != m_FixTimerMap.end(); )
@@ -294,7 +294,7 @@ void KxTimerManager::updateTimers()
 
 bool KxTimerManager::addTimer(KxTimerObject* obj)
 {
-    KXASSERT(NULL != obj);
+    KXASSERT(nullptr != obj);
 
     /*long timeKey = timeToKey(obj->getDelay());
     KXLOGDEBUG("timer key %d", timeKey);
@@ -309,7 +309,7 @@ bool KxTimerManager::addTimer(KxTimerObject* obj)
 
 bool KxTimerManager::addTimer(KxTimerObject* obj, float delay, int repeat)
 {
-    KXASSERT(NULL != obj);
+    KXASSERT(nullptr != obj);
 
     obj->setDelay(delay);
     obj->setRepeat(repeat);
@@ -318,7 +318,7 @@ bool KxTimerManager::addTimer(KxTimerObject* obj, float delay, int repeat)
 
 bool KxTimerManager::addTimer(KxTimerObject* obj, int delay, int repeat)
 {
-	KXASSERT(NULL != obj);
+	KXASSERT(nullptr != obj);
 	kxTimeVal tv;
 	tv.tv_sec = delay;
 	tv.tv_usec = 0;
@@ -329,7 +329,7 @@ bool KxTimerManager::addTimer(KxTimerObject* obj, int delay, int repeat)
 
 bool KxTimerManager::addTimerOnTime(KxTimerObject* obj, long timestamp)
 {
-    KXASSERT(NULL != obj);
+    KXASSERT(nullptr != obj);
     obj->setRepeat(0);
 #if KX_TARGET_PLATFORM == KX_PLATFORM_WIN32
     kxTimeVal tv;
@@ -348,11 +348,11 @@ bool KxTimerManager::addTimerOnTime(KxTimerObject* obj, long timestamp)
 
 bool KxTimerManager::attachToFixList(KxTimerObject* obj)
 {
-    KXASSERT(NULL != obj);
+    KXASSERT(nullptr != obj);
 
     long timeKey = timeToKey(obj->getDelay());
     map<long, KxTimerList*>::iterator iter = m_FixTimerMap.find(timeKey);
-    KxTimerList* targetList = NULL;
+    KxTimerList* targetList = nullptr;
     if (iter == m_FixTimerMap.end())
     {
         targetList = new KxTimerList();
@@ -376,7 +376,7 @@ bool KxTimerManager::attachToFixList(KxTimerObject* obj)
 //if you just wan't update once, this function will be better
 bool KxTimerManager::attachToAglieList(KxTimerObject* obj)
 {
-    KXASSERT(NULL != obj);
+    KXASSERT(nullptr != obj);
     KXASSERT(obj->getRepeat() == 0);
 
     kxTimeVal timeOut = m_Now + obj->getDelay();

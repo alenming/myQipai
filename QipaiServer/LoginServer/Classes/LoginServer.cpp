@@ -8,7 +8,7 @@
 
 using namespace std;
 
-LoginServer* LoginServer::m_Instance = NULL;
+LoginServer* LoginServer::m_Instance = nullptr;
 LoginServer::LoginServer(void)
 :m_IsClosing(false)
 {
@@ -22,7 +22,7 @@ LoginServer::~LoginServer(void)
 
 LoginServer* LoginServer::getInstance()
 {
-    if (NULL == m_Instance)
+    if (nullptr == m_Instance)
     {
         m_Instance = new LoginServer();
     }
@@ -34,10 +34,10 @@ void LoginServer::destroy()
 	DBManager::getInstance()->destroy();
 	LogManager::getInstance()->destroy();
 
-    if (NULL != m_Instance)
+    if (nullptr != m_Instance)
     {
         delete m_Instance;
-        m_Instance = NULL;
+        m_Instance = nullptr;
     }
 }
 
@@ -61,7 +61,7 @@ bool LoginServer::onServerInit()
         return false;
     }
 	m_ServerData = m_ServerConfig.getServerDataByName(this->getServerName());
-	char *ip = NULL;
+	char *ip = nullptr;
 	if (m_ServerData.ip != "0" && m_ServerData.ip != "")
 	{
 		ip = (char *)m_ServerData.ip.c_str();

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-LogManager* LogManager::m_Instance = NULL;
+LogManager* LogManager::m_Instance = nullptr;
 
 LogManager::LogManager()
 :m_LogLevel(0),
@@ -26,7 +26,7 @@ LogManager::~LogManager()
 
 LogManager* LogManager::getInstance()
 {
-    if (NULL == m_Instance)
+    if (nullptr == m_Instance)
     {
         m_Instance = new LogManager();
     }
@@ -36,16 +36,16 @@ LogManager* LogManager::getInstance()
 
 void LogManager::destroy()
 {
-    if (NULL != m_Instance)
+    if (nullptr != m_Instance)
     {
         delete m_Instance;
-        m_Instance = NULL;
+        m_Instance = nullptr;
     }
 }
 
 bool LogManager::addHandler(int handleId, ILogHandler* handler)
 {
-    if (NULL == handler)
+    if (nullptr == handler)
     {
         return false;
     }
@@ -63,7 +63,7 @@ bool LogManager::addHandler(int handleId, ILogHandler* handler)
 
 bool LogManager::addHandler(ILogHandler* handler)
 {
-    if (NULL == handler)
+    if (nullptr == handler)
     {
         return false;
     }
@@ -100,7 +100,7 @@ ILogHandler* LogManager::getHandler(int id)
         return iter->second;
     }
 
-    return NULL;
+    return nullptr;
 }
 
 void LogManager::clearHandler()
@@ -184,7 +184,7 @@ void LogManager::updateFormat(int level, const char* log, const char* file, cons
 
     if (m_DateOption || m_TimeOption)
     {
-        time_t t = time(NULL);
+        time_t t = time(nullptr);
 		tm tmnow;
 		localtime_s(&tmnow, &t);
 
@@ -203,12 +203,12 @@ void LogManager::updateFormat(int level, const char* log, const char* file, cons
         }
     }
 
-    if (m_FileOption && NULL != file)
+    if (m_FileOption && nullptr != file)
     {
 		m_StringFormat += "[file]->[" + string(file) + "] ";
     }
 
-    if (m_FuncOption && NULL != func)
+    if (m_FuncOption && nullptr != func)
     {
         m_StringFormat += "[func]->[" + string(func) + "] ";
     }
@@ -236,7 +236,7 @@ void LogManager::HexDumpImp(const void *pdata, unsigned int len)
 		int cnt2 = 0;
 		const char *data = (const char *)pdata;
 		ILogHandler* pHandle = getHandler(2);
-		if (pHandle == NULL)
+		if (pHandle == nullptr)
 		{
 			return;
 		}

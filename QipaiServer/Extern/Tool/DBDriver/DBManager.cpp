@@ -15,20 +15,20 @@ DBManager::~DBManager()
     //清除Storage对象数据
 	for (std::map<std::string, DBRule>::iterator iter = m_mapStorers.begin(); iter != m_mapStorers.end(); ++iter)
     {
-        if(&iter->second != NULL)
+        if(&iter->second != nullptr)
         {
 			delete iter->second.storer;
-			iter->second.storer = NULL;
+			iter->second.storer = nullptr;
         }
     }
 	m_mapStorers.clear();
 	m_mapStorers_id.clear();
 }
 
-DBManager* DBManager::m_pInstance = NULL;
+DBManager* DBManager::m_pInstance = nullptr;
 DBManager * DBManager::getInstance()
 {
-    if(m_pInstance == NULL)
+    if(m_pInstance == nullptr)
     {
         m_pInstance = new DBManager;
     }
@@ -37,10 +37,10 @@ DBManager * DBManager::getInstance()
 
 void DBManager::destroy()
 {
-    if(m_pInstance != NULL)
+    if(m_pInstance != nullptr)
     {
         delete m_pInstance;
-        m_pInstance = NULL;
+        m_pInstance = nullptr;
     }
 }
 
@@ -74,7 +74,7 @@ bool DBManager::InitWithXML(std::string xmlFile)
 
 				DBRule *getRule = dynamic_cast<DBRule *>(GetStorer(rule));
 
-				if (NULL == getRule)
+				if (nullptr == getRule)
 				{
 					RedisStorer* redisStorer = new RedisStorer();
 					if (SUCCESS == redisStorer->Connect(rule.ip, rule.port, rule.password))
@@ -107,7 +107,7 @@ bool DBManager::InitWithXML(std::string xmlFile)
 				std::string username = conf.GetAttrib("username");
 				std::string dbname = conf.GetAttrib("dbname");
 				DBRule *getRule = dynamic_cast<DBRule *>(GetStorer(rule));
-				if (NULL == getRule)
+				if (nullptr == getRule)
 				{
 					MysqlStorer* dbStorer = new MysqlStorer();
 					dbStorer->SetDbName(dbname);
@@ -153,7 +153,7 @@ DBRule *DBManager::GetStorer(DBRule& rule)
 	{
 		return &m_mapStorers[ip];
 	}
-	return NULL;
+	return nullptr;
 }
 
 DBRule *DBManager::GetStorer(DBID id)
@@ -162,12 +162,12 @@ DBRule *DBManager::GetStorer(DBID id)
 	{
 		return m_mapStorers_id[id];
 	}
-	return NULL;
+	return nullptr;
 }
 
 bool DBManager::InsertStorer(DBRule rule)
 {
-	if (NULL == rule.storer)
+	if (nullptr == rule.storer)
     { 
         return false;
     }

@@ -25,7 +25,7 @@ KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
         {
 			KX_LOGERROR("add guesId error id %d", guesId);
             tcpClient->release();
-            return NULL;
+            return nullptr;
         }
 		KX_LOGDEBUG("客户端连接成功!->SessionListener::onAccept");
         SessionServer::getInstance()->getMainPoller()->addCommObject(tcpClient, tcpClient->getPollType());
@@ -34,6 +34,6 @@ KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
     else
     {
         tcpClient->release();
-        return NULL;
+        return nullptr;
     }
 }

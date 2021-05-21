@@ -35,8 +35,8 @@ int KxSelectPoller::poll()
     fd_set outset = m_OutSet;
     fd_set expset = m_ExceptSet;
     int ret = select(m_MaxCount, &inset, &outset, &expset,
-        m_IsBlock ? NULL : reinterpret_cast<timeval*>(&m_TimeOut));
-    m_CurrentPollObject = NULL;
+        m_IsBlock ? nullptr : reinterpret_cast<timeval*>(&m_TimeOut));
+    m_CurrentPollObject = nullptr;
     if (ret > 0)
     {
         int eventCounts = ret;
@@ -93,14 +93,14 @@ int KxSelectPoller::poll()
     {
         // error
     }
-    m_CurrentPollObject = NULL;
+    m_CurrentPollObject = nullptr;
     clear();
     return ret;
 }
 
 int KxSelectPoller::addCommObject(IKxComm* obj, int type)
 {
-    if (NULL == obj || m_PollMap.find(obj->getCommId()) != m_PollMap.end())
+    if (nullptr == obj || m_PollMap.find(obj->getCommId()) != m_PollMap.end())
     {
         return -1;
     }
@@ -135,7 +135,7 @@ int KxSelectPoller::addCommObject(IKxComm* obj, int type)
 
 int KxSelectPoller::modifyCommObject(IKxComm* obj, int type)
 {
-    if (obj != NULL
+    if (obj != nullptr
         && m_PollMap.find(obj->getCommId()) == m_PollMap.end())
     {
         return -1;
@@ -175,10 +175,10 @@ int KxSelectPoller::modifyCommObject(IKxComm* obj, int type)
 
 int KxSelectPoller::removeCommObject(IKxComm* obj)
 {
-    if (NULL != obj
+    if (nullptr != obj
         && m_PollMap.find(obj->getCommId()) != m_PollMap.end())
     {
-        obj->setPoller(NULL);
+        obj->setPoller(nullptr);
         m_RemoveSet.insert(obj);
         return 0;
     }
@@ -190,7 +190,7 @@ IKxComm* KxSelectPoller::getComm(KXCOMMID cid)
     map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(cid);
     if (iter == m_PollMap.end())
     {
-        return NULL;
+        return nullptr;
     }
     else
     {
@@ -208,7 +208,7 @@ void KxSelectPoller::clear()
         FD_CLR(cid, &m_InSet);
         FD_CLR(cid, &m_OutSet);
         FD_CLR(cid, &m_ExceptSet);
-        obj->setPoller(NULL);
+        obj->setPoller(nullptr);
         obj->release();
         m_PollMap.erase(cid);
     }

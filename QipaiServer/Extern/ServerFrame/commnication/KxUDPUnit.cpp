@@ -7,14 +7,14 @@
 
 
 KxUDPUnit::KxUDPUnit()
-: m_Socket(NULL)
-, m_RecvBuffer(NULL)
+: m_Socket(nullptr)
+, m_RecvBuffer(nullptr)
 {
 }
 
 KxUDPUnit::~KxUDPUnit()
 {
-    if (NULL != m_RecvBuffer)
+    if (nullptr != m_RecvBuffer)
     {
         kxMemMgrRecycle(m_RecvBuffer, MAX_UDP_PKG_LEN);
     }
@@ -30,7 +30,7 @@ bool KxUDPUnit::init()
     }
     
     m_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(MAX_UDP_PKG_LEN));
-    return m_RecvBuffer != NULL;
+    return m_RecvBuffer != nullptr;
 }
 
 int KxUDPUnit::sendData(const char* buffer, unsigned int len)
@@ -66,7 +66,7 @@ int KxUDPUnit::onRecv()
     {
         return -1;
     }
-    else if (NULL != m_ProcessModule)
+    else if (nullptr != m_ProcessModule)
     {
         m_ProcessModule->processLogic(m_RecvBuffer, ret, this);
     }

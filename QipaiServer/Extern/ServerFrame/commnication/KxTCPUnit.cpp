@@ -6,19 +6,19 @@
 #define MAX_TCP_PKG_LEN 1<<16
 
 
-char* KxTCPUnit::s_RecvBuffer = NULL;
+char* KxTCPUnit::s_RecvBuffer = nullptr;
 
 KxTCPUnit::KxTCPUnit()
-: m_Socket(NULL)
-, m_SendBuffer(NULL)
-, m_RecvBuffer(NULL)
+: m_Socket(nullptr)
+, m_SendBuffer(nullptr)
+, m_RecvBuffer(nullptr)
 , m_SendBufferLen(0)
 , m_RecvBufferLen(0)
 , m_SendBufferOffset(0)
 , m_RecvBufferOffset(0)
 {
     // 分配全局的接收缓冲区
-    if (NULL == s_RecvBuffer)
+    if (nullptr == s_RecvBuffer)
     {
         s_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(BUFF_SIZE));
     }
@@ -33,7 +33,7 @@ KxTCPUnit::~KxTCPUnit()
 
 	// 先清空列表中缓存的数据
     kxBufferNode* node = m_BufferList.head();
-    while (NULL != node)
+    while (nullptr != node)
     {
         kxMemMgrRecycle(node->buffer, node->len);
         node = node->next;
@@ -61,7 +61,7 @@ int KxTCPUnit::sendData(const char* buffer, unsigned int len)
     // 1. 当待发送列表为空时说明前面没有数据待发送，可以发送
     // 2. 否则当要发送的buffer等于m_SendBuffer + m_SendBufferOffset时说明是onSend的自动发送，可以发送
     if (m_BufferList.isEmpty()
-        || (m_SendBuffer != NULL && buffer == (m_SendBuffer + m_SendBufferOffset)))
+        || (m_SendBuffer != nullptr && buffer == (m_SendBuffer + m_SendBufferOffset)))
     {
         ret = m_Socket->send(buffer, len);
         if (ret < 0)
@@ -75,7 +75,7 @@ int KxTCPUnit::sendData(const char* buffer, unsigned int len)
             {
                 KX_LOGERROR("error: KxTCPUnit::sendData %d send datalen %d faile, errno %d", getCommId(), len, errorNo);
                 // 如果是onSend调用的，则不执行onError
-                if (m_Poller != NULL && m_Poller->getCurrentPollObject() != this)
+                if (m_Poller != nullptr && m_Poller->getCurrentPollObject() != this)
                 {
                     retain();
                     m_Poller->removeCommObject(this);
@@ -123,7 +123,7 @@ int KxTCPUnit::recvData(char* buffer, unsigned int len)
         }
         else
         {
-            if (m_Poller != NULL && m_Poller->getCurrentPollObject() != this)
+            if (m_Poller != nullptr && m_Poller->getCurrentPollObject() != this)
             {
                 retain();
                 m_Poller->removeCommObject(this);
@@ -158,14 +158,14 @@ int KxTCPUnit::onRecv()
 		KX_LOGERROR("warn: ret <= 0 %d bit data in socket %d error package length %d", ret, getCommId(), requestLen);
         return -1;
     }
-    else if (NULL != m_ProcessModule && ret > 0)
+    else if (nullptr != m_ProcessModule && ret > 0)
     {
 		//KxLogger::getInstance()->HexDumpImp(s_RecvBuffer, ret);
         char* processBuf = s_RecvBuffer;
-        char* stickBuf = NULL;
+        char* stickBuf = nullptr;
 
         // 如果有半包，先拼接到半包的后面，注意newsize
-        if (NULL != m_RecvBuffer)
+        if (nullptr != m_RecvBuffer)
         {
             unsigned int newsize = ret;
             // 如果接到的包有多余的内容，为stickBuf赋值，并调整newsize，使其只拷贝该包的剩余内容到半包中
@@ -190,7 +190,7 @@ int KxTCPUnit::onRecv()
         }
 
         // 如果不足以处理，且没有半包，则为半包分配空间
-        if (ret < requestLen && NULL == m_RecvBuffer)
+        if (ret < requestLen && nullptr == m_RecvBuffer)
         {
             m_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(requestLen));
             m_RecvBufferLen = requestLen;
@@ -200,7 +200,7 @@ int KxTCPUnit::onRecv()
         }
         // 这是一种复杂的情况...，当半包变大
         // 首先需要保证原先的半包正常拼接，然后再处理
-        else if (NULL != stickBuf)
+        else if (nullptr != stickBuf)
         {
             // 分配一块新的内存来缓存更大的半包
             char* oldRecvBuffer = m_RecvBuffer;
@@ -240,16 +240,16 @@ int KxTCPUnit::onRecv()
             //KXLOGDEBUG("process stick package, ret %d requestLen %d processBuf %x\n", ret, requestLen, processBuf);
             processBuf += requestLen;
 
-            if (NULL != m_RecvBuffer)
+            if (nullptr != m_RecvBuffer)
             {
                 processBuf = stickBuf;
                 kxMemMgrRecycle(m_RecvBuffer, m_RecvBufferLen);
-                m_RecvBuffer = NULL;
+                m_RecvBuffer = nullptr;
                 m_RecvBufferOffset = m_RecvBufferLen = 0;
             }
 
             ret -= requestLen;
-            if (ret > 0 && NULL != processBuf)
+            if (ret > 0 && nullptr != processBuf)
             {
                 requestLen = m_ProcessModule->processLength(processBuf, ret);
                 if (requestLen <= 0 || requestLen > MAX_TCP_PKG_LEN)
@@ -280,11 +280,11 @@ int KxTCPUnit::onSend()
     // 将缓存列表中的数据逐个发送，直到发送完或触发EAGAIN等非阻塞错误
 again:
     // 将m_BufferList的第一个节点放到m_SendBuffer中
-    if (NULL == m_SendBuffer)
+    if (nullptr == m_SendBuffer)
     {
         // 取出下一个待发送的缓存数据
         kxBufferNode* node = m_BufferList.next();
-        if (NULL != node)
+        if (nullptr != node)
         {
             m_SendBuffer = node->buffer;
             m_SendBufferLen = node->len;
@@ -310,10 +310,10 @@ again:
         //回收已经发送出去的内存
         kxMemMgrRecycle(m_SendBuffer, m_SendBufferLen);
         kxBufferNode* node = m_BufferList.head();
-        m_SendBuffer = NULL;
+        m_SendBuffer = nullptr;
         m_SendBufferLen = m_SendBufferOffset = 0;
 
-        if (NULL == node)
+        if (nullptr == node)
         {
             changePollType(KXPOLLTYPE_IN);
         }

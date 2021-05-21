@@ -59,7 +59,7 @@ void* KxMemPool::memAlocate(unsigned int size)
         if (0 != memExtendNewSize(size))
         {
             //内存不足,返回失败
-            return NULL;
+            return nullptr;
         }
         freeiter = m_Free.find(size);
     }
@@ -75,13 +75,13 @@ void* KxMemPool::memAlocate(unsigned int size)
         //扩展新的内存
         if (0 != memExtend(size, pfreelist, setiter->second))
         {
-            return NULL;
+            return nullptr;
         }
 
         listiter = pfreelist->begin();
         if (pfreelist->end() == listiter)
         {
-            return NULL;
+            return nullptr;
         }
     }
 
@@ -285,7 +285,7 @@ int KxMemPool::memReleaseWithSize(unsigned int size)
     return 0;
 }
 
-KxMemManager* KxMemManager::m_Instance = NULL;
+KxMemManager* KxMemManager::m_Instance = nullptr;
 
 KxMemManager::KxMemManager()
 {
@@ -295,12 +295,12 @@ KxMemManager::KxMemManager()
 KxMemManager::~KxMemManager()
 {
     delete m_MemPool;
-    m_MemPool = NULL;
+    m_MemPool = nullptr;
 }
 
 KxMemManager* KxMemManager::getInstance()
 {
-    if (NULL == m_Instance)
+    if (nullptr == m_Instance)
     {
         m_Instance = new KxMemManager();
     }
@@ -310,10 +310,10 @@ KxMemManager* KxMemManager::getInstance()
 
 void KxMemManager::destroy()
 {
-    if (NULL != m_Instance)
+    if (nullptr != m_Instance)
     {
         delete m_Instance;
-        m_Instance = NULL;
+        m_Instance = nullptr;
     }
 }
 

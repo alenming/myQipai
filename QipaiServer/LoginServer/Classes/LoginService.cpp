@@ -33,7 +33,7 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 
 	// 获得CGameUser
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(loginCS->userId, loginCS->passWord);
-	if (NULL == pGameUser)
+	if (nullptr == pGameUser)
 	{
 		//新用户
 		KX_LOGDEBUG("新用户!");

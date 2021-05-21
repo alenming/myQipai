@@ -43,7 +43,7 @@ struct RedisBinaryData
 
 	RedisBinaryData()
 		:length(0)
-		, data(NULL)
+		, data(nullptr)
 	{
 	}
 
@@ -56,7 +56,7 @@ struct RedisBinaryData
 
 	~RedisBinaryData()
 	{
-		if (NULL != data)
+		if (nullptr != data)
 		{
 			free(data);
 			length = 0;
@@ -65,7 +65,7 @@ struct RedisBinaryData
 
 	void Write(const char *d, int len)
 	{
-		if (NULL != data)
+		if (nullptr != data)
 		{
 			free(data);
 			length = 0;

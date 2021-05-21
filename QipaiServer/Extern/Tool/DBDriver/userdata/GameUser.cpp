@@ -16,7 +16,7 @@ bool GameUser::initModels(int uid)
 	for (std::vector<ModelType>::iterator iter = VectModelType.begin(); iter != VectModelType.end(); ++iter)
 	{
 		int type = *iter;
-		IDBModel *model = NULL;
+		IDBModel *model = nullptr;
 		switch (type)
 		{
 		case MODELTYPE_USER:
@@ -69,7 +69,7 @@ IDBModel* GameUser::getModel(int modelType)
 	{
 		return m_mapModels[modelType];
 	}
-	return NULL;
+	return nullptr;
 }
 
 void GameUser::setModel(int modelType, IDBModel *model)

@@ -6,7 +6,7 @@
 #include "protocol/LoginProtocol.h"
 
 ModuleConnect::ModuleConnect(void)
-: m_pSink(NULL)
+: m_pSink(nullptr)
 {
 }
 
@@ -70,7 +70,7 @@ void ModuleConnect::processEvent(int eventId, IKxComm* target)
 
 bool ModuleConnect::processUserEvent(int nType, IKxComm* target)
 {
-	if (m_pSink != NULL)
+	if (m_pSink != nullptr)
 	{
         m_pSink->onUserEvent(nType, target);
 	}

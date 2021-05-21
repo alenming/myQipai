@@ -2,7 +2,7 @@
 #include "DBDriver/DBManager.h"
 #include "DBDriver/RedisStorer.h"
 using namespace std;
-UserManager * UserManager::m_pInstance = NULL;
+UserManager * UserManager::m_pInstance = nullptr;
 
 UserManager::UserManager()
 {
@@ -27,7 +27,7 @@ UserManager::~UserManager()
 
 UserManager *UserManager::getInstance()
 {
-	if (NULL == m_pInstance)
+	if (nullptr == m_pInstance)
 	{
 		m_pInstance = new UserManager;
 	}
@@ -36,7 +36,7 @@ UserManager *UserManager::getInstance()
 
 void UserManager::destroy()
 {
-	if (NULL != m_pInstance)
+	if (nullptr != m_pInstance)
 	{
 		delete m_pInstance;
 	}
@@ -46,7 +46,7 @@ bool UserManager::init(KxTimerManager *pTimerManager)
 {
 	m_TimeManager = pTimerManager;
 
-	if (m_TimeManager == NULL)
+	if (m_TimeManager == nullptr)
 	{
 		return false;
 	}
@@ -66,7 +66,7 @@ void UserManager::addModelType(ModelType Type)
 
 void UserManager::onTimer(const kxTimeVal& now)
 {
-	int nCurTime = (int)time(NULL);
+	int nCurTime = (int)time(nullptr);
 
 	for (std::list<SDelayDelData>::iterator ator = m_DelUserList.begin(); ator != m_DelUserList.end();)
 	{
@@ -99,7 +99,7 @@ GameUser* UserManager::getGameUser(int uid, char* passWord, bool noNull)
 	{
 		return initGameUser(uid);
 	}
-	return NULL;
+	return nullptr;
 }
 GameUser* UserManager::getGameUser(int uid, bool noNull)
 {
@@ -112,7 +112,7 @@ GameUser* UserManager::getGameUser(int uid, bool noNull)
 	{
 		return initGameUser(uid);
 	}
-	return NULL;
+	return nullptr;
 }
 
 GameUser* UserManager::initGameUser(int uid)
@@ -124,14 +124,14 @@ GameUser* UserManager::initGameUser(int uid)
 		if (!pGameUser->initModels(uid))
 		{
 			delete pGameUser;
-			return NULL;
+			return nullptr;
 		}
 
 		m_GameUsers[to_string(uid)] = pGameUser;
 		return pGameUser;
 	}
 
-	return NULL;
+	return nullptr;
 }
 
 GameUser *UserManager::newGameUser(int uid, char* passWord)
@@ -175,7 +175,7 @@ GameUser *UserManager::newGameUser(int uid, char* passWord)
 	if (!pUserModel->NewUser(uid, name, password,attrs))
 	{
 		// 用户数据初始化失败
-		return NULL;
+		return nullptr;
 	}
 	return pGameUser;
 }
@@ -184,7 +184,7 @@ GameUser *UserManager::newGameUser(int uid, char* passWord)
 void UserManager::reSetGameUserData(int uid, bool bLogin)
 {
 	GameUser *pGameUser = getGameUser(uid);
-	if (pGameUser == NULL)
+	if (pGameUser == nullptr)
 	{
 		return;
 	}
@@ -193,7 +193,7 @@ void UserManager::reSetGameUserData(int uid, bool bLogin)
 
 void UserManager::updateGameUserData(GameUser* gameUsr, bool bLogin)
 {
-    if (gameUsr == NULL)
+    if (gameUsr == nullptr)
     {
         return;
     }
@@ -223,7 +223,7 @@ bool UserManager::checkUserIsExist(int uid)
 
 void UserManager::removeGameUser(int uid)
 {
-	if (m_TimeManager == NULL)
+	if (m_TimeManager == nullptr)
 	{
 		return;
 	}
@@ -231,7 +231,7 @@ void UserManager::removeGameUser(int uid)
 	std::list<SDelayDelData>::iterator ator;
 	SDelayDelData DelData;
 
-	DelData.nDelayTime = (int)time(NULL) + 3600;
+	DelData.nDelayTime = (int)time(nullptr) + 3600;
 	DelData.nUid = uid;
 	ator = m_DelUserList.insert(m_DelUserList.end(), DelData);
 	m_MapDelUserList[uid] = ator;

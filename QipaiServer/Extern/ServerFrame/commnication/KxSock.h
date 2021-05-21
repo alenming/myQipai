@@ -95,7 +95,7 @@ public:
 
 private:
 	//初始化Addr结构体，包含了不同平台的实现
-	void sockInitAddr(kxSocketAddr &name, int port, const char* ip = NULL);
+	void sockInitAddr(kxSocketAddr &name, int port, const char* ip = nullptr);
 
 private:
     int             m_SockType;

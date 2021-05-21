@@ -2,8 +2,8 @@
 #include "log/LogManager.h"
 
 KxTCPListener::KxTCPListener()
-: m_Socket(NULL)
-, m_ClientModule(NULL)
+: m_Socket(nullptr)
+, m_ClientModule(nullptr)
 {
 }
 
@@ -49,14 +49,14 @@ KxTCPClienter* KxTCPListener::onAccept(KXCOMMID client)
     {
         KX_LOGERROR("error: KxTCPListener::onAccept tcpClient %d init faile", client);
         tcpClient->release();
-        return NULL;
+        return nullptr;
     }
 }
 
 // 接收到数据时触发的回调，由IKxCommPoller调用
 int KxTCPListener::onRecv()
 {
-    KxTCPClienter* client = NULL;
+    KxTCPClienter* client = nullptr;
     while (true)
     {
         KXCOMMID fd = m_Socket->accept();
@@ -72,13 +72,13 @@ int KxTCPListener::onRecv()
         }
 
         client = onAccept(fd);
-        if (NULL != client)
+        if (nullptr != client)
         {
             client->setModule(m_ClientModule);
-            if (NULL != m_ProcessModule)
+            if (nullptr != m_ProcessModule)
             {
                 // 需要进行retain
-                m_ProcessModule->processLogic(NULL, 0, client);
+                m_ProcessModule->processLogic(nullptr, 0, client);
             }
             client->release();
         }

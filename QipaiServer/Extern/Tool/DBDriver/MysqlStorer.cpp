@@ -7,16 +7,16 @@ m_DbUser(user),
 m_DbPwd(pwd),
 m_DbAddress(addr),
 m_DbPort(port),
-m_ResultPtr(NULL),
-m_RowRecord(NULL),
+m_ResultPtr(nullptr),
+m_RowRecord(nullptr),
 m_CntState(ESTORER_NONE)
 {
-    m_ConnectPtr = NULL;
+    m_ConnectPtr = nullptr;
 	m_ConnectPtr = mysql_init(m_ConnectPtr);
 
     memset(m_DataStr, 0, sizeof(m_DataStr));
 
-	if(NULL == m_ConnectPtr)
+	if(nullptr == m_ConnectPtr)
 	{
 		printf("DBError: CDbStorer mysql_init failed! %s : %d\n", m_DbAddress.c_str(), m_DbPort);
 	}
@@ -36,14 +36,14 @@ m_DbUser(""),
 m_DbPwd(""),
 m_DbAddress("127.0.0.1"),
 m_DbPort(3306),
-m_ResultPtr(NULL),
-m_RowRecord(NULL),
+m_ResultPtr(nullptr),
+m_RowRecord(nullptr),
 m_CntState(ESTORER_NONE)
 {
-    m_ConnectPtr = NULL;
+    m_ConnectPtr = nullptr;
 	m_ConnectPtr = mysql_init(m_ConnectPtr);
 
-	if(NULL == m_ConnectPtr)
+	if(nullptr == m_ConnectPtr)
 	{
 		printf("DBError: CDbStorer mysql_init failed! %s : %d\n", m_DbAddress.c_str(), m_DbPort);
 	}
@@ -95,7 +95,7 @@ bool MysqlStorer::Connect()
 	if(!CheckDBPtr())
 		return false;
 
-	if(mysql_real_connect(m_ConnectPtr, m_DbAddress.c_str(), m_DbUser.c_str(), m_DbPwd.c_str(), m_DbName.c_str(), m_DbPort, NULL, 0))
+	if(mysql_real_connect(m_ConnectPtr, m_DbAddress.c_str(), m_DbUser.c_str(), m_DbPwd.c_str(), m_DbName.c_str(), m_DbPort, nullptr, 0))
 	{
 		mysql_set_character_set(m_ConnectPtr, "UTF8");//推荐使用的设置方法，与mysql的连接断开自动重连后仍能保持设置的编码格式 范围：connection
 		m_CntState = ESTORER_CONCATENATE;
@@ -119,14 +119,14 @@ bool MysqlStorer::ReConnect(std::string dbname, std::string user, std::string pw
     m_DbPort = port;
 
     //2.关闭
-    if (NULL != m_ConnectPtr)
+    if (nullptr != m_ConnectPtr)
     {
         mysql_close(m_ConnectPtr);
-        m_ConnectPtr = NULL;
+        m_ConnectPtr = nullptr;
 		m_CntState = ESTORER_NONE;
     }    
 
-    m_ConnectPtr = mysql_init(NULL);
+    m_ConnectPtr = mysql_init(nullptr);
 
 	printf("CDbStorer::ReConnect() Called !!\n");
 
@@ -143,7 +143,7 @@ bool MysqlStorer::Disconnect()
 		return false;
 		
 	mysql_close(m_ConnectPtr);
-    m_ConnectPtr = NULL;
+    m_ConnectPtr = nullptr;
 	m_CntState = ESTORER_DISCONNEXION;
 	printf("CDbStorer::Disconnect() Called !!\n");
 	return true;
@@ -268,7 +268,7 @@ bool MysqlStorer::StoreResult()
 		return false;
 		
 	m_ResultPtr = mysql_store_result(m_ConnectPtr);
-	if(NULL == m_ResultPtr)
+	if(nullptr == m_ResultPtr)
 	{
 		//printf("DBError: CDbStorer::StoreResult() get store result error %d: %s\n", mysql_errno(m_ConnectPtr), mysql_error(m_ConnectPtr));
 		return false;
@@ -282,11 +282,11 @@ bool MysqlStorer::StoreResult()
 //释放数据库操作结果集
 bool MysqlStorer::FreeResult()
 {
-	if(NULL != m_ResultPtr)
+	if(nullptr != m_ResultPtr)
 	{
 		mysql_free_result(m_ResultPtr);
-		m_ResultPtr = NULL;
-		m_RowRecord = NULL;
+		m_ResultPtr = nullptr;
+		m_RowRecord = nullptr;
 		return true;
 	}
 	return true;
@@ -296,7 +296,7 @@ bool MysqlStorer::FreeResult()
 bool MysqlStorer::GetRowResult()
 {
 	m_RowRecord = mysql_fetch_row(m_ResultPtr);
-	if(NULL == m_RowRecord)
+	if(nullptr == m_RowRecord)
 	{
 		//printf("DBError: CDbStorer::GetRowResult() fetch row error %d: %s\n",
 		//	mysql_errno(m_ConnectPtr), mysql_error(m_ConnectPtr));
@@ -312,7 +312,7 @@ bool MysqlStorer::GetRowResult()
 char* MysqlStorer::GetFieldValue(unsigned int index)
 {
 	if(!CheckDBPtr())
-		return NULL;
+		return nullptr;
 		
 	//外部需检测index的值
 	return m_RowRecord[index];
@@ -329,7 +329,7 @@ int	MysqlStorer::GetFieldCount()
 
 bool MysqlStorer::CheckDBPtr()
 {
-	if(NULL == m_ConnectPtr)
+	if(nullptr == m_ConnectPtr)
 	{
 		printf("DBError: CDbStorer::CheckDBPtr() m_ConnectPtr Is NULL\n");
 		return false;

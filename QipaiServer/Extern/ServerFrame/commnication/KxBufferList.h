@@ -12,14 +12,14 @@ struct kxBufferNode
 	kxBufferNode(char* buf, unsigned int l)
 		:buffer(buf),
 		len(l),
-		next(NULL)
+		next(nullptr)
 	{
 	}
 
 	kxBufferNode()
-		:buffer(NULL),
+		:buffer(nullptr),
 		len(0),
-		next(NULL)
+		next(nullptr)
 	{
 	}
 
@@ -42,7 +42,7 @@ public:
 
 	void clear();
 
-    inline bool isEmpty() { return NULL == m_Head; }
+    inline bool isEmpty() { return nullptr == m_Head; }
     
     inline kxBufferNode* head()
     {

@@ -22,8 +22,8 @@ protected:
     unsigned int m_ReferenceCount;
 };
 
-#define KXSAFE_RETAIN(obj) if(NULL != obj) { obj->retain(); }
-#define KXSAFE_RELEASE(obj) if(NULL != obj) { obj->release(); obj = NULL; }
-#define KXSAFE_DELETE(obj) if(NULL != obj) { delete obj; obj = NULL; }
+#define KXSAFE_RETAIN(obj) if(nullptr != obj) { obj->retain(); }
+#define KXSAFE_RELEASE(obj) if(nullptr != obj) { obj->release(); obj = nullptr; }
+#define KXSAFE_DELETE(obj) if(nullptr != obj) { delete obj; obj = nullptr; }
 
 #endif

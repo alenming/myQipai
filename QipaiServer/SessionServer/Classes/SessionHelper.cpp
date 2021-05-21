@@ -43,7 +43,7 @@ void SessionHelper::ServerSubInit( int userId)
 	unsigned int offset = sizeof(Head);
 	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(userId));
 	// 连接断开/或者连接不存在
-	if (pSessionClient == NULL)
+	if (pSessionClient == nullptr)
 	{
 		return;
 	}

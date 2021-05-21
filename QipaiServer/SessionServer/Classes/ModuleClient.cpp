@@ -54,7 +54,7 @@ void ModuleClient::processError(IKxComm *target)
 void ModuleClient::userDisconnect(IKxComm *target)
 {
     SessionClient *pClient = dynamic_cast<SessionClient*>(target);
-    if (pClient == NULL)
+    if (pClient == nullptr)
         return;
 
     // 设置下线消息

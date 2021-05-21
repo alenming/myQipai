@@ -4,7 +4,7 @@
 #define KXEPOLL_ERROR(obj, iter, pollMap) {\
 	KXLOGDEBUG("error: KxEpoller::poll line %d error objid %d", __LINE__, obj->getCommId()); \
 	applyChange(fd, EPOLL_CTL_DEL, obj->getPollType()); \
-	obj->setPoller(NULL); \
+	obj->setPoller(nullptr); \
 	pollMap.erase(iter); \
     obj->release(); \
     obj->onError(); \
@@ -105,7 +105,7 @@ using namespace std;
 				KX_LOGDEBUG("warn: KxEpoller::poll auto modify %d type %d to %d", fd, oldPollType, obj->getPollType());
 				modifyCommObject(obj, obj->getPollType());
 			}
-            m_CurrentPollObject = NULL;
+            m_CurrentPollObject = nullptr;
 			obj->release();
 		}
 		
@@ -114,7 +114,7 @@ using namespace std;
 
 	int KxEpoller::addCommObject(IKxComm* obj, int events)
 	{
-		if (NULL == obj)
+		if (nullptr == obj)
 		{
 			KX_LOGERROR("error: KxEpoller::addCommObject error NULL");
 			return -1;
@@ -128,7 +128,7 @@ using namespace std;
 				// 如果存在关闭了socket但没有removeCommObject的异常，我们可以将旧的Object释放
 				KX_LOGERROR("error: KxEpoller::addCommObject has a invalid object %x new obj %x of sock fd %d",
 					iter->second, obj, fd);
-				iter->second->setPoller(NULL);
+				iter->second->setPoller(nullptr);
 				iter->second->release();
 				m_PollMap.erase(iter);
 			}
@@ -140,7 +140,7 @@ using namespace std;
 				int ret = applyChange(fd, EPOLL_CTL_MOD, events);
 				if (ret == -1)
 				{
-					iter->second->setPoller(NULL);
+					iter->second->setPoller(nullptr);
 					iter->second->release();
 					m_PollMap.erase(iter);
 				}
@@ -164,7 +164,7 @@ using namespace std;
 
 	int KxEpoller::modifyCommObject(IKxComm* obj, int events)
 	{
-		if (NULL == obj)
+		if (nullptr == obj)
 		{
 			KX_LOGERROR("error: KxEpoller::modifyCommObject error NULL");
 			return -1;
@@ -187,7 +187,7 @@ using namespace std;
 		int ret = applyChange(fd, EPOLL_CTL_MOD, events);
 		if (ret == -1)
 		{
-			iter->second->setPoller(NULL);
+			iter->second->setPoller(nullptr);
 			iter->second->release();
 			m_PollMap.erase(iter);
 		}
@@ -197,7 +197,7 @@ using namespace std;
 
 	int KxEpoller::removeCommObject(IKxComm* obj)
 	{
-		if (NULL == obj)
+		if (nullptr == obj)
 		{
 			KX_LOGERROR("error: KxEpoller::removeCommObject error NULL");
 			return -1;
@@ -205,7 +205,7 @@ using namespace std;
 		KXCOMMID fd = obj->getCommId();
 		// 先从epoll中移除
 		int ret = applyChange(fd, EPOLL_CTL_DEL, obj->getPollType());
-		obj->setPoller(NULL);
+		obj->setPoller(nullptr);
 
 		map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(fd);
 		if (iter != m_PollMap.end())
@@ -268,7 +268,7 @@ using namespace std;
 		map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(cid);
 		if (iter == m_PollMap.end())
 		{
-			return NULL;
+			return nullptr;
 		}
 
 		return iter->second;

@@ -24,10 +24,10 @@ public:
     }
     static void destory()
     {
-        if (m_Server != NULL)
+        if (m_Server != nullptr)
         {
             delete m_Server;
-            m_Server = NULL;
+            m_Server = nullptr;
         }
     }
 

@@ -13,7 +13,7 @@ KxTCPConnector::~KxTCPConnector()
 
 bool KxTCPConnector::connect(const char* addr, int port, bool nonblock)
 {
-    if (NULL == m_Socket)
+    if (nullptr == m_Socket)
     {
         return false;
     }
@@ -89,7 +89,7 @@ int KxTCPConnector::onRecv()
 
 void KxTCPConnector::onConnected(bool success)
 {
-    if (NULL != m_ProcessModule)
+    if (nullptr != m_ProcessModule)
     {
         m_ProcessModule->processEvent(success ? KXEVENT_CONNECT_SUCCESS : KXEVENT_CONNECT_FAILE, this);
     }

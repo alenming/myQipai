@@ -6,12 +6,12 @@
 
 #define CHECKCONTEXT(c)		Retry: {	\
 										\
-	if (NULL == GetRedisContext())		\
+	if (nullptr == GetRedisContext())		\
 		return FAILED;					\
 }
 
 #define CHECKREPLY(r) {					\
-	if (NULL == r) {					\
+	if (nullptr == r) {					\
 		printf("redisReply is NULL! f=%s, l=%d\n", __FUNCTION__, __LINE__);	\
 	    goto Retry;						\
     }                                   \
@@ -20,15 +20,15 @@
 
 RedisStorer::RedisStorer()
 {
-	m_pContext = NULL;
+	m_pContext = nullptr;
 }
 
 RedisStorer::~RedisStorer()
 {
-	if (NULL != m_pContext)
+	if (nullptr != m_pContext)
 	{
 		redisFree(m_pContext);
-		m_pContext = NULL;
+		m_pContext = nullptr;
 	}
 }
 
@@ -39,7 +39,7 @@ int RedisStorer::Connect(std::string ip, int port, std::string passward)
 	//m_pContext = redisConnectWithTimeout(ip.c_str(), port, timeout);
 	//m_pContext = redisConnectNonBlock(ip.c_str(), port);
 	m_pContext = redisConnect(ip.c_str(), port);
-	if (m_pContext != NULL && m_pContext->err == 0)
+	if (m_pContext != nullptr && m_pContext->err == 0)
 	{
 		m_Ip = ip;
 		m_Port = port;
@@ -65,7 +65,7 @@ int RedisStorer::Connect(std::string ip, int port, std::string passward)
 	}
 
 	redisFree(m_pContext);
-	m_pContext = NULL;
+	m_pContext = nullptr;
 	return FAILED;
 }
 
@@ -77,7 +77,7 @@ int RedisStorer::reconnect()
 redisContext *RedisStorer::GetRedisContext()
 {
 	bool bNeedConnect = false;
-	if (m_pContext == NULL)
+	if (m_pContext == nullptr)
 	{
 		bNeedConnect = true;
 		printf("m_pContext = NULL ! and rediContext will reconnect ...\n");
@@ -87,7 +87,7 @@ redisContext *RedisStorer::GetRedisContext()
         bNeedConnect = true;
 		printf("rediContext will reconnect, err=%d, erroInfo=%s\n", m_pContext->err, m_pContext->errstr);
         redisFree(m_pContext);
-        m_pContext = NULL;
+        m_pContext = nullptr;
     }
 
 	if (bNeedConnect)
@@ -95,7 +95,7 @@ redisContext *RedisStorer::GetRedisContext()
 		if (SUCCESS != reconnect())
 		{
 			printf("redisContext reconnect failed!\n");
-			return NULL;
+			return nullptr;
 		}
 		printf("redisContext reconnect success!\n");
 	}
@@ -1077,7 +1077,7 @@ int RedisStorer::GetHashByField(const std::string &key, std::map<std::string, st
             ++iterData, ++j)
         {
             if (m_pReply->element[j]->type == REDIS_REPLY_STRING
-                && NULL != m_pReply->element[j]->str)
+                && nullptr != m_pReply->element[j]->str)
             {
 				iterData->second = std::string(m_pReply->element[j]->str);
             }
@@ -1116,7 +1116,7 @@ int RedisStorer::GetHashByField(const std::string &key, std::map<int, int> &mapr
             ++iterData, ++j)
         {
             if (m_pReply->element[j]->type == REDIS_REPLY_STRING
-                && NULL != m_pReply->element[j]->str)
+                && nullptr != m_pReply->element[j]->str)
             {
                 iterData->second = atoi(m_pReply->element[j]->str);
             }
@@ -1708,7 +1708,7 @@ int RedisStorer::ListRange(const std::string &key, std::list<int> &lst)
 
 int RedisStorer::ListIndex(const std::string &key, int index, char *value, int &len)
 {
-	if (NULL == value)
+	if (nullptr == value)
 	{
 		return DATAEXCEPTION;
 	}

@@ -37,10 +37,10 @@ NetWorkManager::~NetWorkManager(void)
     }
 }
 
-NetWorkManager* NetWorkManager::m_Instance = NULL;
+NetWorkManager* NetWorkManager::m_Instance = nullptr;
 NetWorkManager* NetWorkManager::getInstance()
 {
-    if (NULL == m_Instance)
+    if (nullptr == m_Instance)
     {
         m_Instance = new NetWorkManager();
     }
@@ -50,10 +50,10 @@ NetWorkManager* NetWorkManager::getInstance()
 
 void NetWorkManager::destroy()
 {
-    if (NULL != m_Instance)
+    if (nullptr != m_Instance)
     {
         delete m_Instance;
-        m_Instance = NULL;
+        m_Instance = nullptr;
     }
 }
 
@@ -69,12 +69,12 @@ std::vector<IKxComm*>* NetWorkManager::getGroupServer(int nGroupID)
     map<int, std::vector<IKxComm*> >::iterator ator = m_ServerMapByGroup.find(nGroupID);
     if (ator == m_ServerMapByGroup.end())
     {
-        return NULL;
+        return nullptr;
     }
     vector<IKxComm*> *pVectServer = &(ator->second);
     if (pVectServer->size() == 0)
     {
-        return NULL;
+        return nullptr;
     }
     return pVectServer;
 }
@@ -85,27 +85,27 @@ std::vector<IKxComm*>* NetWorkManager::getBakGroupServer(int nGroupID)
 	map<int, std::vector<IKxComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
 	if (ator == m_BakServerMapByGroup.end())
 	{
-		return NULL;
+		return nullptr;
 	}
 
 	vector<IKxComm*> *pVectServer = &(ator->second);
 	if (pVectServer->size() == 0)
 	{
-		return NULL;
+		return nullptr;
 	}
 	return pVectServer;
 }
 
 bool NetWorkManager::addServer(int serverId, IKxComm* obj)
 {
-    if (obj == NULL)
+    if (obj == nullptr)
     {
         return false;
     }
 
 	std::map<int, IKxComm* >::iterator ator = m_ServerList.find(serverId);
 
-	if (NULL != obj && ator == m_ServerList.end())
+	if (nullptr != obj && ator == m_ServerList.end())
     {
 		m_ServerList[serverId] = obj;
     }
@@ -117,13 +117,13 @@ bool NetWorkManager::addServer(int serverId, IKxComm* obj)
 //添加备份后端服务器组ID
 bool NetWorkManager::addBakServer(int nGroupID, IKxComm* obj)
 {
-	if (obj == NULL)
+	if (obj == nullptr)
 	{
 		return false;
 	}
 
 	std::map<int, vector<IKxComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
-	if (NULL != obj && ator == m_BakServerMapByGroup.end())
+	if (nullptr != obj && ator == m_BakServerMapByGroup.end())
 	{
 		vector<IKxComm*> ServerList;
 		ServerList.push_back(obj);
@@ -176,7 +176,7 @@ IKxComm* NetWorkManager::getUser(int guestId)
 	if (iter == m_UserMap.end())
 	{
 		//客户端ID找不到
-		return NULL;
+		return nullptr;
 	}
 	return iter->second;
 }
@@ -292,7 +292,7 @@ IKxComm* NetWorkManager::getGuest(unsigned int guestId)
 	if (iter == m_GuestMap.end())
 	{
 		//客户端ID找不到
-		return NULL;
+		return nullptr;
 	}
 	return iter->second;
 }

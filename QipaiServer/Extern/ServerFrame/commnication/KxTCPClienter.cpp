@@ -12,7 +12,7 @@ KxTCPClienter::~KxTCPClienter()
 
 bool KxTCPClienter::init(KXCOMMID fd)
 {
-    if (NULL == m_Socket)
+    if (nullptr == m_Socket)
     {
         m_Socket = new KxSock();
     }

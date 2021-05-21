@@ -115,7 +115,7 @@ inline int kxMemMgrRecycle(void* mem, unsigned int size)
     //return KxMemManager::getInstance()->memRecycle(mem, size);
 }
 
-#define KXSAFE_RECYCLE(mem, size) if(NULL != (mem)) { kxMemMgrRecycle(mem, size); }
+#define KXSAFE_RECYCLE(mem, size) if(nullptr != (mem)) { kxMemMgrRecycle(mem, size); }
 
 
 

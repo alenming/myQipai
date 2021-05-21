@@ -1,10 +1,10 @@
 #include "GateManager.h"
 
 
-GateManager* GateManager::m_Instance = NULL;
+GateManager* GateManager::m_Instance = nullptr;
 
 GateManager::GateManager(void)
-: m_Gate(NULL)
+: m_Gate(nullptr)
 {
 }
 
@@ -15,7 +15,7 @@ GateManager::~GateManager(void)
 
 GateManager* GateManager::getInstance()
 {
-    if(NULL == m_Instance)
+    if(nullptr == m_Instance)
     {
         m_Instance = new GateManager();
     }
@@ -25,10 +25,10 @@ GateManager* GateManager::getInstance()
 
 void GateManager::destroy()
 {
-    if (NULL != m_Instance)
+    if (nullptr != m_Instance)
     {
         delete m_Instance;
-        m_Instance = NULL;
+        m_Instance = nullptr;
     }
 }
 
@@ -36,7 +36,7 @@ int GateManager::Send( char* buffer, unsigned int len)
 {
 	IKxComm *pKxComm = this->GetGate();
 
-    if (pKxComm == NULL)
+    if (pKxComm == nullptr)
     {
         return -1;
     }

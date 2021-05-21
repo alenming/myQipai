@@ -90,9 +90,8 @@ bool SessionServer::onServerInit()
 			return false;
 		}
 		else
-		{
 			KX_LOGDEBUG("SessionServer Connect to %s: IP=%s, Port=%d Susessful!", iter->second.name.c_str(), iter->second.ip.c_str(), iter->second.port);
-		}
+
 		
 		pConnector->setModule(pConnectModule);
 		m_Poller->addCommObject(pConnector, pConnector->getPollType());

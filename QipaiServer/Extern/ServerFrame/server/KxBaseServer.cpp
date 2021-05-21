@@ -46,11 +46,11 @@ void processSingal(int nSingal)
 	}
 }
 
-KxBaseServer* KxBaseServer::m_Server = NULL;
+KxBaseServer* KxBaseServer::m_Server = nullptr;
 
 KxBaseServer::KxBaseServer()
-: m_Poller(NULL)
-, m_TimerMgr(NULL)
+: m_Poller(nullptr)
+, m_TimerMgr(nullptr)
 , m_IsRunning(false)
 , m_ServerName("KxBaseServer")
 {
@@ -91,7 +91,7 @@ void KxBaseServer::runServer()
     m_IsRunning = true;
 	while(m_IsRunning)
 	{
-		if (NULL != m_Poller)
+		if (nullptr != m_Poller)
 		{
 			int nRet = m_Poller->poll();
 
@@ -113,7 +113,7 @@ void KxBaseServer::runServer()
 			}
 		}
 
-        if (NULL != m_TimerMgr)
+        if (nullptr != m_TimerMgr)
         {
             m_TimerMgr->updateTimers();
         }
@@ -129,7 +129,7 @@ void KxBaseServer::onServerUpdate()
 
 bool KxBaseServer::onServerInit()
 {
-    if (NULL == m_TimerMgr)
+    if (nullptr == m_TimerMgr)
     {
         m_TimerMgr = new KxTimerManager();
     }

@@ -21,7 +21,7 @@ public:
     // 初始化Sock
     bool init();
     // 绑定到端口并监听
-    bool listen(int port, char* addr = NULL, bool nonblock = true, int listenQ = 128);
+    bool listen(int port, char* addr = nullptr, bool nonblock = true, int listenQ = 128);
     // Accept时回调，根据KXCOMMID创建KxTCPClienter
     virtual KxTCPClienter* onAccept(KXCOMMID client);
 

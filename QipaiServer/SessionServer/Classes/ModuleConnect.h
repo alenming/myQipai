@@ -10,7 +10,7 @@ public:
     ModuleConnect(void);
     virtual ~ModuleConnect(void);
 
-	bool init(IGameEvent *pSink = NULL);
+	bool init(IGameEvent *pSink = nullptr);
 
     //游戏服务器返回服务器协议，转发给指定的前端
     virtual void processLogic(char* buffer, unsigned int len, IKxComm *target);

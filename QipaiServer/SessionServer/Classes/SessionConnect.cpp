@@ -7,14 +7,14 @@
 SessionConnect::SessionConnect()
 : m_ServerId(0)
 , m_Port(0)
-, m_TimerCallBack(NULL)
+, m_TimerCallBack(nullptr)
 {
     memset(m_strIP, 0, sizeof(m_strIP));
 }
 
 SessionConnect::~SessionConnect()
 {
-    if (m_TimerCallBack != NULL)
+    if (m_TimerCallBack != nullptr)
     {
         m_TimerCallBack->stop();
         KXSAFE_RELEASE(m_TimerCallBack);
@@ -24,7 +24,7 @@ SessionConnect::~SessionConnect()
 // 连接指定的IP和端口
 bool SessionConnect::connect(const char* addr, int port, int serverId, bool nonblock)
 {
-    if (addr == NULL)
+    if (addr == nullptr)
     {
         return false;
     }
@@ -60,7 +60,7 @@ int SessionConnect::onError()
 // 设置定时重连	
 void SessionConnect::setTimer(int nSec)
 {
-    if (m_TimerCallBack == NULL)
+    if (m_TimerCallBack == nullptr)
     {
         m_TimerCallBack = new KxTimerCallback<SessionConnect>();
     }

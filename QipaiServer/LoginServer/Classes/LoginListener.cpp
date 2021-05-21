@@ -24,6 +24,6 @@ KxTCPClienter* LoginListener::onAccept(KXCOMMID client)
 	else
 	{
 		tcpClient->release();
-		return NULL;
+		return nullptr;
 	}
 }

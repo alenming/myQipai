@@ -7,7 +7,7 @@ BufferData::BufferData()
 , m_Offset(0)
 , m_DataLength(0)
 , m_BufferSize(0)
-, m_Buffer(NULL)
+, m_Buffer(nullptr)
 {
 }
 
@@ -25,7 +25,7 @@ bool BufferData::init(int bufferSize)
     }
 
     m_Buffer = reinterpret_cast<char*>(kxMemMgrAlocate(bufferSize, m_BufferSize)); 
-    if (NULL == m_Buffer)
+    if (nullptr == m_Buffer)
     {
         return false;
     }
@@ -39,7 +39,7 @@ bool BufferData::init(int bufferSize)
 
 bool BufferData::init(char* buffer, unsigned int dataLength)
 {
-    if (NULL == buffer || m_IsInit)
+    if (nullptr == buffer || m_IsInit)
     {
         return false;
     }
@@ -61,7 +61,7 @@ bool BufferData::init(BufferData* pBuffData)
     }
 
     m_Buffer = reinterpret_cast<char*>(kxMemMgrAlocate(pBuffData->getBufferSize(), m_BufferSize));
-    if (NULL == m_Buffer)
+    if (nullptr == m_Buffer)
     {
         return false;
     }
@@ -76,10 +76,10 @@ bool BufferData::init(BufferData* pBuffData)
 
 void BufferData::clean()
 {
-    if (NULL != m_Buffer && !m_IsReadMode)
+    if (nullptr != m_Buffer && !m_IsReadMode)
     {
         kxMemMgrRecycle(m_Buffer, m_BufferSize);
-        m_Buffer = NULL;
+        m_Buffer = nullptr;
     }
     m_IsInit = false;
 }
@@ -127,7 +127,7 @@ bool BufferData::checkBufferSize(unsigned int newLength)
     {
         unsigned int newBufferSize = 0;
         char* newBuffer = reinterpret_cast<char*>(kxMemMgrAlocate(newLength + m_DataLength, newBufferSize));
-        if (NULL == newBuffer)
+        if (nullptr == newBuffer)
         {
             return false;
         }

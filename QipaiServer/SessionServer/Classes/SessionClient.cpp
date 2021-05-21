@@ -35,9 +35,9 @@ bool SessionClient::setConServer(int nKey, int nValue)
 
 bool SessionClient::sendDataToServer(int mainCmd, int subCmd, char *pszContext, int nLen)
 {
-    KxTCPConnector* pTcpConnector = NULL;
+    KxTCPConnector* pTcpConnector = nullptr;
 	pTcpConnector = static_cast<KxTCPConnector*>(NetWorkManager::getInstance()->getServer(mainCmd));
-    if (pTcpConnector == NULL)
+    if (pTcpConnector == nullptr)
     {
         return false;
     }
@@ -48,7 +48,7 @@ bool SessionClient::sendDataToServer(int mainCmd, int subCmd, char *pszContext, 
 bool SessionClient::sendDataToGroupServer(int nGroupID, char *pszContext, int nLen)
 {
     vector<IKxComm*>* pVectConnector = NetWorkManager::getInstance()->getGroupServer(nGroupID);
-	if (pVectConnector == NULL)
+	if (pVectConnector == nullptr)
 	{
 		return false;
 	}
@@ -110,7 +110,7 @@ void SessionClient::clean()
 
     m_TimerCallBack->stop();
     m_TimerCallBack->clean();
-    if (m_Poller != NULL)
+    if (m_Poller != nullptr)
     {
         m_Poller->removeCommObject(this);
     }

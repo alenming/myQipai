@@ -11,7 +11,7 @@
 
 UserModel::UserModel()
 	: m_uId(0)
-	, m_pStorageDB(NULL)
+	, m_pStorageDB(nullptr)
 {
 }
 
@@ -24,7 +24,7 @@ bool UserModel::init(int uId)
 	m_uId = uId;
 	m_pStorageDB = DBManager::getInstance()->GetStorer(DB_USER_MODEL);
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		m_strUsrKey = ModelKey::UsrKey(uId);
 		if (SUCCESS != pStorer->ExistKey(m_strUsrKey))
@@ -40,7 +40,7 @@ bool UserModel::init(int uId)
 bool UserModel::Refresh()
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		for (int i = USR_FD_USERID; i < USR_FD_END; i++)
 		{
@@ -81,7 +81,7 @@ bool UserModel::NewUser(int accoundId, std::string name, std::string passWord, s
 
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		m_strUsrKey = ModelKey::UsrKey(m_uId);
 
@@ -135,7 +135,7 @@ bool UserModel::GetUserFieldVal(int field, int &value, bool bNew)
 bool UserModel::GetUserFieldVal(std::map<int, int> &kvs, bool bNew)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		if (bNew)
 		{
@@ -161,7 +161,7 @@ bool UserModel::GetUserFieldVal(std::map<int, int> &kvs, bool bNew)
 bool UserModel::SetUserFieldVal(int field, int value)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		if (SUCCESS == pStorer->SetHashByField(m_strUsrKey, field, value))
 		{
@@ -175,7 +175,7 @@ bool UserModel::SetUserFieldVal(int field, int value)
 bool UserModel::AddUserFieldVal(int field, int value)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		m_mapUserInfo[field] += value;
 		if (SUCCESS == pStorer->SetHashByField(m_strUsrKey, field, m_mapUserInfo[field]))
@@ -201,7 +201,7 @@ int UserModel::IncreaseFieldVal(int field, int increase)
 bool UserModel::SetUserFieldVal(std::map<int, int> &kvs)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		if (SUCCESS == pStorer->SetHash(m_strUsrKey, kvs))
 		{
@@ -220,7 +220,7 @@ bool UserModel::SetUserFieldVal(std::map<int, int> &kvs)
 bool UserModel::ModUserName(std::string name)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		if (SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_USERNAME, name))
 		{
@@ -234,7 +234,7 @@ bool UserModel::ModUserName(std::string name)
 bool UserModel::ModUserPassWord(std::string passWord)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		if (SUCCESS == pStorer->SetHashByField(m_strUsrKey, USR_FD_PASSWROD, passWord))
 		{
@@ -259,7 +259,7 @@ bool UserModel::AlterUserFieldVal(int field, int value)
 bool UserModel::DeleteUser()
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		return SUCCESS == pStorer->DelKey(m_strUsrKey);
 	}
@@ -269,7 +269,7 @@ bool UserModel::DeleteUser()
 bool UserModel::SetUserInfo(std::map<int, int> &userInfo)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL != pStorer)
+	if (nullptr != pStorer)
 	{
 		if (SUCCESS == pStorer->SetHash(m_strUsrKey, userInfo))
 		{
@@ -283,7 +283,7 @@ bool UserModel::SetUserInfo(std::map<int, int> &userInfo)
 bool UserModel::GetRealDataFromDB(int field, int &value)
 {
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
-	if (NULL == pStorer)
+	if (nullptr == pStorer)
 	{
 		return false;
 	}

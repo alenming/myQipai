@@ -133,7 +133,7 @@ inline BufferData* newBufferData(int mainCMD, int subCmd)
 
 inline int deleteBufferData(BufferData* buffer)
 {
-	if (NULL != buffer)
+	if (nullptr != buffer)
 	{
 		delete buffer;
 	}

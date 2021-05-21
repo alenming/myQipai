@@ -211,7 +211,7 @@ void KxSock::setSockNonblock()
     }
 #else
     int flags;
-	if ((flags = fcntl(m_Sock, F_GETFL, NULL)) < 0) 
+	if ((flags = fcntl(m_Sock, F_GETFL, nullptr)) < 0) 
     {
         echoSockError("setSockNonblock fcntl F_GETFL");
         return;
@@ -256,9 +256,9 @@ void KxSock::sockInitAddr(kxSocketAddr &name, int port, const char* ip)
 	name.sin_family		= AF_INET;
 	name.sin_port		= htons(port);
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
-    name.sin_addr.S_un.S_addr = (NULL == ip) ? htonl(INADDR_ANY) : inet_addr(ip);
+    name.sin_addr.S_un.S_addr = (nullptr == ip) ? htonl(INADDR_ANY) : inet_addr(ip);
 #else
-    name.sin_addr.s_addr = (NULL == ip) ? htonl(INADDR_ANY) : inet_addr(ip);
+    name.sin_addr.s_addr = (nullptr == ip) ? htonl(INADDR_ANY) : inet_addr(ip);
 #endif
 }
 

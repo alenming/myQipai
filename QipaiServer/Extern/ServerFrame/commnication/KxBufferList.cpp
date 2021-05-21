@@ -1,8 +1,8 @@
 #include "KxBufferList.h"
 
 KxBufferList::KxBufferList()
-:m_Head(NULL),
-m_Tail(NULL)
+:m_Head(nullptr),
+m_Tail(nullptr)
 {
 }
 
@@ -15,7 +15,7 @@ kxBufferNode* KxBufferList::next()
     kxBufferNode* node = m_Head;
     if (m_Tail == m_Head)
     {
-        m_Head = m_Tail = NULL;
+        m_Head = m_Tail = nullptr;
     }
     else
     {
@@ -32,7 +32,7 @@ void KxBufferList::pushBack(char* buffer, unsigned int len)
 
 void KxBufferList::pushBack(kxBufferNode* node)
 {
-    if (NULL == m_Tail)
+    if (nullptr == m_Tail)
     {
         m_Tail = m_Head = node;
     }
@@ -45,7 +45,7 @@ void KxBufferList::pushBack(kxBufferNode* node)
 
 void KxBufferList::clear()
 {
-	while(NULL != m_Head)
+	while(nullptr != m_Head)
 	{
 		kxBufferNode* node = m_Head;
 		m_Head = m_Head->next;

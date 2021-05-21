@@ -5,8 +5,6 @@
 #include "ModuleConnect.h"
 #include "SessionConnect.h"
 #include "NetworkManager.h"
-#include "core/KxPlatform.h"
-#include "log/LogManager.h"
 
 #include "EventConnect.h"
 

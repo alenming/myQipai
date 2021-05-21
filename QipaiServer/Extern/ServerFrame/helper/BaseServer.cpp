@@ -148,7 +148,7 @@ bool BaseServer::onServerInit()
 //server uninit
 void BaseServer::onServerUninit()
 {
-	KX_LOGDEBUG("Server Stop !!");
+	LOGDEBUG("Server Stop !!");
 	m_IsRunning = false;
     KXSAFE_RELEASE(m_Poller);
     KXSAFE_RELEASE(m_TimerMgr);

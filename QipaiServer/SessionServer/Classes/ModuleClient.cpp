@@ -24,7 +24,7 @@ void ModuleClient::processLogic(char* buffer, unsigned int len, IComm *target)
 
 	if (nMainCmd == CMD_MAIN::CMD_HEARTBEAT && nSubCmd == CMD_MAIN::CMD_HEARTBEAT)
 	{
-		KX_LOGDEBUG("======================= 收到心跳包====================");
+		LOGDEBUG("======================= 收到心跳包====================");
 		Head head;
 		head.MakeCommand(CMD_MAIN::CMD_HEARTBEAT, CMD_MAIN::CMD_HEARTBEAT);
 		head.length = sizeof(head);
@@ -39,9 +39,9 @@ void ModuleClient::processLogic(char* buffer, unsigned int len, IComm *target)
 		head->id = pClient->getUserId();
 
 	if (pClient->sendDataToServer(nMainCmd, nSubCmd, buffer, len))
-		KX_LOGDEBUG("转发成功!");
+		LOGDEBUG("转发成功!");
 	else
-		KX_LOGDEBUG("转发失败!");
+		LOGDEBUG("转发失败!");
 }
 
 void ModuleClient::processError(IComm *target)
@@ -71,7 +71,7 @@ void ModuleClient::userDisconnect(IComm *target)
     // 发送下线消息给后端指定的服务器
     pClient->sendDataToAllServer(reinterpret_cast<char*>(&head), sizeof(head));
     // 关闭socket、从NetWorkManager中和clean移除
-	KX_LOGDEBUG("玩家掉线了!:%d", pClient->getUserId());
+	LOGDEBUG("玩家掉线了!:%d", pClient->getUserId());
 	pClient->clean();
 	
 }

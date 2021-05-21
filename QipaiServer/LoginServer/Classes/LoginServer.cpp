@@ -46,7 +46,7 @@ bool LoginServer::onServerInit()
 	this->setServerName("LoginServer");
 	BaseServer::onServerInit();
 	
-	KX_LOGDEBUG("==================================================");
+	LOGDEBUG("==================================================");
 
 	//1.³õÊ¼»¯ÂÖÑ¯Æ÷
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_LINUX)
@@ -68,12 +68,12 @@ bool LoginServer::onServerInit()
 	}
 	if (!listener->listen(m_ServerData.port, ip))
 	{
-		KX_LOGDEBUG("LoginServer listen IP=%s Port=%d Failed!", m_ServerData.ip.c_str(), m_ServerData.port);
+		LOGDEBUG("LoginServer listen IP=%s Port=%d Failed!", m_ServerData.ip.c_str(), m_ServerData.port);
 		return false;
 	}
 	else
 	{
-		KX_LOGDEBUG("LoginServer listen IP=%s Port=%d Successful!", m_ServerData.ip.c_str(), m_ServerData.port);
+		LOGDEBUG("LoginServer listen IP=%s Port=%d Successful!", m_ServerData.ip.c_str(), m_ServerData.port);
 	}
 
 	SessionModule *pClientModel = new SessionModule();

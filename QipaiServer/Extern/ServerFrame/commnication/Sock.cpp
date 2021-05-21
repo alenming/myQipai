@@ -93,7 +93,7 @@ bool Sock::init(KXCOMMID fd)
 {
     if (KXINVALID_COMMID != m_Sock)
     {
-        KX_LOGERROR("error: KxSock::init sock %d init with %d faile", m_Sock, fd);
+        LOGERROR("error: KxSock::init sock %d init with %d faile", m_Sock, fd);
         return false;
     }
     
@@ -182,7 +182,7 @@ int Sock::recv(char* buffer, int size)
 
 void Sock::close()
 {
-    KX_LOGDEBUG("debug: KxSock::close %d close", m_Sock);
+    LOGDEBUG("debug: KxSock::close %d close", m_Sock);
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
     ::closesocket(m_Sock);
 #else

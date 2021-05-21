@@ -40,11 +40,11 @@ void SessionConnect::onConnected(bool success)
     TCPConnect::onConnected(success);
     if (success)
     {
-		KX_LOGDEBUG("SessionConnect::onConnected() success IP:%s,port:%d", m_strIP, m_Port);
+		LOGDEBUG("SessionConnect::onConnected() success IP:%s,port:%d", m_strIP, m_Port);
     }
     else
     {
-		KX_LOGDEBUG("SessionConnect::onConnected() faile IP:%s,port:%d", m_strIP, m_Port);
+		LOGDEBUG("SessionConnect::onConnected() faile IP:%s,port:%d", m_strIP, m_Port);
     }
 }
 
@@ -52,7 +52,7 @@ void SessionConnect::onConnected(bool success)
 int SessionConnect::onError()
 {
     int nError = TCPConnect::onError();
-	KX_LOGDEBUG("SessionConnect::onError() IP:%s,port:%d", m_strIP, m_Port);
+	LOGDEBUG("SessionConnect::onError() IP:%s,port:%d", m_strIP, m_Port);
     setTimer(RECONNECT_TIME_INTERVAL);
     return nError;
 }

@@ -88,10 +88,10 @@ private:
     static LogManager* m_Instance;
 };
 
-#define KX_LOG(tag, level, log, ...) LogManager::getInstance()->writelog(tag, level, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
-#define KX_LOGDEBUG(log, ...) LogManager::getInstance()->writelog(1, KX_LOG_LEVEL::KX_LOG_DEBUG, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
-#define KX_LOGINFO(log, ...) LogManager::getInstance()->writelog(1, KX_LOG_LEVEL::KX_LOG_INFO, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
-#define KX_LOGERROR(log, ...) LogManager::getInstance()->writelog(1, KX_LOG_LEVEL::KX_LOG_ERROR, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
+#define LOG(tag, level, log, ...) LogManager::getInstance()->writelog(tag, level, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
+#define LOGDEBUG(log, ...) LogManager::getInstance()->writelog(1, KX_LOG_LEVEL::KX_LOG_DEBUG, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
+#define LOGINFO(log, ...) LogManager::getInstance()->writelog(1, KX_LOG_LEVEL::KX_LOG_INFO, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
+#define LOGERROR(log, ...) LogManager::getInstance()->writelog(1, KX_LOG_LEVEL::KX_LOG_ERROR, __FILE__, __FUNCTION__, __LINE__, log, ##__VA_ARGS__)
 //#define LOGBATTLE(...)       do {} while (0)
 
 #endif //_KX_LOGMANAGER_H__

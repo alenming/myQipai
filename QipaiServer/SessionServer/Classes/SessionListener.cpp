@@ -23,11 +23,11 @@ TCPClienter* SessionListener::onAccept(KXCOMMID client)
 		tcpClient->setGuestId(guesId);
 		if (!pNetWorkManager->addGuest(guesId, tcpClient))
         {
-			KX_LOGERROR("add guesId error id %d", guesId);
+			LOGERROR("add guesId error id %d", guesId);
             tcpClient->release();
             return nullptr;
         }
-		KX_LOGDEBUG("客户端连接成功!->SessionListener::onAccept");
+		LOGDEBUG("客户端连接成功!->SessionListener::onAccept");
         SessionServer::getInstance()->getMainPoller()->addCommObject(tcpClient, tcpClient->getPollType());
         return tcpClient;
     }

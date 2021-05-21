@@ -52,7 +52,7 @@ int TCPConnect::onSend()
         kxSockLen elen = sizeof(e);
         if (getsockopt(getCommId(), SOL_SOCKET, SO_ERROR, (char*)&e, &elen) < 0)
         {
-            KX_LOGERROR("error: KxTCPConnector::onSend %d getsockopt faile, errno %d", getCommId(), m_Socket->getSockError());
+            LOGERROR("error: KxTCPConnector::onSend %d getsockopt faile, errno %d", getCommId(), m_Socket->getSockError());
             onConnected(false);
             return -1;
         }
@@ -62,7 +62,7 @@ int TCPConnect::onSend()
             {
                 return 0;
             }
-            KX_LOGERROR("error: KxTCPConnector::onSend sock %d errno %d", getCommId(), e);
+            LOGERROR("error: KxTCPConnector::onSend sock %d errno %d", getCommId(), e);
             onConnected(false);
             return -1;
         }

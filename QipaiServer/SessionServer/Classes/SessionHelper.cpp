@@ -65,7 +65,7 @@ void SessionHelper::ServerSubInit( int userId)
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->setUserId(userId);
 		pSessionClient->setPermission(1);
-		KX_LOGDEBUG("验证成功!,切换游客为正式玩家");
+		LOGDEBUG("验证成功!,切换游客为正式玩家");
 		// 验证成功，guest转user
 		pNetWorkManager->changeGuestToUser(pSessionClient, userId);
 

@@ -47,7 +47,7 @@ TCPClienter* TCPListener::onAccept(KXCOMMID client)
     }
     else
     {
-        KX_LOGERROR("error: KxTCPListener::onAccept tcpClient %d init faile", client);
+        LOGERROR("error: KxTCPListener::onAccept tcpClient %d init faile", client);
         tcpClient->release();
         return nullptr;
     }

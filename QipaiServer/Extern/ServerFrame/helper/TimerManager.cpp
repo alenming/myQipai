@@ -381,7 +381,7 @@ bool TimerManager::attachToAglieList(TimerObject* obj)
 
     TimeVal timeOut = m_Now + obj->getDelay();
     obj->startWithTime(timeOut);
-    KX_LOGDEBUG("attachToAglieList time tick on %d %d", obj->getTimeVal().tv_sec, obj->getTimeVal().tv_usec);
+    LOGDEBUG("attachToAglieList time tick on %d %d", obj->getTimeVal().tv_sec, obj->getTimeVal().tv_usec);
     if (m_AglieTimerList->insert(obj))
     {
         return true;

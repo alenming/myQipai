@@ -72,7 +72,7 @@ int TCPUnit::sendData(const char* buffer, unsigned int len)
             }
             else
             {
-                KX_LOGERROR("error: KxTCPUnit::sendData %d send datalen %d faile, errno %d", getCommId(), len, errorNo);
+                LOGERROR("error: KxTCPUnit::sendData %d send datalen %d faile, errno %d", getCommId(), len, errorNo);
                 // 如果是onSend调用的，则不执行onError
                 if (m_Poller != nullptr && m_Poller->getCurrentPollObject() != this)
                 {
@@ -95,12 +95,12 @@ int TCPUnit::sendData(const char* buffer, unsigned int len)
         {
             len -= ret;
             // 未能一次性发送完的日志
-            KX_LOGDEBUG("warn: socket %d send %d data ret %d, cache unsend data!!!",
+            LOGDEBUG("warn: socket %d send %d data ret %d, cache unsend data!!!",
                 getCommId(), len + ret, ret);
             char* buf = static_cast<char*>(new char[len]);
             memcpy(buf, buffer + ret, len);
             m_BufferList.pushBack(buf, len);
-			KX_LOGDEBUG("warn: socket %d changePollType m_PollType %d, cache unsend data!!!", getCommId(), m_PollType);
+			LOGDEBUG("warn: socket %d changePollType m_PollType %d, cache unsend data!!!", getCommId(), m_PollType);
             addPollType(KXPOLLTYPE_OUT);
         }
         // 如果是m_SendBuffer中的数据，说明是在onSend回调中发送的
@@ -184,7 +184,7 @@ int TCPUnit::onRecv()
         requestLen = m_ProcessModule->processLength(processBuf, ret);
         if (requestLen <= 0 || requestLen > MAX_TCP_PKG_LEN)
         {
-            KX_LOGERROR("warn: recv %d bit data in socket %d error package length %d", ret, getCommId(), requestLen);
+            LOGERROR("warn: recv %d bit data in socket %d error package length %d", ret, getCommId(), requestLen);
             return -1;
         }
 
@@ -216,7 +216,7 @@ int TCPUnit::onRecv()
                 memcpy(m_RecvBuffer + oldRecvBufferLen, stickBuf, ret - oldRecvBufferLen);
                 m_RecvBufferLen = requestLen;
                 m_RecvBufferOffset = ret;
-                KX_LOGERROR("warn: something terrible, you are so lucky");
+                LOGERROR("warn: something terrible, you are so lucky");
             }
             // 如果半包可以处理了，但后面还有更多内容
             else
@@ -227,7 +227,7 @@ int TCPUnit::onRecv()
                 // 处理m_RecvBuffer，并将stickBuf进行偏移
                 processBuf = m_RecvBuffer;
                 stickBuf += (requestLen - oldRecvBufferLen);
-                KX_LOGERROR("warn: another terrible, you are so lucky too");
+                LOGERROR("warn: another terrible, you are so lucky too");
             }
         }
 
@@ -252,7 +252,7 @@ int TCPUnit::onRecv()
                 requestLen = m_ProcessModule->processLength(processBuf, ret);
                 if (requestLen <= 0 || requestLen > MAX_TCP_PKG_LEN)
                 {
-                    KX_LOGERROR("warn: recv %d bit data in socket %d error package length %d", ret, getCommId(), requestLen);
+                    LOGERROR("warn: recv %d bit data in socket %d error package length %d", ret, getCommId(), requestLen);
 					//KxLogger::getInstance()->HexDumpImp(processBuf, requestLen);
                     return -1;
                 }
@@ -288,13 +288,13 @@ again:
             m_SendBufferLen = node->len;
             m_SendBufferOffset = 0;
             delete node;
-			KX_LOGDEBUG("warn: KxTCPUnit::onSend() NULL != node fd %d", getCommId());
+			LOGDEBUG("warn: KxTCPUnit::onSend() NULL != node fd %d", getCommId());
         }
         else
         {
             // 无数据需要发送
             changePollType(KXPOLLTYPE_IN);
-			KX_LOGDEBUG("warn: socket %d KxTCPUnit::onSend() NULL = node m_PollType %d", getCommId(), m_PollType);
+			LOGDEBUG("warn: socket %d KxTCPUnit::onSend() NULL = node m_PollType %d", getCommId(), m_PollType);
             return 0;
         }
     }
@@ -302,7 +302,7 @@ again:
     // 应该发送的数据
     int sendLen = m_SendBufferLen - m_SendBufferOffset;
     int len = sendData(m_SendBuffer + m_SendBufferOffset, sendLen);
-	KX_LOGDEBUG("warn: KxTCPUnit::onSend() fd %d sendlen %d success", getCommId(), len);
+	LOGDEBUG("warn: KxTCPUnit::onSend() fd %d sendlen %d success", getCommId(), len);
     if (len >= sendLen)
     {
         //回收已经发送出去的内存
@@ -324,7 +324,7 @@ again:
     {
         m_SendBufferOffset += len;
         addPollType(KXPOLLTYPE_OUT);
-		KX_LOGDEBUG("warn: socket %d KxTCPUnit::onSend() m_PollType %d", getCommId(), m_PollType);    
+		LOGDEBUG("warn: socket %d KxTCPUnit::onSend() m_PollType %d", getCommId(), m_PollType);    
     }
 
     return len;

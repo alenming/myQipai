@@ -37,7 +37,7 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IComm *commun)
 	if (nullptr == pGameUser)
 	{
 		//新用户
-		KX_LOGDEBUG("新用户!");
+		LOGDEBUG("新用户!");
 		pGameUser = UserManager::getInstance()->newGameUser(loginCS->userId, loginCS->passWord);
 		CMD_S2C_NEW_USER_LOGIN(uid);
 	}
@@ -45,7 +45,7 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IComm *commun)
 	{
 		// 如果不是新用户，断线后会在一段时间内自动移除
 		// 该方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
-		KX_LOGDEBUG("老用户!");
+		LOGDEBUG("老用户!");
 		UserManager::getInstance()->donotDeleteUser(loginCS->userId);
 		pGameUser->refreshModel(MODELTYPE_USER);
 		CMD_S2C_LOGIN(loginCS->userId);
@@ -74,7 +74,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("登录成功! uid = %d", head->id);
+	LOGDEBUG("登录成功! uid = %d", head->id);
 }
 
 void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid)
@@ -103,7 +103,7 @@ void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid)
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("新用户验证成功 uid = %d", head->id);
+	LOGDEBUG("新用户验证成功 uid = %d", head->id);
 }
 
 // 处理客户端的消息
@@ -127,7 +127,7 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IComm *com
 	{
 		return;
 	}
-	KX_LOGDEBUG("玩家离线! uid=%d, accounld=%d", uid, pGameUser->getUid());
+	LOGDEBUG("玩家离线! uid=%d, accounld=%d", uid, pGameUser->getUid());
 	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
 	int curTime  = BaseServer::getInstance()->getTimerManager()->getTimestamp();
 	pUserModel->SetUserFieldVal(USR_FD_LOGINOUTTIME, curTime);

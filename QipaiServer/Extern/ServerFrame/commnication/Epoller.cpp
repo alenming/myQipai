@@ -24,7 +24,7 @@ using namespace std;
 		m_EpollFd = epoll_create(maxEventQueue);
 		if (m_EpollFd < 0)
 		{
-			KX_LOGERROR("error: KxEpoller::poll epoll_create error %d", errno);
+			LOGERROR("error: KxEpoller::poll epoll_create error %d", errno);
 		}
 	}
 
@@ -45,7 +45,7 @@ using namespace std;
 		if (maxnotify < 0)
 		{
 			//linux下可以直接使用errno，但还是应该封装未全局函数
-			KX_LOGERROR("error: KxEpoller::poll epoll_wait error ret %d errno %d", maxnotify, errno);
+			LOGERROR("error: KxEpoller::poll epoll_wait error ret %d errno %d", maxnotify, errno);
             maxnotify = 0;
 		}
 
@@ -55,7 +55,7 @@ using namespace std;
 			map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(fd);
 			if (iter == m_PollMap.end())
 			{
-				KX_LOGDEBUG("warn: KxEpoller::poll epoll_wait missing IKxComm with fd %d event %d",
+				LOGDEBUG("warn: KxEpoller::poll epoll_wait missing IKxComm with fd %d event %d",
 					fd, m_Events[i].events);
 				continue;
 			}
@@ -91,7 +91,7 @@ using namespace std;
 
 			if (event & EPOLLOUT)
 			{
-				KX_LOGDEBUG("warn: KxEpoller::poll onSend IKxComm with fd %d event %d",
+				LOGDEBUG("warn: KxEpoller::poll onSend IKxComm with fd %d event %d",
 					fd, m_Events[i].events);
 				if(0 > obj->onSend())
 				{
@@ -102,7 +102,7 @@ using namespace std;
 			// ET模式下重新添加
 			if(oldPollType != obj->getPollType())
 			{
-				KX_LOGDEBUG("warn: KxEpoller::poll auto modify %d type %d to %d", fd, oldPollType, obj->getPollType());
+				LOGDEBUG("warn: KxEpoller::poll auto modify %d type %d to %d", fd, oldPollType, obj->getPollType());
 				modifyCommObject(obj, obj->getPollType());
 			}
             m_CurrentPollObject = nullptr;
@@ -116,7 +116,7 @@ using namespace std;
 	{
 		if (nullptr == obj)
 		{
-			KX_LOGERROR("error: KxEpoller::addCommObject error NULL");
+			LOGERROR("error: KxEpoller::addCommObject error NULL");
 			return -1;
 		}
 		KXCOMMID fd = obj->getCommId();
@@ -126,7 +126,7 @@ using namespace std;
 			if(iter->second != obj)
 			{
 				// 如果存在关闭了socket但没有removeCommObject的异常，我们可以将旧的Object释放
-				KX_LOGERROR("error: KxEpoller::addCommObject has a invalid object %x new obj %x of sock fd %d",
+				LOGERROR("error: KxEpoller::addCommObject has a invalid object %x new obj %x of sock fd %d",
 					iter->second, obj, fd);
 				iter->second->setPoller(nullptr);
 				iter->second->release();
@@ -136,7 +136,7 @@ using namespace std;
 			{
 				// 重复addCommObject，第二次add自动调整为Modify操作
 				// 如果applyChange失败，讲道理应该把它移除的
-				KX_LOGDEBUG("warn: KxEpoller::addCommObject add sock %d duplicate", fd);
+				LOGDEBUG("warn: KxEpoller::addCommObject add sock %d duplicate", fd);
 				int ret = applyChange(fd, EPOLL_CTL_MOD, events);
 				if (ret == -1)
 				{
@@ -156,7 +156,7 @@ using namespace std;
 			obj->retain();
 			obj->setPollType(events);
 			obj->setPoller(this);
-			KX_LOGDEBUG("warn: KxEpoller::addCommObject object %x fd %d events %d success", obj, fd, events);
+			LOGDEBUG("warn: KxEpoller::addCommObject object %x fd %d events %d success", obj, fd, events);
 		}
 
 		return ret;
@@ -166,20 +166,20 @@ using namespace std;
 	{
 		if (nullptr == obj)
 		{
-			KX_LOGERROR("error: KxEpoller::modifyCommObject error NULL");
+			LOGERROR("error: KxEpoller::modifyCommObject error NULL");
 			return -1;
 		}
 		KXCOMMID fd = obj->getCommId();
 		map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(fd);
 		if (iter == m_PollMap.end())
 		{
-			KX_LOGERROR("error: KxEpoller::modifyCommObject object %x fd %d faile, isn't in pollMap",
+			LOGERROR("error: KxEpoller::modifyCommObject object %x fd %d faile, isn't in pollMap",
 				obj, fd);
 			return -1;
 		}
 		else if (iter->second != obj)
 		{
-			KX_LOGERROR("error: KxEpoller::modifyCommObject object %x fd %d faile, invalid object %x",
+			LOGERROR("error: KxEpoller::modifyCommObject object %x fd %d faile, invalid object %x",
 				obj, fd, iter->second);
 			return -1;
 		}
@@ -199,7 +199,7 @@ using namespace std;
 	{
 		if (nullptr == obj)
 		{
-			KX_LOGERROR("error: KxEpoller::removeCommObject error NULL");
+			LOGERROR("error: KxEpoller::removeCommObject error NULL");
 			return -1;
 		}
 		KXCOMMID fd = obj->getCommId();
@@ -214,7 +214,7 @@ using namespace std;
 			{
 				// 当一个object在被关闭之后，没有从poller中移除，该fd被重用之后，没有添加到poller中，却调用了移除
 				// 这种情况下，该object也是不会被触发，应该被移除，这里只添加一行简单日志记录
-				KX_LOGERROR("error: KxEpoller::removeCommObject object %x fd %d faile, invalid object %x",
+				LOGERROR("error: KxEpoller::removeCommObject object %x fd %d faile, invalid object %x",
 					obj, fd, iter->second);
 			}
 			iter->second->release();
@@ -222,7 +222,7 @@ using namespace std;
 		}
 		else
 		{
-			KX_LOGERROR("error: KxEpoller::removeCommObject object %x fd %d faile, isn't in pollMap",
+			LOGERROR("error: KxEpoller::removeCommObject object %x fd %d faile, isn't in pollMap",
 				obj, fd);
 			return -1;
 		}
@@ -247,19 +247,19 @@ using namespace std;
 			}
 			else
 			{
-				KX_LOGERROR("error: KxEpoller::applyChange fd %d opt %d events %d faile, errno %d",
+				LOGERROR("error: KxEpoller::applyChange fd %d opt %d events %d faile, errno %d",
 					fd, opt, events, errno);
 				return ret;
 			}
 			ret = epoll_ctl(m_EpollFd, opt, fd, &ev);
 			if (ret == -1)
 			{
-				KX_LOGERROR("error: KxEpoller::applyChange try again fd %d opt %d events %d faile, errno %d",
+				LOGERROR("error: KxEpoller::applyChange try again fd %d opt %d events %d faile, errno %d",
 					fd, opt, events, errno);
 				return ret;
 			}
 		}
-		KX_LOGDEBUG("warn: KxEpoller::applyChange fd %d opt %d evetns %d, success", fd, opt, events);
+		LOGDEBUG("warn: KxEpoller::applyChange fd %d opt %d evetns %d, success", fd, opt, events);
 		return ret;
 	}
 

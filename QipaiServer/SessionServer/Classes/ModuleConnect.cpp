@@ -36,7 +36,7 @@ void ModuleConnect::processLogic(char* buffer, unsigned int len, IComm *target)
 	{
 		SessionClient* pClient = reinterpret_cast<SessionClient*>(NetWorkManager::getInstance()->getUser(guesID));
 		if (!pClient)		return;
-		KX_LOGDEBUG("接收到服务器消息,转发给前端!ConnectModule::processLogic");
+		LOGDEBUG("接收到服务器消息,转发给前端!ConnectModule::processLogic");
 		pClient->sendData(buffer, head->length);
 		break;
 	}
@@ -54,14 +54,14 @@ void ModuleConnect::processLogic(char* buffer, unsigned int len, IComm *target)
 void ModuleConnect::processError(IComm *target)
 {
 	// 后端连接断开
-	KX_LOGDEBUG("Socket Connect To Server Failed");
+	LOGDEBUG("Socket Connect To Server Failed");
 }
 
 void ModuleConnect::processEvent(int eventId, IComm* target)
 {
     if (eventId == KXEVENT_CONNECT_FAILE)
     {
-		KX_LOGDEBUG("Connect Server Failed");
+		LOGDEBUG("Connect Server Failed");
     }
     else if (eventId == KXEVENT_CONNECT_SUCCESS)
     {

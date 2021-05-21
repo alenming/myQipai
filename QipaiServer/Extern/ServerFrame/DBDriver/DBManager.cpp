@@ -79,17 +79,17 @@ bool DBManager::InitWithXML(std::string xmlFile)
 					RedisStorer* redisStorer = new RedisStorer();
 					if (SUCCESS == redisStorer->Connect(rule.ip, rule.port, rule.password))
 					{
-						KX_LOGDEBUG("connect to redis ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
+						LOGDEBUG("connect to redis ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
 					}
 					else
 					{
-						KX_LOGDEBUG("connect to redis ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
+						LOGDEBUG("connect to redis ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
 						delete redisStorer;
 						continue;
 					}
 					rule.storer = redisStorer;
 					InsertStorer(rule);
-					KX_LOGDEBUG("insert redis storer storageId=%d", rule.db_id);
+					LOGDEBUG("insert redis storer storageId=%d", rule.db_id);
 				}
 			}
 			else if (dbtype == "mysql")
@@ -117,17 +117,17 @@ bool DBManager::InitWithXML(std::string xmlFile)
 					dbStorer->SetDbPort(rule.port);
 					if (dbStorer->Connect())
 					{
-						KX_LOGDEBUG("connect to mysql ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
+						LOGDEBUG("connect to mysql ip=%s, port=%d success!", rule.ip.c_str(), rule.port);
 					}
 					else
 					{
-						KX_LOGDEBUG("connect to mysql ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
+						LOGDEBUG("connect to mysql ip=%s, port=%d failed!", rule.ip.c_str(), rule.port);
 						delete dbStorer;
 						continue;
 					}
 					rule.storer = dbStorer;
 					InsertStorer(rule);
-					KX_LOGDEBUG("insert mysql storer storageId=%d", rule.db_id);
+					LOGDEBUG("insert mysql storer storageId=%d", rule.db_id);
 				}
 			}
 			else if (dbtype == "other")

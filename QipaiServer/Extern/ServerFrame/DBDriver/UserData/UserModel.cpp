@@ -48,19 +48,19 @@ bool UserModel::Refresh()
 		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, m_mapUserInfo))
 		{
 			// 没有用户信息
-			KX_LOGDEBUG("没有用户信息!");
+			LOGDEBUG("没有用户信息!");
 			return false;
 		}
 
 		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, USR_FD_USERNAME, m_strUserName))
 		{
-			KX_LOGDEBUG("用户不存在!");
+			LOGDEBUG("用户不存在!");
 			// 用户不存在
 			return false;
 		}
 		if (SUCCESS != pStorer->GetHashByField(m_strUsrKey, USR_FD_PASSWROD, m_strUserPassWord))
 		{
-			KX_LOGDEBUG("用户不存在!");
+			LOGDEBUG("用户不存在!");
 			// 用户不存在
 			return false;
 		}

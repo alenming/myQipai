@@ -7,7 +7,7 @@
 
 #include <map>
 #include "Core.h"
-#include "commnication/KxCommInterfaces.h"
+#include "commnication/CommInterfaces.h"
 
     
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_LINUX)
@@ -15,11 +15,11 @@
 #include <sys/epoll.h>
 #define MAX_EPOLL_EVENTS_PER_RUN 4096
 
-class KxEpoller : public IKxCommPoller
+class Epoller : public IKxCommPoller
 {
 public:
-	KxEpoller(int maxEventQueue = 32000);
-	virtual ~KxEpoller();
+	Epoller(int maxEventQueue = 32000);
+	virtual ~Epoller();
 
     // 进行轮询，并返回触发的事件数
     // 轮询失败返回-1

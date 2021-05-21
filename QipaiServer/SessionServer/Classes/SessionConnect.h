@@ -2,13 +2,13 @@
 #define SESSION_CONNECT_H__
 
 #include <map>
-#include "KxTCPConnector.h"
+#include "TCPConnect.h"
 #include "KxTimerCallback.h"
 
 #define RECONNECT_TIME_INTERVAL		5			// 重连间隔5秒
 #define MAX_RECONECT_TIME			0xFFFFFFFF	// 重连最大次数
 
-class SessionConnect : public KxTCPConnector
+class SessionConnect : public TCPConnect
 {
 public:
 	SessionConnect();

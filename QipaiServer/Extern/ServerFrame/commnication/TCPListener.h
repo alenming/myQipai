@@ -8,22 +8,22 @@
 #define __TCPLISTENER_H__
 
 #include "Core.h"
-#include "KxCommInterfaces.h"
-#include "KxTCPClienter.h"
-#include "KxSock.h"
+#include "CommInterfaces.h"
+#include "TCPClienter.h"
+#include "Sock.h"
 
-class KxTCPListener : public IKxComm
+class TCPListener : public IKxComm
 {
 public:
-	KxTCPListener();
-	virtual ~KxTCPListener();
+	TCPListener();
+	virtual ~TCPListener();
 
     // 初始化Sock
     bool init();
     // 绑定到端口并监听
     bool listen(int port, char* addr = nullptr, bool nonblock = true, int listenQ = 128);
     // Accept时回调，根据KXCOMMID创建KxTCPClienter
-    virtual KxTCPClienter* onAccept(KXCOMMID client);
+    virtual TCPClienter* onAccept(KXCOMMID client);
 
     // 接收到数据时触发的回调，由IKxCommPoller调用
     virtual int onRecv();
@@ -40,7 +40,7 @@ public:
     inline IKxModule* getClientModule()	{ return m_ClientModule; }
 
     // 获取Sock
-    inline KxSock* getSock() { return m_Socket; }
+    inline Sock* getSock() { return m_Socket; }
 
 protected:
     // 发送数据
@@ -49,7 +49,7 @@ protected:
     virtual int recvData(char* buffer, unsigned int len);
 
 protected:
-	KxSock* m_Socket;
+	Sock* m_Socket;
 	IKxModule* m_ClientModule;
 };
 

@@ -1,4 +1,4 @@
-#include "KxSelectPoller.h"
+#include "SelectPoller.h"
 
 using namespace std;
 
@@ -8,7 +8,7 @@ using namespace std;
     pollset.erase(iter++);\
 }
 
-KxSelectPoller::KxSelectPoller()
+SelectPoller::SelectPoller()
 : m_MaxCount(0)
 , m_IsBlock(false)
 {
@@ -20,7 +20,7 @@ KxSelectPoller::KxSelectPoller()
     m_MaxCount = 0;
 }
 
-KxSelectPoller::~KxSelectPoller()
+SelectPoller::~SelectPoller()
 {
     for (map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.begin();
         iter != m_PollMap.end(); ++iter)
@@ -29,7 +29,7 @@ KxSelectPoller::~KxSelectPoller()
     }
 }
 
-int KxSelectPoller::poll()
+int SelectPoller::poll()
 {
     fd_set inset = m_InSet;
     fd_set outset = m_OutSet;
@@ -98,7 +98,7 @@ int KxSelectPoller::poll()
     return ret;
 }
 
-int KxSelectPoller::addCommObject(IKxComm* obj, int type)
+int SelectPoller::addCommObject(IKxComm* obj, int type)
 {
     if (nullptr == obj || m_PollMap.find(obj->getCommId()) != m_PollMap.end())
     {
@@ -133,7 +133,7 @@ int KxSelectPoller::addCommObject(IKxComm* obj, int type)
     return 0;
 }
 
-int KxSelectPoller::modifyCommObject(IKxComm* obj, int type)
+int SelectPoller::modifyCommObject(IKxComm* obj, int type)
 {
     if (obj != nullptr
         && m_PollMap.find(obj->getCommId()) == m_PollMap.end())
@@ -173,7 +173,7 @@ int KxSelectPoller::modifyCommObject(IKxComm* obj, int type)
     return 0;
 }
 
-int KxSelectPoller::removeCommObject(IKxComm* obj)
+int SelectPoller::removeCommObject(IKxComm* obj)
 {
     if (nullptr != obj
         && m_PollMap.find(obj->getCommId()) != m_PollMap.end())
@@ -185,7 +185,7 @@ int KxSelectPoller::removeCommObject(IKxComm* obj)
     return -1;
 }
 
-IKxComm* KxSelectPoller::getComm(KXCOMMID cid)
+IKxComm* SelectPoller::getComm(KXCOMMID cid)
 {
     map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(cid);
     if (iter == m_PollMap.end())
@@ -198,7 +198,7 @@ IKxComm* KxSelectPoller::getComm(KXCOMMID cid)
     }
 }
 
-void KxSelectPoller::clear()
+void SelectPoller::clear()
 {
     for (set<IKxComm*>::iterator iter = m_RemoveSet.begin();
         iter != m_RemoveSet.end(); ++iter)

@@ -1,17 +1,17 @@
-#include "KxTCPConnector.h"
+#include "TCPConnect.h"
 #include "log/LogManager.h"
 
 
-KxTCPConnector::KxTCPConnector()
+TCPConnect::TCPConnect()
 : m_IsConnecting(false)
 {
 }
 
-KxTCPConnector::~KxTCPConnector()
+TCPConnect::~TCPConnect()
 {
 }
 
-bool KxTCPConnector::connect(const char* addr, int port, bool nonblock)
+bool TCPConnect::connect(const char* addr, int port, bool nonblock)
 {
     if (nullptr == m_Socket)
     {
@@ -44,7 +44,7 @@ bool KxTCPConnector::connect(const char* addr, int port, bool nonblock)
     }
 }
 
-int KxTCPConnector::onSend()
+int TCPConnect::onSend()
 {
     if (m_IsConnecting)
     {
@@ -71,11 +71,11 @@ int KxTCPConnector::onSend()
     }
     else
     {
-        return KxTCPUnit::onSend();
+        return TCPUnit::onSend();
     }
 }
 
-int KxTCPConnector::onRecv()
+int TCPConnect::onRecv()
 {
     if (m_IsConnecting)
     {
@@ -83,11 +83,11 @@ int KxTCPConnector::onRecv()
     }
     else
     {
-        return KxTCPUnit::onRecv();
+        return TCPUnit::onRecv();
     }
 }
 
-void KxTCPConnector::onConnected(bool success)
+void TCPConnect::onConnected(bool success)
 {
     if (nullptr != m_ProcessModule)
     {

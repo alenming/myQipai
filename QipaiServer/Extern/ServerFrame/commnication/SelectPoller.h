@@ -11,14 +11,14 @@
 #include <map>
 
 #include "Core.h"
-#include "KxCommInterfaces.h"
+#include "CommInterfaces.h"
 #include "TimeVal.h"
 
-class KxSelectPoller : public IKxCommPoller
+class SelectPoller : public IKxCommPoller
 {
 public:
-	KxSelectPoller();
-	virtual ~KxSelectPoller();
+	SelectPoller();
+	virtual ~SelectPoller();
 
     // 进行轮询，并返回触发的事件数
     // 轮询失败返回-1

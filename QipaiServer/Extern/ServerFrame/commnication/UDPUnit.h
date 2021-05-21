@@ -5,14 +5,14 @@
 #define __UDPUNIT_H__
 
 #include "Core.h"
-#include "KxCommInterfaces.h"
-#include "KxSock.h"
+#include "CommInterfaces.h"
+#include "Sock.h"
 
-class KxUDPUnit : public IKxComm
+class UDPUnit : public IKxComm
 {
 public:
-	KxUDPUnit();
-	virtual ~KxUDPUnit();
+	UDPUnit();
+	virtual ~UDPUnit();
 
     // ³õÊ¼»¯
     virtual bool init();
@@ -39,7 +39,7 @@ public:
     virtual KXCOMMID getCommId() { return m_Socket->getSockFd(); }
 
 private:
-	KxSock*     m_Socket;
+	Sock*     m_Socket;
     char*       m_RecvBuffer;
 };
 

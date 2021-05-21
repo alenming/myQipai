@@ -1,6 +1,6 @@
 #ifndef __BASE_MODULE_H__
 #define __BASE_MODULE_H__
-#include "KxCommInterfaces.h"
+#include "CommInterfaces.h"
 #include "Head.h"
 
 class BaseModule : public IKxModule

@@ -32,12 +32,12 @@ bool SessionConnect::connect(const char* addr, int port, int serverId, bool nonb
     memcpy(m_strIP, addr, sizeof(m_strIP));
     m_Port = port;
 	m_ServerId = serverId;
-	return KxTCPConnector::connect(m_strIP, m_Port, nonblock);
+	return TCPConnect::connect(m_strIP, m_Port, nonblock);
 }
 
 void SessionConnect::onConnected(bool success)
 {
-    KxTCPConnector::onConnected(success);
+    TCPConnect::onConnected(success);
     if (success)
     {
 		KX_LOGDEBUG("SessionConnect::onConnected() success IP:%s,port:%d", m_strIP, m_Port);
@@ -51,7 +51,7 @@ void SessionConnect::onConnected(bool success)
 // 发生错误时回调，由IKxCommPoller调用
 int SessionConnect::onError()
 {
-    int nError = KxTCPConnector::onError();
+    int nError = TCPConnect::onError();
 	KX_LOGDEBUG("SessionConnect::onError() IP:%s,port:%d", m_strIP, m_Port);
     setTimer(RECONNECT_TIME_INTERVAL);
     return nError;

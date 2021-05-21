@@ -7,7 +7,7 @@
 #ifndef __BASESERVER_H__
 #define __BASESERVER_H__
 
-#include "KxCommInterfaces.h"
+#include "CommInterfaces.h"
 #include "KxTimerManager.h"
 
 

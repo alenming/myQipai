@@ -1,18 +1,18 @@
-#include "KxBufferList.h"
+#include "BufferList.h"
 
-KxBufferList::KxBufferList()
+BufferList::BufferList()
 :m_Head(nullptr),
 m_Tail(nullptr)
 {
 }
 
-KxBufferList::~KxBufferList()
+BufferList::~BufferList()
 {
 }
 
-kxBufferNode* KxBufferList::next()
+BufferNode* BufferList::next()
 {
-    kxBufferNode* node = m_Head;
+    BufferNode* node = m_Head;
     if (m_Tail == m_Head)
     {
         m_Head = m_Tail = nullptr;
@@ -24,13 +24,13 @@ kxBufferNode* KxBufferList::next()
 
     return node;
 }
-void KxBufferList::pushBack(char* buffer, unsigned int len)
+void BufferList::pushBack(char* buffer, unsigned int len)
 {
-    kxBufferNode* node = new kxBufferNode(buffer, len);
+    BufferNode* node = new BufferNode(buffer, len);
     pushBack(node);
 }
 
-void KxBufferList::pushBack(kxBufferNode* node)
+void BufferList::pushBack(BufferNode* node)
 {
     if (nullptr == m_Tail)
     {
@@ -43,11 +43,11 @@ void KxBufferList::pushBack(kxBufferNode* node)
     }
 }
 
-void KxBufferList::clear()
+void BufferList::clear()
 {
 	while(nullptr != m_Head)
 	{
-		kxBufferNode* node = m_Head;
+		BufferNode* node = m_Head;
 		m_Head = m_Head->next;
 		delete node;
 	}

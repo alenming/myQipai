@@ -1,15 +1,15 @@
 #ifndef __SESSION_LISTENER_H__
 #define __SESSION_LISTENER_H__
 
-#include "KxTCPListener.h"
+#include "TCPListener.h"
 
-class SessionListener : public KxTCPListener
+class SessionListener : public TCPListener
 {
 public:
     SessionListener();
     virtual ~SessionListener(void);
 
-    virtual KxTCPClienter* onAccept(KXCOMMID client);
+    virtual TCPClienter* onAccept(KXCOMMID client);
 };
 
 #endif //__SESSION_LISTENER_H__

@@ -3,7 +3,7 @@
 /************************************************************************/
 /*                  这是个与SessionServer的连接模型                     */
 /************************************************************************/
-#include "KxCommInterfaces.h"
+#include "CommInterfaces.h"
 #include "BaseModule.h"
 
 class SessionModule : public BaseModule

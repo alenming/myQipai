@@ -1,4 +1,4 @@
-#include "KxEpoller.h"
+#include "Epoller.h"
 #include "log/LogManager.h"
 
 #define KXEPOLL_ERROR(obj, iter, pollMap) {\
@@ -17,7 +17,7 @@ using namespace std;
 
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_LINUX)
 
-	KxEpoller::KxEpoller(int maxEventQueue)
+	Epoller::Epoller(int maxEventQueue)
 		:m_MaxEventQueue(maxEventQueue)
 	{
 		m_TimeOut = 1;
@@ -28,7 +28,7 @@ using namespace std;
 		}
 	}
 
-	KxEpoller::~KxEpoller()
+	Epoller::~Epoller()
 	{
 		for (map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.begin();
 			iter != m_PollMap.end(); ++iter)
@@ -39,7 +39,7 @@ using namespace std;
 		close(m_EpollFd);
 	}
 
-	int KxEpoller::poll()
+	int Epoller::poll()
 	{
 		int maxnotify = epoll_wait(m_EpollFd, m_Events, m_MaxEventQueue, m_TimeOut);
 		if (maxnotify < 0)
@@ -112,7 +112,7 @@ using namespace std;
 		return maxnotify;
 	}
 
-	int KxEpoller::addCommObject(IKxComm* obj, int events)
+	int Epoller::addCommObject(IKxComm* obj, int events)
 	{
 		if (nullptr == obj)
 		{
@@ -162,7 +162,7 @@ using namespace std;
 		return ret;
 	}
 
-	int KxEpoller::modifyCommObject(IKxComm* obj, int events)
+	int Epoller::modifyCommObject(IKxComm* obj, int events)
 	{
 		if (nullptr == obj)
 		{
@@ -195,7 +195,7 @@ using namespace std;
 		return ret;
 	}
 
-	int KxEpoller::removeCommObject(IKxComm* obj)
+	int Epoller::removeCommObject(IKxComm* obj)
 	{
 		if (nullptr == obj)
 		{
@@ -229,7 +229,7 @@ using namespace std;
 		return ret;
 	}
 
-	int KxEpoller::applyChange(KXCOMMID fd, int opt, int events)
+	int Epoller::applyChange(KXCOMMID fd, int opt, int events)
 	{
 		struct epoll_event ev;
 		ev.data.fd = fd;
@@ -263,7 +263,7 @@ using namespace std;
 		return ret;
 	}
 
-	IKxComm* KxEpoller::getComm(KXCOMMID cid)
+	IKxComm* Epoller::getComm(KXCOMMID cid)
 	{
 		map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(cid);
 		if (iter == m_PollMap.end())

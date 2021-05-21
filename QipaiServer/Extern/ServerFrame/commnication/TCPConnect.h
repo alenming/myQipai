@@ -7,7 +7,7 @@
 #define __TCPCONNECTOR_H__
 
 #include "Core.h"
-#include "KxTCPUnit.h"
+#include "TCPUnit.h"
 
 enum KXEVENT_CONNECTER
 {
@@ -15,11 +15,11 @@ enum KXEVENT_CONNECTER
     KXEVENT_CONNECT_FAILE,
 };
 
-class KxTCPConnector : public KxTCPUnit
+class TCPConnect : public TCPUnit
 {
 public:
-	KxTCPConnector();
-	virtual ~KxTCPConnector();
+	TCPConnect();
+	virtual ~TCPConnect();
 
     // 连接指定的IP和端口
 	virtual bool connect(const char* addr, int port, bool nonblock = true);

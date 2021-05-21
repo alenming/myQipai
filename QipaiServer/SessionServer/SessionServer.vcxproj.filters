@@ -124,34 +124,7 @@
     <ClInclude Include="..\Extern\ServerFrame\KXServer.h">
       <Filter>Classes\Extern\ServerFrame</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxBufferList.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxCommInterfaces.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxEpoller.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSelectPoller.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSock.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPConnector.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPListener.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPUnit.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxUDPUnit.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\core\Core.h">
@@ -580,6 +553,33 @@
     <ClInclude Include="..\Extern\Tool\CsvLoader\CsvLoader.h">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Sock.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\SelectPoller.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPClienter.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPConnect.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPListener.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPUnit.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\UDPUnit.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Epoller.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\EventConnect.cpp">
@@ -611,33 +611,6 @@
     </ClCompile>
     <ClCompile Include="Classes\SessionServer.cpp">
       <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxEpoller.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSelectPoller.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSock.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPConnector.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPListener.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPUnit.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxUDPUnit.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\core\Object.cpp">
       <Filter>Classes\Extern\ServerFrame\core</Filter>
@@ -764,6 +737,33 @@
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Sock.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\SelectPoller.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPClienter.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPConnect.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPListener.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPUnit.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\UDPUnit.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Epoller.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\BufferList.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

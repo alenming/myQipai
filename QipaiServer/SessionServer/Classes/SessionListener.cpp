@@ -13,7 +13,7 @@ SessionListener::~SessionListener(void)
 {
 }
 
-KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
+TCPClienter* SessionListener::onAccept(KXCOMMID client)
 {
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
     SessionClient* tcpClient = new SessionClient();

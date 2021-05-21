@@ -6,13 +6,13 @@
 #ifndef __TCPCLIENTER_H__
 #define __TCPCLIENTER_H__
 
-#include "KxTCPUnit.h"
+#include "TCPUnit.h"
 
-class KxTCPClienter : public KxTCPUnit
+class TCPClienter : public TCPUnit
 {
 public:
-	KxTCPClienter();
-	virtual ~KxTCPClienter();
+	TCPClienter();
+	virtual ~TCPClienter();
 
     virtual bool init(KXCOMMID fd);
 

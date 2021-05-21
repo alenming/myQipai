@@ -10,16 +10,16 @@
 #define __TCPUNIT_H__
 
 #include "Core.h"
-#include "KxCommInterfaces.h"
-#include "KxSock.h"
-#include "KxBufferList.h"
+#include "CommInterfaces.h"
+#include "Sock.h"
+#include "BufferList.h"
 
 
-class KxTCPUnit : public IKxComm
+class TCPUnit : public IKxComm
 {
 public:
-    KxTCPUnit();
-    virtual ~KxTCPUnit();
+    TCPUnit();
+    virtual ~TCPUnit();
 
     // 初始化
     virtual bool init();
@@ -41,17 +41,17 @@ public:
     // 获取通讯ID（通常是socket fd）
     virtual KXCOMMID getCommId() { return m_Socket->getSockFd(); }
     // 获取Sock
-    inline KxSock* getSock() { return m_Socket; }
+    inline Sock* getSock() { return m_Socket; }
 
 protected:
-    KxSock* m_Socket;                   // Socket对象
+    Sock* m_Socket;                   // Socket对象
     char* m_SendBuffer;                 // 正在发送的缓冲区
     char* m_RecvBuffer;                 // 正在接收的缓冲区
     unsigned int m_SendBufferLen;       // 正在发送的缓冲区大小
     unsigned int m_RecvBufferLen;       // 正在接收的缓冲区大小
     unsigned int m_SendBufferOffset;    // 正在发送的缓冲区偏移
     unsigned int m_RecvBufferOffset;    // 正在接收的缓冲区偏移
-    KxBufferList m_BufferList;          // 待发送的缓冲区列表
+    BufferList m_BufferList;          // 待发送的缓冲区列表
     static char* s_RecvBuffer;          // 全局接收缓冲区
 };
 

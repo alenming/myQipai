@@ -1,7 +1,7 @@
 #include "SessionClient.h"
 #include "NetworkManager.h"
 #include "SessionServer.h"
-#include "KxTCPConnector.h"
+#include "TCPConnect.h"
 #include "log/LogManager.h"
 
 using namespace std;
@@ -36,8 +36,8 @@ bool SessionClient::setConServer(int nKey, int nValue)
 
 bool SessionClient::sendDataToServer(int mainCmd, int subCmd, char *pszContext, int nLen)
 {
-    KxTCPConnector* pTcpConnector = nullptr;
-	pTcpConnector = static_cast<KxTCPConnector*>(NetWorkManager::getInstance()->getServer(mainCmd));
+    TCPConnect* pTcpConnector = nullptr;
+	pTcpConnector = static_cast<TCPConnect*>(NetWorkManager::getInstance()->getServer(mainCmd));
     if (pTcpConnector == nullptr)
     {
         return false;
@@ -88,7 +88,7 @@ int SessionClient::onRecv()
 {
     m_TimerCallBack->stop(); 
     SessionServer::getInstance()->getTimerManager()->addTimer( m_TimerCallBack, HEARTBEATTIME, 0);
-    return KxTCPClienter::onRecv();
+    return TCPClienter::onRecv();
 }
 
 void SessionClient::setTimer()

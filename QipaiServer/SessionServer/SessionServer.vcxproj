@@ -82,16 +82,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxBufferList.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxCommInterfaces.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxEpoller.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSelectPoller.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSock.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPConnector.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPListener.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPUnit.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxUDPUnit.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Epoller.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\SelectPoller.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Sock.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPClienter.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPConnect.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPListener.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPUnit.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\UDPUnit.h" />
     <ClInclude Include="..\Extern\ServerFrame\core\Core.h" />
     <ClInclude Include="..\Extern\ServerFrame\core\Object.h" />
     <ClInclude Include="..\Extern\ServerFrame\core\Platform.h" />
@@ -247,15 +247,15 @@
     <ClInclude Include="Classes\SessionServer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxEpoller.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSelectPoller.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSock.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPConnector.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPListener.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPUnit.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxUDPUnit.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\BufferList.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Epoller.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\SelectPoller.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Sock.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPClienter.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPConnect.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPListener.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPUnit.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\UDPUnit.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\core\Object.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\DBManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\hiredis\async.c" />

@@ -4,7 +4,7 @@
 #include "LoginListener.h"
 #include "UserManager.h"
 #include "DBManager.h"
-#include "KxSelectPoller.h"
+#include "SelectPoller.h"
 #include "log/LogManager.h"
 using namespace std;
 
@@ -50,9 +50,9 @@ bool LoginServer::onServerInit()
 
 	//1.³õÊ¼»¯ÂÖÑ¯Æ÷
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_LINUX)
-	m_Poller = new KxEpoller();
+	m_Poller = new Epoller();
 #else
-	m_Poller = new KxSelectPoller();
+	m_Poller = new SelectPoller();
 #endif
 
 	LoginListener* listener = new LoginListener();

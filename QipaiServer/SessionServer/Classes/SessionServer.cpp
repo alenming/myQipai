@@ -5,7 +5,7 @@
 #include "ModuleConnect.h"
 #include "SessionConnect.h"
 #include "NetworkManager.h"
-#include "KxSelectPoller.h"
+#include "SelectPoller.h"
 #include "EventConnect.h"
 #include "log/LogManager.h"
 
@@ -50,9 +50,9 @@ bool SessionServer::onServerInit()
 
 	//1.³õÊ¼»¯ÂÖÑ¯Æ÷
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_LINUX)
-	m_Poller = new KxEpoller();
+	m_Poller = new Epoller();
 #else
-	m_Poller = new KxSelectPoller();
+	m_Poller = new SelectPoller();
 #endif
 
     SessionListener* listener = new SessionListener();

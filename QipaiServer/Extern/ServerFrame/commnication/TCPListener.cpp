@@ -1,28 +1,28 @@
-#include "KxTCPListener.h"
+#include "TCPListener.h"
 #include "log/LogManager.h"
 
-KxTCPListener::KxTCPListener()
+TCPListener::TCPListener()
 : m_Socket(nullptr)
 , m_ClientModule(nullptr)
 {
 }
 
-KxTCPListener::~KxTCPListener()
+TCPListener::~TCPListener()
 {
     KXSAFE_RELEASE(m_Socket);
     KXSAFE_RELEASE(m_ClientModule);
 }
 
 // 初始化Sock
-bool KxTCPListener::init()
+bool TCPListener::init()
 {
     changePollType(KXPOLLTYPE_IN);
-    m_Socket = new KxSock();
+    m_Socket = new Sock();
     return m_Socket->init(KXSOCK_TCP);
 }
 
 // 绑定到端口并监听
-bool KxTCPListener::listen(int port, char* addr, bool nonblock, int listenQ)
+bool TCPListener::listen(int port, char* addr, bool nonblock, int listenQ)
 {
     if (nonblock)
     {
@@ -38,9 +38,9 @@ bool KxTCPListener::listen(int port, char* addr, bool nonblock, int listenQ)
 }
 
 // Accept时回调
-KxTCPClienter* KxTCPListener::onAccept(KXCOMMID client)
+TCPClienter* TCPListener::onAccept(KXCOMMID client)
 {
-    KxTCPClienter* tcpClient = new KxTCPClienter();
+    TCPClienter* tcpClient = new TCPClienter();
     if (tcpClient->init(client))
     {
         return tcpClient;
@@ -54,9 +54,9 @@ KxTCPClienter* KxTCPListener::onAccept(KXCOMMID client)
 }
 
 // 接收到数据时触发的回调，由IKxCommPoller调用
-int KxTCPListener::onRecv()
+int TCPListener::onRecv()
 {
-    KxTCPClienter* client = nullptr;
+    TCPClienter* client = nullptr;
     while (true)
     {
         KXCOMMID fd = m_Socket->accept();
@@ -87,12 +87,12 @@ int KxTCPListener::onRecv()
 }
 
 // 数据可被发送时触发的回调，由IKxCommPoller调用
-int KxTCPListener::onSend()
+int TCPListener::onSend()
 {
     return 0;
 }
 
-void KxTCPListener::setClientModule(IKxModule* module)
+void TCPListener::setClientModule(IKxModule* module)
 {
     KXSAFE_RELEASE(m_ClientModule);
     m_ClientModule = module; 
@@ -100,13 +100,13 @@ void KxTCPListener::setClientModule(IKxModule* module)
 }
 
 // 发送数据
-int KxTCPListener::sendData(const char* buffer, unsigned int len)
+int TCPListener::sendData(const char* buffer, unsigned int len)
 {
     return 0;
 }
 
 // 接收数据
-int KxTCPListener::recvData(char* buffer, unsigned int len)
+int TCPListener::recvData(char* buffer, unsigned int len)
 {
     return 0;
 }

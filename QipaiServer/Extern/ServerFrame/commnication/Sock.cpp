@@ -1,10 +1,10 @@
-#include "KxSock.h"
+#include "Sock.h"
 #include "log/LogManager.h"
 
 
-bool KxSock::s_IsInit = false;
+bool Sock::s_IsInit = false;
 
-bool KxSock::initSock()
+bool Sock::initSock()
 {
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
     WORD wVersionRequested;
@@ -30,7 +30,7 @@ bool KxSock::initSock()
     return true;
 }
 
-void KxSock::uninitSock()
+void Sock::uninitSock()
 {
 #ifdef WIN32
     WSACleanup();
@@ -38,7 +38,7 @@ void KxSock::uninitSock()
     s_IsInit = false;
 }
 
-KxSock::KxSock()
+Sock::Sock()
 : m_SockType(KXSOCK_UNKNOWN)
 , m_Sock(KXINVALID_COMMID)
 {
@@ -48,12 +48,12 @@ KxSock::KxSock()
 	}
 }
 
-KxSock::~KxSock()
+Sock::~Sock()
 {
 	close();
 }
 
-bool KxSock::init(KXSOCK_TYPE type, KXSOCK_VERSION sv)
+bool Sock::init(KXSOCK_TYPE type, KXSOCK_VERSION sv)
 {
 	if (KXINVALID_COMMID != m_Sock)
 	{
@@ -89,7 +89,7 @@ bool KxSock::init(KXSOCK_TYPE type, KXSOCK_VERSION sv)
 	return true;
 }
 
-bool KxSock::init(KXCOMMID fd)
+bool Sock::init(KXCOMMID fd)
 {
     if (KXINVALID_COMMID != m_Sock)
     {
@@ -102,7 +102,7 @@ bool KxSock::init(KXCOMMID fd)
     return m_Sock != KXINVALID_COMMID;
 }
 
-int KxSock::listen(int maxListenQueue)
+int Sock::listen(int maxListenQueue)
 {
     int ret = ::listen(m_Sock, maxListenQueue);
     if (ret < 0)
@@ -112,14 +112,14 @@ int KxSock::listen(int maxListenQueue)
     return ret;
 }
 
-int KxSock::connect(const char* addr, int port)
+int Sock::connect(const char* addr, int port)
 {
 	sockaddr_in name;
 	sockInitAddr(name, port, addr);
     return ::connect(m_Sock, (sockaddr*)&name, sizeof(sockaddr));
 }
 
-int KxSock::bind(const char* addr, int port)
+int Sock::bind(const char* addr, int port)
 {
 	sockaddr_in name;
 	sockInitAddr(name, port, addr);	
@@ -131,7 +131,7 @@ int KxSock::bind(const char* addr, int port)
     return ret;
 }
 
-KXCOMMID KxSock::accept()
+KXCOMMID Sock::accept()
 {
 	sockaddr_in name;
 	int len = sizeof(sockaddr);
@@ -147,7 +147,7 @@ KXCOMMID KxSock::accept()
     return ret;
 }
 
-int KxSock::send(const char* buffer, int size)
+int Sock::send(const char* buffer, int size)
 {
     switch (m_SockType)
     {
@@ -162,7 +162,7 @@ int KxSock::send(const char* buffer, int size)
     }
 }
 
-int KxSock::recv(char* buffer, int size)
+int Sock::recv(char* buffer, int size)
 {
     switch (m_SockType)
     {
@@ -180,7 +180,7 @@ int KxSock::recv(char* buffer, int size)
     }
 }
 
-void KxSock::close()
+void Sock::close()
 {
     KX_LOGDEBUG("debug: KxSock::close %d close", m_Sock);
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
@@ -191,17 +191,17 @@ void KxSock::close()
     m_Sock = KXINVALID_COMMID;
 }
 
-void KxSock::setSockAddr(kxSocketAddr &name)
+void Sock::setSockAddr(kxSocketAddr &name)
 {
 	m_SockAddr = name;
 }
 
-void KxSock::setSockAddr(const char* ip, int port)
+void Sock::setSockAddr(const char* ip, int port)
 {
 	sockInitAddr(m_SockAddr, port, ip);
 }
 
-void KxSock::setSockNonblock()
+void Sock::setSockNonblock()
 {
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
     u_long nonblocking = 1;
@@ -224,7 +224,7 @@ void KxSock::setSockNonblock()
 #endif
 }
 
-void KxSock::setSockKeepAlive()
+void Sock::setSockKeepAlive()
 {
     int on = 1;
 	if (setsockopt(m_Sock, SOL_SOCKET, SO_KEEPALIVE, (char*)&on, sizeof(on))<0)
@@ -233,7 +233,7 @@ void KxSock::setSockKeepAlive()
     }
 }
 
-void KxSock::setSockNondelay()
+void Sock::setSockNondelay()
 {
 	int on = 1;
 	if (setsockopt(m_Sock, IPPROTO_TCP, TCP_NODELAY, (char*)&on, sizeof(on)) < 0)
@@ -242,7 +242,7 @@ void KxSock::setSockNondelay()
     }
 }
 
-void KxSock::setSockAddrReuse()
+void Sock::setSockAddrReuse()
 {
     int on = 1;
 	if (setsockopt(m_Sock, SOL_SOCKET, SO_REUSEADDR, (char*)&on, sizeof(on)) < 0)
@@ -251,7 +251,7 @@ void KxSock::setSockAddrReuse()
     }
 }
 
-void KxSock::sockInitAddr(kxSocketAddr &name, int port, const char* ip)
+void Sock::sockInitAddr(kxSocketAddr &name, int port, const char* ip)
 {
 	name.sin_family		= AF_INET;
 	name.sin_port		= htons(port);
@@ -262,7 +262,7 @@ void KxSock::sockInitAddr(kxSocketAddr &name, int port, const char* ip)
 #endif
 }
 
-bool KxSock::isSockBlockError()
+bool Sock::isSockBlockError()
 {
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
     int errorCode = WSAGetLastError();
@@ -283,7 +283,7 @@ bool KxSock::isSockBlockError()
     return false;
 }
 
-int KxSock::getSockError()
+int Sock::getSockError()
 {
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
     return WSAGetLastError();
@@ -292,7 +292,7 @@ int KxSock::getSockError()
 #endif
 }
 
-void KxSock::echoSockError(const char* msg)
+void Sock::echoSockError(const char* msg)
 {
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)
     int errorCode = WSAGetLastError();

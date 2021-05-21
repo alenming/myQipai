@@ -7,16 +7,16 @@
 
 #include <stdlib.h>
 
-struct kxBufferNode
+struct BufferNode
 {
-	kxBufferNode(char* buf, unsigned int l)
+	BufferNode(char* buf, unsigned int l)
 		:buffer(buf),
 		len(l),
 		next(nullptr)
 	{
 	}
 
-	kxBufferNode()
+	BufferNode()
 		:buffer(nullptr),
 		len(0),
 		next(nullptr)
@@ -25,33 +25,33 @@ struct kxBufferNode
 
 	char* buffer;
 	unsigned int len;
-	kxBufferNode* next;
+	BufferNode* next;
 };
 
-class KxBufferList
+class BufferList
 {
 public:
-	KxBufferList();
-	virtual ~KxBufferList();
+	BufferList();
+	virtual ~BufferList();
 
-    kxBufferNode* next();
+    BufferNode* next();
 
     void pushBack(char* buffer, unsigned int len);
 
-    void pushBack(kxBufferNode* node);
+    void pushBack(BufferNode* node);
 
 	void clear();
 
     inline bool isEmpty() { return nullptr == m_Head; }
     
-    inline kxBufferNode* head()
+    inline BufferNode* head()
     {
         return m_Head;
     }
 
 private:
-	kxBufferNode* m_Head;
-	kxBufferNode* m_Tail;
+	BufferNode* m_Head;
+	BufferNode* m_Tail;
 };
 
 

@@ -33,12 +33,12 @@ enum KXSOCK_CODE
 
 typedef sockaddr_in kxSocketAddr;
 
-class KxSock : public Object
+class Sock : public Object
 {
 public:
-	KxSock();
+	Sock();
 	
-	virtual ~KxSock();
+	virtual ~Sock();
 
     static bool initSock();
 

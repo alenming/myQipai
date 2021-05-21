@@ -1,20 +1,20 @@
-#include "KxTCPClienter.h"
+#include "TCPClienter.h"
 #include "log/LogManager.h"
 
-KxTCPClienter::KxTCPClienter()
+TCPClienter::TCPClienter()
 {
 	//KXLOGERROR("TCP new clienter ref = %d", m_ReferenceCount);
 }
 
-KxTCPClienter::~KxTCPClienter()
+TCPClienter::~TCPClienter()
 {
 }
 
-bool KxTCPClienter::init(KXCOMMID fd)
+bool TCPClienter::init(KXCOMMID fd)
 {
     if (nullptr == m_Socket)
     {
-        m_Socket = new KxSock();
+        m_Socket = new Sock();
     }
     changePollType(KXPOLLTYPE_IN);
 	KX_LOGDEBUG("warn: socket %d KxTCPClienter::init m_PollType %d", getCommId(), m_PollType);
@@ -27,14 +27,14 @@ bool KxTCPClienter::init(KXCOMMID fd)
     return false;
 }
 
-void KxTCPClienter::retain()
+void TCPClienter::retain()
 {
-	KxTCPUnit::retain();
+	TCPUnit::retain();
 	//KXLOGERROR("TCP retain clienter ref = %d", m_ReferenceCount);
 }
 
-void KxTCPClienter::release()
+void TCPClienter::release()
 {
-	KxTCPUnit::release();
+	TCPUnit::release();
 	//KXLOGERROR("TCP release clienter ref = %d", m_ReferenceCount);
 }

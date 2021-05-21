@@ -6,7 +6,7 @@
 #define __GATE_MANAGER_H__
 
 
-#include "KxCommInterfaces.h"
+#include "CommInterfaces.h"
 
 class GateManager
 {

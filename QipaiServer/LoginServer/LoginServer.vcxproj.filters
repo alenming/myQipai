@@ -97,33 +97,6 @@
     <ClInclude Include="Classes\LoginService.h">
       <Filter>Classes</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxBufferList.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxCommInterfaces.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxEpoller.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSelectPoller.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxSock.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPConnector.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPListener.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPUnit.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxUDPUnit.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\Tool\XML\XML.h">
       <Filter>Classes\Extern\Tool\XML</Filter>
     </ClInclude>
@@ -219,9 +192,6 @@
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\MyJson\json\writer.h">
       <Filter>Classes\Extern\Tool\MyJson\json</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPClienter.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\Lua\luajit\lauxlib.h">
       <Filter>Classes\Extern\Tool\Lua\luajit</Filter>
@@ -562,6 +532,36 @@
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\mysqld\typelib.h">
       <Filter>Classes\Extern\ServerFrame\DBDriver\mysqld</Filter>
     </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Sock.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\SelectPoller.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPClienter.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPConnect.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPListener.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\TCPUnit.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\UDPUnit.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Epoller.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\CommInterfaces.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\GateManager.cpp">
@@ -575,30 +575,6 @@
     </ClCompile>
     <ClCompile Include="Classes\LoginService.cpp">
       <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxBufferList.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxEpoller.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSelectPoller.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxSock.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPConnector.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPListener.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPUnit.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxUDPUnit.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\XML\XML.cpp">
       <Filter>Classes\Extern\Tool\XML</Filter>
@@ -659,9 +635,6 @@
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\MyJson\json\json_writer.cpp">
       <Filter>Classes\Extern\Tool\MyJson\json</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPClienter.cpp">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\log\LogConsoleHandler.cpp">
       <Filter>Classes\Extern\Tool\log</Filter>
@@ -734,6 +707,33 @@
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\hiredis\sds.c">
       <Filter>Classes\Extern\ServerFrame\DBDriver\hiredis</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Sock.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\SelectPoller.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPClienter.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPConnect.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPListener.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\TCPUnit.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\UDPUnit.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Epoller.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\BufferList.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

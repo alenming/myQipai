@@ -46,9 +46,9 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 		// 如果不是新用户，断线后会在一段时间内自动移除
 		// 该方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
 		KX_LOGDEBUG("老用户!");
-		UserManager::getInstance()->donotDeleteUser(uid);
+		UserManager::getInstance()->donotDeleteUser(loginCS->userId);
 		pGameUser->refreshModel(MODELTYPE_USER);
-		CMD_S2C_LOGIN(uid);
+		CMD_S2C_LOGIN(loginCS->userId);
 	}
 }
 
@@ -74,7 +74,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("登录成功! uid = %d, accounld=%d", head->id);
+	KX_LOGDEBUG("登录成功! uid = %d", head->id);
 }
 
 void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid)

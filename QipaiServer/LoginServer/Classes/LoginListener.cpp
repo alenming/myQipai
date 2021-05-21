@@ -11,9 +11,9 @@ LoginListener::~LoginListener(void)
 {
 }
 
-KxTCPClienter* LoginListener::onAccept(KXCOMMID client)
+TCPClienter* LoginListener::onAccept(KXCOMMID client)
 {
-	KxTCPClienter* tcpClient = new KxTCPClienter();
+	TCPClienter* tcpClient = new TCPClienter();
 	if (tcpClient->init(client))
 	{
 		LoginServer::getInstance()->getMainPoller()->addCommObject(tcpClient, tcpClient->getPollType());

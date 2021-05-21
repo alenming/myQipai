@@ -1,7 +1,7 @@
 #ifndef __LOGIN_SERVICE_H__
 #define __LOGIN_SERVICE_H__
 
-#include "KxCommInterfaces.h"
+#include "CommInterfaces.h"
 
 class LoginService
 {

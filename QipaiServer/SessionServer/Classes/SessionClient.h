@@ -10,10 +10,10 @@
 #ifndef __SESSION_CLIENTER_H__
 #define __SESSION_CLIENTER_H__
 #include<map>
-#include "commnication/KxTCPClienter.h"
+#include "commnication/TCPClienter.h"
 #include "helper/KxTimerCallback.h"
 
-class SessionClient : public KxTCPClienter
+class SessionClient : public TCPClienter
 {
 public:
 	SessionClient();

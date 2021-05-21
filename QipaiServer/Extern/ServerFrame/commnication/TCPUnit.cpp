@@ -1,13 +1,13 @@
-#include "KxTCPUnit.h"
+#include "TCPUnit.h"
 #include "log/LogManager.h"
 
 #define BUFF_SIZE 4096
 #define MAX_TCP_PKG_LEN 1<<16
 
 
-char* KxTCPUnit::s_RecvBuffer = nullptr;
+char* TCPUnit::s_RecvBuffer = nullptr;
 
-KxTCPUnit::KxTCPUnit()
+TCPUnit::TCPUnit()
 : m_Socket(nullptr)
 , m_SendBuffer(nullptr)
 , m_RecvBuffer(nullptr)
@@ -23,7 +23,7 @@ KxTCPUnit::KxTCPUnit()
     }
 }
 
-KxTCPUnit::~KxTCPUnit()
+TCPUnit::~TCPUnit()
 {
     KXSAFE_RELEASE(m_Socket);
     KXSAFE_RELEASE(m_Poller);
@@ -31,7 +31,7 @@ KxTCPUnit::~KxTCPUnit()
 	delete[](char*)m_SendBuffer;
 	delete[](char*)m_RecvBuffer;
 	// 先清空列表中缓存的数据
-    kxBufferNode* node = m_BufferList.head();
+    BufferNode* node = m_BufferList.head();
     while (nullptr != node)
     {
 		delete[](char*)node->buffer;
@@ -41,20 +41,20 @@ KxTCPUnit::~KxTCPUnit()
 	m_BufferList.clear();
 }
 
-bool KxTCPUnit::init()
+bool TCPUnit::init()
 {
 	return init(KXV_IPV4);
 }
 
-bool KxTCPUnit::init(KXSOCK_VERSION ipv)
+bool TCPUnit::init(KXSOCK_VERSION ipv)
 {
 	m_PollType = KXPOLLTYPE_IN;
-	m_Socket = new KxSock();
+	m_Socket = new Sock();
 	return m_Socket->init(KXSOCK_TCP, ipv);
 }
 
 // 发送数据
-int KxTCPUnit::sendData(const char* buffer, unsigned int len)
+int TCPUnit::sendData(const char* buffer, unsigned int len)
 {
     int ret = 0;
     // 1. 当待发送列表为空时说明前面没有数据待发送，可以发送
@@ -111,7 +111,7 @@ int KxTCPUnit::sendData(const char* buffer, unsigned int len)
 }
 
 // 接收数据
-int KxTCPUnit::recvData(char* buffer, unsigned int len)
+int TCPUnit::recvData(char* buffer, unsigned int len)
 {
     int ret = m_Socket->recv(buffer, len);
     if (ret <= 0)
@@ -136,7 +136,7 @@ int KxTCPUnit::recvData(char* buffer, unsigned int len)
 }
 
 // 接收到数据时触发的回调，由IKxCommPoller调用
-int KxTCPUnit::onRecv()
+int TCPUnit::onRecv()
 {
     memset(s_RecvBuffer, 0, BUFF_SIZE);
     int requestLen = 0;
@@ -273,7 +273,7 @@ int KxTCPUnit::onRecv()
 }
 
 // 数据可被发送时触发的回调，由IKxCommPoller调用
-int KxTCPUnit::onSend()
+int TCPUnit::onSend()
 {
     // 将缓存列表中的数据逐个发送，直到发送完或触发EAGAIN等非阻塞错误
 again:
@@ -281,7 +281,7 @@ again:
     if (nullptr == m_SendBuffer)
     {
         // 取出下一个待发送的缓存数据
-        kxBufferNode* node = m_BufferList.next();
+        BufferNode* node = m_BufferList.next();
         if (nullptr != node)
         {
             m_SendBuffer = node->buffer;
@@ -307,7 +307,7 @@ again:
     {
         //回收已经发送出去的内存
 		delete[](char*)m_SendBuffer;
-        kxBufferNode* node = m_BufferList.head();
+        BufferNode* node = m_BufferList.head();
         m_SendBuffer = nullptr;
         m_SendBufferLen = m_SendBufferOffset = 0;
 

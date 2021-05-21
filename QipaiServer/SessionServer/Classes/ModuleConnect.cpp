@@ -5,7 +5,7 @@
 #include "SessionHelper.h"
 #include "protocol/LoginProtocol.h"
 #include "log/LogManager.h"
-#include "KxTCPConnector.h"
+#include "TCPConnect.h"
 ModuleConnect::ModuleConnect(void)
 : m_pSink(nullptr)
 {

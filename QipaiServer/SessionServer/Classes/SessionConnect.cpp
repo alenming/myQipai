@@ -62,11 +62,10 @@ void SessionConnect::setTimer(int nSec)
 {
     if (m_TimerCallBack == nullptr)
     {
-        m_TimerCallBack = new KxTimerCallback<SessionConnect>();
+        m_TimerCallBack = new TimerCallback<SessionConnect>();
     }
     m_TimerCallBack->setCallback(this, &SessionConnect::onTimer);
-    SessionServer::getInstance()->getTimerManager()->addTimer(
-        m_TimerCallBack, nSec, 0);
+    SessionServer::getInstance()->getTimerManager()->addTimer(m_TimerCallBack, nSec, 0);
 }
 
 // ¶¨Ê±´¥·¢

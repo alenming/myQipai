@@ -14,7 +14,7 @@ SessionClient::SessionClient()
 	  m_GuestId(0)
 {
     // 设置客户端心跳超时
-    m_TimerCallBack = new KxTimerCallback<SessionClient>();
+    m_TimerCallBack = new TimerCallback<SessionClient>();
     setTimer();
 }
 

@@ -8,7 +8,7 @@
 #define __BASESERVER_H__
 
 #include "CommInterfaces.h"
-#include "KxTimerManager.h"
+#include "TimerManager.h"
 
 
 class BaseServer : public Object
@@ -48,7 +48,7 @@ public:
 
     virtual void stopServer() { m_IsRunning = false; }
 
-    KxTimerManager* getTimerManager()
+    TimerManager* getTimerManager()
     {
         return m_TimerMgr;
     }
@@ -67,7 +67,7 @@ public:
 
 protected:
 	ICommPoller*	m_Poller;
-    KxTimerManager* m_TimerMgr;
+    TimerManager* m_TimerMgr;
 	bool            m_IsRunning;
 	int				m_ServerID;
 	int				m_Tick;

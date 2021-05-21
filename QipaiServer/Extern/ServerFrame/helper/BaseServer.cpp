@@ -1,7 +1,7 @@
 #include "BaseServer.h"
 #include <signal.h>
 
-#include "KxTimerManager.h"
+#include "TimerManager.h"
 #include "Platform.h"
 #include "log/LogManager.h"
 #include "log/LogFileHandler.h"
@@ -130,7 +130,7 @@ bool BaseServer::onServerInit()
 {
     if (nullptr == m_TimerMgr)
     {
-        m_TimerMgr = new KxTimerManager();
+        m_TimerMgr = new TimerManager();
     }
 
 	LogManager::getInstance()->setShowTime(false);

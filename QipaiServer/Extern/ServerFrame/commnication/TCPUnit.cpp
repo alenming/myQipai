@@ -154,7 +154,7 @@ int TCPUnit::onRecv()
     }
     else if (ret <= 0)
     {
-		KX_LOGERROR("warn: ret <= 0 %d bit data in socket %d error package length %d", ret, getCommId(), requestLen);
+		//KX_LOGERROR("warn: ret <= 0 %d bit data in socket %d error package length %d", ret, getCommId(), requestLen);
         return -1;
     }
     else if (nullptr != m_ProcessModule && ret > 0)

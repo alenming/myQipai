@@ -186,8 +186,8 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\BaseServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\Head.h" />
-    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerCallback.h" />
-    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerManager.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\TimerCallback.h" />
+    <ClInclude Include="..\Extern\ServerFrame\helper\TimerManager.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\ServerConfig.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\TimeVal.h" />
@@ -272,7 +272,7 @@
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\UserModel.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\BaseServer.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\helper\KxTimerManager.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\helper\TimerManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\ServerConfig.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Data_.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Value_.cpp" />

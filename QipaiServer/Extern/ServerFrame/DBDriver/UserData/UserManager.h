@@ -6,7 +6,7 @@
 #include <map>
 #include <string>
 #include "GameUser.h"
-#include "KxTimerManager.h"
+#include "TimerManager.h"
 
 //延迟处理结构
 struct SDelayDelData
@@ -17,7 +17,7 @@ struct SDelayDelData
 
 
 
-class UserManager : public KxTimerObject
+class UserManager : public TimerObject
 {
 private:
 	UserManager();
@@ -30,7 +30,7 @@ public:
 
 public:
 
-	bool init(KxTimerManager *pTimerManager);
+	bool init(TimerManager *pTimerManager);
 
 	void addModelType(ModelType Type);
 
@@ -69,7 +69,7 @@ private:
 	std::vector<ModelType>								m_VectServerModel;					//服务器所需求服务器模型
 	std::map<int, std::list<SDelayDelData>::iterator>	m_MapDelUserList;					//玩家对应的向量迭代器
 	std::list<SDelayDelData>							m_DelUserList;						//延迟玩家下线列表
-	KxTimerManager *							m_TimeManager;
+	TimerManager *							m_TimeManager;
 };
 
 #endif //__USER_MANAGER_H__

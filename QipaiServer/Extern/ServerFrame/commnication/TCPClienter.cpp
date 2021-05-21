@@ -17,7 +17,7 @@ bool TCPClienter::init(KXCOMMID fd)
         m_Socket = new Sock();
     }
     changePollType(KXPOLLTYPE_IN);
-	KX_LOGDEBUG("warn: socket %d KxTCPClienter::init m_PollType %d", getCommId(), m_PollType);
+	//KX_LOGDEBUG("warn: socket %d KxTCPClienter::init m_PollType %d", getCommId(), m_PollType);
     if (m_Socket->init(fd))
     {
         m_Socket->setSockNonblock();

@@ -9,10 +9,10 @@
 #include <map>
 #include<vector>
 
-#include "KxTimerManager.h"
+#include "TimerManager.h"
 #include "SessionClient.h"
 
-class NetWorkManager : public KxTimerObject
+class NetWorkManager : public TimerObject
 {
 private:
     NetWorkManager(void);

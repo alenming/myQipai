@@ -70,7 +70,6 @@ protected:
 class IComm : virtual public Object
 {
     friend class ICommPoller;
-
 public:
     IComm()
         : m_PollType(KXPOLLTYPE_UNKNOWN)
@@ -87,7 +86,6 @@ public:
 
     // 初始化
     virtual bool init() = 0;
-
     // 发送数据
     virtual int sendData(const char* buffer, unsigned int len) = 0;
     // 接收数据

@@ -11,7 +11,7 @@
 #define __SESSION_CLIENTER_H__
 #include<map>
 #include "commnication/TCPClienter.h"
-#include "helper/KxTimerCallback.h"
+#include "helper/TimerCallback.h"
 
 class SessionClient : public TCPClienter
 {
@@ -51,7 +51,7 @@ private:
 	int m_UserId;							//已验证的用户ID
 	unsigned int m_GuestId;	                // 未验证的访客ID
     std::map<int, int> m_MapConKeyValue;    // 获取对应的key相应的值
-	KxTimerCallback<SessionClient>* m_TimerCallBack;                    
+	TimerCallback<SessionClient>* m_TimerCallBack;                    
 };
 
 #endif //__SESSION_CLIENTER_H__

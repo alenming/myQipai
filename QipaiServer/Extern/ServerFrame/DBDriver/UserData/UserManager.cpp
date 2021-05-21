@@ -44,7 +44,7 @@ void UserManager::destroy()
 	}
 }
 
-bool UserManager::init(KxTimerManager *pTimerManager)
+bool UserManager::init(TimerManager *pTimerManager)
 {
 	m_TimeManager = pTimerManager;
 

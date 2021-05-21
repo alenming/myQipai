@@ -3,7 +3,7 @@
 
 #include <map>
 #include "TCPConnect.h"
-#include "KxTimerCallback.h"
+#include "TimerCallback.h"
 
 #define RECONNECT_TIME_INTERVAL		5			// 重连间隔5秒
 #define MAX_RECONECT_TIME			0xFFFFFFFF	// 重连最大次数
@@ -36,7 +36,7 @@ private:
 	int m_ServerId;			// 服务器组ID
 	int m_Port;			    // 服务器端口
 	char m_strIP[16];	    // 服务器IP
-	KxTimerCallback<SessionConnect>* m_TimerCallBack;
+	TimerCallback<SessionConnect>* m_TimerCallBack;
 };
 
 

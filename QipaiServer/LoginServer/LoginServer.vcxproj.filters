@@ -241,12 +241,6 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerCallback.h">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\helper\KxTimerManager.h">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
@@ -562,6 +556,12 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\TimerCallback.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\helper\TimerManager.h">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\GateManager.cpp">
@@ -657,9 +657,6 @@
     <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\helper\KxTimerManager.cpp">
-      <Filter>Classes\Extern\ServerFrame\helper</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\helper\BaseServer.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
@@ -734,6 +731,9 @@
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\commnication\BufferList.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\helper\TimerManager.cpp">
+      <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

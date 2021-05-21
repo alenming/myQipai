@@ -17,22 +17,22 @@
 #include "TimeVal.h"
 
 
-class KxTimerList;
+class TimerList;
 
 #define KXREPEAT_FOREVER    -1
 
 // 时间超时对象，可继承重写onTimer回调
 // 并注册到KxTimerManager中来开启计时任务
-class KxTimerObject : public Object
+class TimerObject : public Object
 {
-    friend class KxTimerList;
-    friend class KxTimerManager;
+    friend class TimerList;
+    friend class TimerManager;
 public:
-    KxTimerObject();
+    TimerObject();
     // delay表示需要等待的延迟时间，repeat表示要以delay为间隔重复执行多少次
     // repeat为0表示只执行一次
-    KxTimerObject(float delay, int repeat = 0);
-    virtual ~KxTimerObject();
+    TimerObject(float delay, int repeat = 0);
+    virtual ~TimerObject();
 
     // 在计划的时间到达时会被触发
     virtual void onTimer(const TimeVal& now);
@@ -91,35 +91,35 @@ private:
     void startWithTime(const TimeVal& t);
 
 private:
-    KxTimerList* m_TimerList;
-    KxTimerObject* m_Prev;
-    KxTimerObject* m_Next;
-    int m_Repeat;               // 重复次数
-    TimeVal m_TimeVal;		// 超时时间
-    TimeVal m_Delay;          // 执行间隔
+    TimerList* m_TimerList;
+    TimerObject* m_Prev;
+    TimerObject* m_Next;
+    int m_Repeat;				// 重复次数
+    TimeVal m_TimeVal;			// 超时时间
+    TimeVal m_Delay;			// 执行间隔
 };
 
 // 定时器链表
 // 提供了高效的添加删除方法
-class KxTimerList : public Object
+class TimerList : public Object
 {
 public:
-    KxTimerList();
-    virtual ~KxTimerList();
+    TimerList();
+    virtual ~TimerList();
 
-    inline KxTimerObject* head()
+    inline TimerObject* head()
     {
         return m_Head;
     }
 
-    inline KxTimerObject* tail()
+    inline TimerObject* tail()
     {
         return m_Tail;
     }
 
     // 返回当前正在触发的定时器对象
     // 默认为NULL，开始触发时自动赋值，触发结束后置为NULL，只有正在触发时才会有值
-    inline const KxTimerObject* currentTimer()
+    inline const TimerObject* currentTimer()
     {
         return m_Timer;
     }
@@ -129,21 +129,21 @@ public:
         return m_Length;
     }
 
-    bool pushBack(KxTimerObject* obj);
+    bool pushBack(TimerObject* obj);
 
-    bool pushFront(KxTimerObject* obj);
+    bool pushFront(TimerObject* obj);
 
-    bool remove(KxTimerObject* obj);
+    bool remove(TimerObject* obj);
 
-    bool insert(KxTimerObject* obj);
+    bool insert(TimerObject* obj);
 
     void update(const TimeVal& now);
 
 private:
     unsigned int m_Length;
-    KxTimerObject* m_Head;
-    KxTimerObject* m_Tail;
-    KxTimerObject* m_Timer;
+    TimerObject* m_Head;
+    TimerObject* m_Tail;
+    TimerObject* m_Timer;
 };
 
 // 定时器管理类
@@ -154,11 +154,11 @@ private:
 // 琐碎的时间间隔应该被添加到自由列表中
 // 当你不确定应该添加到哪个列表时，或者期望添加到自由列表时
 // 直接调用addTimer，让KxTimerManager帮你做最佳选择
-class KxTimerManager : public Object
+class TimerManager : public Object
 {
 public:
-    KxTimerManager();
-    virtual ~KxTimerManager();
+    TimerManager();
+    virtual ~TimerManager();
 
     // 更新所有的Timer
 	void updateTimers();
@@ -166,23 +166,23 @@ public:
     // 添加计时器，根究obj自身的delay和repeat来判断超时
     // 当repeat为0时，且没有与超时时间匹配的固定列表，将被添加到自由列表
     // 其它的情况将被添加到固定列表
-    bool addTimer(KxTimerObject* obj);
+    bool addTimer(TimerObject* obj);
 
     // 添加计时器，delay和repeat都会设置到obj身上，该定时器并不精确
     // 当repeat为0时，且没有与超时时间匹配的固定列表，将被添加到自由列表
     // 其它的情况将被添加到固定列表
-    bool addTimer(KxTimerObject* obj, float delay, int repeat = 0);
+    bool addTimer(TimerObject* obj, float delay, int repeat = 0);
 
-	bool addTimer(KxTimerObject* obj, int delay, int repeat = 0);
+	bool addTimer(TimerObject* obj, int delay, int repeat = 0);
 
     // 定时到指定的时间戳中
-    bool addTimerOnTime(KxTimerObject* obj, long timestamp);
+    bool addTimerOnTime(TimerObject* obj, long timestamp);
 	
     // 明确指定添加到固定时长计时器列表
-	bool attachToFixList(KxTimerObject* obj);
+	bool attachToFixList(TimerObject* obj);
 	
     // 明确指定添加到自由时长计时器列表
-    bool attachToAglieList(KxTimerObject* obj);
+    bool attachToAglieList(TimerObject* obj);
 
     // 获取当前时间
     inline const TimeVal& getNow()
@@ -210,8 +210,8 @@ private:
     int                             m_Timestamp;
 #endif
 	TimeVal					    m_Now;
-	KxTimerList*         	        m_AglieTimerList;
-	std::map<long, KxTimerList*>    m_FixTimerMap;	
+	TimerList*         	        m_AglieTimerList;
+	std::map<long, TimerList*>    m_FixTimerMap;	
 };
 
 

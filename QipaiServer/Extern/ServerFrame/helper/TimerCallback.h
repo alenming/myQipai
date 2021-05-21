@@ -1,28 +1,28 @@
 #ifndef __KX_TIMER_CALLBACK_H__
 #define __KX_TIMER_CALLBACK_H__
 
-#include "KxTimerManager.h"
+#include "TimerManager.h"
 
 
 template<class T>
-class KxTimerCallback : public KxTimerObject
+class TimerCallback : public TimerObject
 {
 public:
 	typedef void(T::*pTimerCallback)();
-	KxTimerCallback()
+	TimerCallback()
 	{
 		m_Object = nullptr;
 		m_Callback = nullptr;
 	}
 
-	KxTimerCallback(float delay, int repeat = 0)
+	TimerCallback(float delay, int repeat = 0)
 	{
-		KxTimerObject::KxTimerObject(delay, repeat);
+		TimerObject::TimerObject(delay, repeat);
 		m_Object = nullptr;
 		m_Callback = nullptr;
 	}
 
-	virtual ~KxTimerCallback()
+	virtual ~TimerCallback()
 	{
 		KXSAFE_RELEASE(m_Object);
 	}

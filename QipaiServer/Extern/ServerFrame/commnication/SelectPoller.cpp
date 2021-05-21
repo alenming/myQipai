@@ -34,8 +34,7 @@ int SelectPoller::poll()
     fd_set inset = m_InSet;
     fd_set outset = m_OutSet;
     fd_set expset = m_ExceptSet;
-    int ret = select(m_MaxCount, &inset, &outset, &expset,
-        m_IsBlock ? nullptr : reinterpret_cast<timeval*>(&m_TimeOut));
+    int ret = select(m_MaxCount, &inset, &outset, &expset, m_IsBlock ? nullptr : reinterpret_cast<timeval*>(&m_TimeOut));
     m_CurrentPollObject = nullptr;
     if (ret > 0)
     {
@@ -56,7 +55,10 @@ int SelectPoller::poll()
                     if (!isError && 0 > obj->onRecv())
                     {
                         isError = true;
-                        KXSELECT_ERROR(obj, iter, m_PollMap);
+						//KXSELECT_ERROR(obj, iter, m_PollMap);
+						obj->onError();
+						removeCommObject(obj);
+						m_PollMap.erase(iter++);
                     }
                 }
 
@@ -66,18 +68,24 @@ int SelectPoller::poll()
                     if (!isError && 0 > obj->onSend())
                     {
                         isError = true;
-                        KXSELECT_ERROR(obj, iter, m_PollMap);
+						//KXSELECT_ERROR(obj, iter, m_PollMap);
+						obj->onError();
+						removeCommObject(obj);
+						m_PollMap.erase(iter++);
                     }
                 }
 
                 if (FD_ISSET(cid, &expset))
                 {
                     --eventCounts;
-                    if (!isError)
-                    {
-                        isError = true;
-                        KXSELECT_ERROR(obj, iter, m_PollMap);
-                    }
+					if (!isError)
+					{
+						isError = true;
+						//KXSELECT_ERROR(obj, iter, m_PollMap);
+						obj->onError();
+						removeCommObject(obj);
+						m_PollMap.erase(iter++);
+					}
                 }
 
                 if (!isError && pollType != obj->getPollType())

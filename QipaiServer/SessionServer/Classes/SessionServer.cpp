@@ -65,8 +65,6 @@ bool SessionServer::onServerInit()
 	if (!listener->listen(m_ServerData.port, ip))	
 		return false;
 
-	KX_LOGDEBUG("SessionServer Launching IP=%s Port=%d!", m_ServerData.ip.c_str(), m_ServerData.port);
-
 	ModuleClient *pClientModel = new ModuleClient();
 	listener->setClientModule(pClientModel);
     m_Poller->addCommObject(listener, listener->getPollType());
@@ -83,16 +81,16 @@ bool SessionServer::onServerInit()
 			continue;
 
 		SessionConnect *pConnector = new SessionConnect();
-		if (pConnector->init() && pConnector->connect((char *)iter->second.ip.c_str(), iter->second.port, iter->second.serverId, true))
-		{
-			KX_LOGDEBUG("SessionServer Connect to %s: IP=%s, Port=%d Susessful!", iter->second.name.c_str(), iter->second.ip.c_str(), iter->second.port);
-		}
-		else
+		if (!pConnector->init() || !pConnector->connect((char *)iter->second.ip.c_str(), iter->second.port, iter->second.serverId, true))
 		{
 			KX_LOGERROR("SessionServer Connect to %s: IP=%s, Port=%d Failed!", iter->second.name.c_str(), iter->second.ip.c_str(), iter->second.port);
-			//return false;
-			pConnector->onError();
+			return false;
+			//pConnector->onError();
 		}
+		//else
+		//{
+		//	KX_LOGDEBUG("SessionServer Connect to %s: IP=%s, Port=%d Susessful!", iter->second.name.c_str(), iter->second.ip.c_str(), iter->second.port);
+		//}
 		
 		pConnector->setModule(pConnectModule);
 		m_Poller->addCommObject(pConnector, pConnector->getPollType());
@@ -104,6 +102,7 @@ bool SessionServer::onServerInit()
 	KXSAFE_RELEASE(listener);
 	KXSAFE_RELEASE(pClientModel);
 
+	KX_LOGDEBUG("SessionServer Launching IP=%s Port=%d!", m_ServerData.ip.c_str(), m_ServerData.port);
 	return true;
 }
 

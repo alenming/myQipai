@@ -76,9 +76,7 @@ void BaseServer::startServer()
     signal(SIGTERM, processSingal);
 
 	if (!onServerInit())
-	{
 		return;
-	}
 
 	runServer();
 	onServerUninit();
@@ -113,11 +111,9 @@ void BaseServer::runServer()
 		}
 
         if (nullptr != m_TimerMgr)
-        {
             m_TimerMgr->updateTimers();
-        }
 
-        onServerUpdate();
+        //onServerUpdate();
 	}
 }
 

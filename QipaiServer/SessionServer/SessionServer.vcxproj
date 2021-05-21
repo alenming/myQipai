@@ -83,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\KxCommInterfaces.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\CommInterfaces.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Epoller.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\SelectPoller.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Sock.h" />

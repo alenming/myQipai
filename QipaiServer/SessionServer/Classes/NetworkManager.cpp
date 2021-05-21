@@ -3,7 +3,6 @@
 #include "SessionServer.h"
 #include "SessionConnect.h"
 #include "Head.h"
-#include "KxMemPool.h"
 using namespace std;
 
 NetWorkManager::NetWorkManager(void)
@@ -209,7 +208,7 @@ bool NetWorkManager::sendDataToClient(SessionClient* pClient, int nMainCmd, int 
 {
 	unsigned int buffSize = sizeof(Head) + nLen;
 	bool ret = false;
-	char* buff = reinterpret_cast<char*>(kxMemMgrAlocate(buffSize));
+	char* buff = reinterpret_cast<char*>(new char[buffSize]);
 
 	//…Ë÷√Õ∑≤ø
 	Head* head = reinterpret_cast<Head*>(buff);
@@ -218,7 +217,7 @@ bool NetWorkManager::sendDataToClient(SessionClient* pClient, int nMainCmd, int 
 	head->id = pClient->getUserId();
 	memcpy(buff + sizeof(Head), pszContext, nLen);
 	pClient->sendData(buff, buffSize);
-	kxMemMgrRecycle(buff, buffSize);
+	delete[](char*)buff;
 	return ret;
 }
 

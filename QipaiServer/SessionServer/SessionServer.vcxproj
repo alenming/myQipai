@@ -93,7 +93,6 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxTCPUnit.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxUDPUnit.h" />
     <ClInclude Include="..\Extern\ServerFrame\core\Core.h" />
-    <ClInclude Include="..\Extern\ServerFrame\core\KxMemPool.h" />
     <ClInclude Include="..\Extern\ServerFrame\core\Object.h" />
     <ClInclude Include="..\Extern\ServerFrame\core\Platform.h" />
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\DBManager.h" />
@@ -257,7 +256,6 @@
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPListener.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxTCPUnit.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxUDPUnit.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\core\KxMemPool.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\core\Object.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\DBManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\hiredis\async.c" />

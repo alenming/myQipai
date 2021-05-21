@@ -1,6 +1,5 @@
 #include "EventConnect.h"
 #include "NetworkManager.h"
-#include "KxMemPool.h"
 #include "Head.h"
 
 
@@ -34,7 +33,7 @@ bool EventConnect::sendDataToActor(SessionClient* pClient, int nMainCmd, int nSu
 {
     unsigned int buffSize = sizeof(Head);
     bool ret = false;
-	char* buff = reinterpret_cast<char*>(kxMemMgrAlocate(buffSize));
+	char* buff = reinterpret_cast<char*>(new char[buffSize]);
 
 	//…Ë÷√Õ∑≤ø
 	Head* head = reinterpret_cast<Head*>(buff);
@@ -46,6 +45,7 @@ bool EventConnect::sendDataToActor(SessionClient* pClient, int nMainCmd, int nSu
 	{
         ret = pClient->sendData(pszContext, nLen) >= 0;
     }
-	kxMemMgrRecycle(buff, buffSize);
+	
+	delete[](char*)buff;
     return ret;
 }

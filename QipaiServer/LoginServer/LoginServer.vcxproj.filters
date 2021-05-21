@@ -124,9 +124,6 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\KxUDPUnit.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\core\KxMemPool.h">
-      <Filter>Classes\Extern\ServerFrame\core</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\Tool\XML\XML.h">
       <Filter>Classes\Extern\Tool\XML</Filter>
     </ClInclude>
@@ -602,9 +599,6 @@
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\commnication\KxUDPUnit.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\core\KxMemPool.cpp">
-      <Filter>Classes\Extern\ServerFrame\core</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\XML\XML.cpp">
       <Filter>Classes\Extern\Tool\XML</Filter>

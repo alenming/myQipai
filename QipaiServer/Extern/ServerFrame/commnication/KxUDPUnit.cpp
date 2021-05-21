@@ -1,5 +1,4 @@
 #include "KxUDPUnit.h"
-#include "core/KxMemPool.h"
 
 // 单个UDP包的最大长度
 #define MAX_UDP_PKG_LEN 2048
@@ -16,7 +15,7 @@ KxUDPUnit::~KxUDPUnit()
 {
     if (nullptr != m_RecvBuffer)
     {
-        kxMemMgrRecycle(m_RecvBuffer, MAX_UDP_PKG_LEN);
+		delete[](char*)m_RecvBuffer;
     }
     m_Socket->release();
 }
@@ -28,8 +27,8 @@ bool KxUDPUnit::init()
     {
         return false;
     }
-    
-    m_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(MAX_UDP_PKG_LEN));
+
+	m_RecvBuffer = static_cast<char*>(new char[MAX_UDP_PKG_LEN]);
     return m_RecvBuffer != nullptr;
 }
 

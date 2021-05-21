@@ -3,7 +3,6 @@
 
 #include "KxTimerManager.h"
 #include "Platform.h"
-#include "KxMemPool.h"
 #include "log/LogManager.h"
 #include "log/LogFileHandler.h"
 #include "log/LogConsoleHandler.h"
@@ -157,6 +156,6 @@ void BaseServer::onServerUninit()
 	m_IsRunning = false;
     KXSAFE_RELEASE(m_Poller);
     KXSAFE_RELEASE(m_TimerMgr);
-    KxMemManager::destroy();
+
 	LogManager::destroy();
 }

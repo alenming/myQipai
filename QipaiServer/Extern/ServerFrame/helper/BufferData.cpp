@@ -1,5 +1,4 @@
 #include "BufferData.h"
-#include "KxMemPool.h"
 
 BufferData::BufferData()
 : m_IsInit(false)
@@ -23,8 +22,8 @@ bool BufferData::init(int bufferSize)
     {
         return false;
     }
-
-    m_Buffer = reinterpret_cast<char*>(kxMemMgrAlocate(bufferSize, m_BufferSize)); 
+	m_BufferSize = bufferSize;
+	m_Buffer = reinterpret_cast<char*>(new char[bufferSize]);
     if (nullptr == m_Buffer)
     {
         return false;
@@ -59,8 +58,8 @@ bool BufferData::init(BufferData* pBuffData)
     {
         return false;
     }
-
-    m_Buffer = reinterpret_cast<char*>(kxMemMgrAlocate(pBuffData->getBufferSize(), m_BufferSize));
+	m_BufferSize = pBuffData->getBufferSize();
+	m_Buffer = reinterpret_cast<char*>(new char[pBuffData->getBufferSize()]);
     if (nullptr == m_Buffer)
     {
         return false;
@@ -78,7 +77,7 @@ void BufferData::clean()
 {
     if (nullptr != m_Buffer && !m_IsReadMode)
     {
-        kxMemMgrRecycle(m_Buffer, m_BufferSize);
+		delete[](char*)(m_Buffer);
         m_Buffer = nullptr;
     }
     m_IsInit = false;
@@ -126,13 +125,14 @@ bool BufferData::checkBufferSize(unsigned int newLength)
     if (newLength + m_DataLength > m_BufferSize)
     {
         unsigned int newBufferSize = 0;
-        char* newBuffer = reinterpret_cast<char*>(kxMemMgrAlocate(newLength + m_DataLength, newBufferSize));
+		newBufferSize = newLength + m_DataLength;
+		char* newBuffer = reinterpret_cast<char*>(new char[newLength + m_DataLength]);
         if (nullptr == newBuffer)
         {
             return false;
         }
         memcpy(newBuffer, m_Buffer, m_DataLength);
-        kxMemMgrRecycle(m_Buffer, m_BufferSize);
+		delete[](char*)(m_Buffer);
         m_Buffer = newBuffer;
         m_BufferSize = newBufferSize;
     }

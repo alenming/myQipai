@@ -2,11 +2,9 @@
 #include "UserManager.h"
 #include "GateManager.h"
 #include "BufferData.h"
-#include "KxMemPool.h"
 #include "BaseServer.h"
 #include "ServerProtocol.h"
 #include "LoginProtocol.h"
-
 #include "log/LogManager.h"
 
 
@@ -142,7 +140,7 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *c
 void sendUserModel(int uid, UserModel *model)
 {
 	int len = sizeof(LoginUserModelInfo);
-	LoginUserModelInfo *userInfo = reinterpret_cast<LoginUserModelInfo*>(kxMemMgrAlocate(len));
+	LoginUserModelInfo *userInfo = reinterpret_cast<LoginUserModelInfo*>(new char[len]);
 	int nValue = 0;
 	memset(userInfo->name, 0, sizeof(userInfo->name));
 	strcpy(userInfo->name, model->GetName().c_str());
@@ -154,6 +152,6 @@ void sendUserModel(int uid, UserModel *model)
 	model->GetUserFieldVal(USR_FD_DIAMOID, userInfo->diamond);
 
 	//GateManager::getInstance()->sendData(uid, CMD_LOGIN, CMD_LOGIN_USERMODEL_SC,reinterpret_cast<char *>(userInfo), len);
+	delete[](char*)userInfo;
 
-	kxMemMgrRecycle(userInfo, len);
 }

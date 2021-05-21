@@ -1,5 +1,4 @@
 #include "KxTCPUnit.h"
-#include "core/KxMemPool.h"
 #include "log/LogManager.h"
 
 #define BUFF_SIZE 4096
@@ -20,7 +19,7 @@ KxTCPUnit::KxTCPUnit()
     // 分配全局的接收缓冲区
     if (nullptr == s_RecvBuffer)
     {
-        s_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(BUFF_SIZE));
+		s_RecvBuffer = static_cast<char*>(new char[BUFF_SIZE]);
     }
 }
 
@@ -28,14 +27,14 @@ KxTCPUnit::~KxTCPUnit()
 {
     KXSAFE_RELEASE(m_Socket);
     KXSAFE_RELEASE(m_Poller);
-    KXSAFE_RECYCLE(m_SendBuffer, m_SendBufferLen);
-    KXSAFE_RECYCLE(m_RecvBuffer, m_RecvBufferLen);
 
+	delete[](char*)m_SendBuffer;
+	delete[](char*)m_RecvBuffer;
 	// 先清空列表中缓存的数据
     kxBufferNode* node = m_BufferList.head();
     while (nullptr != node)
     {
-        kxMemMgrRecycle(node->buffer, node->len);
+		delete[](char*)node->buffer;
         node = node->next;
     }
 	// 清空列表
@@ -98,7 +97,7 @@ int KxTCPUnit::sendData(const char* buffer, unsigned int len)
             // 未能一次性发送完的日志
             KX_LOGDEBUG("warn: socket %d send %d data ret %d, cache unsend data!!!",
                 getCommId(), len + ret, ret);
-            char* buf = static_cast<char*>(kxMemMgrAlocate(len));
+            char* buf = static_cast<char*>(new char[len]);
             memcpy(buf, buffer + ret, len);
             m_BufferList.pushBack(buf, len);
 			KX_LOGDEBUG("warn: socket %d changePollType m_PollType %d, cache unsend data!!!", getCommId(), m_PollType);
@@ -192,7 +191,7 @@ int KxTCPUnit::onRecv()
         // 如果不足以处理，且没有半包，则为半包分配空间
         if (ret < requestLen && nullptr == m_RecvBuffer)
         {
-            m_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(requestLen));
+            m_RecvBuffer = static_cast<char*>(new char[requestLen]);
             m_RecvBufferLen = requestLen;
             m_RecvBufferOffset = ret;
             memcpy(m_RecvBuffer, processBuf, ret);
@@ -205,12 +204,11 @@ int KxTCPUnit::onRecv()
             // 分配一块新的内存来缓存更大的半包
             char* oldRecvBuffer = m_RecvBuffer;
             unsigned int oldRecvBufferLen = m_RecvBufferLen;
-            m_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(requestLen));
+			m_RecvBuffer = static_cast<char*>(new char[requestLen]);
 
             // 先将原先半包内容复制到新内存中
             memcpy(m_RecvBuffer, oldRecvBuffer, oldRecvBufferLen);
-            kxMemMgrRecycle(oldRecvBuffer, oldRecvBufferLen);
-
+			delete[](char*)oldRecvBuffer;
             // 将后面额外的半包内容追加
             // 如果半包还是不能处理，变成了一个更大的半包，则进一步拼接后返回
             if (ret < requestLen)
@@ -243,7 +241,7 @@ int KxTCPUnit::onRecv()
             if (nullptr != m_RecvBuffer)
             {
                 processBuf = stickBuf;
-                kxMemMgrRecycle(m_RecvBuffer, m_RecvBufferLen);
+				delete[](char*)m_RecvBuffer;
                 m_RecvBuffer = nullptr;
                 m_RecvBufferOffset = m_RecvBufferLen = 0;
             }
@@ -261,7 +259,7 @@ int KxTCPUnit::onRecv()
                 //半包缓存
                 else if (ret < requestLen)
                 {
-                    m_RecvBuffer = static_cast<char*>(kxMemMgrAlocate(requestLen));
+                    m_RecvBuffer = static_cast<char*>(new char[requestLen]);
                     m_RecvBufferLen = requestLen;
                     m_RecvBufferOffset = ret;
                     memcpy(m_RecvBuffer, processBuf, ret);
@@ -308,7 +306,7 @@ again:
     if (len >= sendLen)
     {
         //回收已经发送出去的内存
-        kxMemMgrRecycle(m_SendBuffer, m_SendBufferLen);
+		delete[](char*)m_SendBuffer;
         kxBufferNode* node = m_BufferList.head();
         m_SendBuffer = nullptr;
         m_SendBufferLen = m_SendBufferOffset = 0;

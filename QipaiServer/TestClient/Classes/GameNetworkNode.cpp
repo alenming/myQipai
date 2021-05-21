@@ -1,5 +1,6 @@
 #include "GameNetworkNode.h"
 #include "GameModule.h"
+#include "SelectPoller.h"
 #include <string.h>
 
 using namespace std;
@@ -63,7 +64,7 @@ void CGameNetworkNode::destroy()
 
 bool CGameNetworkNode::init()
 {
-    m_pPoller = new KxSelectPoller();
+    m_pPoller = new SelectPoller();
 	m_pGameModule = new GameModule();
     return true;
 }
@@ -109,10 +110,10 @@ bool CGameNetworkNode::connectToServer(const char *ip, int port, EServerConnType
         return false;
     }
 
-    KxTCPConnector *pConnector = new KxTCPConnector();
+	TCPConnect *pConnector = new TCPConnect();
 	if (!pConnector->init(version))
     {
-        KX_LOGDEBUG("error: m_pConnector init faile %d", pConnector->getCommId());
+        LOGDEBUG("error: m_pConnector init faile %d", pConnector->getCommId());
 		pConnector->release();
         return false;
     }
@@ -133,7 +134,7 @@ bool CGameNetworkNode::connectToServer(const char *ip, int port, EServerConnType
 
     if (!pConnector->isConnecting()&& !pConnector->connect(ip, port))
     {
-		KX_LOGDEBUG("error: m_pConnector connect faile %d", pConnector->getCommId());
+		LOGDEBUG("error: m_pConnector connect faile %d", pConnector->getCommId());
 		pConnector->release();
         return false;
     }
@@ -146,7 +147,7 @@ bool CGameNetworkNode::connectToServer(const char *ip, int port, EServerConnType
 
 int CGameNetworkNode::sendData(char* buffer, unsigned int len, EServerConnType connType /*= SERVER_CONN_SESSION*/)
 {
-    KxTCPConnector*pConnector = getConnector(connType);
+    TCPConnect* pConnector = getConnector(connType);
     if (nullptr != pConnector && !pConnector->isConnecting())
     {
         return pConnector->sendData(buffer, len);
@@ -163,20 +164,20 @@ bool CGameNetworkNode::reconnectToServer(EServerConnType connType, std::function
     }
 
     iter->second.ConnectCallback = callBack;
-    KxTCPConnector *pConnector = iter->second.Connector;
+    TCPConnect *pConnector = iter->second.Connector;
     if (nullptr != pConnector)
     {
         iter->second.ConnectingTimes += 1;
         // 正在重连中，别催我
         if (pConnector->isConnecting() && iter->second.ConnectingTimes < 8)
         {
-			KX_LOGDEBUG("reconnectToServer But Connector isConnecting");
+			LOGDEBUG("reconnectToServer But Connector isConnecting");
             return true;
         }
     }
     iter->second.ConnectingTimes = 0;
 
-	KxTCPConnector* pNewConnector = new KxTCPConnector();
+	TCPConnect* pNewConnector = new TCPConnect();
     if (!pNewConnector->init(iter->second.SockVersion))
     {
 		pConnector->release();
@@ -228,7 +229,7 @@ void CGameNetworkNode::closeConnect()
     map<int, ServerConn>::iterator iter = m_mapServerConns.begin();
     for (; iter != m_mapServerConns.end(); ++iter)
     {
-        KxTCPConnector* pConnector = iter->second.Connector;
+        TCPConnect* pConnector = iter->second.Connector;
         if (nullptr != pConnector)
         {
             if (pConnector->getPoller() != nullptr)
@@ -243,7 +244,7 @@ void CGameNetworkNode::closeConnect()
     m_mapServerConns.clear();
 }
 
-KxTCPConnector *CGameNetworkNode::getConnector(EServerConnType connType /*= SERVER_CONN_SESSION*/)
+TCPConnect *CGameNetworkNode::getConnector(EServerConnType connType /*= SERVER_CONN_SESSION*/)
 {
     map<int, ServerConn>::iterator iter = m_mapServerConns.find(connType);
     if (iter != m_mapServerConns.end())

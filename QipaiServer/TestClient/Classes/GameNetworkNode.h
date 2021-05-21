@@ -7,9 +7,9 @@
 #define __GAMENETWORKNODE_H__
 
 #include <functional>
-#include "KxServer.h"
 #include "log/LogManager.h"
-
+#include "Sock.h"
+#include "TCPConnect.h"
 enum EServerConnType
 {
     SERVER_CONN_SESSION,      // session服务器连接
@@ -22,7 +22,7 @@ struct ServerConn
     int                         Port;               // 连接的端口
     int                         ConnectingTimes;    // 正在重连中的次数（大于10次强制关闭重启）
     KXSOCK_VERSION	SockVersion;        // ipv4/ipv6
-    KxTCPConnector*   Connector;          // 连接
+    TCPConnect*   Connector;          // 连接
     std::function<void(bool)>   ConnectCallback;
 
     ServerConn() :Port(0)
@@ -35,7 +35,7 @@ struct ServerConn
 };
 
 class BaseModule;
-class CGameNetworkNode  : public KxObject
+class CGameNetworkNode  : public Object
 {
 private:
     CGameNetworkNode(void);
@@ -68,13 +68,13 @@ public:
     // 断开连接
     void closeConnect();
     // 获得连接
-	KxTCPConnector *getConnector(EServerConnType connType = SERVER_CONN_SESSION);
+	TCPConnect *getConnector(EServerConnType connType = SERVER_CONN_SESSION);
     // 获取连接信息
     ServerConn* getServerConn(EServerConnType connType = SERVER_CONN_SESSION);
 	// 是否用户主动关闭
     bool isUserClose(){ return m_bUserClose; }
 
-	IKxCommPoller* getPoller()
+	ICommPoller* getPoller()
 	{
 		return m_pPoller;
 	}
@@ -91,7 +91,7 @@ private:
     float                               m_fMaxHbTime;                   // 多久没数据交互发送一次心跳包
     float                               m_fTickNet;                     // 计算与上次交互数据间隔时间
     static CGameNetworkNode*            m_pInstance;                    // 
-    IKxCommPoller*            m_pPoller;                      // 轮询器
+    ICommPoller*            m_pPoller;                      // 轮询器
     BaseModule*                        m_pGameModule;                  // 处理逻辑模块实例
 
     std::map<int, ServerConn>           m_mapServerConns;               // 服务器连接

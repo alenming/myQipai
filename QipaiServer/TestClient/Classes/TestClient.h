@@ -1,7 +1,7 @@
 #ifndef __SESSIONSERVER_H__
 #define __SESSIONSERVER_H__
 
-#include "KXServer.h"
+#include "BaseServer.h"
 
 // 连接服务器配置
 struct ConnectServerConf

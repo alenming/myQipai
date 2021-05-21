@@ -14,18 +14,7 @@ int main()
 	{
 		clientPoll->poll();
 	}
-	//LogManager::getInstance()->setShowTime(false);
-	//LogManager::getInstance()->setShowDate(false);
-	//LogManager::getInstance()->addHandler(1, new LogConsoleHandler());
-	//LogFileHandler* pFileHandle = new LogFileHandler();
-	//pFileHandle->setFilePath("../bin/");
-	//pFileHandle->setNewFile(true);
-	//pFileHandle->setFileName("TestClientOut");
-	//pFileHandle->setFastModel(false);
-	//LogManager::getInstance()->addHandler(2, pFileHandle);
 
-	//regiestLuaFunction();
-	//LuaStack_::getInstance()->executeScriptFile("../LuaSupport/Test/Test.lua");
 	LogManager::destroy();
 	TestClient::destroy();
 	return 0;

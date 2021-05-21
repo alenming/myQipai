@@ -2,11 +2,12 @@
 #include "TestClient.h"
 #include "GameNetworkNode.h"
 
-#include "helper/BufferTool.h"
-#include "server/Protocol.h"
+#include "BufferData.h"
+#include "ServerProtocol.h"
+#include "LoginProtocol.h"
+
 #include "log/LogManager.h"
-#include "log/LogFileHandler.h"
-#include "log/LogConsoleHandler.h"
+
 
 
 TestClient* TestClient::m_Instance = NULL;
@@ -86,7 +87,7 @@ bool TestClient::onServerInit()
 
 	if (CGameNetworkNode::getInstance()->connectToServer((char *)m_ServerCon->host.c_str(), m_ServerCon->port))
 	{
-		KX_LOGDEBUG("ClientTest Connect to IP=%s Port=%d successful", m_ServerCon->host.c_str(), m_ServerCon->port);
+		LOGDEBUG("ClientTest Connect to IP=%s Port=%d successful", m_ServerCon->host.c_str(), m_ServerCon->port);
 	}
 
 	return true;
@@ -94,26 +95,26 @@ bool TestClient::onServerInit()
 
 bool TestClient::login()
 {
-	BufferData* buffer = newBufferData(MAIN_CMD::CMD_LOGIN_SERVER, LOGIN_CMD::CMD_C2S_LOGIN);
+	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_C2S_LOGIN);
 
 	LOGIN_DATA da = LOGIN_DATA();
-	da.accountId = 123456;
+	da.userId = 123456;
 	buffer->writeData(da);
 
 	//重新写入数据长度
 	char* bu = buffer->getBuffer();
 	Head* head = reinterpret_cast<Head*>(bu);
 	head->length = buffer->getDataLength();
-	head->uid = 0;//服务器用ID
+	head->id = 0;//服务器用ID
 	bool isSuccessful = false;
 	if (CGameNetworkNode::getInstance()->sendData(buffer->getBuffer(), buffer->getDataLength()) > 0)
 	{
-		KX_LOGDEBUG("CGameNetworkNode::sendData to server successful!");
+		LOGDEBUG("CGameNetworkNode::sendData to server successful!");
 		isSuccessful = true;
 	}
 	else
 	{
-		KX_LOGDEBUG("CGameNetworkNode::sendData to server failed!");
+		LOGDEBUG("CGameNetworkNode::sendData to server failed!");
 	}
 	deleteBufferData(buffer);
 	return isSuccessful;

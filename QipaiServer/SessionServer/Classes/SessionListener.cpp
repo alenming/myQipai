@@ -1,5 +1,5 @@
 #include "SessionListener.h"
-#include "SessionClienter.h"
+#include "SessionClient.h"
 #include "SessionServer.h"
 #include "NetworkManager.h"
 #include "log/LogManager.h"
@@ -16,7 +16,7 @@ SessionListener::~SessionListener(void)
 KxTCPClienter* SessionListener::onAccept(KXCOMMID client)
 {
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
-    SessionClienter* tcpClient = new SessionClienter();
+    SessionClient* tcpClient = new SessionClient();
     if (tcpClient->init(client))
     {//刚建立连接,C端还没有发登录消息来验证帐号数据等
 		unsigned int guesId = pNetWorkManager->genGuestId();

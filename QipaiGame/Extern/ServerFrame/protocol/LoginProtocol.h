@@ -28,7 +28,7 @@ struct REGISTER_DATA
 
 struct LOGIN_DATA
 {
-	int accountId;
+	int userId;
 	char passWord[16];
 };
 

@@ -7,11 +7,11 @@
 #define RECONNECT_TIME_INTERVAL		5			// 重连间隔5秒
 #define MAX_RECONECT_TIME			0xFFFFFFFF	// 重连最大次数
 
-class SessionConnector : public KxTCPConnector
+class SessionConnect : public KxTCPConnector
 {
 public:
-	SessionConnector();
-	virtual ~SessionConnector();
+	SessionConnect();
+	virtual ~SessionConnect();
 
 	// 连接指定的IP和端口
 	virtual bool connect(const char* addr, int port, int serverId = 0, bool nonblock = true);
@@ -35,7 +35,7 @@ private:
 	int m_ServerId;			// 服务器组ID
 	int m_Port;			    // 服务器端口
 	char m_strIP[16];	    // 服务器IP
-	KxTimerCallback<SessionConnector>* m_TimerCallBack;
+	KxTimerCallback<SessionConnect>* m_TimerCallBack;
 };
 
 

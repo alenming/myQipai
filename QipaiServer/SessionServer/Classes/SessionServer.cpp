@@ -1,19 +1,19 @@
 #include "SessionServer.h"
 
 #include "SessionListener.h"
-#include "ClientModule.h"
-#include "ConnectModule.h"
-#include "SessionConnector.h"
+#include "ModuleClient.h"
+#include "ModuleConnect.h"
+#include "SessionConnect.h"
 #include "NetworkManager.h"
 #include "core/KxPlatform.h"
 #include "log/LogManager.h"
-#include "ClienterEvent.h"
-#include "ConnectEvent.h"
+
+#include "EventConnect.h"
 
 
 using namespace std;
 
-SessionServer* SessionServer::m_Instance = NULL;
+SessionServer* SessionServer::m_Instance = nullptr;
 SessionServer::SessionServer(void)
 :m_IsClosing(false)
 {
@@ -28,7 +28,7 @@ SessionServer::~SessionServer(void)
 
 SessionServer* SessionServer::getInstance()
 {
-    if (NULL == m_Instance)
+	if (nullptr == m_Instance)
     {
         m_Instance = new SessionServer();
     }
@@ -37,17 +37,17 @@ SessionServer* SessionServer::getInstance()
 
 void SessionServer::destroy()
 {
-    if (NULL != m_Instance)
+	if (nullptr != m_Instance)
     {
         delete m_Instance;
-        m_Instance = NULL;
+		m_Instance = nullptr;
     }
 }
 
 bool SessionServer::onServerInit()
 {
 	KxBaseServer::onServerInit();
-	KX_LOGDEBUG("==================================================");
+	KX_LOGDEBUG("======================onServerInit============================");
 
 	//1.³õÊ¼»¯ÂÖÑ¯Æ÷
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_LINUX)
@@ -57,41 +57,33 @@ bool SessionServer::onServerInit()
 #endif
 
     SessionListener* listener = new SessionListener();
-	if (!listener->init())
-    {
-        return false;
-    }
-	
-	//m_ServerData.ip = "192.168.235.1";
-	//m_ServerData.port = 12345;
-	char *ip = NULL;
-	if (m_ServerData.ip != "0" && m_ServerData.ip != "")
-	{
-		ip = (char *)m_ServerData.ip.c_str();
-	}
-	if (!listener->listen(m_ServerData.port, ip))
-	{
-		return false;
-	}
+	if (!listener->init())      return false;
 
-	ClientModule *pClientModel = new ClientModule();
-	listener->setClientModule(pClientModel);
-    m_Poller->addCommObject(listener, listener->getPollType());
+	char *ip = nullptr;
+	if (m_ServerData.ip != "0" && m_ServerData.ip != "")
+		ip = (char *)m_ServerData.ip.c_str();
+
+	if (!listener->listen(m_ServerData.port, ip))	
+		return false;
 
 	KX_LOGDEBUG("SessionServer Launching IP=%s Port=%d!", m_ServerData.ip.c_str(), m_ServerData.port);
 
-	ConnectModule *pConnectModule = new ConnectModule();
-	ConnectEvent *pGameEvent = new ConnectEvent();
+	ModuleClient *pClientModel = new ModuleClient();
+	listener->setClientModule(pClientModel);
+    m_Poller->addCommObject(listener, listener->getPollType());
+
+
+	ModuleConnect *pConnectModule = new ModuleConnect();
+	EventConnect *pGameEvent = new EventConnect();
 	pConnectModule->init(pGameEvent);
 
-	std::map<int, ServerData> alldaata = m_ServerConfig.getServerData();
-	for (std::map<int, ServerData>::iterator iter = alldaata.begin(); iter != alldaata.end(); ++iter)
+	std::map<int, ServerData> alldata = m_ServerConfig.getServerData();
+	for (std::map<int, ServerData>::iterator iter = alldata.begin(); iter != alldata.end(); ++iter)
 	{
 		if (iter->second.name == this->getServerName())
-		{
 			continue;
-		}
-		SessionConnector *pConnector = new SessionConnector();
+
+		SessionConnect *pConnector = new SessionConnect();
 		if (!pConnector->init() || !pConnector->connect((char *)iter->second.ip.c_str(), iter->second.port, iter->second.serverId, true))
 		{
 			KX_LOGERROR("SessionServer Connect to %s: IP=%s, Port=%d Failed!", iter->second.name.c_str(), iter->second.ip.c_str(), iter->second.port);

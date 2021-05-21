@@ -5,11 +5,11 @@
 
 
 
-class ClienterEvent :public IGameEvent
+class EventClient :public IGameEvent
 {
 public:
-	ClienterEvent();
-	virtual ~ClienterEvent();
+	EventClient();
+	virtual ~EventClient();
 
 	virtual bool onUserEvent(int eventId, IKxComm* target);
 	virtual bool onUserProc(unsigned int id);

@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\server\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;$(ProjectDir)Classes\C2S\;$(ProjectDir)Classes\S2C\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\server\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -209,14 +209,13 @@
     <ClInclude Include="..\Extern\Tool\Utils\UrlEncode.h" />
     <ClInclude Include="..\Extern\Tool\Utils\ValueCrypt.h" />
     <ClInclude Include="..\Extern\Tool\XML\XML.h" />
-    <ClInclude Include="Classes\ClienterEvent.h" />
-    <ClInclude Include="Classes\ClientModule.h" />
-    <ClInclude Include="Classes\ConnectEvent.h" />
-    <ClInclude Include="Classes\ConnectModule.h" />
+    <ClInclude Include="Classes\EventConnect.h" />
     <ClInclude Include="Classes\EventInterface.h" />
+    <ClInclude Include="Classes\ModuleClient.h" />
+    <ClInclude Include="Classes\ModuleConnect.h" />
     <ClInclude Include="Classes\NetworkManager.h" />
-    <ClInclude Include="Classes\SessionClienter.h" />
-    <ClInclude Include="Classes\SessionConnector.h" />
+    <ClInclude Include="Classes\SessionClient.h" />
+    <ClInclude Include="Classes\SessionConnect.h" />
     <ClInclude Include="Classes\SessionHelper.h" />
     <ClInclude Include="Classes\SessionListener.h" />
     <ClInclude Include="Classes\SessionServer.h" />
@@ -276,14 +275,13 @@
     <ClCompile Include="..\Extern\Tool\Utils\UrlEncode.cpp" />
     <ClCompile Include="..\Extern\Tool\Utils\ValueCrypt.cpp" />
     <ClCompile Include="..\Extern\Tool\XML\XML.cpp" />
-    <ClCompile Include="Classes\ClienterEvent.cpp" />
-    <ClCompile Include="Classes\ClientModule.cpp" />
-    <ClCompile Include="Classes\ConnectEvent.cpp" />
-    <ClCompile Include="Classes\ConnectModule.cpp" />
+    <ClCompile Include="Classes\EventConnect.cpp" />
     <ClCompile Include="Classes\Main.cpp" />
+    <ClCompile Include="Classes\ModuleClient.cpp" />
+    <ClCompile Include="Classes\ModuleConnect.cpp" />
     <ClCompile Include="Classes\NetworkManager.cpp" />
-    <ClCompile Include="Classes\SessionClienter.cpp" />
-    <ClCompile Include="Classes\SessionConnector.cpp" />
+    <ClCompile Include="Classes\SessionClient.cpp" />
+    <ClCompile Include="Classes\SessionConnect.cpp" />
     <ClCompile Include="Classes\SessionHelper.cpp" />
     <ClCompile Include="Classes\SessionListener.cpp" />
     <ClCompile Include="Classes\SessionServer.cpp" />

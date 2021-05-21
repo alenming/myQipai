@@ -8,19 +8,19 @@
 #define _GAME_CHANGE_CLIENT_H__
 
 #include "EventInterface.h"
-#include "SessionClienter.h"
+#include "SessionClient.h"
 
-class ConnectEvent :public IGameEvent
+class EventConnect :public IGameEvent
 {
 public:
-	ConnectEvent();
-	virtual ~ConnectEvent();
+	EventConnect();
+	virtual ~EventConnect();
 
     virtual bool onUserEvent(int eventId, IKxComm* target);
 	virtual bool onUserProc(unsigned int id);
 
 protected:
-    bool sendDataToActor(SessionClienter* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen);
+    bool sendDataToActor(SessionClient* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen);
 };
 
 #endif //_GAME_CHANGE_CLIENT_H__

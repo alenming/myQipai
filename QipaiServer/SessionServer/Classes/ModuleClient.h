@@ -9,11 +9,11 @@
 #include "BaseModule.h"
 
 
-class ClientModule : public BaseModule
+class ModuleClient : public BaseModule
 {
 public:
-    ClientModule(void);
-    virtual ~ClientModule(void);
+    ModuleClient(void);
+    virtual ~ModuleClient(void);
 
     //处理客户端发来消息
     virtual void processLogic(char* buffer, unsigned int len, IKxComm *target);

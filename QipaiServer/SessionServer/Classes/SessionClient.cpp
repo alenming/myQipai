@@ -1,4 +1,4 @@
-#include "SessionClienter.h"
+#include "SessionClient.h"
 #include "NetworkManager.h"
 #include "SessionServer.h"
 
@@ -7,23 +7,23 @@ using namespace std;
 
 #define HEARTBEATTIME                   (24*60*60)       //心跳时间 s
 
-SessionClienter::SessionClienter()
+SessionClient::SessionClient()
 	: m_Permission(0),
 	  m_UserId(0),
 	  m_GuestId(0)
 {
     // 设置客户端心跳超时
-    m_TimerCallBack = new KxTimerCallback<SessionClienter>();
+    m_TimerCallBack = new KxTimerCallback<SessionClient>();
     setTimer();
 }
 
-SessionClienter::~SessionClienter(void)
+SessionClient::~SessionClient(void)
 {
     m_TimerCallBack->stop();
     KXSAFE_RELEASE(m_TimerCallBack);
 }
 
-bool SessionClienter::setConServer(int nKey, int nValue)
+bool SessionClient::setConServer(int nKey, int nValue)
 {
 	if (nKey == 0)
 	{
@@ -33,7 +33,7 @@ bool SessionClienter::setConServer(int nKey, int nValue)
 	return true;
 }
 
-bool SessionClienter::sendDataToServer(int mainCmd, int subCmd, char *pszContext, int nLen)
+bool SessionClient::sendDataToServer(int mainCmd, int subCmd, char *pszContext, int nLen)
 {
     KxTCPConnector* pTcpConnector = NULL;
 	pTcpConnector = static_cast<KxTCPConnector*>(NetWorkManager::getInstance()->getServer(mainCmd));
@@ -45,7 +45,7 @@ bool SessionClienter::sendDataToServer(int mainCmd, int subCmd, char *pszContext
     return pTcpConnector->sendData(pszContext, nLen) >= 0;
 }
 
-bool SessionClienter::sendDataToGroupServer(int nGroupID, char *pszContext, int nLen)
+bool SessionClient::sendDataToGroupServer(int nGroupID, char *pszContext, int nLen)
 {
     vector<IKxComm*>* pVectConnector = NetWorkManager::getInstance()->getGroupServer(nGroupID);
 	if (pVectConnector == NULL)
@@ -61,7 +61,7 @@ bool SessionClienter::sendDataToGroupServer(int nGroupID, char *pszContext, int 
     return true;
 }
 
-bool SessionClienter::sendDataToAllServer(char *pszContext, int nLen)
+bool SessionClient::sendDataToAllServer(char *pszContext, int nLen)
 {
     map<int, IKxComm*>& allServer = NetWorkManager::getInstance()->getAllServer();
     for (map<int,IKxComm* >::iterator ator = allServer.begin(); ator != allServer.end(); ++ator)
@@ -73,7 +73,7 @@ bool SessionClienter::sendDataToAllServer(char *pszContext, int nLen)
     return true;
 }
 
-int SessionClienter::getRouteValue(int nKey)
+int SessionClient::getRouteValue(int nKey)
 {
 	map<int, int>::iterator ator = m_MapConKeyValue.find(nKey);
 	if (ator == m_MapConKeyValue.end())
@@ -83,28 +83,28 @@ int SessionClienter::getRouteValue(int nKey)
 	return ator->second;
 }
 
-int SessionClienter::onRecv()
+int SessionClient::onRecv()
 {
     m_TimerCallBack->stop(); 
     SessionServer::getInstance()->getTimerManager()->addTimer( m_TimerCallBack, HEARTBEATTIME, 0);
     return KxTCPClienter::onRecv();
 }
 
-void SessionClienter::setTimer()
+void SessionClient::setTimer()
 {
-	m_TimerCallBack->setCallback(this, &SessionClienter::onTimer);
+	m_TimerCallBack->setCallback(this, &SessionClient::onTimer);
 	SessionServer::getInstance()->getTimerManager()->addTimer(m_TimerCallBack, HEARTBEATTIME, 0);
 	KX_LOGDEBUG("CSessionClient::setTimer()");
 }
 
-void SessionClienter::onTimer()
+void SessionClient::onTimer()
 {
     // 时间到了
     clean();
 	KX_LOGDEBUG("SessionClienter::onTimer()");
 }
 
-void SessionClienter::clean()
+void SessionClient::clean()
 {
 	NetWorkManager::getInstance()->removeUser(m_UserId);
 

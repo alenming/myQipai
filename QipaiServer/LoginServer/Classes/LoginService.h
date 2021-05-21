@@ -11,8 +11,8 @@ public:
 	static void processServiceS2S(int subcmd, int uid, char *buffer, int len, IKxComm *commun);
 
 	static void CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun);
-	static void CMD_S2C_LOGIN(int uid, int accountId);
-	static void CMD_S2C_NEW_USER_LOGIN(int uid, int accountId);
+	static void CMD_S2C_LOGIN(int uid);
+	static void CMD_S2C_NEW_USER_LOGIN(int uid);
 	
 	static void SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *commun);
 

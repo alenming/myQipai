@@ -32,13 +32,13 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
 
 	// 获得CGameUser
-	GameUser* pGameUser = UserManager::getInstance()->getGameUser(loginCS->userId);
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(loginCS->userId, loginCS->passWord);
 	if (NULL == pGameUser)
 	{
 		//新用户
 		KX_LOGDEBUG("新用户!");
 		pGameUser = UserManager::getInstance()->newGameUser(loginCS->userId, loginCS->passWord);
-		CMD_S2C_NEW_USER_LOGIN(uid, loginCS->userId);
+		CMD_S2C_NEW_USER_LOGIN(uid);
 	}
 	else
 	{
@@ -47,11 +47,11 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun
 		KX_LOGDEBUG("老用户!");
 		UserManager::getInstance()->donotDeleteUser(uid);
 		pGameUser->refreshModel(MODELTYPE_USER);
-		CMD_S2C_LOGIN(uid, loginCS->userId);
+		CMD_S2C_LOGIN(uid);
 	}
 }
 
-void LoginService::CMD_S2C_LOGIN(int uid, int accountId)
+void LoginService::CMD_S2C_LOGIN(int uid)
 {
 	// 开始下发数据
 	LOGIN_DATA loginSC;
@@ -60,7 +60,6 @@ void LoginService::CMD_S2C_LOGIN(int uid, int accountId)
 
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
 
-	loginSC.userId = accountId;
 	string passWord = pGameUser->getPassWord();
 	memcpy(loginSC.passWord, passWord.c_str(),passWord.size());
 	buffer->writeData(loginSC);
@@ -74,20 +73,26 @@ void LoginService::CMD_S2C_LOGIN(int uid, int accountId)
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("登录成功! uid = %d, accounld=%d", head->id, loginSC.userId);
+	KX_LOGDEBUG("登录成功! uid = %d, accounld=%d", head->id);
 }
 
-void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid, int accountId)
+void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid)
 {
 	// 开始下发数据
 	LOGIN_DATA loginSC;
 
 	BufferData* buffer = newBufferData(SERVER_MAIN_CMD::SERVER_MAIN, SERVER_SUB_CMD::SERVER_SUB_NEW_USER);
 
+
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
 
-	loginSC.userId = accountId;
+	loginSC.userId = pGameUser->getUid();
+	char* pass = pGameUser->getPassWord();
+	memcpy(loginSC.passWord, pass, sizeof(loginSC.passWord));
+
+
 	buffer->writeData(loginSC);
+
 
 	//重新写入数据长度
 	char* bu = buffer->getBuffer();
@@ -97,7 +102,7 @@ void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid, int accountId)
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);
-	KX_LOGDEBUG("新用户验证成功 uid = %d, accounld=%d", head->id, loginSC.userId);
+	KX_LOGDEBUG("新用户验证成功 uid = %d", head->id);
 }
 
 // 处理客户端的消息

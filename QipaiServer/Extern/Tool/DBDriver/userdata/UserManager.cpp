@@ -83,14 +83,31 @@ void UserManager::onTimer(const kxTimeVal& now)
 	}
 }
 
+GameUser* UserManager::getGameUser(int uid, char* passWord, bool noNull)
+{
+	std::map<std::string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
+	if(iter != m_GameUsers.end())
+	{
+		char* pass = iter->second->getPassWord();
+		if (strcmp(pass, passWord))
+		{
+			return iter->second;
+		}
+	}
+
+	if (noNull)
+	{
+		return initGameUser(uid);
+	}
+	return NULL;
+}
 GameUser* UserManager::getGameUser(int uid, bool noNull)
 {
-	std::map<string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
-	if(iter != m_GameUsers.end())
+	std::map<std::string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
+	if (iter != m_GameUsers.end())
 	{
 		return iter->second;
 	}
-
 	if (noNull)
 	{
 		return initGameUser(uid);
@@ -117,7 +134,7 @@ GameUser* UserManager::initGameUser(int uid)
 	return NULL;
 }
 
-GameUser *UserManager::newGameUser(int uid, char passWord[])
+GameUser *UserManager::newGameUser(int uid, char* passWord)
 {
 	// ÐÂÓÃ»§
 	GameUser *pGameUser = new GameUser;

@@ -1,6 +1,6 @@
 #include "SessionHelper.h"
 #include "NetworkManager.h"
-#include "SessionClienter.h"
+#include "SessionClient.h"
 #include "protocol/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
 #include "log/LogManager.h"
@@ -13,14 +13,35 @@ SessionHelper::~SessionHelper()
 {
 }
 
+void SessionHelper::ServerProcess(int subCmd, char* buffer)
+{
+	Head* head = reinterpret_cast<Head*>(buffer);
+	int nMainCmd = head->MainCommand();
+	int nSubCmd = head->SubCommand();
+	int userId = head->id;
+	switch (subCmd)
+	{
+		case SERVER_SUB_CMD::SERVER_SUB_NEW_USER:
+		{
+			ServerSubInit(userId);
+			break;
+		}
+		case SERVER_SUB_CMD::SERVER_SUB_UPDATE_PER:
+		{
+			break;
+		}
+		default:
+			break;
+	}
+}
 
-void SessionHelper::ServerSubInit(int guesId, int userId)
+void SessionHelper::ServerSubInit( int userId)
 {
 
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
 
 	unsigned int offset = sizeof(Head);
-	SessionClienter *pSessionClient = dynamic_cast<SessionClienter *>(pNetWorkManager->getGuest(guesId));
+	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(userId));
 	// 连接断开/或者连接不存在
 	if (pSessionClient == NULL)
 	{
@@ -43,10 +64,12 @@ void SessionHelper::ServerSubInit(int guesId, int userId)
 	{
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->setUserId(userId);
-		pSessionClient->setPermission(USER_PERMISSION::PERMISSION_USER);
+		pSessionClient->setPermission(1);
 		KX_LOGDEBUG("验证成功!,切换游客为正式玩家");
 		// 验证成功，guest转user
 		pNetWorkManager->changeGuestToUser(pSessionClient, userId);
 
 	}
 }
+
+

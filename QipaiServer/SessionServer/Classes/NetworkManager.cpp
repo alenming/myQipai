@@ -1,7 +1,7 @@
 #include "NetworkManager.h"
-#include "SessionClienter.h"
+#include "SessionClient.h"
 #include "SessionServer.h"
-#include "SessionConnector.h"
+#include "SessionConnect.h"
 #include "Head.h"
 
 using namespace std;
@@ -205,7 +205,7 @@ bool NetWorkManager::broadCastData(char *pszContext, int nLen)
     return true;
 }
 //给某个玩家发数据
-bool NetWorkManager::sendDataToClient(SessionClienter* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen)
+bool NetWorkManager::sendDataToClient(SessionClient* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen)
 {
 	unsigned int buffSize = sizeof(Head) + nLen;
 	bool ret = false;
@@ -311,7 +311,7 @@ bool NetWorkManager::removeGuest(unsigned int guestId)
 }
 
 // 将连接转为连接OK的客户端
-bool NetWorkManager::changeGuestToUser(SessionClienter* guest, unsigned int userId)
+bool NetWorkManager::changeGuestToUser(SessionClient* guest, unsigned int userId)
 {
 	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guest->getGuestId());
 	if (iter == m_GuestMap.end())

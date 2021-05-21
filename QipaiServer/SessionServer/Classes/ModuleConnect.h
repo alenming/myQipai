@@ -4,11 +4,11 @@
 #include "BaseModule.h"
 #include "EventInterface.h"
 
-class ConnectModule : public BaseModule
+class ModuleConnect : public BaseModule
 {
 public:
-    ConnectModule(void);
-    virtual ~ConnectModule(void);
+    ModuleConnect(void);
+    virtual ~ModuleConnect(void);
 
 	bool init(IGameEvent *pSink = NULL);
 

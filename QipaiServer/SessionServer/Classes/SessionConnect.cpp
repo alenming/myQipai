@@ -1,10 +1,10 @@
-#include "SessionConnector.h"
+#include "SessionConnect.h"
 #include "SessionServer.h"
 
 
 
 
-SessionConnector::SessionConnector()
+SessionConnect::SessionConnect()
 : m_ServerId(0)
 , m_Port(0)
 , m_TimerCallBack(NULL)
@@ -12,7 +12,7 @@ SessionConnector::SessionConnector()
     memset(m_strIP, 0, sizeof(m_strIP));
 }
 
-SessionConnector::~SessionConnector()
+SessionConnect::~SessionConnect()
 {
     if (m_TimerCallBack != NULL)
     {
@@ -22,7 +22,7 @@ SessionConnector::~SessionConnector()
 }
 
 // 连接指定的IP和端口
-bool SessionConnector::connect(const char* addr, int port, int serverId, bool nonblock)
+bool SessionConnect::connect(const char* addr, int port, int serverId, bool nonblock)
 {
     if (addr == NULL)
     {
@@ -35,7 +35,7 @@ bool SessionConnector::connect(const char* addr, int port, int serverId, bool no
 	return KxTCPConnector::connect(m_strIP, m_Port, nonblock);
 }
 
-void SessionConnector::onConnected(bool success)
+void SessionConnect::onConnected(bool success)
 {
     KxTCPConnector::onConnected(success);
     if (success)
@@ -49,7 +49,7 @@ void SessionConnector::onConnected(bool success)
 }
 
 // 发生错误时回调，由IKxCommPoller调用
-int SessionConnector::onError()
+int SessionConnect::onError()
 {
     int nError = KxTCPConnector::onError();
 	KX_LOGDEBUG("SessionConnect::onError() IP:%s,port:%d", m_strIP, m_Port);
@@ -58,26 +58,26 @@ int SessionConnector::onError()
 }
 
 // 设置定时重连	
-void SessionConnector::setTimer(int nSec)
+void SessionConnect::setTimer(int nSec)
 {
     if (m_TimerCallBack == NULL)
     {
-        m_TimerCallBack = new KxTimerCallback<SessionConnector>();
+        m_TimerCallBack = new KxTimerCallback<SessionConnect>();
     }
-    m_TimerCallBack->setCallback(this, &SessionConnector::onTimer);
+    m_TimerCallBack->setCallback(this, &SessionConnect::onTimer);
     SessionServer::getInstance()->getTimerManager()->addTimer(
         m_TimerCallBack, nSec, 0);
 }
 
 // 定时触发
-void SessionConnector::onTimer()
+void SessionConnect::onTimer()
 {
     reconnect();
     KXSAFE_RELEASE(m_TimerCallBack);
 }
 
 // 重连
-bool SessionConnector::reconnect()
+bool SessionConnect::reconnect()
 {
     close();
     if (!init() || !connect(m_strIP, m_Port))

@@ -13,11 +13,11 @@
 #include "commnication/KxTCPClienter.h"
 #include "helper/KxTimerCallback.h"
 
-class SessionClienter : public KxTCPClienter
+class SessionClient : public KxTCPClienter
 {
 public:
-	SessionClienter();
-	virtual ~SessionClienter(void);
+	SessionClient();
+	virtual ~SessionClient(void);
 
     virtual void retain() 
     {
@@ -51,7 +51,7 @@ private:
 	int m_UserId;							//已验证的用户ID
 	unsigned int m_GuestId;	                // 未验证的访客ID
     std::map<int, int> m_MapConKeyValue;    // 获取对应的key相应的值
-	KxTimerCallback<SessionClienter>* m_TimerCallBack;                    
+	KxTimerCallback<SessionClient>* m_TimerCallBack;                    
 };
 
 #endif //__SESSION_CLIENTER_H__

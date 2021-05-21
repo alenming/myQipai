@@ -466,39 +466,6 @@
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
       <Filter>Classes\Extern\ServerFrame\protocol</Filter>
     </ClInclude>
-    <ClInclude Include="Classes\ClientModule.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\ConnectEvent.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\ConnectModule.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\EventInterface.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\NetworkManager.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\SessionConnector.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\SessionListener.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\SessionServer.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\ClienterEvent.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\SessionHelper.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="Classes\SessionClienter.h">
-      <Filter>Classes</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\GameUser.h">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClInclude>
@@ -510,6 +477,36 @@
     </ClInclude>
     <ClInclude Include="..\Extern\Tool\DBDriver\userdata\UserModel.h">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\EventConnect.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\EventInterface.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ModuleClient.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\ModuleConnect.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\NetworkManager.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionClient.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionConnect.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionHelper.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionListener.h">
+      <Filter>Classes</Filter>
+    </ClInclude>
+    <ClInclude Include="Classes\SessionServer.h">
+      <Filter>Classes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -663,39 +660,6 @@
     <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp">
       <Filter>Classes\Extern\Tool\CsvLoader</Filter>
     </ClCompile>
-    <ClCompile Include="Classes\ClientModule.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\ConnectEvent.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\ConnectModule.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\Main.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\NetworkManager.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\SessionConnector.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\SessionListener.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\SessionServer.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\ClienterEvent.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\SessionHelper.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
-    <ClCompile Include="Classes\SessionClienter.cpp">
-      <Filter>Classes</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\GameUser.cpp">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
     </ClCompile>
@@ -707,6 +671,36 @@
     </ClCompile>
     <ClCompile Include="..\Extern\Tool\DBDriver\userdata\UserModel.cpp">
       <Filter>Classes\Extern\Tool\DBDriver\userdata</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\EventConnect.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\Main.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\ModuleClient.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\ModuleConnect.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\NetworkManager.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionClient.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionConnect.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionHelper.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionListener.cpp">
+      <Filter>Classes</Filter>
+    </ClCompile>
+    <ClCompile Include="Classes\SessionServer.cpp">
+      <Filter>Classes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

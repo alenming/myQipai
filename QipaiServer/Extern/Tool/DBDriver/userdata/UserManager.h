@@ -37,10 +37,11 @@ public:
 
 	void onTimer(const kxTimeVal& now);
 	// 获得已有用户，当createWhenNull为true时，获取不到会自动从数据库中初始化它
+	GameUser* getGameUser(int uid, char* passWord, bool createWhenNull = true);
 	GameUser* getGameUser(int uid, bool createWhenNull = true);
 	// 初始化用户
 	GameUser* initGameUser(int uid);
-	GameUser* newGameUser(int uid, char passWord[]);
+	GameUser* newGameUser(int uid, char* passWord);
 	//更新用户需要重置的数据
 	void reSetGameUserData(int uid, bool bLogin = false);
     // 刷新用户数据

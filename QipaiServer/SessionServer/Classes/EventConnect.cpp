@@ -1,27 +1,27 @@
-#include "ConnectEvent.h"
+#include "EventConnect.h"
 #include "NetworkManager.h"
 #include "Head.h"
 
 
 
-ConnectEvent::ConnectEvent()
+EventConnect::EventConnect()
 {
 }
 
 
-ConnectEvent::~ConnectEvent()
+EventConnect::~EventConnect()
 {
 }
 
-bool ConnectEvent::onUserProc(unsigned int id)
+bool EventConnect::onUserProc(unsigned int id)
 {
 	
 	return true;
 }
 
-bool ConnectEvent::onUserEvent(int nType, IKxComm* target)
+bool EventConnect::onUserEvent(int nType, IKxComm* target)
 {
-    SessionClienter *pClient = static_cast<SessionClienter *>(target);
+    SessionClient *pClient = static_cast<SessionClient *>(target);
     if (pClient != NULL)
     {
 
@@ -29,7 +29,7 @@ bool ConnectEvent::onUserEvent(int nType, IKxComm* target)
     return true;
 }
 
-bool ConnectEvent::sendDataToActor(SessionClienter* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen)
+bool EventConnect::sendDataToActor(SessionClient* pClient, int nMainCmd, int nSubCmd, char *pszContext, int nLen)
 {
     unsigned int buffSize = sizeof(Head);
     bool ret = false;

@@ -41,11 +41,10 @@ void GameService::CMD_C2S_LOGIN()
 	BufferData* buffer = newBufferData(MAIN_CMD::CMD_LOGIN_SERVER, LOGIN_CMD::CMD_C2S_LOGIN);
 
 	LOGIN_DATA da = LOGIN_DATA();
-	da.accountId = 12345678; //
 
+	da.userId = 12345678;
 	char passw[16] = "wangxiangming" ;
 	memcpy(da.passWord, passw, sizeof(da.passWord));
-
 	buffer->writeData(da);
 
 	//重新写入数据长度

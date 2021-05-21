@@ -298,11 +298,11 @@ void GameNetworkNode::closeConnect()
 				pConnector->getPoller()->removeCommObject(pConnector);
 			}
 			pConnector->close();
-			pConnector->release();
+			//pConnector->release();
 		}
 	}
 
-	m_mapServerConns.clear();
+	//m_mapServerConns.clear();
 }
 
 KxTCPConnector *GameNetworkNode::getConnector(EServerConnType connType /*= SERVER_CONN_SESSION*/)

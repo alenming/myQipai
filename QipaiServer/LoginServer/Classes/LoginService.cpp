@@ -39,7 +39,7 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IComm *commun)
 		//新用户
 		LOGDEBUG("新用户!");
 		pGameUser = UserManager::getInstance()->newGameUser(loginCS->userId, loginCS->passWord);
-		CMD_S2C_NEW_USER_LOGIN(uid);
+		CMD_S2C_NEW_USER_LOGIN(uid, loginCS->userId);
 	}
 	else
 	{
@@ -77,7 +77,7 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 	LOGDEBUG("登录成功! uid = %d", head->id);
 }
 
-void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid)
+void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid, int userId)
 {
 	// 开始下发数据
 	LOGIN_DATA loginSC;
@@ -85,15 +85,14 @@ void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid)
 	BufferData* buffer = newBufferData(SERVER_MAIN_CMD::SERVER_MAIN, SERVER_SUB_CMD::SERVER_SUB_NEW_USER);
 
 
-	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(userId);
+	if (!pGameUser) return;
 
 	loginSC.userId = pGameUser->getUid();
 	char* pass = pGameUser->getPassWord();
 	memcpy(loginSC.passWord, pass, sizeof(loginSC.passWord));
 
-
 	buffer->writeData(loginSC);
-
 
 	//重新写入数据长度
 	char* bu = buffer->getBuffer();

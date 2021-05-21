@@ -10,8 +10,8 @@ public:
 	~SessionHelper();
 	static void ServerProcess(int subCmd, char* buffer);
 
-	static void ServerSubInit(int userId);
-
+	static void ServerSubInit(int uId, int userId);
+	static void updateUserPermission(int userId);
 private:
 
 };

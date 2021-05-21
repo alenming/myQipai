@@ -91,7 +91,7 @@ void GameLayer::initUI()
 	Button* m_Button2 = Button::create("CloseNormal.png", "CloseNormal.png", "CloseNormal.png", ui::Widget::TextureResType::LOCAL);
 	m_Button2->setPosition(Size(viSize.width - 40, viSize.height - 160));
 	buttonName.clear();
-	buttonName = "+";
+	buttonName = "close";
 	auto text2 = Text::create();
 	text2->setScale(1.5);
 	text2->setString(buttonName);
@@ -103,7 +103,7 @@ void GameLayer::initUI()
 	{
 		if (type == ui::Widget::TouchEventType::ENDED)
 		{
-	
+			GameNetworkNode::getInstance()->closeConnect();
 		}
 	});
 	this->addChild(m_Button2, 98);
@@ -111,7 +111,7 @@ void GameLayer::initUI()
 	Button* m_Button3 = Button::create("CloseNormal.png", "CloseNormal.png", "CloseNormal.png", ui::Widget::TextureResType::LOCAL);
 	m_Button3->setPosition(Size(viSize.width - 40, viSize.height - 220));
 	buttonName.clear();
-	buttonName = "-";
+	buttonName = "re";
 	auto text3 = Text::create();
 	text3->setScale(1.5);
 	text3->setString(buttonName);
@@ -123,7 +123,7 @@ void GameLayer::initUI()
 	{
 		if (type == ui::Widget::TouchEventType::ENDED)
 		{
-	
+			GameNetworkNode::getInstance()->reconnectToServer(SERVER_CONN_SESSION);
 		}
 	});
 	this->addChild(m_Button3, 98);

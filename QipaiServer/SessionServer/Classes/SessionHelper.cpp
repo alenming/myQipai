@@ -16,18 +16,21 @@ SessionHelper::~SessionHelper()
 void SessionHelper::ServerProcess(int subCmd, char* buffer)
 {
 	Head* head = reinterpret_cast<Head*>(buffer);
-	int nMainCmd = head->MainCommand();
+
+	//int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
-	int userId = head->id;
+	int uId = head->id;
 	switch (subCmd)
 	{
 		case SERVER_SUB_CMD::SERVER_SUB_NEW_USER:
 		{
-			ServerSubInit(userId);
+			LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
+			ServerSubInit(uId, loginCS->userId);
 			break;
 		}
 		case SERVER_SUB_CMD::SERVER_SUB_UPDATE_PER:
 		{
+			updateUserPermission(uId);
 			break;
 		}
 		default:
@@ -35,13 +38,17 @@ void SessionHelper::ServerProcess(int subCmd, char* buffer)
 	}
 }
 
-void SessionHelper::ServerSubInit( int userId)
+void SessionHelper::updateUserPermission(int userId)
+{
+
+}
+void SessionHelper::ServerSubInit(int uId, int userId)
 {
 
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
 
 	unsigned int offset = sizeof(Head);
-	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(userId));
+	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(uId));
 	// 连接断开/或者连接不存在
 	if (pSessionClient == nullptr)
 	{
@@ -49,19 +56,24 @@ void SessionHelper::ServerSubInit( int userId)
 	}
 	//验证逻辑
 	bool isSuccessful = true;
+	pSessionClient->setUserId(userId);
+
+
 	Head head;
 	head.MakeCommand(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_C2S_RESIGIT);
 	head.length = sizeof(head);
-	head.id = pSessionClient->getUserId();
+
 
 	if (!isSuccessful)
 	{
 		// 验证失败
+		head.id = uId;
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->clean();
 	}
 	else
 	{
+		head.id = pSessionClient->getUserId();
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->setUserId(userId);
 		pSessionClient->setPermission(1);

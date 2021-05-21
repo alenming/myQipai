@@ -34,7 +34,7 @@ void GateManager::destroy()
 
 int GateManager::Send( char* buffer, unsigned int len)
 {
-	IKxComm *pKxComm = this->GetGate();
+	IComm *pKxComm = this->GetGate();
 
     if (pKxComm == nullptr)
     {

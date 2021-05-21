@@ -53,7 +53,7 @@ public:
         return m_TimerMgr;
     }
 
-    IKxCommPoller* getMainPoller()
+    ICommPoller* getMainPoller()
     {
         return m_Poller;
     }
@@ -66,7 +66,7 @@ public:
 	std::string getServerName() const { return m_ServerName; }
 
 protected:
-	IKxCommPoller*	m_Poller;
+	ICommPoller*	m_Poller;
     KxTimerManager* m_TimerMgr;
 	bool            m_IsRunning;
 	int				m_ServerID;

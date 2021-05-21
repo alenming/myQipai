@@ -12,7 +12,7 @@
 #include "TCPClienter.h"
 #include "Sock.h"
 
-class TCPListener : public IKxComm
+class TCPListener : public IComm
 {
 public:
 	TCPListener();
@@ -36,8 +36,8 @@ public:
     virtual void close() { m_Socket->close(); }
 
     // 设置和获取客户端处理模块
-    void setClientModule(IKxModule* module);
-    inline IKxModule* getClientModule()	{ return m_ClientModule; }
+    void setClientModule(IModule* module);
+    inline IModule* getClientModule()	{ return m_ClientModule; }
 
     // 获取Sock
     inline Sock* getSock() { return m_Socket; }
@@ -50,7 +50,7 @@ protected:
 
 protected:
 	Sock* m_Socket;
-	IKxModule* m_ClientModule;
+	IModule* m_ClientModule;
 };
 
 #endif

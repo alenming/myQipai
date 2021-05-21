@@ -23,30 +23,30 @@ public:
     static void destroy();
 
     //主动连后端服务器组ID
-	bool addServer(int serverId, IKxComm* obj);
+	bool addServer(int serverId, IComm* obj);
 	//添加备份后端服务器组ID
-	bool addBakServer(int nGroupID, IKxComm* obj);
+	bool addBakServer(int nGroupID, IComm* obj);
 	//清除某个备份服务器组ID
 	bool clearBakServer(int nGroupID);
 	//通过类型获取服务器,Key对应的Value值来取模
-	IKxComm* getServer(int serverId, int nValue = 0);
+	IComm* getServer(int serverId, int nValue = 0);
     //获取某个服务器组
-    std::vector<IKxComm*>* getGroupServer(int nGroupID);
+	std::vector<IComm*>* getGroupServer(int nGroupID);
 	//获取某个服务器组备份
-	std::vector<IKxComm*>* getBakGroupServer(int nGroupID);
+	std::vector<IComm*>* getBakGroupServer(int nGroupID);
     //获取所有服务器
-	std::map<int, IKxComm*>& getAllServer() { return m_ServerList; }
+	std::map<int, IComm*>& getAllServer() { return m_ServerList; }
 
 	//将连接添加到待验证连接列表中
-	bool addGuest(unsigned int guestId, IKxComm* obj);
+	bool addGuest(unsigned int guestId, IComm* obj);
 	//获取待验证连接客户端
-	IKxComm* getGuest(unsigned int guestId);
+	IComm* getGuest(unsigned int guestId);
 	bool removeGuest(unsigned int guestId);
 	//将连接转为连接OK的客户端
 	bool changeGuestToUser(SessionClient* guest, unsigned int userId);
 
-	bool addUser(int guestId, IKxComm* obj);
-	IKxComm* getUser(int guestId);
+	bool addUser(int guestId, IComm* obj);
+	IComm* getUser(int guestId);
 	bool removeUser(int guestId);
 
     //数据广播给所有玩家
@@ -71,11 +71,11 @@ private:
 
 	unsigned int m_GuestId;											// 未验证客户端唯一ID
 	bool		m_bChanging;										//是否在切换中
-    std::map<int, std::vector<IKxComm*> >	m_ServerMapByGroup;		// 服务端连接管理
-	std::map<int, std::vector<IKxComm*> >	m_BakServerMapByGroup;	// 备份连接管理
-    std::map<unsigned int, IKxComm*> m_UserMap;       				// 已经验证过的客户端连接管理
-	std::map<unsigned int, IKxComm*> m_GuestMap;					// 未验证的客户端连接管理
-	std::map<int, IKxComm* >	m_ServerList;						// 服务端连接管理
+	std::map<int, std::vector<IComm*> >	m_ServerMapByGroup;		// 服务端连接管理
+	std::map<int, std::vector<IComm*> >	m_BakServerMapByGroup;	// 备份连接管理
+	std::map<unsigned int, IComm*> m_UserMap;       				// 已经验证过的客户端连接管理
+	std::map<unsigned int, IComm*> m_GuestMap;					// 未验证的客户端连接管理
+	std::map<int, IComm* >	m_ServerList;						// 服务端连接管理
 };
 
 #endif

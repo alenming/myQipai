@@ -23,19 +23,19 @@ public:
     int Send(char* buffer, unsigned int len);
 
     //设置指定的网关
-    void SetGate(IKxComm* gate)
+    void SetGate(IComm* gate)
     {
         m_Gate = gate;
     }
     //获得指定网关
-    IKxComm* GetGate()
+    IComm* GetGate()
     {
         return m_Gate;
     }
 
 private:
 
-    IKxComm* m_Gate;
+    IComm* m_Gate;
     static GateManager* m_Instance;
 };
 

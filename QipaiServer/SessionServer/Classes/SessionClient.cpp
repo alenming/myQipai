@@ -48,13 +48,13 @@ bool SessionClient::sendDataToServer(int mainCmd, int subCmd, char *pszContext, 
 
 bool SessionClient::sendDataToGroupServer(int nGroupID, char *pszContext, int nLen)
 {
-    vector<IKxComm*>* pVectConnector = NetWorkManager::getInstance()->getGroupServer(nGroupID);
+    vector<IComm*>* pVectConnector = NetWorkManager::getInstance()->getGroupServer(nGroupID);
 	if (pVectConnector == nullptr)
 	{
 		return false;
 	}
 	KX_LOGDEBUG("收到客户端消息,转发给指定服务器组!nGroupID=%d,SessionClienter::sendDataToGroupServer!", nGroupID);
-    for (vector<IKxComm*>::iterator ator = pVectConnector->begin();
+    for (vector<IComm*>::iterator ator = pVectConnector->begin();
         ator != pVectConnector->end(); ++ator)
     {
         (*ator)->sendData(pszContext, nLen);
@@ -64,8 +64,8 @@ bool SessionClient::sendDataToGroupServer(int nGroupID, char *pszContext, int nL
 
 bool SessionClient::sendDataToAllServer(char *pszContext, int nLen)
 {
-    map<int, IKxComm*>& allServer = NetWorkManager::getInstance()->getAllServer();
-    for (map<int,IKxComm* >::iterator ator = allServer.begin(); ator != allServer.end(); ++ator)
+    map<int, IComm*>& allServer = NetWorkManager::getInstance()->getAllServer();
+    for (map<int,IComm* >::iterator ator = allServer.begin(); ator != allServer.end(); ++ator)
     {
         // ps. 如果send失败触发onError，在onError中从NetWorkManager中移除，会导致崩溃
 		ator->second->sendData(pszContext, nLen);

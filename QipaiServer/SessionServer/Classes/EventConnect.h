@@ -16,7 +16,7 @@ public:
 	EventConnect();
 	virtual ~EventConnect();
 
-    virtual bool onUserEvent(int eventId, IKxComm* target);
+    virtual bool onUserEvent(int eventId, IComm* target);
 	virtual bool onUserProc(unsigned int id);
 
 protected:

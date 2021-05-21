@@ -14,21 +14,21 @@ NetWorkManager::NetWorkManager(void)
 NetWorkManager::~NetWorkManager(void)
 {
 	m_bChanging = false;
-	map<unsigned int, IKxComm*>::iterator iterGuest = m_GuestMap.begin();
+	map<unsigned int, IComm*>::iterator iterGuest = m_GuestMap.begin();
 	for (; iterGuest != m_GuestMap.end(); ++iterGuest)
 	{
 		iterGuest->second->release();
 	}
-    map<unsigned int, IKxComm*>::iterator iterUser = m_UserMap.begin();
+    map<unsigned int, IComm*>::iterator iterUser = m_UserMap.begin();
     for (; iterUser != m_UserMap.end(); ++iterUser)
     {
         iterUser->second->release();
     }
-    map<int, vector<IKxComm*> >::iterator iterServer = m_ServerMapByGroup.begin();
+    map<int, vector<IComm*> >::iterator iterServer = m_ServerMapByGroup.begin();
     for (; iterServer != m_ServerMapByGroup.end(); ++iterServer)
     {
-        vector<IKxComm*>& vecServer = iterServer->second;
-        for (vector<IKxComm*>::iterator iterSock = vecServer.begin();
+        vector<IComm*>& vecServer = iterServer->second;
+        for (vector<IComm*>::iterator iterSock = vecServer.begin();
             iterSock != vecServer.end(); ++iterSock)
         {
             (*iterSock)->release();
@@ -57,20 +57,20 @@ void NetWorkManager::destroy()
 }
 
 // 通过类型获取服务器,Key对应的Value值来取模
-IKxComm* NetWorkManager::getServer(int serverId, int nValue)
+IComm* NetWorkManager::getServer(int serverId, int nValue)
 {
 	return m_ServerList[serverId];
 }
 
 // 获取某个服务器组
-std::vector<IKxComm*>* NetWorkManager::getGroupServer(int nGroupID)
+std::vector<IComm*>* NetWorkManager::getGroupServer(int nGroupID)
 {
-    map<int, std::vector<IKxComm*> >::iterator ator = m_ServerMapByGroup.find(nGroupID);
+    map<int, std::vector<IComm*> >::iterator ator = m_ServerMapByGroup.find(nGroupID);
     if (ator == m_ServerMapByGroup.end())
     {
         return nullptr;
     }
-    vector<IKxComm*> *pVectServer = &(ator->second);
+    vector<IComm*> *pVectServer = &(ator->second);
     if (pVectServer->size() == 0)
     {
         return nullptr;
@@ -79,15 +79,15 @@ std::vector<IKxComm*>* NetWorkManager::getGroupServer(int nGroupID)
 }
 
 //获取某个服务器组备份
-std::vector<IKxComm*>* NetWorkManager::getBakGroupServer(int nGroupID)
+std::vector<IComm*>* NetWorkManager::getBakGroupServer(int nGroupID)
 {
-	map<int, std::vector<IKxComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
+	map<int, std::vector<IComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
 	if (ator == m_BakServerMapByGroup.end())
 	{
 		return nullptr;
 	}
 
-	vector<IKxComm*> *pVectServer = &(ator->second);
+	vector<IComm*> *pVectServer = &(ator->second);
 	if (pVectServer->size() == 0)
 	{
 		return nullptr;
@@ -95,14 +95,14 @@ std::vector<IKxComm*>* NetWorkManager::getBakGroupServer(int nGroupID)
 	return pVectServer;
 }
 
-bool NetWorkManager::addServer(int serverId, IKxComm* obj)
+bool NetWorkManager::addServer(int serverId, IComm* obj)
 {
     if (obj == nullptr)
     {
         return false;
     }
 
-	std::map<int, IKxComm* >::iterator ator = m_ServerList.find(serverId);
+	std::map<int, IComm* >::iterator ator = m_ServerList.find(serverId);
 
 	if (nullptr != obj && ator == m_ServerList.end())
     {
@@ -114,23 +114,23 @@ bool NetWorkManager::addServer(int serverId, IKxComm* obj)
 }
 
 //添加备份后端服务器组ID
-bool NetWorkManager::addBakServer(int nGroupID, IKxComm* obj)
+bool NetWorkManager::addBakServer(int nGroupID, IComm* obj)
 {
 	if (obj == nullptr)
 	{
 		return false;
 	}
 
-	std::map<int, vector<IKxComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
+	std::map<int, vector<IComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
 	if (nullptr != obj && ator == m_BakServerMapByGroup.end())
 	{
-		vector<IKxComm*> ServerList;
+		vector<IComm*> ServerList;
 		ServerList.push_back(obj);
 		m_BakServerMapByGroup[nGroupID] = ServerList;
 	}
 	else
 	{
-		vector<IKxComm*> &serverList = ator->second;
+		vector<IComm*> &serverList = ator->second;
 		serverList.push_back(obj);
 	}
 	obj->retain();
@@ -140,10 +140,10 @@ bool NetWorkManager::addBakServer(int nGroupID, IKxComm* obj)
 //清除某个备份服务器组ID
 bool NetWorkManager::clearBakServer(int nGroupID)
 {
-	std::map<int, vector<IKxComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
+	std::map<int, vector<IComm*> >::iterator ator = m_BakServerMapByGroup.find(nGroupID);
 	if (ator != m_BakServerMapByGroup.end())
 	{
-		vector<IKxComm*> ServerList = ator->second;
+		vector<IComm*> ServerList = ator->second;
 		for (unsigned int i = 0; i < ServerList.size(); i++)
 		{
 			ServerList[i]->release();
@@ -155,9 +155,9 @@ bool NetWorkManager::clearBakServer(int nGroupID)
 	return true;
 }
 
-bool NetWorkManager::addUser(int guestId, IKxComm* obj)
+bool NetWorkManager::addUser(int guestId, IComm* obj)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(guestId);
+	map<unsigned int, IComm*>::iterator iter = m_UserMap.find(guestId);
 	if (iter != m_UserMap.end())
 	{
 		//客户端ID重复
@@ -169,9 +169,9 @@ bool NetWorkManager::addUser(int guestId, IKxComm* obj)
 	return true;
 }
 
-IKxComm* NetWorkManager::getUser(int guestId)
+IComm* NetWorkManager::getUser(int guestId)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(guestId);
+	map<unsigned int, IComm*>::iterator iter = m_UserMap.find(guestId);
 	if (iter == m_UserMap.end())
 	{
 		//客户端ID找不到
@@ -182,7 +182,7 @@ IKxComm* NetWorkManager::getUser(int guestId)
 
 bool NetWorkManager::removeUser(int guestId)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_UserMap.find(guestId);
+	map<unsigned int, IComm*>::iterator iter = m_UserMap.find(guestId);
 	if (iter == m_UserMap.end())
     {
         return false;
@@ -196,7 +196,7 @@ bool NetWorkManager::removeUser(int guestId)
 // 数据广播给所有玩家
 bool NetWorkManager::broadCastData(char *pszContext, int nLen)
 {
-    for (map<unsigned int, IKxComm*>::iterator ator = m_UserMap.begin();
+    for (map<unsigned int, IComm*>::iterator ator = m_UserMap.begin();
         ator != m_UserMap.end(); ++ator)
     {
         ator->second->sendData(pszContext, nLen);
@@ -229,8 +229,8 @@ unsigned int NetWorkManager::getCurClientNum()
 
 void NetWorkManager::closeAllServer()
 {
-	std::map<int, std::vector<IKxComm*> >::iterator mapit = m_ServerMapByGroup.begin();
-	std::vector<IKxComm*>::iterator vecit;
+	std::map<int, std::vector<IComm*> >::iterator mapit = m_ServerMapByGroup.begin();
+	std::vector<IComm*>::iterator vecit;
 	for (; mapit!=m_ServerMapByGroup.end(); ++mapit)
 	{
 		vecit = mapit->second.begin();
@@ -246,14 +246,14 @@ void NetWorkManager::closeAllServer()
 
 void NetWorkManager::onTimer(const TimeVal& now)
 {
-	for (std::map<int, std::vector<IKxComm*> >::iterator ator = m_BakServerMapByGroup.begin(); ator != m_BakServerMapByGroup.end(); ++ator)
+	for (std::map<int, std::vector<IComm*> >::iterator ator = m_BakServerMapByGroup.begin(); ator != m_BakServerMapByGroup.end(); ++ator)
 	{
 		int nGroupID = ator->first;
 		//删除旧连接
-		std::map<int, std::vector<IKxComm*> >::iterator mapit = m_ServerMapByGroup.find(nGroupID);
+		std::map<int, std::vector<IComm*> >::iterator mapit = m_ServerMapByGroup.find(nGroupID);
 		if (mapit != m_ServerMapByGroup.end())
 		{
-			std::vector<IKxComm*> &VectComm = mapit->second;
+			std::vector<IComm*> &VectComm = mapit->second;
 			for (unsigned int i = 0; i < VectComm.size(); i++)
 			{
 				VectComm[i]->release();
@@ -270,9 +270,9 @@ void NetWorkManager::onTimer(const TimeVal& now)
 	m_bChanging = false;
 }
 
-bool NetWorkManager::addGuest(unsigned int guestId, IKxComm* obj)
+bool NetWorkManager::addGuest(unsigned int guestId, IComm* obj)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guestId);
+	map<unsigned int, IComm*>::iterator iter = m_GuestMap.find(guestId);
 	if (iter != m_GuestMap.end())
 	{
 		//客户端ID重复
@@ -285,9 +285,9 @@ bool NetWorkManager::addGuest(unsigned int guestId, IKxComm* obj)
 }
 
 // 获取待验证连接客户端
-IKxComm* NetWorkManager::getGuest(unsigned int guestId)
+IComm* NetWorkManager::getGuest(unsigned int guestId)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guestId);
+	map<unsigned int, IComm*>::iterator iter = m_GuestMap.find(guestId);
 	if (iter == m_GuestMap.end())
 	{
 		//客户端ID找不到
@@ -298,7 +298,7 @@ IKxComm* NetWorkManager::getGuest(unsigned int guestId)
 
 bool NetWorkManager::removeGuest(unsigned int guestId)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guestId);
+	map<unsigned int, IComm*>::iterator iter = m_GuestMap.find(guestId);
 	if (iter == m_GuestMap.end())
 	{
 		return false;
@@ -312,7 +312,7 @@ bool NetWorkManager::removeGuest(unsigned int guestId)
 // 将连接转为连接OK的客户端
 bool NetWorkManager::changeGuestToUser(SessionClient* guest, unsigned int userId)
 {
-	map<unsigned int, IKxComm*>::iterator iter = m_GuestMap.find(guest->getGuestId());
+	map<unsigned int, IComm*>::iterator iter = m_GuestMap.find(guest->getGuestId());
 	if (iter == m_GuestMap.end())
 	{
 		// 客户端ID找不到

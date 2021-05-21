@@ -3,7 +3,7 @@
 #include "CommInterfaces.h"
 #include "Head.h"
 
-class BaseModule : public IKxModule
+class BaseModule : public IModule
 {
 public:
     BaseModule(void){}

@@ -11,7 +11,7 @@
 using namespace std;
 
 // 处理客户端的消息
-void LoginService::processServiceC2S(int subcmd, int uid, char *buffer, int len, IKxComm *commun)
+void LoginService::processServiceC2S(int subcmd, int uid, char *buffer, int len, IComm *commun)
 {
 	switch (subcmd)
 	{
@@ -24,7 +24,7 @@ void LoginService::processServiceC2S(int subcmd, int uid, char *buffer, int len,
 }
 
 
-void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IKxComm *commun)
+void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IComm *commun)
 {
 	Head* head = reinterpret_cast<Head*>(buffer);
 
@@ -107,7 +107,7 @@ void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid)
 }
 
 // 处理客户端的消息
-void LoginService::processServiceS2S(int subcmd, int uid, char *buffer, int len, IKxComm *commun)
+void LoginService::processServiceS2S(int subcmd, int uid, char *buffer, int len, IComm *commun)
 {
 	switch (subcmd)
 	{
@@ -119,7 +119,7 @@ void LoginService::processServiceS2S(int subcmd, int uid, char *buffer, int len,
 	}
 }
 
-void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *commun)
+void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IComm *commun)
 {
 	//玩家断线处理 由Session触发
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);

@@ -14,7 +14,7 @@
 #include "CommInterfaces.h"
 #include "TimeVal.h"
 
-class SelectPoller : public IKxCommPoller
+class SelectPoller : public ICommPoller
 {
 public:
 	SelectPoller();
@@ -27,18 +27,18 @@ public:
     // 注册一个IKxComm通讯对象，并retain
     // 允许重复注册，重复注册相当于调用modifyCommObject
     // 添加成功(包括重复组成)返回0，失败返回-1
-    virtual int addCommObject(IKxComm* obj, int type);
+    virtual int addCommObject(IComm* obj, int type);
 
     // 修改IKxComm通讯对象所监听的事件
     // 未注册的IKxComm通讯对象调用该方法会失败
     // 修改成功返回0，失败返回-1
-    virtual int modifyCommObject(IKxComm* obj, int type);
+    virtual int modifyCommObject(IComm* obj, int type);
 
     // 移除已经注册的IKxComm通讯对象
     // 移除成功返回0，失败返回-1
-    virtual int removeCommObject(IKxComm* obj);
+    virtual int removeCommObject(IComm* obj);
 
-    IKxComm* getComm(KXCOMMID cid);
+    IComm* getComm(KXCOMMID cid);
 
     inline void setTimeOut(float timeOut){ m_TimeOut.setFromfloat(timeOut); m_IsBlock = false; }
     inline void setTimeOut(long sec, long usec) { m_TimeOut = TimeVal(sec, usec); m_IsBlock = false; }
@@ -55,8 +55,8 @@ private:
     fd_set m_ExceptSet;
 	TimeVal m_TimeOut;
 
-    std::map<KXCOMMID, IKxComm*> m_PollMap;
-    std::set<IKxComm*> m_RemoveSet;
+    std::map<KXCOMMID, IComm*> m_PollMap;
+    std::set<IComm*> m_RemoveSet;
 };
 
 #endif

@@ -15,7 +15,7 @@
 #include "BufferList.h"
 
 
-class TCPUnit : public IKxComm
+class TCPUnit : public IComm
 {
 public:
     TCPUnit();

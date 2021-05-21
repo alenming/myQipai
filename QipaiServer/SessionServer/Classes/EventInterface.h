@@ -12,7 +12,7 @@ enum EEventId
 
 struct IGameEvent
 {
-	virtual bool onUserEvent(int eventId, IKxComm* target) = 0;
+	virtual bool onUserEvent(int eventId, IComm* target) = 0;
 	virtual bool onUserProc(unsigned int id) = 0;
 };
 

@@ -30,7 +30,7 @@ using namespace std;
 
 	Epoller::~Epoller()
 	{
-		for (map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.begin();
+		for (map<KXCOMMID, IComm*>::iterator iter = m_PollMap.begin();
 			iter != m_PollMap.end(); ++iter)
 		{
 			(iter->second)->release();
@@ -52,14 +52,14 @@ using namespace std;
 		for (int i = 0; i < maxnotify; ++i)
 		{
 			KXCOMMID fd = m_Events[i].data.fd;
-			map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(fd);
+			map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(fd);
 			if (iter == m_PollMap.end())
 			{
 				KX_LOGDEBUG("warn: KxEpoller::poll epoll_wait missing IKxComm with fd %d event %d",
 					fd, m_Events[i].events);
 				continue;
 			}
-			IKxComm* obj = iter->second;
+			IComm* obj = iter->second;
             m_CurrentPollObject = obj;
 			int event = 0;
 			if (m_Events[i].events & (EPOLLHUP | EPOLLERR))
@@ -112,7 +112,7 @@ using namespace std;
 		return maxnotify;
 	}
 
-	int Epoller::addCommObject(IKxComm* obj, int events)
+	int Epoller::addCommObject(IComm* obj, int events)
 	{
 		if (nullptr == obj)
 		{
@@ -120,7 +120,7 @@ using namespace std;
 			return -1;
 		}
 		KXCOMMID fd = obj->getCommId();
-		map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(fd);
+		map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(fd);
 		if (iter != m_PollMap.end())
 		{
 			if(iter->second != obj)
@@ -162,7 +162,7 @@ using namespace std;
 		return ret;
 	}
 
-	int Epoller::modifyCommObject(IKxComm* obj, int events)
+	int Epoller::modifyCommObject(IComm* obj, int events)
 	{
 		if (nullptr == obj)
 		{
@@ -170,7 +170,7 @@ using namespace std;
 			return -1;
 		}
 		KXCOMMID fd = obj->getCommId();
-		map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(fd);
+		map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(fd);
 		if (iter == m_PollMap.end())
 		{
 			KX_LOGERROR("error: KxEpoller::modifyCommObject object %x fd %d faile, isn't in pollMap",
@@ -195,7 +195,7 @@ using namespace std;
 		return ret;
 	}
 
-	int Epoller::removeCommObject(IKxComm* obj)
+	int Epoller::removeCommObject(IComm* obj)
 	{
 		if (nullptr == obj)
 		{
@@ -207,7 +207,7 @@ using namespace std;
 		int ret = applyChange(fd, EPOLL_CTL_DEL, obj->getPollType());
 		obj->setPoller(nullptr);
 
-		map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(fd);
+		map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(fd);
 		if (iter != m_PollMap.end())
 		{
 			if (iter->second != obj)
@@ -263,9 +263,9 @@ using namespace std;
 		return ret;
 	}
 
-	IKxComm* Epoller::getComm(KXCOMMID cid)
+	IComm* Epoller::getComm(KXCOMMID cid)
 	{
-		map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(cid);
+		map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(cid);
 		if (iter == m_PollMap.end())
 		{
 			return nullptr;

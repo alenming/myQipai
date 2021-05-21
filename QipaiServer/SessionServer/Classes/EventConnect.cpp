@@ -19,7 +19,7 @@ bool EventConnect::onUserProc(unsigned int id)
 	return true;
 }
 
-bool EventConnect::onUserEvent(int nType, IKxComm* target)
+bool EventConnect::onUserEvent(int nType, IComm* target)
 {
     SessionClient *pClient = static_cast<SessionClient *>(target);
     if (pClient != nullptr)

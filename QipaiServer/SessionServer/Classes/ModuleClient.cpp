@@ -12,7 +12,7 @@ ModuleClient::~ModuleClient(void)
 {
 }
 
-void ModuleClient::processLogic(char* buffer, unsigned int len, IKxComm *target)
+void ModuleClient::processLogic(char* buffer, unsigned int len, IComm *target)
 {
     SessionClient* pClient = dynamic_cast<SessionClient*>(target);
 	ServerConfig * pServerConfig = SessionServer::getInstance()->getServerCoinfig();
@@ -44,14 +44,14 @@ void ModuleClient::processLogic(char* buffer, unsigned int len, IKxComm *target)
 		KX_LOGDEBUG("转发失败!");
 }
 
-void ModuleClient::processError(IKxComm *target)
+void ModuleClient::processError(IComm *target)
 {
 	this->userDisconnect(target);    // 玩家断线
 }
 
 // 1. 告诉所有服务器，玩家XXX掉线了
 // 2. 从ClientManager中移除该玩家
-void ModuleClient::userDisconnect(IKxComm *target)
+void ModuleClient::userDisconnect(IComm *target)
 {
     SessionClient *pClient = dynamic_cast<SessionClient*>(target);
     if (pClient == nullptr)

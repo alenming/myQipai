@@ -15,7 +15,7 @@ SessionModule::~SessionModule(void)
 {
 }
 
-void SessionModule::processLogic(char* buffer, unsigned int len, IKxComm *target)
+void SessionModule::processLogic(char* buffer, unsigned int len, IComm *target)
 {
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nMainCmd = head->MainCommand();
@@ -52,7 +52,7 @@ int SessionModule::processLength(char* buffer, unsigned int len)
 	return reinterpret_cast<Head*>(buffer)->length;
 }
 
-void SessionModule::processError(IKxComm *target)
+void SessionModule::processError(IComm *target)
 {
 
 }

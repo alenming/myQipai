@@ -22,7 +22,7 @@ SelectPoller::SelectPoller()
 
 SelectPoller::~SelectPoller()
 {
-    for (map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.begin();
+    for (map<KXCOMMID, IComm*>::iterator iter = m_PollMap.begin();
         iter != m_PollMap.end(); ++iter)
     {
         iter->second->release();
@@ -40,10 +40,10 @@ int SelectPoller::poll()
     if (ret > 0)
     {
         int eventCounts = ret;
-        map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.begin();
+        map<KXCOMMID, IComm*>::iterator iter = m_PollMap.begin();
         while (eventCounts > 0 && iter != m_PollMap.end())
         {
-            IKxComm* obj = iter->second;
+            IComm* obj = iter->second;
             m_CurrentPollObject = obj;
             KXCOMMID cid = obj->getCommId();
             int pollType = obj->getPollType();
@@ -98,7 +98,7 @@ int SelectPoller::poll()
     return ret;
 }
 
-int SelectPoller::addCommObject(IKxComm* obj, int type)
+int SelectPoller::addCommObject(IComm* obj, int type)
 {
     if (nullptr == obj || m_PollMap.find(obj->getCommId()) != m_PollMap.end())
     {
@@ -133,7 +133,7 @@ int SelectPoller::addCommObject(IKxComm* obj, int type)
     return 0;
 }
 
-int SelectPoller::modifyCommObject(IKxComm* obj, int type)
+int SelectPoller::modifyCommObject(IComm* obj, int type)
 {
     if (obj != nullptr
         && m_PollMap.find(obj->getCommId()) == m_PollMap.end())
@@ -173,7 +173,7 @@ int SelectPoller::modifyCommObject(IKxComm* obj, int type)
     return 0;
 }
 
-int SelectPoller::removeCommObject(IKxComm* obj)
+int SelectPoller::removeCommObject(IComm* obj)
 {
     if (nullptr != obj
         && m_PollMap.find(obj->getCommId()) != m_PollMap.end())
@@ -185,9 +185,9 @@ int SelectPoller::removeCommObject(IKxComm* obj)
     return -1;
 }
 
-IKxComm* SelectPoller::getComm(KXCOMMID cid)
+IComm* SelectPoller::getComm(KXCOMMID cid)
 {
-    map<KXCOMMID, IKxComm*>::iterator iter = m_PollMap.find(cid);
+    map<KXCOMMID, IComm*>::iterator iter = m_PollMap.find(cid);
     if (iter == m_PollMap.end())
     {
         return nullptr;
@@ -200,10 +200,10 @@ IKxComm* SelectPoller::getComm(KXCOMMID cid)
 
 void SelectPoller::clear()
 {
-    for (set<IKxComm*>::iterator iter = m_RemoveSet.begin();
+    for (set<IComm*>::iterator iter = m_RemoveSet.begin();
         iter != m_RemoveSet.end(); ++iter)
     {
-        IKxComm* obj = *iter;
+        IComm* obj = *iter;
         KXCOMMID cid = obj->getCommId();
         FD_CLR(cid, &m_InSet);
         FD_CLR(cid, &m_OutSet);

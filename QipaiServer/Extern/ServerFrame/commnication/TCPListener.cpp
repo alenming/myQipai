@@ -92,7 +92,7 @@ int TCPListener::onSend()
     return 0;
 }
 
-void TCPListener::setClientModule(IKxModule* module)
+void TCPListener::setClientModule(IModule* module)
 {
     KXSAFE_RELEASE(m_ClientModule);
     m_ClientModule = module; 

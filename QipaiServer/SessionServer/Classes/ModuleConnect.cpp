@@ -22,7 +22,7 @@ bool ModuleConnect::init(IGameEvent *pSink)
 	return true;
 }
 
-void ModuleConnect::processLogic(char* buffer, unsigned int len, IKxComm *target)
+void ModuleConnect::processLogic(char* buffer, unsigned int len, IComm *target)
 {
     // 发给指定的前端
 	Head* head = reinterpret_cast<Head*>(buffer);
@@ -51,13 +51,13 @@ void ModuleConnect::processLogic(char* buffer, unsigned int len, IKxComm *target
 
 }
 
-void ModuleConnect::processError(IKxComm *target)
+void ModuleConnect::processError(IComm *target)
 {
 	// 后端连接断开
 	KX_LOGDEBUG("Socket Connect To Server Failed");
 }
 
-void ModuleConnect::processEvent(int eventId, IKxComm* target)
+void ModuleConnect::processEvent(int eventId, IComm* target)
 {
     if (eventId == KXEVENT_CONNECT_FAILE)
     {
@@ -69,7 +69,7 @@ void ModuleConnect::processEvent(int eventId, IKxComm* target)
     }
 }
 
-bool ModuleConnect::processUserEvent(int nType, IKxComm* target)
+bool ModuleConnect::processUserEvent(int nType, IComm* target)
 {
 	if (m_pSink != nullptr)
 	{

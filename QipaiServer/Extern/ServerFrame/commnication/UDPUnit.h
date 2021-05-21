@@ -8,7 +8,7 @@
 #include "CommInterfaces.h"
 #include "Sock.h"
 
-class UDPUnit : public IKxComm
+class UDPUnit : public IComm
 {
 public:
 	UDPUnit();

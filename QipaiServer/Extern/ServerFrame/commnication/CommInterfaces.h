@@ -15,13 +15,13 @@ enum KXPOLL_TYPE
     KXPOLLTYPE_ERR = 8
 };
 
-class IKxComm;
-class IKxCommPoller;
+class IComm;
+class ICommPoller;
 
 // 逻辑处理模块接口
 // 用于处理IKxComm接收到的消息以及异常
 // 一个IKxModule可以对应多个IKxComm对象，例如对应很多个客户端对象
-class IKxModule : public Object
+class IModule : public Object
 {
 public:
     // IKxComm对象接收到数据后，用于检测数据是否完整的回调
@@ -30,15 +30,15 @@ public:
         return len;
     }
     // IKxComm对象接收到完整数据后，调用的回调
-    virtual void processLogic(char* buffer, unsigned int len, IKxComm *target) = 0;
+    virtual void processLogic(char* buffer, unsigned int len, IComm *target) = 0;
     // IKxComm对象发生错误时，调用的回调
-    virtual void processError(IKxComm *target) = 0;
+    virtual void processError(IComm *target) = 0;
     // IKxComm对象内部发生特殊事件时触发的回调——如TCP非阻塞连接成功
-    virtual void processEvent(int eventId, IKxComm* target) {}
+    virtual void processEvent(int eventId, IComm* target) {}
 };
 
 // 轮询器接口，会有Poll，Select，Epoll(linux), [IOCP(windows)]等实现
-class IKxCommPoller : public Object
+class ICommPoller : public Object
 {
 public:
     // 进行轮询，并返回触发的事件数
@@ -48,38 +48,38 @@ public:
     // 注册一个IKxComm通讯对象，并retain
     // 允许重复注册，重复注册相当于调用modifyCommObject
     // 添加成功(包括重复注册)返回0，失败返回-1
-    virtual int addCommObject(IKxComm* obj, int type) = 0;
+    virtual int addCommObject(IComm* obj, int type) = 0;
 
     // 修改IKxComm通讯对象所监听的事件
     // 未注册的IKxComm通讯对象调用该方法会失败
     // 修改成功返回0，失败返回-1
-    virtual int modifyCommObject(IKxComm* obj, int type) = 0;
+    virtual int modifyCommObject(IComm* obj, int type) = 0;
 
     // 移除已经注册的IKxComm通讯对象
     // 移除成功返回0，失败返回-1
-    virtual int removeCommObject(IKxComm* obj) = 0;
+    virtual int removeCommObject(IComm* obj) = 0;
 
-    IKxComm* getCurrentPollObject() { return m_CurrentPollObject; }
+    IComm* getCurrentPollObject() { return m_CurrentPollObject; }
 
 protected:
-    IKxComm* m_CurrentPollObject;
+    IComm* m_CurrentPollObject;
 };
 
 
 // 通讯对象接口，会有TCP，UDP，UnixSocket，共享内存等实现
-class IKxComm : virtual public Object
+class IComm : virtual public Object
 {
-    friend class IKxCommPoller;
+    friend class ICommPoller;
 
 public:
-    IKxComm()
+    IComm()
         : m_PollType(KXPOLLTYPE_UNKNOWN)
 		, m_Poller(nullptr)
 		, m_ProcessModule(nullptr)
     {
     }
 
-    virtual ~IKxComm()
+    virtual ~IComm()
     {
         KXSAFE_RELEASE(m_ProcessModule);
         KXSAFE_RELEASE(m_Poller);
@@ -97,7 +97,7 @@ public:
     // 获取通讯ID（通常是socket fd）
     virtual KXCOMMID getCommId() = 0;
 
-    virtual void setModule(IKxModule *model)
+    virtual void setModule(IModule *model)
     {
         if (model != m_ProcessModule)
         {
@@ -107,13 +107,13 @@ public:
         }
     }
 
-    virtual IKxModule* getModule()
+    virtual IModule* getModule()
     {
         return m_ProcessModule;
     }
 
     // 设置Poller
-    virtual void setPoller(IKxCommPoller* poller)
+    virtual void setPoller(ICommPoller* poller)
     {
         if (poller != m_Poller)
         {
@@ -123,7 +123,7 @@ public:
         }
     }
 
-    virtual IKxCommPoller* getPoller()
+    virtual ICommPoller* getPoller()
     {
         return m_Poller;
     }
@@ -185,8 +185,8 @@ public:
 
 protected:
     int	        m_PollType;
-    IKxCommPoller* m_Poller;            // Poller对象，用于非阻塞发送失败时，自动发送缓存数据
-    IKxModule*  m_ProcessModule;
+    ICommPoller* m_Poller;            // Poller对象，用于非阻塞发送失败时，自动发送缓存数据
+    IModule*  m_ProcessModule;
 };
 
 

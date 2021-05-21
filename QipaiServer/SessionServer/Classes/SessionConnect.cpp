@@ -85,7 +85,7 @@ bool SessionConnect::reconnect()
         return false;
     }
 
-    IKxCommPoller* pPoller = SessionServer::getInstance()->getMainPoller();
+    ICommPoller* pPoller = SessionServer::getInstance()->getMainPoller();
     pPoller->addCommObject(this, getPollType());
     return true;
 }

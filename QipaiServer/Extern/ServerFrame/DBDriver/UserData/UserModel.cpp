@@ -64,6 +64,7 @@ bool UserModel::Refresh()
 			// 用户不存在
 			return false;
 		}
+		//更新登录时间
 		int nCurTime = BaseServer::getInstance()->getTimerManager()->getTimestamp();
 		SetUserFieldVal(USR_FD_LOGINTIME, nCurTime);
 		return true;
@@ -72,7 +73,7 @@ bool UserModel::Refresh()
 	return false;
 }
 
-bool UserModel::NewUser(int accoundId, std::string name, std::string passWord, std::map<int, int> &info)
+bool UserModel::writeNewUserData(int accoundId, std::string name, std::string passWord, std::map<int, int> &info)
 {
 	m_uId = accoundId;
 	m_mapUserInfo = info;

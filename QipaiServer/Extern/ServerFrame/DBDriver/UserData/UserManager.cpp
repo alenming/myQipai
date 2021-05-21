@@ -174,7 +174,7 @@ GameUser *UserManager::newGameUser(int uid, char* passWord)
 	attrs[USR_FD_DIAMOID] = 1000;
 	attrs[USR_FD_CREATETIME] = nCreateTime;
 
-	if (!pUserModel->NewUser(uid, name, password,attrs))
+	if (!pUserModel->writeNewUserData(uid, name, password,attrs))
 	{
 		// 用户数据初始化失败
 		return nullptr;

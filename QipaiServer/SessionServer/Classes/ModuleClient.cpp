@@ -33,10 +33,10 @@ void ModuleClient::processLogic(char* buffer, unsigned int len, IComm *target)
 		return;
 	}
 	//第一次消息来,帐号没验证.用的是guesId,登录成功后会转为userId
-	//if (pClient->getPermission() == 0)
-	//	head->id = pClient->getGuestId();
-	//else if (pClient->getPermission() == 1)
-	//	head->id = pClient->getUserId();
+	if (pClient->getPermission() == 0)
+		head->id = pClient->getGuestId();
+	else if (pClient->getPermission() == 1)
+		head->id = pClient->getUserId();
 
 	if (pClient->sendDataToServer(nMainCmd, nSubCmd, buffer, len))
 		LOGDEBUG("转发成功!");

@@ -1,6 +1,7 @@
 #include "SessionHelper.h"
 #include "NetworkManager.h"
 #include "SessionClient.h"
+#include "BufferData.h"
 #include "protocol/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"
 #include "log/LogManager.h"
@@ -16,8 +17,6 @@ SessionHelper::~SessionHelper()
 void SessionHelper::ServerProcess(int subCmd, char* buffer)
 {
 	Head* head = reinterpret_cast<Head*>(buffer);
-
-	//int nMainCmd = head->MainCommand();
 	int nSubCmd = head->SubCommand();
 	int uId = head->id;
 	switch (subCmd)
@@ -47,33 +46,32 @@ void SessionHelper::ServerSubInit(int uId, int userId)
 
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
 
-	unsigned int offset = sizeof(Head);
 	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(uId));
 	// 连接断开/或者连接不存在
-	if (pSessionClient == nullptr)
-	{
-		return;
-	}
+	if (pSessionClient == nullptr)	return;
+
 	//验证逻辑
 	bool isSuccessful = true;
-	pSessionClient->setUserId(userId);
 
 
-	Head head;
-	head.MakeCommand(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_C2S_RESIGIT);
-	head.length = sizeof(head);
+	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
+	char* bu = buffer->getBuffer();
+
+	Head* head = reinterpret_cast<Head*>(bu);
+	head->id = userId;//还是guesId
+	head->length = buffer->getDataLength();
 
 
 	if (!isSuccessful)
 	{
 		// 验证失败
-		head.id = uId;
+		head->id = uId;
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->clean();
 	}
 	else
 	{
-		head.id = pSessionClient->getUserId();
+		head->id = pSessionClient->getUserId();
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->setUserId(userId);
 		pSessionClient->setPermission(1);

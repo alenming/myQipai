@@ -38,7 +38,7 @@ public:
 	// 刷新用户数据
 	bool Refresh();
 	// 新用户
-	bool NewUser(int accoundId, std::string name,std::string passWord, std::map<int, int> &info);
+	bool writeNewUserData(int accoundId, std::string name,std::string passWord, std::map<int, int> &info);
 	// 获得用户名字
 	std::string& GetName();
 	// 获得用户基本信息

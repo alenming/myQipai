@@ -47,7 +47,7 @@ public:
 		KXSAFE_RELEASE(m_Object);
 	}
 
-    virtual void onTimer(const kxTimeVal& now)
+    virtual void onTimer(const TimeVal& now)
     {
         if (nullptr != m_Object)
         {

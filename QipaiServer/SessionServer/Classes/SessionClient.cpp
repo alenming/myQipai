@@ -1,7 +1,8 @@
 #include "SessionClient.h"
 #include "NetworkManager.h"
 #include "SessionServer.h"
-
+#include "KxTCPConnector.h"
+#include "log/LogManager.h"
 
 using namespace std;
 

@@ -8,7 +8,6 @@
  * 6.UserId ¶ÔÓ¦ CommunicationId µÄ¹þÏ£
 
  */
-#include "KXServer.h"
 #include "LoginServer.h"
 
 

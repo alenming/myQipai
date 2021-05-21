@@ -1,6 +1,8 @@
 #include "UserManager.h"
-#include "DBDriver/DBManager.h"
-#include "DBDriver/RedisStorer.h"
+#include "DBManager.h"
+#include "RedisStorer.h"
+#include "BaseServer.h"
+
 using namespace std;
 UserManager * UserManager::m_pInstance = nullptr;
 
@@ -64,7 +66,7 @@ void UserManager::addModelType(ModelType Type)
 	m_VectServerModel.push_back(Type);
 }
 
-void UserManager::onTimer(const kxTimeVal& now)
+void UserManager::onTimer(const TimeVal& now)
 {
 	int nCurTime = (int)time(nullptr);
 
@@ -138,7 +140,7 @@ GameUser *UserManager::newGameUser(int uid, char* passWord)
 {
 	// 新用户
 	GameUser *pGameUser = new GameUser;
-	int nCreateTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
+	int nCreateTime = BaseServer::getInstance()->getTimerManager()->getTimestamp();
 	// 创建每个模型
 	UserModel *pUserModel = new UserModel;
 	pUserModel->init(uid);

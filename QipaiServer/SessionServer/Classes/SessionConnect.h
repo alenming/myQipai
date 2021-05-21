@@ -1,8 +1,9 @@
 #ifndef SESSION_CONNECT_H__
 #define SESSION_CONNECT_H__
 
-#include "KXServer.h"
 #include <map>
+#include "KxTCPConnector.h"
+#include "KxTimerCallback.h"
 
 #define RECONNECT_TIME_INTERVAL		5			// 重连间隔5秒
 #define MAX_RECONECT_TIME			0xFFFFFFFF	// 重连最大次数

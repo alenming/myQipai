@@ -1,11 +1,11 @@
 #include "LoginServer.h"
-#include <string>
-#include "KxPlatform.h"
+#include "Platform.h"
 #include "SessionModule.h"
 #include "LoginListener.h"
-#include "UserData/UserManager.h"
-#include "DBDriver/DBManager.h"
-
+#include "UserManager.h"
+#include "DBManager.h"
+#include "KxSelectPoller.h"
+#include "log/LogManager.h"
 using namespace std;
 
 LoginServer* LoginServer::m_Instance = nullptr;
@@ -44,7 +44,7 @@ void LoginServer::destroy()
 bool LoginServer::onServerInit()
 {
 	this->setServerName("LoginServer");
-	KxBaseServer::onServerInit();
+	BaseServer::onServerInit();
 	
 	KX_LOGDEBUG("==================================================");
 

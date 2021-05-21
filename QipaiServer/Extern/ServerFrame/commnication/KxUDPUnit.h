@@ -4,9 +4,9 @@
 #ifndef __UDPUNIT_H__
 #define __UDPUNIT_H__
 
-#include "core/KxCore.h"
-#include "commnication/KxCommInterfaces.h"
-#include "commnication/KxSock.h"
+#include "Core.h"
+#include "KxCommInterfaces.h"
+#include "KxSock.h"
 
 class KxUDPUnit : public IKxComm
 {

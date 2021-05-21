@@ -1,8 +1,7 @@
 #ifndef __BASE_MODULE_H__
 #define __BASE_MODULE_H__
-
-#include "KXServer.h"
-#include "server/Head.h"
+#include "KxCommInterfaces.h"
+#include "Head.h"
 
 class BaseModule : public IKxModule
 {

@@ -2,7 +2,7 @@
 #include "SessionClient.h"
 #include "SessionServer.h"
 #include "protocol/ServerProtocol.h"
-
+#include "log/LogManager.h"
 
 ModuleClient::ModuleClient(void)
 {

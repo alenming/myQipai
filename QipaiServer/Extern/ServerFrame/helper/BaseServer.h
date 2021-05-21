@@ -7,18 +7,18 @@
 #ifndef __BASESERVER_H__
 #define __BASESERVER_H__
 
-#include "commnication/KxCommInterfaces.h"
-#include "helper/KxTimerManager.h"
+#include "KxCommInterfaces.h"
+#include "KxTimerManager.h"
 
 
-class KxBaseServer : public KxObject
+class BaseServer : public Object
 {
 protected:
-	KxBaseServer();
-	virtual ~KxBaseServer();
+	BaseServer();
+	virtual ~BaseServer();
 
 public:
-    static KxBaseServer* getInstance() 
+    static BaseServer* getInstance() 
     {
         return m_Server; 
     }
@@ -71,7 +71,7 @@ protected:
 	bool            m_IsRunning;
 	int				m_ServerID;
 	int				m_Tick;
-    static KxBaseServer* m_Server;
+    static BaseServer* m_Server;
 	std::string		m_ServerName;
 };
 

@@ -1,5 +1,5 @@
 #include "CsvLoader.h"
-#include "core/KxCore.h"
+#include "Core.h"
 
 #ifndef RunningInServer
 #include "cocos2d.h"

@@ -1,6 +1,6 @@
 #include "SessionConnect.h"
 #include "SessionServer.h"
-
+#include "log/LogManager.h"
 
 
 

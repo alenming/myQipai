@@ -5,8 +5,8 @@
 #ifndef __GATE_MANAGER_H__
 #define __GATE_MANAGER_H__
 
-#include "KXServer.h"
-#include <vector>
+
+#include "KxCommInterfaces.h"
 
 class GateManager
 {

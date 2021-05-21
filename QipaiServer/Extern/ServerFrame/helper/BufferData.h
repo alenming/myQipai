@@ -10,7 +10,7 @@
 #include <memory.h>
 #include <assert.h>
 
-#include "server/Head.h"
+#include "Head.h"
 
 //序列化插入一个值,反序列化在相应的位置读取该值,并判断是否匹配,如果匹配则没有错位, 不匹配输出信息
 //序列化一个值,用来测试匹配

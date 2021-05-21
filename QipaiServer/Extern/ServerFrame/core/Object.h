@@ -5,11 +5,11 @@
 #ifndef __KXOBJECT_H__
 #define __KXOBJECT_H__
 
-class KxObject
+class Object
 {
 public:
-    KxObject();
-    virtual ~KxObject();
+    Object();
+    virtual ~Object();
 
 public:
     virtual void retain();

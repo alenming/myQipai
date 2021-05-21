@@ -21,11 +21,11 @@ public:
 
     virtual void retain() 
     {
-        KxObject::retain();
+        Object::retain();
     }
     virtual void release()
     {
-        KxObject::release();
+        Object::release();
     }
 
 	bool setConServer(int nKey,int nValue);

@@ -9,8 +9,8 @@
 #define FD_SETSIZE 1024  //修改服务器同时连接的最大连接数
 #endif
 
-#include "KxPlatform.h"
-#include "KxObject.h"
+#include "Platform.h"
+#include "Object.h"
 
 #include <assert.h>
 #include <algorithm>

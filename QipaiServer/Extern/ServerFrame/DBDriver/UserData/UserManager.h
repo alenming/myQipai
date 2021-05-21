@@ -6,8 +6,7 @@
 #include <map>
 #include <string>
 #include "GameUser.h"
-#include "KXServer.h"
-
+#include "KxTimerManager.h"
 
 //延迟处理结构
 struct SDelayDelData
@@ -35,7 +34,7 @@ public:
 
 	void addModelType(ModelType Type);
 
-	void onTimer(const kxTimeVal& now);
+	void onTimer(const TimeVal& now);
 	// 获得已有用户，当createWhenNull为true时，获取不到会自动从数据库中初始化它
 	GameUser* getGameUser(int uid, char* passWord, bool createWhenNull = true);
 	GameUser* getGameUser(int uid, bool createWhenNull = true);

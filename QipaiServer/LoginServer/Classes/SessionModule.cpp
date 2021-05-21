@@ -2,7 +2,7 @@
 #include "GateManager.h"
 #include "LoginService.h"
 #include "helper/BufferData.h"
-#include "server/Head.h"
+
 
 #include "protocol/ServerProtocol.h"
 #include "protocol/LoginProtocol.h"

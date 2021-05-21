@@ -1,9 +1,9 @@
-#include "KxBaseServer.h"
+#include "BaseServer.h"
 #include <signal.h>
 
-#include "helper/KxTimerManager.h"
-#include "core/KxPlatform.h"
-#include "core/KxMemPool.h"
+#include "KxTimerManager.h"
+#include "Platform.h"
+#include "KxMemPool.h"
 #include "log/LogManager.h"
 #include "log/LogFileHandler.h"
 #include "log/LogConsoleHandler.h"
@@ -18,7 +18,7 @@
         case CTRL_CLOSE_EVENT:      // - 当试图关闭控制台程序，系统发送关闭消息。
         case CTRL_LOGOFF_EVENT:     // - 用户退出时，但是不能决定是哪个用户.
         case CTRL_SHUTDOWN_EVENT:   // - 当系统被关闭时.
-            KxBaseServer::getInstance()->stopServer();
+            BaseServer::getInstance()->stopServer();
         default:
             break;
         }
@@ -38,7 +38,7 @@ void processSingal(int nSingal)
     case SIGABRT:
 	case SIGTERM:
 	{
-		KxBaseServer::getInstance()->stopServer();
+		BaseServer::getInstance()->stopServer();
 	}
 	break;
 	default:
@@ -46,9 +46,9 @@ void processSingal(int nSingal)
 	}
 }
 
-KxBaseServer* KxBaseServer::m_Server = nullptr;
+BaseServer* BaseServer::m_Server = nullptr;
 
-KxBaseServer::KxBaseServer()
+BaseServer::BaseServer()
 : m_Poller(nullptr)
 , m_TimerMgr(nullptr)
 , m_IsRunning(false)
@@ -58,11 +58,11 @@ KxBaseServer::KxBaseServer()
 	m_Tick = 0;
 }
 
-KxBaseServer::~KxBaseServer()
+BaseServer::~BaseServer()
 {
 }
 
-void KxBaseServer::startServer()
+void BaseServer::startServer()
 {
 #if KX_TARGET_PLATFORM == KX_PLATFORM_LINUX
 	signal(SIGPIPE, SIG_IGN);
@@ -86,7 +86,7 @@ void KxBaseServer::startServer()
 }
 
 //server run
-void KxBaseServer::runServer()
+void BaseServer::runServer()
 {
     m_IsRunning = true;
 	while(m_IsRunning)
@@ -122,12 +122,12 @@ void KxBaseServer::runServer()
 	}
 }
 
-void KxBaseServer::onServerUpdate()
+void BaseServer::onServerUpdate()
 {
 
 }
 
-bool KxBaseServer::onServerInit()
+bool BaseServer::onServerInit()
 {
     if (nullptr == m_TimerMgr)
     {
@@ -151,7 +151,7 @@ bool KxBaseServer::onServerInit()
 }
 
 //server uninit
-void KxBaseServer::onServerUninit()
+void BaseServer::onServerUninit()
 {
 	KX_LOGDEBUG("Server Stop !!");
 	m_IsRunning = false;

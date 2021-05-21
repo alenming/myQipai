@@ -9,10 +9,10 @@
 #ifndef __TCPUNIT_H__
 #define __TCPUNIT_H__
 
-#include "core/KxCore.h"
-#include "commnication/KxCommInterfaces.h"
-#include "commnication/KxSock.h"
-#include "commnication/KxBufferList.h"
+#include "Core.h"
+#include "KxCommInterfaces.h"
+#include "KxSock.h"
+#include "KxBufferList.h"
 
 
 class KxTCPUnit : public IKxComm

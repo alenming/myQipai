@@ -4,7 +4,8 @@
 #include "protocol/ServerProtocol.h"
 #include "SessionHelper.h"
 #include "protocol/LoginProtocol.h"
-
+#include "log/LogManager.h"
+#include "KxTCPConnector.h"
 ModuleConnect::ModuleConnect(void)
 : m_pSink(nullptr)
 {

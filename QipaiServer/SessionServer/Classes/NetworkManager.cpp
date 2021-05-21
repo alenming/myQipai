@@ -3,7 +3,7 @@
 #include "SessionServer.h"
 #include "SessionConnect.h"
 #include "Head.h"
-
+#include "KxMemPool.h"
 using namespace std;
 
 NetWorkManager::NetWorkManager(void)
@@ -245,7 +245,7 @@ void NetWorkManager::closeAllServer()
 	m_ServerMapByGroup.clear();
 }
 
-void NetWorkManager::onTimer(const kxTimeVal& now)
+void NetWorkManager::onTimer(const TimeVal& now)
 {
 	for (std::map<int, std::vector<IKxComm*> >::iterator ator = m_BakServerMapByGroup.begin(); ator != m_BakServerMapByGroup.end(); ++ator)
 	{

@@ -6,7 +6,7 @@
 #ifndef __TCPCONNECTOR_H__
 #define __TCPCONNECTOR_H__
 
-#include "core/KxCore.h"
+#include "Core.h"
 #include "KxTCPUnit.h"
 
 enum KXEVENT_CONNECTER

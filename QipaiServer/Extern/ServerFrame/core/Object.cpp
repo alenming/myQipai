@@ -1,15 +1,15 @@
-#include "KxObject.h"
+#include "Object.h"
 
-KxObject::KxObject()
+Object::Object()
 :m_ReferenceCount(1)
 {
 }
 
-KxObject::~KxObject()
+Object::~Object()
 {
 }
 
-void KxObject::retain()
+void Object::retain()
 {
     if (m_ReferenceCount > 0)
     {
@@ -17,7 +17,7 @@ void KxObject::retain()
     }
 }
 
-void KxObject::release()
+void Object::release()
 {
     if (m_ReferenceCount > 0)
     {
@@ -29,7 +29,7 @@ void KxObject::release()
     }
 }
 
-unsigned int KxObject::getReferenceCount() const
+unsigned int Object::getReferenceCount() const
 {
     return m_ReferenceCount;
 }

@@ -1,10 +1,13 @@
 #include "LoginService.h"
-#include "userdata/UserManager.h"
+#include "UserManager.h"
 #include "GateManager.h"
-#include "helper/BufferData.h"
-#include "server/Head.h"
-#include "protocol/ServerProtocol.h"
-#include "protocol/LoginProtocol.h"
+#include "BufferData.h"
+#include "KxMemPool.h"
+#include "BaseServer.h"
+#include "ServerProtocol.h"
+#include "LoginProtocol.h"
+
+#include "log/LogManager.h"
 
 
 using namespace std;
@@ -128,7 +131,7 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IKxComm *c
 	}
 	KX_LOGDEBUG("Íæ¼ÒÀëÏß! uid=%d, accounld=%d", uid, pGameUser->getUid());
 	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
-	int curTime  = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
+	int curTime  = BaseServer::getInstance()->getTimerManager()->getTimestamp();
 	pUserModel->SetUserFieldVal(USR_FD_LOGINOUTTIME, curTime);
 	//GameUserManager::getInstance()->RealremoveGameUser(uid);
 

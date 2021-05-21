@@ -5,8 +5,9 @@
 #include "ModuleConnect.h"
 #include "SessionConnect.h"
 #include "NetworkManager.h"
-
+#include "KxSelectPoller.h"
 #include "EventConnect.h"
+#include "log/LogManager.h"
 
 
 using namespace std;
@@ -44,7 +45,7 @@ void SessionServer::destroy()
 
 bool SessionServer::onServerInit()
 {
-	KxBaseServer::onServerInit();
+	BaseServer::onServerInit();
 	KX_LOGDEBUG("======================onServerInit============================");
 
 	//1.³õÊ¼»¯ÂÖÑ¯Æ÷

@@ -8,37 +8,37 @@
 
 #define MILLION 1000000
 
-#include "core/KxCore.h"
+#include "Core.h"
 
 // 时间结构体
-class kxTimeVal
+class TimeVal
 {
 public:
-    kxTimeVal()
+    TimeVal()
     {
         tv_sec = 0;
         tv_usec = 0;
     }
     
-    kxTimeVal(long sec, long usec)
+    TimeVal(long sec, long usec)
     {
         tv_sec = sec;
         tv_usec = usec;
     }
     
-    kxTimeVal(float t)
+    TimeVal(float t)
     {
         tv_sec = (long)t;
         tv_usec = (long)((t - tv_sec) * MILLION);
     }
     
-    inline void add(const kxTimeVal& v)
+    inline void add(const TimeVal& v)
     {
         tv_sec += v.tv_sec;
         tv_usec += v.tv_usec;
     }
     
-    inline void sub(const kxTimeVal& v)
+    inline void sub(const TimeVal& v)
     {
         tv_sec -= v.tv_sec;
         tv_usec -= v.tv_usec;
@@ -58,26 +58,26 @@ public:
     }
     
     // 设置为当前系统时间
-    inline kxTimeVal& now()
+    inline TimeVal& now()
     {
         gettimeofday((struct timeval *)this,  (struct timezone*)0);
         return *this;
     }
     
-    inline const kxTimeVal operator+(const kxTimeVal& v) const
+    inline const TimeVal operator+(const TimeVal& v) const
     {
-        kxTimeVal ret = *this;
+        TimeVal ret = *this;
         ret.add(v);
         return ret;
     }
     
-    inline kxTimeVal& operator+=(const kxTimeVal& v)
+    inline TimeVal& operator+=(const TimeVal& v)
     {
         add(v);
         return *this;
     }
     
-    inline kxTimeVal& operator+=(float v)
+    inline TimeVal& operator+=(float v)
     {
         long t = (long)v;
         tv_sec += t;
@@ -85,20 +85,20 @@ public:
         return *this;
     }
     
-    inline const kxTimeVal operator-(const kxTimeVal& v) const
+    inline const TimeVal operator-(const TimeVal& v) const
     {
-        kxTimeVal ret = *this;
+        TimeVal ret = *this;
         ret.sub(v);
         return ret;
     }
     
-    inline kxTimeVal& operator-=(const kxTimeVal& v)
+    inline TimeVal& operator-=(const TimeVal& v)
     {
         sub(v);
         return *this;
     }
     
-    inline kxTimeVal& operator-=(float v)
+    inline TimeVal& operator-=(float v)
     {
         long t = (long)v;
         tv_sec -= t;
@@ -106,17 +106,17 @@ public:
         return *this;
     }
     
-    inline bool operator==(const kxTimeVal& v) const
+    inline bool operator==(const TimeVal& v) const
     {
         return tv_sec == v.tv_sec && tv_usec == v.tv_usec;
     }
     
-    inline bool operator!=(const kxTimeVal& v) const
+    inline bool operator!=(const TimeVal& v) const
     {
         return tv_sec != v.tv_sec || tv_usec != v.tv_usec;
     }
     
-    inline bool operator>(const kxTimeVal& v) const
+    inline bool operator>(const TimeVal& v) const
     {
         if(tv_sec > v.tv_sec)
         {
@@ -132,7 +132,7 @@ public:
         }
     }
     
-    inline bool operator<(const kxTimeVal& v) const
+    inline bool operator<(const TimeVal& v) const
     {
         if(tv_sec < v.tv_sec)
         {

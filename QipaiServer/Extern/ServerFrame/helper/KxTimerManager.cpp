@@ -44,7 +44,7 @@ KxTimerObject::~KxTimerObject()
 {
 }
 
-void KxTimerObject::onTimer(const kxTimeVal& now)
+void KxTimerObject::onTimer(const TimeVal& now)
 {
 }
 
@@ -57,12 +57,12 @@ void KxTimerObject::stop()
     }
 }
 
-void KxTimerObject::start(const kxTimeVal& now)
+void KxTimerObject::start(const TimeVal& now)
 {
     m_TimeVal = now + m_Delay;
 }
 
-void KxTimerObject::startWithTime(const kxTimeVal& now)
+void KxTimerObject::startWithTime(const TimeVal& now)
 {
     m_TimeVal = now;
 }
@@ -184,7 +184,7 @@ bool KxTimerList::insert(KxTimerObject* obj)
 
     // 从头部开始搜索
     KxTimerObject* pNode = m_Head;
-    const kxTimeVal& timeOut = obj->getTimeVal();
+    const TimeVal& timeOut = obj->getTimeVal();
     if (nullptr == pNode || !pNode->checkTime(timeOut))
     {
         pushFront(obj);
@@ -217,7 +217,7 @@ bool KxTimerList::insert(KxTimerObject* obj)
     return true;
 }
 
-void KxTimerList::update(const kxTimeVal& now)
+void KxTimerList::update(const TimeVal& now)
 {
     while(nullptr != m_Head)
     {
@@ -319,7 +319,7 @@ bool KxTimerManager::addTimer(KxTimerObject* obj, float delay, int repeat)
 bool KxTimerManager::addTimer(KxTimerObject* obj, int delay, int repeat)
 {
 	KXASSERT(nullptr != obj);
-	kxTimeVal tv;
+	TimeVal tv;
 	tv.tv_sec = delay;
 	tv.tv_usec = 0;
 	obj->setDelay(tv);
@@ -332,13 +332,13 @@ bool KxTimerManager::addTimerOnTime(KxTimerObject* obj, long timestamp)
     KXASSERT(nullptr != obj);
     obj->setRepeat(0);
 #if KX_TARGET_PLATFORM == KX_PLATFORM_WIN32
-    kxTimeVal tv;
+    TimeVal tv;
     tv.tv_sec = timestamp - m_Timestamp;
     tv.tv_usec = 0;
-	kxTimeVal timeOut = m_Now + tv;
+	TimeVal timeOut = m_Now + tv;
 	obj->startWithTime(timeOut);
 #else
-    kxTimeVal tv;
+    TimeVal tv;
     tv.tv_sec = timestamp;
     tv.tv_usec = 0;
     obj->startWithTime(tv);
@@ -379,7 +379,7 @@ bool KxTimerManager::attachToAglieList(KxTimerObject* obj)
     KXASSERT(nullptr != obj);
     KXASSERT(obj->getRepeat() == 0);
 
-    kxTimeVal timeOut = m_Now + obj->getDelay();
+    TimeVal timeOut = m_Now + obj->getDelay();
     obj->startWithTime(timeOut);
     KX_LOGDEBUG("attachToAglieList time tick on %d %d", obj->getTimeVal().tv_sec, obj->getTimeVal().tv_usec);
     if (m_AglieTimerList->insert(obj))

@@ -9,9 +9,8 @@
 #include <map>
 #include<vector>
 
-#include "KXServer.h"
+#include "KxTimerManager.h"
 #include "SessionClient.h"
-#include "KXServer.h"
 
 class NetWorkManager : public KxTimerObject
 {
@@ -62,7 +61,7 @@ public:
 
 	void closeAllServer();
 
-	void onTimer(const kxTimeVal& now);
+	void onTimer(const TimeVal& now);
 
 	void setChangeFlag(bool bChange) { m_bChanging = bChange; }
 	bool getChangeFlag() { return m_bChanging; }

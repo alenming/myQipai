@@ -6,7 +6,7 @@
 #define __EPOLLER_H__
 
 #include <map>
-#include "core/KxCore.h"
+#include "Core.h"
 #include "commnication/KxCommInterfaces.h"
 
     

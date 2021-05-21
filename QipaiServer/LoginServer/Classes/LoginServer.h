@@ -1,8 +1,9 @@
 ﻿#ifndef __SESSIONSERVER_H__
 #define __SESSIONSERVER_H__
-#include "KXServer.h"
+#include "BaseServer.h"
 #include "ServerConfig.h"
-class LoginServer : public KxBaseServer
+
+class LoginServer : public BaseServer
 {
 private:
 	LoginServer(void);

@@ -6,7 +6,7 @@
 #ifndef __KX_SOCKET__
 #define __KX_SOCKET__
 
-#include "core/KxCore.h"
+#include "Core.h"
 
 enum KXSOCK_VERSION
 {
@@ -33,7 +33,7 @@ enum KXSOCK_CODE
 
 typedef sockaddr_in kxSocketAddr;
 
-class KxSock : public KxObject
+class KxSock : public Object
 {
 public:
 	KxSock();

@@ -1,5 +1,5 @@
 #include "BufferData.h"
-#include "core/KxMemPool.h"
+#include "KxMemPool.h"
 
 BufferData::BufferData()
 : m_IsInit(false)

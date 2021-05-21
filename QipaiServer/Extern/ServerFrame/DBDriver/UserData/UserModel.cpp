@@ -1,13 +1,11 @@
 #include "UserModel.h"
-
-#include "helper/ModelDef.h"
-
-#include "DBDriver/DBManager.h"
-#include "DBDriver/RedisStorer.h"
+#include "ModelDef.h"
+#include "DBManager.h"
+#include "RedisStorer.h"
 #include "UserModel.h"
-#include "log/LogManager.h"
-#include "server/KxBaseServer.h"
+#include "BaseServer.h"
 
+#include "log/LogManager.h"
 
 UserModel::UserModel()
 	: m_uId(0)
@@ -66,7 +64,7 @@ bool UserModel::Refresh()
 			// 用户不存在
 			return false;
 		}
-		int nCurTime = KxBaseServer::getInstance()->getTimerManager()->getTimestamp();
+		int nCurTime = BaseServer::getInstance()->getTimerManager()->getTimestamp();
 		SetUserFieldVal(USR_FD_LOGINTIME, nCurTime);
 		return true;
 	}

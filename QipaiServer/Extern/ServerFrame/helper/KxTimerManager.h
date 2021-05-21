@@ -14,7 +14,7 @@
 #include <list>
 #include <map>
 
-#include "KxTimeVal.h"
+#include "TimeVal.h"
 
 
 class KxTimerList;
@@ -23,7 +23,7 @@ class KxTimerList;
 
 // 时间超时对象，可继承重写onTimer回调
 // 并注册到KxTimerManager中来开启计时任务
-class KxTimerObject : public KxObject
+class KxTimerObject : public Object
 {
     friend class KxTimerList;
     friend class KxTimerManager;
@@ -35,13 +35,13 @@ public:
     virtual ~KxTimerObject();
 
     // 在计划的时间到达时会被触发
-    virtual void onTimer(const kxTimeVal& now);
+    virtual void onTimer(const TimeVal& now);
 
     // 停止计时
     void stop();
 
 	// 超时返回true，用于检测超时时间
-	inline bool checkTime(const kxTimeVal& now)
+	inline bool checkTime(const TimeVal& now)
 	{
         return m_TimeVal < now;
 	}
@@ -56,13 +56,13 @@ public:
         m_Repeat = t;
     }
 
-    inline const kxTimeVal& getDelay()
+    inline const TimeVal& getDelay()
 	{
 		return m_Delay;
 	}
 
     // 如需在运行中修改delay，请先stop再重新注册
-    inline void setDelay(const kxTimeVal& d)
+    inline void setDelay(const TimeVal& d)
     {
         m_Delay = d;
     }
@@ -80,28 +80,28 @@ public:
         m_Delay = d;
     }
     
-    inline const  kxTimeVal& getTimeVal()
+    inline const  TimeVal& getTimeVal()
     {
         return m_TimeVal;
     }
 private:
     // 开始计时，超时时间为now + delay，由KxTimerManager调用
-    void start(const kxTimeVal& now);
+    void start(const TimeVal& now);
     // 开始计时，超时时间为t，由KxTimerManager调用
-    void startWithTime(const kxTimeVal& t);
+    void startWithTime(const TimeVal& t);
 
 private:
     KxTimerList* m_TimerList;
     KxTimerObject* m_Prev;
     KxTimerObject* m_Next;
     int m_Repeat;               // 重复次数
-    kxTimeVal m_TimeVal;		// 超时时间
-    kxTimeVal m_Delay;          // 执行间隔
+    TimeVal m_TimeVal;		// 超时时间
+    TimeVal m_Delay;          // 执行间隔
 };
 
 // 定时器链表
 // 提供了高效的添加删除方法
-class KxTimerList : public KxObject
+class KxTimerList : public Object
 {
 public:
     KxTimerList();
@@ -137,7 +137,7 @@ public:
 
     bool insert(KxTimerObject* obj);
 
-    void update(const kxTimeVal& now);
+    void update(const TimeVal& now);
 
 private:
     unsigned int m_Length;
@@ -154,7 +154,7 @@ private:
 // 琐碎的时间间隔应该被添加到自由列表中
 // 当你不确定应该添加到哪个列表时，或者期望添加到自由列表时
 // 直接调用addTimer，让KxTimerManager帮你做最佳选择
-class KxTimerManager : public KxObject
+class KxTimerManager : public Object
 {
 public:
     KxTimerManager();
@@ -185,13 +185,13 @@ public:
     bool attachToAglieList(KxTimerObject* obj);
 
     // 获取当前时间
-    inline const kxTimeVal& getNow()
+    inline const TimeVal& getNow()
     {
         return m_Now;
     }
 
     // 将超时时间转换为Key，精度为千分之一秒
-    inline long timeToKey(const kxTimeVal& delay)
+    inline long timeToKey(const TimeVal& delay)
     {
         return delay.tv_sec * 1000 + delay.tv_usec / 1000;
     }
@@ -209,7 +209,7 @@ private:
 #if KX_TARGET_PLATFORM == KX_PLATFORM_WIN32
     int                             m_Timestamp;
 #endif
-	kxTimeVal					    m_Now;
+	TimeVal					    m_Now;
 	KxTimerList*         	        m_AglieTimerList;
 	std::map<long, KxTimerList*>    m_FixTimerMap;	
 };

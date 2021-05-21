@@ -10,9 +10,9 @@
 #include <set>
 #include <map>
 
-#include "core/KxCore.h"
-#include "commnication/KxCommInterfaces.h"
-#include "helper/KxTimeVal.h"
+#include "Core.h"
+#include "KxCommInterfaces.h"
+#include "TimeVal.h"
 
 class KxSelectPoller : public IKxCommPoller
 {
@@ -41,7 +41,7 @@ public:
     IKxComm* getComm(KXCOMMID cid);
 
     inline void setTimeOut(float timeOut){ m_TimeOut.setFromfloat(timeOut); m_IsBlock = false; }
-    inline void setTimeOut(long sec, long usec) { m_TimeOut = kxTimeVal(sec, usec); m_IsBlock = false; }
+    inline void setTimeOut(long sec, long usec) { m_TimeOut = TimeVal(sec, usec); m_IsBlock = false; }
     inline void setPollBlock(bool isBlock) { m_IsBlock = isBlock; }
 
 private:
@@ -53,7 +53,7 @@ private:
     fd_set m_InSet;
     fd_set m_OutSet;
     fd_set m_ExceptSet;
-	kxTimeVal m_TimeOut;
+	TimeVal m_TimeOut;
 
     std::map<KXCOMMID, IKxComm*> m_PollMap;
     std::set<IKxComm*> m_RemoveSet;

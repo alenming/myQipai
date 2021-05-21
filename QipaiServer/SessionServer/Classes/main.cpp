@@ -7,7 +7,6 @@
  * 5.收到后端指令强制关闭指定的前端
  * 6.UserId 对应 CommunicationId 的哈希
  */
-#include "KXServer.h"
 #include "SessionServer.h"
 
 

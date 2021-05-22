@@ -19,6 +19,9 @@ void SessionHelper::ServerProcess(int subCmd, char* buffer)
 	Head* head = reinterpret_cast<Head*>(buffer);
 	int nSubCmd = head->SubCommand();
 	int uId = head->id;
+
+
+
 	switch (subCmd)
 	{
 		case SERVER_SUB_CMD::SERVER_SUB_NEW_USER:
@@ -43,6 +46,13 @@ void SessionHelper::updateUserPermission(int uId, char* buffer1)
 {
 	Head* head1 = reinterpret_cast<Head*>(buffer1);
 	LOGIN_DATA *loginData = reinterpret_cast<LOGIN_DATA*>(head1->data());
+	int userNameId = atoi(loginData->userName);
+
+	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(NetWorkManager::getInstance()->getGuest(uId));
+	pSessionClient->setUserId(userNameId);
+	pSessionClient->setPermission(1);
+	LOGDEBUG("切换");
+	NetWorkManager::getInstance()->changeGuestToUser(pSessionClient, userNameId);	// 验证成功，guest转user
 
 
 	LOGIN_DATA loginSC;
@@ -53,11 +63,11 @@ void SessionHelper::updateUserPermission(int uId, char* buffer1)
 	//重新写入数据长度
 	char* bu = buffer->getBuffer();
 	Head* head = reinterpret_cast<Head*>(bu);
-	head->id = uId;
+	head->id = userNameId;
 	head->length = buffer->getDataLength();
 
 	//发送用户数据
-	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(NetWorkManager::getInstance()->getGuest(uId));
+
 
 	if (pSessionClient)
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));

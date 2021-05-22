@@ -94,12 +94,16 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 	// 开始下发数据
 	LOGIN_DATA loginSC;
 
-	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
+	BufferData* buffer = newBufferData(SERVER_MAIN_CMD::SERVER_MAIN, SERVER_SUB_CMD::SERVER_SUB_UPDATE_PER);
 
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(uid);
+	if (!pGameUser) return;
 
+	string userName = pGameUser->getUserName();
 	string passWord = pGameUser->getPassWord();
-	memcpy(loginSC.passWord, passWord.c_str(),passWord.size());
+	memcpy(loginSC.userName, userName.c_str(), sizeof(loginSC.userName));
+	memcpy(loginSC.passWord, passWord.c_str(), sizeof(loginSC.passWord));
+
 	buffer->writeData(loginSC);
 
 	//重新写入数据长度
@@ -107,7 +111,6 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 	Head* head = reinterpret_cast<Head*>(bu);
 	head->id = uid;
 	head->length = buffer->getDataLength();
-
 
 	//发送用户数据
 	GateManager::getInstance()->Send(buffer->getBuffer(), head->length);

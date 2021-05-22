@@ -31,7 +31,7 @@ void SessionHelper::ServerProcess(int subCmd, char* buffer)
 		}
 		case SERVER_SUB_CMD::SERVER_SUB_UPDATE_PER:
 		{
-			updateUserPermission(uId);
+			updateUserPermission(uId, buffer);
 			break;
 		}
 		default:
@@ -39,15 +39,32 @@ void SessionHelper::ServerProcess(int subCmd, char* buffer)
 	}
 }
 
-void SessionHelper::updateUserPermission(int userId)
+void SessionHelper::updateUserPermission(int uId, char* buffer1)
 {
+	Head* head1 = reinterpret_cast<Head*>(buffer1);
+	LOGIN_DATA *loginData = reinterpret_cast<LOGIN_DATA*>(head1->data());
 
+
+	LOGIN_DATA loginSC;
+	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
+	memcpy(loginSC.userName, loginData->userName, sizeof(loginSC.userName));
+	memcpy(loginSC.passWord, loginData->passWord, sizeof(loginSC.passWord));
+	buffer->writeData(loginSC);
+	//重新写入数据长度
+	char* bu = buffer->getBuffer();
+	Head* head = reinterpret_cast<Head*>(bu);
+	head->id = uId;
+	head->length = buffer->getDataLength();
+
+	//发送用户数据
+	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(NetWorkManager::getInstance()->getGuest(uId));
+
+	if (pSessionClient)
+		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 }
 void SessionHelper::ServerSubInit(int uId, int userNameId)
 {
-
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
-
 	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(uId));
 	// 连接断开/或者连接不存在
 	if (pSessionClient == nullptr)	return;
@@ -55,8 +72,7 @@ void SessionHelper::ServerSubInit(int uId, int userNameId)
 	//验证逻辑
 	bool isSuccessful = true;
 
-
-	BufferData* buffer1 = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
+	BufferData* buffer1 = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_PERMISSION);
 	char* bu = buffer1->getBuffer();
 
 	Head* head = reinterpret_cast<Head*>(bu);

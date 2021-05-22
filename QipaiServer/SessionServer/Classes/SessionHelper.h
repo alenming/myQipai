@@ -11,7 +11,7 @@ public:
 	static void ServerProcess(int subCmd, char* buffer);
 
 	static void ServerSubInit(int uId, int userNameId);
-	static void updateUserPermission(int uId);
+	static void updateUserPermission(int uId, char* buffer);
 private:
 
 };

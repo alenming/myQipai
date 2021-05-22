@@ -71,7 +71,7 @@ void ModuleClient::userDisconnect(IComm *target)
     // 发送下线消息给后端指定的服务器
     pClient->sendDataToAllServer(reinterpret_cast<char*>(&head), sizeof(head));
     // 关闭socket、从NetWorkManager中和clean移除
-	LOGDEBUG("玩家掉线了!:%d", pClient->getUserId());
+	LOGDEBUG("玩家掉线了!:%d", head.id);
 	pClient->clean();
 	
 }

@@ -64,9 +64,6 @@ bool UserModel::Refresh()
 			// 用户不存在
 			return false;
 		}
-		//更新登录时间
-		int nCurTime = BaseServer::getInstance()->getTimerManager()->getTimestamp();
-		SetUserFieldVal(USR_FD_LOGINTIME, nCurTime);
 		return true;
 	}
 
@@ -291,6 +288,11 @@ bool UserModel::GetRealDataFromDB(int field, int &value)
 	}
 
 	return true;
+}
+
+bool UserModel::updateData(int feild, int value)
+{
+	return SetUserFieldVal(feild, value);
 }
 
 

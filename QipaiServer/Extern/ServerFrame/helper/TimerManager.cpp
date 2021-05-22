@@ -270,7 +270,7 @@ TimerManager::~TimerManager()
 
 void TimerManager::updateTimers()
 {
-               	gettimeofday((struct timeval*)&(m_Now), 0);
+    gettimeofday((struct timeval*)&(m_Now), 0);
 #if KX_TARGET_PLATFORM == KX_PLATFORM_WIN32
     m_Timestamp = static_cast<int>(time(nullptr));
 #endif

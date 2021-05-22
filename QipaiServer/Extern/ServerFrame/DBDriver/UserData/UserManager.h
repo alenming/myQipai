@@ -39,10 +39,7 @@ public:
 	GameUser* getGameUser(int uid, std::string userName, std::string passWord, bool createWhenNull = true);
 	GameUser* getGameUser(int uid);
 	GameUser* newGameUser(int uid, std::string userName, std::string passWord);
-	//更新用户需要重置的数据
-	void reSetGameUserData(int uid, bool bLogin = false);
-    // 刷新用户数据
-    void updateGameUserData(GameUser* gameUsr, bool bLogin = false);
+	GameUser* initGameUser(int uid, std::string userName, std::string passWord);
 	// 添加用户, 注册的时候添加
 	void addGameUser(int uid, GameUser* gameUsr);
 	//检测用户在该服务器是否存在

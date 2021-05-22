@@ -13,15 +13,17 @@ enum USERFIELD
 	USR_FD_USERNAME,		    // 名称
 	USR_FD_PASSWROD,			// 密码
 	USR_FD_USERID = 10,         // id
-	USR_FD_PERMISSION,			//权限
+	USR_FD_PERMISSION,			// 权限
 	USR_FD_USERLV,			    // 等级
 	USR_FD_EXP,				    // 经验
 	USR_FD_GOLD,			    // 金币
 	USR_FD_DIAMOID,				// 钻石
 
+
+	USR_FD_CREATETIME,		    // 角色创建时间
 	USR_FD_LOGINTIME,		    // 角色登陆时间
 	USR_FD_LOGINOUTTIME,	    // 角色登出时间
-	USR_FD_CREATETIME,		    // 角色创建时间
+
 
 	USR_FD_END
 };
@@ -37,6 +39,8 @@ public:
 	bool init(int uId);
 	// 刷新用户数据
 	bool Refresh();
+
+	bool updateData(int feild, int value);
 	// 新用户
 	bool writeNewUserData(int accoundId, std::string name,std::string passWord, std::map<int, int> &info);
 	// 获得用户名字

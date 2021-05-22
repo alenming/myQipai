@@ -80,3 +80,14 @@ void GameUser::setModel(int modelType, IDBModel *model)
 
 	m_mapModels[modelType] = model;
 }
+
+bool GameUser::updateData(int modelType, int feild, int value)
+{
+	std::map<int, IDBModel*>::iterator iter = m_mapModels.find(modelType);
+	if (m_mapModels.find(modelType) != m_mapModels.end())
+	{
+		UserModel* model = (UserModel*)iter->second;	
+		return model->updateData(feild, value);
+	}
+	return false;
+}

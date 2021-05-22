@@ -54,6 +54,10 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IComm *commun)
 		pGameUser->refreshModel(MODELTYPE_USER);
 		CMD_S2C_LOGIN(userNameId);
 	}
+
+	//更新登录时间
+	int nCurTime = BaseServer::getInstance()->getCurrentTime();
+	pGameUser->updateData(MODELTYPE_USER, USR_FD_LOGINTIME, nCurTime);
 }
 
 void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid, int userId)
@@ -118,9 +122,6 @@ void LoginService::CMD_S2C_LOGIN(int uid)
 
 
 
-
-
-
 // 处理服务端的消息
 void LoginService::processServiceS2S(int subcmd, int uid, char *buffer, int len, IComm *commun)
 {
@@ -142,12 +143,12 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IComm *com
 	{
 		return;
 	}
-	LOGDEBUG("玩家离线! uid=%d, accounld=%d", uid, pGameUser->getUid());
-	UserModel* pUserModel = dynamic_cast<UserModel*>(pGameUser->getModel(MODELTYPE_USER));
-	int curTime  = BaseServer::getInstance()->getTimerManager()->getTimestamp();
-	pUserModel->SetUserFieldVal(USR_FD_LOGINOUTTIME, curTime);
-	//GameUserManager::getInstance()->RealremoveGameUser(uid);
+	LOGDEBUG("玩家离线! uid=%d", uid, pGameUser->getUid());
 
+	int curTime = BaseServer::getInstance()->getCurrentTime();
+	pGameUser->updateData(MODELTYPE_USER, USR_FD_LOGINOUTTIME, curTime);
+
+	UserManager::getInstance()->RealremoveGameUser(uid);
 }
 
 

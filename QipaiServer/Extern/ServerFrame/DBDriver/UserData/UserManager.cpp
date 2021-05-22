@@ -106,9 +106,31 @@ GameUser* UserManager::getGameUser(int uId, std::string userName, std::string pa
 	//数据没有数据的话直接给他创建一个新的
 	if (noNull)
 	{
-		//return newGameUser(uId, userName, passWord);
+		return initGameUser(uId, userName, passWord);
 	}
 	return nullptr;
+}
+
+GameUser* UserManager::initGameUser(int uid, std::string userName, std::string passWord)
+{
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
+	if (iter == m_GameUsers.end())
+	{
+		GameUser *pGameUser = new GameUser;
+		if (!pGameUser->initModels(uid))
+		{
+			delete pGameUser;
+			return NULL;
+		}
+		pGameUser->setUserName(userName);
+		pGameUser->setPassWord(passWord);
+		pGameUser->setUid(uid);
+
+		m_GameUsers[uid] = pGameUser;
+		return pGameUser;
+	}
+
+	return NULL;
 }
 
 GameUser* UserManager::getGameUser(int uId)
@@ -126,7 +148,7 @@ GameUser *UserManager::newGameUser(int uId, std::string userName, std::string pa
 {
 	// 新用户
 	GameUser *pGameUser = new GameUser;
-	int nCreateTime = BaseServer::getInstance()->getTimerManager()->getTimestamp();
+	int nCreateTime = BaseServer::getInstance()->getCurrentTime();
 	// 创建每个模型
 	UserModel *pUserModel = new UserModel;
 	pUserModel->init(uId);
@@ -143,7 +165,6 @@ GameUser *UserManager::newGameUser(int uId, std::string userName, std::string pa
 	std::map<int, int> attrs;
 	for (int i = USR_FD_USERID; i < USR_FD_END; i++)
 		attrs[i] = 0;		// 所有属性默认为0
-
 
 	attrs[USR_FD_USERID] = uId;
 	attrs[USR_FD_PERMISSION] = 0;
@@ -162,26 +183,6 @@ GameUser *UserManager::newGameUser(int uId, std::string userName, std::string pa
 	return pGameUser;
 }
 
-//更新用户需要重置的数据
-void UserManager::reSetGameUserData(int uId, bool bLogin)
-{
-	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
-	if (iter != m_GameUsers.end())
-	{
-		return;
-	}
-	updateGameUserData(iter->second, bLogin);
-}
-
-void UserManager::updateGameUserData(GameUser* gameUsr, bool bLogin)
-{
-    if (gameUsr == nullptr)
-    {
-        return;
-    }
-    int uid = gameUsr->getUid();
-
-}
 
 void UserManager::addGameUser(int uId, GameUser* gameUsr)
 {
@@ -241,3 +242,4 @@ void UserManager::RealremoveGameUser(int uid)
 		m_GameUsers.erase(iter);
 	}
 }
+

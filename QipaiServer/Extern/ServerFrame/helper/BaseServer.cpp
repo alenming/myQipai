@@ -155,3 +155,8 @@ void BaseServer::onServerUninit()
 
 	LogManager::destroy();
 }
+
+int BaseServer::getCurrentTime()
+{
+	return static_cast<int>(time(nullptr));
+}

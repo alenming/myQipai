@@ -46,6 +46,8 @@ public:
 	// ·şÎñÆ÷½áÊø
 	virtual void onServerUninit();
 
+	virtual int getCurrentTime();
+
     virtual void stopServer() { m_IsRunning = false; }
 
     TimerManager* getTimerManager()

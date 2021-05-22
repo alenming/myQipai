@@ -38,6 +38,8 @@ public:
 
 	IDBModel* getModel(int modelType);
 
+	bool updateData(int modelType, int feild, int value);
+
 private:
 	int							m_nUid;
 	std::string					m_sUserName;

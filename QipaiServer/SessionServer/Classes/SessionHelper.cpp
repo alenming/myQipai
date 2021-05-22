@@ -24,7 +24,9 @@ void SessionHelper::ServerProcess(int subCmd, char* buffer)
 		case SERVER_SUB_CMD::SERVER_SUB_NEW_USER:
 		{
 			LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
-			ServerSubInit(uId, buffer);
+			std::string temp = loginCS->userName;
+			int userNameId = atoi(loginCS->userName);
+			ServerSubInit(uId, userNameId);
 			break;
 		}
 		case SERVER_SUB_CMD::SERVER_SUB_UPDATE_PER:
@@ -41,12 +43,9 @@ void SessionHelper::updateUserPermission(int userId)
 {
 
 }
-void SessionHelper::ServerSubInit(int uId, char* buffer)
+void SessionHelper::ServerSubInit(int uId, int userNameId)
 {
-	Head* head = reinterpret_cast<Head*>(buffer);
-	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
-	std::string temp = loginCS->userName;
-	int userNameId = atoi(loginCS->userName);
+
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
 
 	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(uId));
@@ -68,19 +67,22 @@ void SessionHelper::ServerSubInit(int uId, char* buffer)
 	if (!isSuccessful)
 	{
 		// 验证失败
+		LOGDEBUG("验证失败!");
 		head->id = uId;
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 		pSessionClient->clean();
 	}
 	else
 	{
-		head->id = pSessionClient->getUserId();
+		head->id = userNameId;
+
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
-		pSessionClient->setUserId(uId);
+
+		pSessionClient->setUserId(userNameId);
 		pSessionClient->setPermission(1);
 		LOGDEBUG("验证成功!,切换游客为正式玩家");
 		// 验证成功，guest转user
-		pNetWorkManager->changeGuestToUser(pSessionClient, uId);
+		pNetWorkManager->changeGuestToUser(pSessionClient, userNameId);
 
 	}
 }

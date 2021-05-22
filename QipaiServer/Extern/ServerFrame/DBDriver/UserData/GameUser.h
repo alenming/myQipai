@@ -33,15 +33,15 @@ public:
 	std::string	getUserName() { return m_sUserName; }
 	void setUserName(std::string userName) { m_sUserName = userName; }
 
-	char*	getPassWord() { return m_sPassWord; }
-	void setPassWord(char* password){ memcpy(m_sPassWord, password, sizeof(m_sPassWord));}
+	std::string	getPassWord() { return m_sPassWord; }
+	void setPassWord(std::string password){ m_sPassWord = password; }
 
 	IDBModel* getModel(int modelType);
 
 private:
 	int							m_nUid;
 	std::string					m_sUserName;
-	char					m_sPassWord[16];
+	std::string					m_sPassWord;
 	std::map<int, IDBModel*>	m_mapModels;
 };
 

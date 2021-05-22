@@ -24,7 +24,7 @@ void SessionHelper::ServerProcess(int subCmd, char* buffer)
 		case SERVER_SUB_CMD::SERVER_SUB_NEW_USER:
 		{
 			LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
-			ServerSubInit(uId, loginCS->userId);
+			ServerSubInit(uId, buffer);
 			break;
 		}
 		case SERVER_SUB_CMD::SERVER_SUB_UPDATE_PER:
@@ -41,9 +41,12 @@ void SessionHelper::updateUserPermission(int userId)
 {
 
 }
-void SessionHelper::ServerSubInit(int uId, int userId)
+void SessionHelper::ServerSubInit(int uId, char* buffer)
 {
-
+	Head* head = reinterpret_cast<Head*>(buffer);
+	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
+	std::string temp = loginCS->userName;
+	int userNameId = atoi(loginCS->userName);
 	NetWorkManager *pNetWorkManager = NetWorkManager::getInstance();
 
 	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(uId));
@@ -54,12 +57,12 @@ void SessionHelper::ServerSubInit(int uId, int userId)
 	bool isSuccessful = true;
 
 
-	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
-	char* bu = buffer->getBuffer();
+	BufferData* buffer1 = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
+	char* bu = buffer1->getBuffer();
 
 	Head* head = reinterpret_cast<Head*>(bu);
-	head->id = userId;//还是guesId
-	head->length = buffer->getDataLength();
+	//head->id = userId;//还是guesId
+	head->length = buffer1->getDataLength();
 
 
 	if (!isSuccessful)
@@ -73,11 +76,11 @@ void SessionHelper::ServerSubInit(int uId, int userId)
 	{
 		head->id = pSessionClient->getUserId();
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
-		pSessionClient->setUserId(userId);
+		pSessionClient->setUserId(uId);
 		pSessionClient->setPermission(1);
 		LOGDEBUG("验证成功!,切换游客为正式玩家");
 		// 验证成功，guest转user
-		pNetWorkManager->changeGuestToUser(pSessionClient, userId);
+		pNetWorkManager->changeGuestToUser(pSessionClient, uId);
 
 	}
 }

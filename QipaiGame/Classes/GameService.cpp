@@ -41,9 +41,9 @@ void GameService::CMD_C2S_LOGIN()
 	BufferData* buffer = newBufferData(MAIN_CMD::CMD_LOGIN_SERVER, LOGIN_CMD::CMD_C2S_LOGIN);
 
 	LOGIN_DATA da = LOGIN_DATA();
-
-	da.userId = 12345678;
+	char userName[16] = "123456";
 	char passw[16] = "wangxiangming" ;
+	memcpy(da.userName, userName, sizeof(da.userName));
 	memcpy(da.passWord, passw, sizeof(da.passWord));
 	buffer->writeData(da);
 
@@ -51,7 +51,7 @@ void GameService::CMD_C2S_LOGIN()
 	char* bu = buffer->getBuffer();
 	Head* head = reinterpret_cast<Head*>(bu);
 	head->length = buffer->getDataLength();
-	head->uid = 0;//服务器用ID
+	//head->uid = 0;//服务器用ID
 	bool isSuccessful = false;
 	if (GameNetworkNode::getInstance()->sendData(buffer->getBuffer(), buffer->getDataLength()) > 0)
 	{

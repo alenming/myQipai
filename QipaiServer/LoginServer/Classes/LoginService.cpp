@@ -32,24 +32,27 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IComm *commun)
 
 	LOGIN_DATA *loginCS = reinterpret_cast<LOGIN_DATA*>(head->data());
 
+	const std::string temp = loginCS->userName;
+
+	int userNameId = atoi(loginCS->userName);
 	// 获得CGameUser
-	GameUser* pGameUser = UserManager::getInstance()->getGameUser(loginCS->userId, loginCS->passWord);
+	GameUser* pGameUser = UserManager::getInstance()->getGameUser(userNameId, loginCS->userName, loginCS->passWord);
 	if (nullptr == pGameUser)
 	{
 		//新用户
 		LOGDEBUG("新用户!");
-		pGameUser = UserManager::getInstance()->newGameUser(loginCS->userId, loginCS->passWord);
+		pGameUser = UserManager::getInstance()->newGameUser(userNameId, loginCS->userName, loginCS->passWord);
 		if (pGameUser)
-			CMD_S2C_NEW_USER_LOGIN(uid, loginCS->userId);
+			CMD_S2C_NEW_USER_LOGIN(uid, userNameId);
 	}
 	else
 	{
 		// 如果不是新用户，断线后会在一段时间内自动移除
 		// 该方法会剔除移除列表数据，不让它自动释放，因为我胡汉三又回来了
 		LOGDEBUG("老用户!");
-		//UserManager::getInstance()->donotDeleteUser(loginCS->userId);
+		UserManager::getInstance()->donotDeleteUser(userNameId);
 		pGameUser->refreshModel(MODELTYPE_USER);
-		CMD_S2C_LOGIN(loginCS->userId);
+		CMD_S2C_LOGIN(userNameId);
 	}
 }
 
@@ -63,9 +66,11 @@ void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid, int userId)
 	GameUser* pGameUser = UserManager::getInstance()->getGameUser(userId);
 	if (!pGameUser) return;
 
-	loginSC.userId = pGameUser->getUid();
-	char* pass = pGameUser->getPassWord();
-	memcpy(loginSC.passWord, pass, sizeof(loginSC.passWord));
+	std::string nameTmep = pGameUser->getUserName();
+	memcpy(loginSC.userName, nameTmep.c_str(), sizeof(loginSC.userName));
+
+	std::string passTemp = pGameUser->getPassWord();
+	memcpy(loginSC.passWord, passTemp.c_str(), sizeof(loginSC.passWord));
 
 	buffer->writeData(loginSC);
 

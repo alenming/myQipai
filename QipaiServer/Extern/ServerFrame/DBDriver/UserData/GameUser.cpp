@@ -28,7 +28,6 @@ bool GameUser::initModels(int uid)
 
 		if (!model->init(uid))
         {
-			//KX_LOGERROR("accoundID=%d init model fail ! modelType=%d", accoundID, type);
             if (MODELTYPE_USER == type)
             {
                 delete model;

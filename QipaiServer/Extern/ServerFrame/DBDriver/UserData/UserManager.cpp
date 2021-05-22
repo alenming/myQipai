@@ -2,6 +2,11 @@
 #include "DBManager.h"
 #include "RedisStorer.h"
 #include "BaseServer.h"
+#include "ModelDef.h"
+#include "log/LogManager.h"
+
+#define  MAX_USER_COUNT		"MAX_USER_COUNT"
+#define  MAX_USER_COUNT_FEID		1
 
 using namespace std;
 UserManager * UserManager::m_pInstance = nullptr;
@@ -15,7 +20,7 @@ UserManager::UserManager()
 
 UserManager::~UserManager()
 {
-	for (std::map<string, GameUser *>::iterator iter = m_GameUsers.begin(); iter != m_GameUsers.end(); ++iter)
+	for (std::map<int, GameUser *>::iterator iter = m_GameUsers.begin(); iter != m_GameUsers.end(); ++iter)
 	{
 		delete iter->second;
 	}
@@ -85,80 +90,54 @@ void UserManager::onTimer(const TimeVal& now)
 	}
 }
 
-GameUser* UserManager::getGameUser(int uid, char* passWord, bool noNull)
+GameUser* UserManager::getGameUser(int uId, std::string userName, std::string passWord, bool noNull)
 {
-	std::map<std::string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
-	if(iter != m_GameUsers.end())
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
+	if (iter != m_GameUsers.end())
 	{
-		char* pass = iter->second->getPassWord();
-		if (strcmp(pass, passWord))
+		std::string pass = iter->second->getPassWord();
+		std::string username = iter->second->getUserName();
+		if ((pass == passWord) && (username ==userName))
 		{
 			return iter->second;
 		}
 	}
 
+	//数据没有数据的话直接给他创建一个新的
 	if (noNull)
 	{
-		return initGameUser(uid);
+		//return newGameUser(uId, userName, passWord);
 	}
 	return nullptr;
 }
-GameUser* UserManager::getGameUser(int uid, bool noNull)
+
+GameUser* UserManager::getGameUser(int uId)
 {
-	std::map<std::string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
 	if (iter != m_GameUsers.end())
 	{
 		return iter->second;
 	}
-	if (noNull)
-	{
-		return initGameUser(uid);
-	}
-	return nullptr;
-}
-
-GameUser* UserManager::initGameUser(int uid)
-{
-	std::map<string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
-	if (iter == m_GameUsers.end())
-	{
-		GameUser *pGameUser = new GameUser;
-		if (!pGameUser->initModels(uid))
-		{
-			delete pGameUser;
-			return nullptr;
-		}
-
-		m_GameUsers[to_string(uid)] = pGameUser;
-		return pGameUser;
-	}
 
 	return nullptr;
 }
 
-GameUser *UserManager::newGameUser(int uid, char* passWord)
+GameUser *UserManager::newGameUser(int uId, std::string userName, std::string passWord)
 {
 	// 新用户
 	GameUser *pGameUser = new GameUser;
 	int nCreateTime = BaseServer::getInstance()->getTimerManager()->getTimestamp();
 	// 创建每个模型
 	UserModel *pUserModel = new UserModel;
-	pUserModel->init(uid);
-
-	pGameUser->setModel(MODELTYPE_USER, pUserModel);
-	pGameUser->setUid(uid);
-
-
-	// 添加到玩家管理器
-	addGameUser(uid, pGameUser);
+	pUserModel->init(uId);
 
 	// 用户信息模型初始化
-	std::string name = "Name-" + std::to_string(uid);
-	pGameUser->setUserName(name);
-
-	char password[16] = {};
-	memcpy(password, passWord, sizeof(password));
-	pGameUser->setPassWord(password);
+	pGameUser->setModel(MODELTYPE_USER, pUserModel);
+	pGameUser->setUid(uId);
+	pGameUser->setUserName(userName);
+	pGameUser->setPassWord(passWord);
+	// 添加到玩家管理器
+	addGameUser(uId, pGameUser);
 
 	// 用户基本信息
 	std::map<int, int> attrs;
@@ -166,31 +145,32 @@ GameUser *UserManager::newGameUser(int uid, char* passWord)
 		attrs[i] = 0;		// 所有属性默认为0
 
 
-	attrs[USR_FD_USERID] = uid;
+	attrs[USR_FD_USERID] = uId;
 	attrs[USR_FD_PERMISSION] = 0;
 	attrs[USR_FD_USERLV] = 1;
 	attrs[USR_FD_EXP] = 1;
 	attrs[USR_FD_GOLD] = 100;
 	attrs[USR_FD_DIAMOID] = 1000;
 	attrs[USR_FD_CREATETIME] = nCreateTime;
-
-	if (!pUserModel->writeNewUserData(uid, name, password,attrs))
+	//写数据进数据库
+	if (!pUserModel->writeNewUserData(uId, userName, passWord, attrs))
 	{
 		// 用户数据初始化失败
 		return nullptr;
 	}
+
 	return pGameUser;
 }
 
 //更新用户需要重置的数据
-void UserManager::reSetGameUserData(int uid, bool bLogin)
+void UserManager::reSetGameUserData(int uId, bool bLogin)
 {
-	GameUser *pGameUser = getGameUser(uid);
-	if (pGameUser == nullptr)
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
+	if (iter != m_GameUsers.end())
 	{
 		return;
 	}
-    updateGameUserData(pGameUser, bLogin);
+	updateGameUserData(iter->second, bLogin);
 }
 
 void UserManager::updateGameUserData(GameUser* gameUsr, bool bLogin)
@@ -203,19 +183,19 @@ void UserManager::updateGameUserData(GameUser* gameUsr, bool bLogin)
 
 }
 
-void UserManager::addGameUser(int uid, GameUser* gameUsr)
+void UserManager::addGameUser(int uId, GameUser* gameUsr)
 {
-	std::map<string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
 	if (iter == m_GameUsers.end())
 	{
-		m_GameUsers[to_string(uid)] = gameUsr;
+		m_GameUsers[uId] = gameUsr;
 	}
 }
 
 //检测用户在该服务器是否存在
 bool UserManager::checkUserIsExist(int uid)
 {
-	std::map<string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter == m_GameUsers.end())
 	{
 		return false;
@@ -254,7 +234,7 @@ void UserManager::donotDeleteUser(int uid)
 //真正删除用户
 void UserManager::RealremoveGameUser(int uid)
 {
-	std::map<string, GameUser *>::iterator iter = m_GameUsers.find(to_string(uid));
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
 	if (iter != m_GameUsers.end())
 	{
 		delete iter->second;

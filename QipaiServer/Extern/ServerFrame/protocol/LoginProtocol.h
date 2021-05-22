@@ -33,7 +33,7 @@ struct REGISTER_DATA
 
 struct LOGIN_DATA
 {
-	int userId;
+	char userName[16];
 	char passWord[16];
 };
 

@@ -8,8 +8,8 @@
 #include "log/LogManager.h"
 
 UserModel::UserModel()
-	: m_uId(0)
-	, m_pStorageDB(nullptr)
+	:m_pStorageDB(nullptr)
+	, m_uId(0)
 {
 }
 
@@ -73,16 +73,15 @@ bool UserModel::Refresh()
 	return false;
 }
 
-bool UserModel::writeNewUserData(int accoundId, std::string name, std::string passWord, std::map<int, int> &info)
+bool UserModel::writeNewUserData(int uId, std::string name, std::string passWord, std::map<int, int> &info)
 {
-	m_uId = accoundId;
 	m_mapUserInfo = info;
 
 	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
 
 	if (nullptr != pStorer)
 	{
-		m_strUsrKey = ModelKey::UsrKey(m_uId);
+		m_strUsrKey = ModelKey::UsrKey(uId);
 
 		if (SUCCESS != pStorer->SetHash(m_strUsrKey, m_mapUserInfo))
 		{

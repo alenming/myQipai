@@ -36,11 +36,9 @@ public:
 
 	void onTimer(const TimeVal& now);
 	// 获得已有用户，当createWhenNull为true时，获取不到会自动从数据库中初始化它
-	GameUser* getGameUser(int uid, char* passWord, bool createWhenNull = true);
-	GameUser* getGameUser(int uid, bool createWhenNull = true);
-	// 初始化用户
-	GameUser* initGameUser(int uid);
-	GameUser* newGameUser(int uid, char* passWord);
+	GameUser* getGameUser(int uid, std::string userName, std::string passWord, bool createWhenNull = true);
+	GameUser* getGameUser(int uid);
+	GameUser* newGameUser(int uid, std::string userName, std::string passWord);
 	//更新用户需要重置的数据
 	void reSetGameUserData(int uid, bool bLogin = false);
     // 刷新用户数据
@@ -57,19 +55,18 @@ public:
 	// 获得所有模型类型
 	std::vector<ModelType>& getModelType() { return m_VectServerModel; }
 
-	const std::map<std::string, GameUser *>& getGameUsers() { return m_GameUsers; }
+	const std::map<int, GameUser *>& getGameUsers() { return m_GameUsers; }
 
 	//真正删除用户
 	void RealremoveGameUser(int uid);
 
 private:
-
-	static UserManager *							m_pInstance;
-	std::map<std::string, GameUser *>							m_GameUsers;
+	static UserManager *								m_pInstance;
+	std::map<int, GameUser*>							m_GameUsers;
 	std::vector<ModelType>								m_VectServerModel;					//服务器所需求服务器模型
 	std::map<int, std::list<SDelayDelData>::iterator>	m_MapDelUserList;					//玩家对应的向量迭代器
 	std::list<SDelayDelData>							m_DelUserList;						//延迟玩家下线列表
-	TimerManager *							m_TimeManager;
+	TimerManager *										m_TimeManager;
 };
 
 #endif //__USER_MANAGER_H__

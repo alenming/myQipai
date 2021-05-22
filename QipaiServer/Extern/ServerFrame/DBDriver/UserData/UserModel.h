@@ -34,7 +34,7 @@ public:
 
 public:
 
-	bool init(int accoundId);
+	bool init(int uId);
 	// 刷新用户数据
 	bool Refresh();
 	// 新用户
@@ -69,14 +69,12 @@ public:
 	bool DeleteUser();
 	// 设置用户基本信息
 	bool SetUserInfo(std::map<int, int> &userInfo);
-	int GetUserID(){ return m_uId; }
 
 protected:
 
 	bool GetRealDataFromDB(int field, int &value);
 
 private:
-
 	int						m_uId;
 	DBRule *				m_pStorageDB;
 	std::string				m_strUsrKey;

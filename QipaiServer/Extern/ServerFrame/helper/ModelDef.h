@@ -11,7 +11,6 @@ public:
 	{
         return MakeKey(uid, "usr-");
 	}
-
 private:
     static std::string MakeKey(int num, std::string prefix)
     {

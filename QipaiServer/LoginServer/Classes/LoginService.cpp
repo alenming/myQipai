@@ -57,7 +57,7 @@ void LoginService::CMD_C2S_LOGIN(int uid, char *buffer, int len, IComm *commun)
 
 	//更新登录时间
 	int nCurTime = BaseServer::getInstance()->getCurrentTime();
-	pGameUser->updateData(MODELTYPE_USER, USR_FD_LOGINTIME, nCurTime);
+	pGameUser->updateData(MODELTYPE_USER, USR_FD_LOGINTIME, nCurTime, true);
 }
 
 void LoginService::CMD_S2C_NEW_USER_LOGIN(int uid, int userId)
@@ -148,8 +148,7 @@ void LoginService::SERVER_SUB_OFFLINE(int uid, char *buffer, int len, IComm *com
 	}
 
 	int curTime = BaseServer::getInstance()->getCurrentTime();
-	pGameUser->updateData(MODELTYPE_USER, USR_FD_LOGINOUTTIME, curTime);
-	pGameUser->refreshModel(MODELTYPE_USER);
+	pGameUser->updateData(MODELTYPE_USER, USR_FD_LOGINOUTTIME, curTime, true);
 
 	LOGDEBUG("玩家离线! uid=%d", uid, pGameUser->getUid());
 	UserManager::getInstance()->RealremoveGameUser(uid);

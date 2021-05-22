@@ -18,7 +18,8 @@ public:
 
 	virtual bool init(int uid) { return true; }
 	virtual bool Refresh() { return true; }
-	virtual bool updateData(int feild, int value){ return true; }
+	virtual bool updateData(int feild, int value, int isWrite=false){ return true; }
+	virtual bool updateData(){ return true; }
 };
 
 #endif //__IDBMODEL_H__

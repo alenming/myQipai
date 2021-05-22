@@ -81,13 +81,22 @@ void GameUser::setModel(int modelType, IDBModel *model)
 	m_mapModels[modelType] = model;
 }
 
-bool GameUser::updateData(int modelType, int feild, int value)
+bool GameUser::updateData(int modelType, int feild, int value, bool isWrite)
 {
 	std::map<int, IDBModel*>::iterator iter = m_mapModels.find(modelType);
 	if (m_mapModels.find(modelType) != m_mapModels.end())
 	{
-		UserModel* model = (UserModel*)iter->second;	
-		return model->updateData(feild, value);
+		return iter->second->updateData(feild, value, isWrite);
+	}
+	return false;
+}
+
+bool GameUser::updateData(int modelType)
+{
+	std::map<int, IDBModel*>::iterator iter = m_mapModels.find(modelType);
+	if (m_mapModels.find(modelType) != m_mapModels.end())
+	{
+		return iter->second->updateData();
 	}
 	return false;
 }

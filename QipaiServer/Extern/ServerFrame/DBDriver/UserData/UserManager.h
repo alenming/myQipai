@@ -35,11 +35,13 @@ public:
 	void addModelType(ModelType Type);
 
 	void onTimer(const TimeVal& now);
+
 	// 获得已有用户，当createWhenNull为true时，获取不到会自动从数据库中初始化它
 	GameUser* getGameUser(int uid, std::string userName, std::string passWord, bool createWhenNull = true);
 	GameUser* getGameUser(int uid);
 	GameUser* newGameUser(int uid, std::string userName, std::string passWord);
 	GameUser* initGameUser(int uid, std::string userName, std::string passWord);
+
 	// 添加用户, 注册的时候添加
 	void addGameUser(int uid, GameUser* gameUsr);
 	//检测用户在该服务器是否存在

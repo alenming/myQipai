@@ -39,10 +39,12 @@ public:
 	bool init(int uId);
 	// 刷新用户数据
 	bool Refresh();
-
-	bool updateData(int feild, int value);
 	// 新用户
-	bool writeNewUserData(int accoundId, std::string name,std::string passWord, std::map<int, int> &info);
+	bool writeNewUserData(int uId, std::string name,std::string passWord, std::map<int, int> &info);
+
+	bool updateData(int feild, int value, bool isWrite = false);
+
+	bool updateData();
 	// 获得用户名字
 	std::string& GetName();
 	// 获得用户基本信息
@@ -65,17 +67,14 @@ public:
 	bool ModUserPassWord(std::string passWrod);
 	// 修改用户名(不存数据库)
 	void AlterUserName(std::string name) { m_strUserName = name; }
-
-
-	// 修改用户信息(不存数据库)
-	bool AlterUserFieldVal(int field, int value);
 	// 删除玩家数据
 	bool DeleteUser();
 	// 设置用户基本信息
 	bool SetUserInfo(std::map<int, int> &userInfo);
 
 protected:
-
+	// 修改用户信息(不存数据库)
+	bool AlterUserFieldVal(int field, int value);
 	bool GetRealDataFromDB(int field, int &value);
 
 private:

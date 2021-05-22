@@ -38,7 +38,9 @@ public:
 
 	IDBModel* getModel(int modelType);
 
-	bool updateData(int modelType, int feild, int value);
+	bool updateData(int modelType, int feild, int value, bool isWrite = false);
+
+	bool updateData(int modelType);
 
 private:
 	int							m_nUid;

@@ -290,9 +290,23 @@ bool UserModel::GetRealDataFromDB(int field, int &value)
 	return true;
 }
 
-bool UserModel::updateData(int feild, int value)
+bool UserModel::updateData(int feild, int value, bool isWrite)
 {
-	return SetUserFieldVal(feild, value);
+	if (isWrite)
+		return SetUserFieldVal(feild, value);
+	else
+		return AlterUserFieldVal(feild, value);
 }
+
+bool UserModel::updateData()
+{
+	RedisStorer *pStorer = reinterpret_cast<RedisStorer*>(m_pStorageDB->storer);
+	if (nullptr != pStorer)
+	{
+		return (SUCCESS == pStorer->SetHash(m_strUsrKey, m_mapUserInfo));
+	}
+	return false;
+}
+
 
 

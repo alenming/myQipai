@@ -1,7 +1,6 @@
 #ifndef _COMMON_HEAD_H__
 #define _COMMON_HEAD_H__
 
-#define RunningInServer
 
 #include <assert.h>
 #include <string>

@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 #if (KX_TARGET_PLATFORM == KX_PLATFORM_LINUX)
 	#include<stdlib.h>

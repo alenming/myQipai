@@ -29,7 +29,6 @@ public:
 	int	getUid() { return m_nUid; }
 	void setUid(int uid) { m_nUid = uid; }
 
-
 	std::string	getUserName() { return m_sUserName; }
 	void setUserName(std::string userName) { m_sUserName = userName; }
 

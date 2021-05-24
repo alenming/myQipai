@@ -20,17 +20,15 @@ UserManager::UserManager()
 
 UserManager::~UserManager()
 {
-	for (std::map<int, GameUser *>::iterator iter = m_GameUsers.begin(); iter != m_GameUsers.end(); ++iter)
+	for (std::map<int, GameUser *>::iterator iter = m_GameUsers.begin(); 
+		iter != m_GameUsers.end(); ++iter)
 	{
 		delete iter->second;
 	}
-
 	m_VectServerModel.clear();
 	m_DelUserList.clear();
 	m_MapDelUserList.clear();
 }
-
-
 
 UserManager *UserManager::getInstance()
 {
@@ -52,17 +50,14 @@ void UserManager::destroy()
 bool UserManager::init(TimerManager *pTimerManager)
 {
 	m_TimeManager = pTimerManager;
-
 	if (m_TimeManager == nullptr)
 	{
 		return false;
 	}
-
 	if (!m_TimeManager->addTimer(this, 300, KXREPEAT_FOREVER))
 	{
 		return false;
 	}
-
 	return true;
 }
 
@@ -90,6 +85,16 @@ void UserManager::onTimer(const TimeVal& now)
 	}
 }
 
+GameUser* UserManager::getGameUser(int uId)
+{
+	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
+	if (iter != m_GameUsers.end())
+	{
+		return iter->second;
+	}
+	return nullptr;
+}
+
 GameUser* UserManager::getGameUser(int uId, std::string userName, std::string passWord, bool noNull)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
@@ -102,7 +107,6 @@ GameUser* UserManager::getGameUser(int uId, std::string userName, std::string pa
 			return iter->second;
 		}
 	}
-
 	//数据没有数据的话直接给他创建一个新的
 	if (noNull)
 	{
@@ -110,7 +114,7 @@ GameUser* UserManager::getGameUser(int uId, std::string userName, std::string pa
 	}
 	return nullptr;
 }
-
+//假如getGameUser没有这个玩家说明服务器中可能没有这个玩家的.先去数据库中找一下.没有再用newGameUser
 GameUser* UserManager::initGameUser(int uid, std::string userName, std::string passWord)
 {
 	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uid);
@@ -133,22 +137,11 @@ GameUser* UserManager::initGameUser(int uid, std::string userName, std::string p
 	return NULL;
 }
 
-GameUser* UserManager::getGameUser(int uId)
-{
-	std::map<int, GameUser *>::iterator iter = m_GameUsers.find(uId);
-	if (iter != m_GameUsers.end())
-	{
-		return iter->second;
-	}
-
-	return nullptr;
-}
-
 GameUser *UserManager::newGameUser(int uId, std::string userName, std::string passWord)
 {
 	// 新用户
 	GameUser *pGameUser = new GameUser;
-	int nCreateTime = BaseServer::getInstance()->getCurrentTime();
+
 	// 创建每个模型
 	UserModel *pUserModel = new UserModel;
 	pUserModel->init(uId);
@@ -172,6 +165,7 @@ GameUser *UserManager::newGameUser(int uId, std::string userName, std::string pa
 	attrs[USR_FD_EXP] = 1;
 	attrs[USR_FD_GOLD] = 100;
 	attrs[USR_FD_DIAMOID] = 1000;
+	int nCreateTime = BaseServer::getInstance()->getCurrentTime();
 	attrs[USR_FD_CREATETIME] = nCreateTime;
 	//写数据进数据库
 	if (!pUserModel->writeNewUserData(uId, userName, passWord, attrs))

@@ -25,10 +25,9 @@ public:
 	//设置服务器平滑开始标志
 	void setSessionServerClosing();							
 	//得到平滑关闭标志位
-	bool getClosingFlag(){ return m_IsClosing; }			
+	bool getClosingFlag(){ return m_IsClosing; }
+
 	ServerConfig * getServerCoinfig() { return &m_ServerConfig; }
-
-
 private:
 	ServerData				m_ServerData;
 	bool					m_IsClosing;	//开启平滑关闭时的标志

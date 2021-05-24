@@ -20,8 +20,6 @@ void SessionHelper::ServerProcess(int subCmd, char* buffer)
 	int nSubCmd = head->SubCommand();
 	int uId = head->id;
 
-
-
 	switch (subCmd)
 	{
 		case SERVER_SUB_CMD::SERVER_SUB_NEW_USER:
@@ -54,7 +52,6 @@ void SessionHelper::updateUserPermission(int uId, char* buffer1)
 	LOGDEBUG("切换");
 	NetWorkManager::getInstance()->changeGuestToUser(pSessionClient, userNameId);	// 验证成功，guest转user
 
-
 	LOGIN_DATA loginSC;
 	BufferData* buffer = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_LOGIN);
 	memcpy(loginSC.userName, loginData->userName, sizeof(loginSC.userName));
@@ -67,8 +64,6 @@ void SessionHelper::updateUserPermission(int uId, char* buffer1)
 	head->length = buffer->getDataLength();
 
 	//发送用户数据
-
-
 	if (pSessionClient)
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
 }
@@ -78,21 +73,15 @@ void SessionHelper::ServerSubInit(int uId, int userNameId)
 	SessionClient *pSessionClient = dynamic_cast<SessionClient *>(pNetWorkManager->getGuest(uId));
 	// 连接断开/或者连接不存在
 	if (pSessionClient == nullptr)	return;
-
 	//验证逻辑
 	bool isSuccessful = true;
-
 	BufferData* buffer1 = newBufferData(CMD_MAIN::CMD_LOGIN_SERVER, LOGIN_SUB_CMD::CMD_S2C_PERMISSION);
 	char* bu = buffer1->getBuffer();
-
 	Head* head = reinterpret_cast<Head*>(bu);
 	//head->id = userId;//还是guesId
 	head->length = buffer1->getDataLength();
-
-
-	if (!isSuccessful)
+	if (!isSuccessful)		// 验证失败
 	{
-		// 验证失败
 		LOGDEBUG("验证失败!");
 		head->id = uId;
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
@@ -101,15 +90,12 @@ void SessionHelper::ServerSubInit(int uId, int userNameId)
 	else
 	{
 		head->id = userNameId;
-
 		pSessionClient->sendData(reinterpret_cast<char*>(&head), sizeof(head));
-
 		pSessionClient->setUserId(userNameId);
 		pSessionClient->setPermission(1);
 		LOGDEBUG("验证成功!,切换游客为正式玩家");
 		// 验证成功，guest转user
 		pNetWorkManager->changeGuestToUser(pSessionClient, userNameId);
-
 	}
 }
 

@@ -1,5 +1,4 @@
 #include "LoginServer.h"
-#include "Platform.h"
 #include "SessionModule.h"
 #include "LoginListener.h"
 #include "UserManager.h"

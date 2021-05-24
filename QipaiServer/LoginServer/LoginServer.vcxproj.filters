@@ -556,9 +556,6 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\Object.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\commnication\Platform.h">
-      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\GateManager.cpp">

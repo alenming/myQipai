@@ -83,41 +83,29 @@ public:
     RedisStorer();
     ~RedisStorer();
 
-public:
-    
+public:   
 	// 连接指定redis服务器, 使用阻塞式连接
     int Connect(std::string ip, int port,std::string passward);
-
 	// 按照之前的ip端口重连redis服务器
     int reconnect();
-
 	// 获得redis内容
 	redisContext *GetRedisContext();
-
     //删除KEY
     int DelKey(const std::string &key);
-
 	//批量删除KEY
 	int DelKey(std::vector<std::string> &keys);
-
 	//批量获取KEY(以key为前缀)
 	int GetKey(const std::string &key, std::vector<std::string> vec);
-
     //判断Key是否存在
     int ExistKey(const std::string &key);
-
     //指定Key在某个时间点过期
     int ExpireAt(const std::string &key, unsigned int timestamp);
-
     //指定Key多长时间之后过期
     int Expire(const std::string &key, int seconds);
-
     //获取Key过期的剩余时间
     int TTL(const std::string &key, int &seconds);
-
 	//取消key的过期时间
 	int Persist(const std::string &key);
-
 	//*********************Set容器操作*********************
     //这里的Int是二进制
     int SetAdd(const std::string &key,const std::string &value);
@@ -132,17 +120,13 @@ public:
 	
 	int SetDel(const std::string &key, int &value);
 
-    int GetSetAll(const std::string &key, std::set<std::string> &setret);
-    
+    int GetSetAll(const std::string &key, std::set<std::string> &setret);  
 	//Set存储的是二进制指
     int GetSetAll(const std::string &key, std::set<int> &setret);
-
 	//Set存储的是字符串
-	int GetSetAllString(const std::string &key, std::set<int> &setret);
-    
+	int GetSetAllString(const std::string &key, std::set<int> &setret);   
     //判断字符串value是否在Set中，是返回0
-    int IsSet(const std::string &key, std::string value);
-    
+    int IsSet(const std::string &key, std::string value); 
     //判断二进制数据value是否在Set中，是返回0
     int IsSet(const std::string &key, const char* value, unsigned int len);
 

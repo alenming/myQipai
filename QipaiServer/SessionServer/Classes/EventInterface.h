@@ -1,7 +1,7 @@
 #ifndef _GAME_INTERFACE_H__
 #define _GAME_INTERFACE_H__
 
-#include "commnication/CommInterfaces.h"
+#include "CommInterfaces.h"
 
 enum EEventId
 {

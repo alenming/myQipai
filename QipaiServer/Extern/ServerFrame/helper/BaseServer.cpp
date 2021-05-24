@@ -1,11 +1,8 @@
 #include "BaseServer.h"
 #include <signal.h>
-
 #include "TimerManager.h"
-#include "Platform.h"
 #include "log/LogManager.h"
-#include "log/LogFileHandler.h"
-#include "log/LogConsoleHandler.h"
+
 
 #if KX_TARGET_PLATFORM == KX_PLATFORM_WIN32
     bool ctrlhandler(DWORD ev)
@@ -91,7 +88,6 @@ void BaseServer::runServer()
 		if (nullptr != m_Poller)
 		{
 			int nRet = m_Poller->poll();
-
 			if (nRet == 0)
 			{
 				m_Tick++;
@@ -109,11 +105,8 @@ void BaseServer::runServer()
 				m_Tick = 1;
 			}
 		}
-
         if (nullptr != m_TimerMgr)
             m_TimerMgr->updateTimers();
-
-        //onServerUpdate();
 	}
 }
 

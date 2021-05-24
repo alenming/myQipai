@@ -22,7 +22,13 @@ enum DBID
 	DB_USER_MODEL = 1,
 };
 
-class IStorer;
+class IStorer
+{
+public:
+	IStorer();
+	virtual ~IStorer();
+};
+
 
 struct DBRule
 {
@@ -36,11 +42,5 @@ struct DBRule
 	IStorer * storer;		     // 数据库实体
 };
 
-class IStorer
-{
-public:
-	IStorer();
-	virtual ~IStorer();
-};
 
 #endif //__ISTORER_H__

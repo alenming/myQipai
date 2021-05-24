@@ -96,7 +96,6 @@ start TestClient.exe</Command>
     <ClInclude Include="..\Extern\ServerFrame\commnication\Core.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Epoller.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Object.h" />
-    <ClInclude Include="..\Extern\ServerFrame\commnication\Platform.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\SelectPoller.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Sock.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\TCPClienter.h" />

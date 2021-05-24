@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\DBDriver\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\UserData\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\DBDriver\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\UserData\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>

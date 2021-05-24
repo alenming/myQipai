@@ -52,7 +52,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\data\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\DBDriver;$(SolutionDir)Extern\ServerFrame\UserData\;$(SolutionDir)Extern\ServerFrame\protocol\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\Tool\DBDriver\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\DBDriver;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\protocol\;$(SolutionDir)Extern\ServerFrame\UserData\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>

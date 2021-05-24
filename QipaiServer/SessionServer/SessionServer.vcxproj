@@ -40,7 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\</OutDir>
-    <IntDir>$(ProjectDir).$(ProjectName)$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)bin\.$(ProjectName)$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\</OutDir>
@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\DBDriver\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\DBDriver\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\core\;$(SolutionDir)Extern\ServerFrame\UserData\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -84,7 +84,10 @@
   <ItemGroup>
     <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\CommInterfaces.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Core.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Epoller.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Object.h" />
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Platform.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\SelectPoller.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Sock.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\TCPClienter.h" />
@@ -92,9 +95,6 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\TCPListener.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\TCPUnit.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\UDPUnit.h" />
-    <ClInclude Include="..\Extern\ServerFrame\core\Core.h" />
-    <ClInclude Include="..\Extern\ServerFrame\core\Object.h" />
-    <ClInclude Include="..\Extern\ServerFrame\core\Platform.h" />
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\DBManager.h" />
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\hiredis\adapters\ae.h" />
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\hiredis\adapters\libev.h" />
@@ -178,10 +178,6 @@
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\mysqld\typelib.h" />
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\MysqlStorer.h" />
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\RedisStorer.h" />
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\GameUser.h" />
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\IDBModel.h" />
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\UserManager.h" />
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\UserModel.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BaseModule.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BaseServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\BufferData.h" />
@@ -191,9 +187,12 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\ModelDef.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\ServerConfig.h" />
     <ClInclude Include="..\Extern\ServerFrame\helper\TimeVal.h" />
-    <ClInclude Include="..\Extern\ServerFrame\KXServer.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h" />
+    <ClInclude Include="..\Extern\ServerFrame\UserData\GameUser.h" />
+    <ClInclude Include="..\Extern\ServerFrame\UserData\IDBModel.h" />
+    <ClInclude Include="..\Extern\ServerFrame\UserData\UserManager.h" />
+    <ClInclude Include="..\Extern\ServerFrame\UserData\UserModel.h" />
     <ClInclude Include="..\Extern\Tool\CommonHead.h" />
     <ClInclude Include="..\Extern\Tool\Common\Data_.h" />
     <ClInclude Include="..\Extern\Tool\Common\Value_.h" />
@@ -249,6 +248,7 @@
   <ItemGroup>
     <ClCompile Include="..\Extern\ServerFrame\commnication\BufferList.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\Epoller.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Object.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\SelectPoller.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\Sock.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\TCPClienter.cpp" />
@@ -256,7 +256,6 @@
     <ClCompile Include="..\Extern\ServerFrame\commnication\TCPListener.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\TCPUnit.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\UDPUnit.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\core\Object.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\DBManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\hiredis\async.c" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\hiredis\dict.c" />
@@ -266,14 +265,14 @@
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\IStorer.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\MysqlStorer.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\RedisStorer.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\GameUser.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\IDBModel.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\UserManager.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\UserModel.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\BaseServer.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\TimerManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\ServerConfig.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\UserData\GameUser.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\UserData\IDBModel.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\UserData\UserManager.cpp" />
+    <ClCompile Include="..\Extern\ServerFrame\UserData\UserModel.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Data_.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Value_.cpp" />
     <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp" />

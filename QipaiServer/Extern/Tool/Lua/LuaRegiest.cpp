@@ -45,7 +45,7 @@ int LogPrint(lua_State * luastate)
 		if (i != nargs)
 			t += "  ";
 	}
-#ifdef KX_LOGDEBUG
+#ifdef LOGDEBUG
 	LOGDEBUG("[LUA-print] %s", t.c_str());
 #else
 	printf("[LUA-print] %s", t.c_str());

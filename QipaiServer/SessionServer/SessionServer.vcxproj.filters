@@ -17,9 +17,6 @@
     <Filter Include="Classes\Extern\ServerFrame\commnication">
       <UniqueIdentifier>{7d073b33-7298-4fbc-aae8-229559dd65a0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\core">
-      <UniqueIdentifier>{bca471be-23f7-49a4-b7bd-5a0838b84284}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Classes\Extern\ServerFrame\protocol">
       <UniqueIdentifier>{0ba9e1ea-f606-4172-b55c-dabdf1b6e7ae}</UniqueIdentifier>
     </Filter>
@@ -28,9 +25,6 @@
     </Filter>
     <Filter Include="Classes\Extern\ServerFrame\DBDriver">
       <UniqueIdentifier>{350bbfb5-4242-4560-90b1-c272074dfa96}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\DBDriver\userdata">
-      <UniqueIdentifier>{300a0d86-2a68-40cd-8f4a-c37799bfeb52}</UniqueIdentifier>
     </Filter>
     <Filter Include="Classes\Extern\ServerFrame\DBDriver\hiredis">
       <UniqueIdentifier>{1c06cf3e-2c15-4be4-affd-11c1f51727f2}</UniqueIdentifier>
@@ -89,6 +83,9 @@
     <Filter Include="Classes\Extern\Tool\CsvLoader">
       <UniqueIdentifier>{b5c2a097-7adc-4f5e-8a03-06c0e344eb69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\Extern\ServerFrame\UserData">
+      <UniqueIdentifier>{48005af5-5f8a-41c4-b76b-60c0b7b51cde}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\EventConnect.h">
@@ -120,18 +117,6 @@
     </ClInclude>
     <ClInclude Include="Classes\SessionServer.h">
       <Filter>Classes</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\KXServer.h">
-      <Filter>Classes\Extern\ServerFrame</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\core\Core.h">
-      <Filter>Classes\Extern\ServerFrame\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\core\Object.h">
-      <Filter>Classes\Extern\ServerFrame\core</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\core\Platform.h">
-      <Filter>Classes\Extern\ServerFrame\core</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h">
       <Filter>Classes\Extern\ServerFrame\protocol</Filter>
@@ -171,18 +156,6 @@
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\RedisStorer.h">
       <Filter>Classes\Extern\ServerFrame\DBDriver</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\GameUser.h">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\IDBModel.h">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\UserManager.h">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\DBDriver\userdata\UserModel.h">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\DBDriver\hiredis\adapters\ae.h">
       <Filter>Classes\Extern\ServerFrame\DBDriver\hiredis</Filter>
@@ -580,6 +553,27 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\CommInterfaces.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\UserData\GameUser.h">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\UserData\IDBModel.h">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\UserData\UserManager.h">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\UserData\UserModel.h">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Core.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Object.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\ServerFrame\commnication\Platform.h">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Classes\EventConnect.cpp">
@@ -612,9 +606,6 @@
     <ClCompile Include="Classes\SessionServer.cpp">
       <Filter>Classes</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\core\Object.cpp">
-      <Filter>Classes\Extern\ServerFrame\core</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
@@ -635,18 +626,6 @@
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\RedisStorer.cpp">
       <Filter>Classes\Extern\ServerFrame\DBDriver</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\GameUser.cpp">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\IDBModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\UserManager.cpp">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\DBDriver\userdata\UserModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\DBDriver\userdata</Filter>
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\DBDriver\hiredis\async.c">
       <Filter>Classes\Extern\ServerFrame\DBDriver\hiredis</Filter>
@@ -764,6 +743,21 @@
     </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\helper\TimerManager.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\UserData\GameUser.cpp">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\UserData\IDBModel.cpp">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\UserData\UserManager.cpp">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\UserData\UserModel.cpp">
+      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\ServerFrame\commnication\Object.cpp">
+      <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

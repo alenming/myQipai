@@ -51,7 +51,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\DBDriver\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\UserData\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Common\;$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\DBDriver\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\UserData\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
@@ -82,6 +82,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Extern\Common\ConfGameSetting.h" />
+    <ClInclude Include="..\Extern\Common\ConfManager.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\CommInterfaces.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Core.h" />
@@ -245,6 +247,8 @@
     <ClInclude Include="Classes\SessionServer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Extern\Common\ConfGameSetting.cpp" />
+    <ClCompile Include="..\Extern\Common\ConfManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\BufferList.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\Epoller.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\Object.cpp" />

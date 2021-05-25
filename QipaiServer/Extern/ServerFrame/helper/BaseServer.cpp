@@ -118,23 +118,18 @@ void BaseServer::onServerUpdate()
 bool BaseServer::onServerInit()
 {
     if (nullptr == m_TimerMgr)
-    {
         m_TimerMgr = new TimerManager();
-    }
 
 	LogManager::getInstance()->setShowTime(false);
 	LogManager::getInstance()->setShowDate(false);
 	LogManager::getInstance()->setShowFunc(false);
-
 	LogConsoleHandler* pConsoleHandle = new LogConsoleHandler();
 	LogManager::getInstance()->addHandler(1, pConsoleHandle);
-
 	LogFileHandler* pFileHandle = new LogFileHandler();
 	pFileHandle->setFilePath("../bin/");
 	pFileHandle->setFileName(m_ServerName);
 	pFileHandle->setFastModel(false);
 	LogManager::getInstance()->addHandler(2, pFileHandle);
-
 	return true;
 }
 

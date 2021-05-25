@@ -3,8 +3,6 @@
 
 #include "ConfManager.h"
 
-#define CHECK_RETURN(success) if(!(success)) { LOG("Execute False On File %s Line %d : %s", __FILE__, __LINE__, #success); return false; };
-
 #define NO_KEY_DATA(_DATA_TYPE_)	\
 public:								\
 	inline _DATA_TYPE_& getData()	\

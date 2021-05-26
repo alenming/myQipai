@@ -52,12 +52,7 @@ bool ConfManager::init()
 {
 	do
 	{
-#ifndef RunningInServer
-		m_szConfRoot = "..//GameConfig//";
-#else
-		m_szConfRoot = "../config/";
-#endif
-		CHECK(addConf(CONF_NEW_PLAYER, m_szConfRoot + "GameConfig/NewPlayerSetting.csv", new ConfNewPlayerSetting()));
+		CHECK(addConf(CONF_NEW_PLAYER, "..//GameConfig//NewPlayerSetting.csv", new ConfNewPlayerSetting()));
 
 	} while (0);
 

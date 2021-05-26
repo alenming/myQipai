@@ -12,12 +12,11 @@ public:								\
 protected:							\
 	_DATA_TYPE_ m_Data;				\
 
-
 /////////////////////////////////Åä±íÊý¾Ý/////////////////////////////////////////
 
-class NewPlayerItem
+struct  NewPlayerItem
 {
-public:
+	int						configId;
 	int						HeadId;
 	int						UserLv;
 	int						UserExp;

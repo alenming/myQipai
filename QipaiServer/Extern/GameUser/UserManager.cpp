@@ -4,6 +4,7 @@
 #include "BaseServer.h"
 #include "ModelDef.h"
 #include "log/LogManager.h"
+#include "ConfGameSetting.h"
 
 #define  MAX_USER_COUNT		"MAX_USER_COUNT"
 #define  MAX_USER_COUNT_FEID		1
@@ -159,12 +160,15 @@ GameUser *UserManager::newGameUser(int uId, std::string userName, std::string pa
 	for (int i = USR_FD_USERID; i < USR_FD_END; i++)
 		attrs[i] = 0;		// 所有属性默认为0
 
+	ConfManager::getInstance()->init();
+	ConfNewPlayerSetting* conf = (ConfNewPlayerSetting*)ConfManager::getInstance()->getConf(CONF_NEW_PLAYER);
+	NewPlayerItem* newItem = (NewPlayerItem*)conf->getData(CONF_NEW_PLAYER);
 	attrs[USR_FD_USERID] = uId;
 	attrs[USR_FD_PERMISSION] = 0;
-	attrs[USR_FD_USERLV] = 1;
-	attrs[USR_FD_EXP] = 1;
-	attrs[USR_FD_GOLD] = 100;
-	attrs[USR_FD_DIAMOID] = 1000;
+	attrs[USR_FD_USERLV] = newItem->UserLv;
+	attrs[USR_FD_EXP] = newItem->UserExp;
+	attrs[USR_FD_GOLD] = newItem->Gold;
+	attrs[USR_FD_DIAMOID] = newItem->Diamond;
 	int nCreateTime = BaseServer::getInstance()->getCurrentTime();
 	attrs[USR_FD_CREATETIME] = nCreateTime;
 	//写数据进数据库

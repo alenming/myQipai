@@ -51,8 +51,8 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Common\;$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\DBDriver\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\UserData\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)Extern\Tool\;$(SolutionDir)Extern\ServerFrame\;$(SolutionDir)Extern\ServerFrame\helper\;$(SolutionDir)Extern\ServerFrame\commnication\;$(SolutionDir)Extern\ServerFrame\log\;$(ProjectDir)Classes\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS;RunningInServer;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -82,8 +82,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\Extern\Common\ConfGameSetting.h" />
-    <ClInclude Include="..\Extern\Common\ConfManager.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\BufferList.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\CommInterfaces.h" />
     <ClInclude Include="..\Extern\ServerFrame\commnication\Core.h" />
@@ -190,10 +188,6 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\TimeVal.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\LoginProtocol.h" />
     <ClInclude Include="..\Extern\ServerFrame\protocol\ServerProtocol.h" />
-    <ClInclude Include="..\Extern\ServerFrame\UserData\GameUser.h" />
-    <ClInclude Include="..\Extern\ServerFrame\UserData\IDBModel.h" />
-    <ClInclude Include="..\Extern\ServerFrame\UserData\UserManager.h" />
-    <ClInclude Include="..\Extern\ServerFrame\UserData\UserModel.h" />
     <ClInclude Include="..\Extern\Tool\CommonHead.h" />
     <ClInclude Include="..\Extern\Tool\Common\Data_.h" />
     <ClInclude Include="..\Extern\Tool\Common\Value_.h" />
@@ -247,8 +241,6 @@
     <ClInclude Include="Classes\SessionServer.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Extern\Common\ConfGameSetting.cpp" />
-    <ClCompile Include="..\Extern\Common\ConfManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\BufferList.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\Epoller.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\commnication\Object.cpp" />
@@ -272,10 +264,6 @@
     <ClCompile Include="..\Extern\ServerFrame\helper\BufferData.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\TimerManager.cpp" />
     <ClCompile Include="..\Extern\ServerFrame\helper\ServerConfig.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\UserData\GameUser.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\UserData\IDBModel.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\UserData\UserManager.cpp" />
-    <ClCompile Include="..\Extern\ServerFrame\UserData\UserModel.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Data_.cpp" />
     <ClCompile Include="..\Extern\Tool\Common\Value_.cpp" />
     <ClCompile Include="..\Extern\Tool\CsvLoader\CsvLoader.cpp" />

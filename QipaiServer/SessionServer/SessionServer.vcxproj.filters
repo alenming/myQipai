@@ -83,12 +83,6 @@
     <Filter Include="Classes\Extern\Tool\CsvLoader">
       <UniqueIdentifier>{b5c2a097-7adc-4f5e-8a03-06c0e344eb69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\UserData">
-      <UniqueIdentifier>{48005af5-5f8a-41c4-b76b-60c0b7b51cde}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Classes\Extern\Common">
-      <UniqueIdentifier>{505cd2ff-f5a5-41ef-aeff-9fccea83f510}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\EventConnect.h">
@@ -556,29 +550,11 @@
     <ClInclude Include="..\Extern\ServerFrame\commnication\CommInterfaces.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\GameUser.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\IDBModel.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\UserManager.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\UserModel.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\Core.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\Object.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\Common\ConfGameSetting.h">
-      <Filter>Classes\Extern\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\Common\ConfManager.h">
-      <Filter>Classes\Extern\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -750,26 +726,8 @@
     <ClCompile Include="..\Extern\ServerFrame\helper\TimerManager.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\GameUser.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\IDBModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\UserManager.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\UserModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\commnication\Object.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\Common\ConfGameSetting.cpp">
-      <Filter>Classes\Extern\Common</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\Common\ConfManager.cpp">
-      <Filter>Classes\Extern\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

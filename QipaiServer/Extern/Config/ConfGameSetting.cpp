@@ -9,15 +9,16 @@ bool ConfNewPlayerSetting::LoadCSV(const std::string& str)
 		return false;
 	while (csvLoader.NextLine())
 	{
-		VecVecInt temp;
+		std::vector<int> temp;
 		NewPlayerItem *item = new NewPlayerItem;
-
+		item->configId = csvLoader.NextInt();
 		item->HeadId = csvLoader.NextInt();
 		item->UserLv = csvLoader.NextInt();
 		item->UserExp = csvLoader.NextInt();
 		item->Gold = csvLoader.NextInt();
 		item->Diamond = csvLoader.NextInt();
-	
+
+		m_Datas[item->configId] = item;
 	}
 	return true;
 }

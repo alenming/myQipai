@@ -40,7 +40,7 @@
 #include <algorithm>
 #define KXASSERT assert
 
-#define RunningInServer
+//#define RunningInServer
 
 //消除平台相关的时间，Socket差异
 #if(KX_TARGET_PLATFORM == KX_PLATFORM_WIN32)

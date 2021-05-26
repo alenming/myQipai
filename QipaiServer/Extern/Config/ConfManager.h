@@ -1,44 +1,8 @@
-/*
-
-*/
 #ifndef __CONF_MANAGER_H__
 #define __CONF_MANAGER_H__
 
-
 #include "CsvLoader/CsvLoader.h"
 
-typedef std::vector<int>				VecInt;
-typedef std::vector<float>				VecFloat;
-typedef std::vector<std::vector<int> >   VecVecInt;
-typedef std::vector<std::vector<float> > VecVecFloat;
-typedef std::map<std::string, float>	MapStrFloat;
-
-// 辅助方法
-inline void fillIntVec(int times, CsvLoader& loader, VecInt& out)
-{
-	int value = 0;
-	for (int i = 0; i < times; ++i)
-	{
-		value = loader.NextInt();
-		if (0 != value)
-		{
-			out.push_back(value);
-		}
-	}
-}
-
-inline void fillFloatVec(int times, CsvLoader& loader, VecFloat& out)
-{
-	float value = 0.0f;
-	for (int i = 0; i < times; ++i)
-	{
-		value = loader.NextFloat();
-		if (-0.00000001f > value || 0.00000001f < value)
-		{
-			out.push_back(value);
-		}
-	}
-}
 
 // 配置文件的类型
 enum ConfType

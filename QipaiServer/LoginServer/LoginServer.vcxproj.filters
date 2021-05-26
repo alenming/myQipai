@@ -83,8 +83,11 @@
     <Filter Include="Classes\Extern\ServerFrame\DBDriver\mysqld">
       <UniqueIdentifier>{038d8f47-a70d-4809-bbff-811e4bcdf5c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes\Extern\ServerFrame\UserData">
-      <UniqueIdentifier>{8329cc81-6f44-48d1-8b02-072e165fe27e}</UniqueIdentifier>
+    <Filter Include="Classes\Extern\Config">
+      <UniqueIdentifier>{8961551e-4817-4440-a8f3-3cd7cfa8ee0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\Extern\GameUser">
+      <UniqueIdentifier>{8fbec8cd-4ccd-468c-afbd-baccc5691a89}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -538,23 +541,29 @@
     <ClInclude Include="..\Extern\ServerFrame\helper\TimerManager.h">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\GameUser.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\IDBModel.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\UserManager.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Extern\ServerFrame\UserData\UserModel.h">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\Core.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
     </ClInclude>
     <ClInclude Include="..\Extern\ServerFrame\commnication\Object.h">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Config\ConfGameSetting.h">
+      <Filter>Classes\Extern\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\Config\ConfManager.h">
+      <Filter>Classes\Extern\Config</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\GameUser\GameUser.h">
+      <Filter>Classes\Extern\GameUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\GameUser\IDBModel.h">
+      <Filter>Classes\Extern\GameUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\GameUser\UserManager.h">
+      <Filter>Classes\Extern\GameUser</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Extern\GameUser\UserModel.h">
+      <Filter>Classes\Extern\GameUser</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -714,20 +723,26 @@
     <ClCompile Include="..\Extern\ServerFrame\helper\TimerManager.cpp">
       <Filter>Classes\Extern\ServerFrame\helper</Filter>
     </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\GameUser.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\IDBModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\UserManager.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Extern\ServerFrame\UserData\UserModel.cpp">
-      <Filter>Classes\Extern\ServerFrame\UserData</Filter>
-    </ClCompile>
     <ClCompile Include="..\Extern\ServerFrame\commnication\Object.cpp">
       <Filter>Classes\Extern\ServerFrame\commnication</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Config\ConfGameSetting.cpp">
+      <Filter>Classes\Extern\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\Config\ConfManager.cpp">
+      <Filter>Classes\Extern\Config</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\GameUser\GameUser.cpp">
+      <Filter>Classes\Extern\GameUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\GameUser\IDBModel.cpp">
+      <Filter>Classes\Extern\GameUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\GameUser\UserManager.cpp">
+      <Filter>Classes\Extern\GameUser</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Extern\GameUser\UserModel.cpp">
+      <Filter>Classes\Extern\GameUser</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

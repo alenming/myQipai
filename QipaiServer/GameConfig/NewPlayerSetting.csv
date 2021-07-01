@@ -1,0 +1,5 @@
+配置ID,头像id,用户等级,用户经验,金币,钻石
+不能空行,,,,,
+ConfigId,HeadId,UserLv,UserExp,Gold,Diamond
+int,int,int,int,int,int
+1,1,1,100,1000,10000

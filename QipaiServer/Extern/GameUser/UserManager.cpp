@@ -2,7 +2,6 @@
 #include "DBManager.h"
 #include "RedisStorer.h"
 #include "BaseServer.h"
-#include "ModelDef.h"
 #include "LogManager.h"
 #include "ConfGameSetting.h"
 

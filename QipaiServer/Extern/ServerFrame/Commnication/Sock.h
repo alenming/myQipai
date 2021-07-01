@@ -33,7 +33,7 @@ enum SOCK_CODE
 
 typedef sockaddr_in kxSocketAddr;
 
-class Sock : public Object
+class Sock : public _Object
 {
 public:
 	Sock();

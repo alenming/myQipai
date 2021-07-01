@@ -11,7 +11,7 @@
 #include "TimerManager.h"
 
 
-class BaseServer : public Object
+class BaseServer : public _Object
 {
 protected:
 	BaseServer();

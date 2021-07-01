@@ -21,7 +21,7 @@ class ICommPoller;
 // 逻辑处理模块接口
 // 用于处理IKxComm接收到的消息以及异常
 // 一个IKxModule可以对应多个IKxComm对象，例如对应很多个客户端对象
-class IModule : public Object
+class IModule : public _Object
 {
 public:
     // IKxComm对象接收到数据后，用于检测数据是否完整的回调
@@ -38,7 +38,7 @@ public:
 };
 
 // 轮询器接口，会有Poll，Select，Epoll(linux), [IOCP(windows)]等实现
-class ICommPoller : public Object
+class ICommPoller : public _Object
 {
 public:
     // 进行轮询，并返回触发的事件数
@@ -67,7 +67,7 @@ protected:
 
 
 // 通讯对象接口，会有TCP，UDP，UnixSocket，共享内存等实现
-class IComm : virtual public Object
+class IComm : virtual public _Object
 {
     friend class ICommPoller;
 public:

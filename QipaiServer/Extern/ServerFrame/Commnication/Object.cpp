@@ -1,15 +1,15 @@
 #include "Object.h"
 
-Object::Object()
+_Object::_Object()
 :m_ReferenceCount(1)
 {
 }
 
-Object::~Object()
+_Object::~_Object()
 {
 }
 
-void Object::retain()
+void _Object::retain()
 {
     if (m_ReferenceCount > 0)
     {
@@ -17,7 +17,7 @@ void Object::retain()
     }
 }
 
-void Object::release()
+void _Object::release()
 {
     if (m_ReferenceCount > 0)
     {
@@ -29,7 +29,7 @@ void Object::release()
     }
 }
 
-unsigned int Object::getReferenceCount() const
+unsigned int _Object::getReferenceCount() const
 {
     return m_ReferenceCount;
 }

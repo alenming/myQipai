@@ -23,7 +23,7 @@ class TimerList;
 
 // 时间超时对象，可继承重写onTimer回调
 // 并注册到KxTimerManager中来开启计时任务
-class TimerObject : public Object
+class TimerObject : public _Object
 {
     friend class TimerList;
     friend class TimerManager;
@@ -101,7 +101,7 @@ private:
 
 // 定时器链表
 // 提供了高效的添加删除方法
-class TimerList : public Object
+class TimerList : public _Object
 {
 public:
     TimerList();
@@ -154,7 +154,7 @@ private:
 // 琐碎的时间间隔应该被添加到自由列表中
 // 当你不确定应该添加到哪个列表时，或者期望添加到自由列表时
 // 直接调用addTimer，让KxTimerManager帮你做最佳选择
-class TimerManager : public Object
+class TimerManager : public _Object
 {
 public:
     TimerManager();

@@ -1,10 +1,9 @@
 #include "UserModel.h"
-#include "ModelDef.h"
 #include "DBManager.h"
 #include "RedisStorer.h"
 #include "UserModel.h"
 #include "BaseServer.h"
-
+#include "Head.h"
 #include "log/LogManager.h"
 
 UserModel::UserModel()
